@@ -1,6 +1,6 @@
 # uerto
 
-A new Flutter project.
+Uerto will be the new standard for social activities outside your home.
 
 ## Getting Started
 
