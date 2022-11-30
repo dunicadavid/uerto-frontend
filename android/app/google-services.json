@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "836039419493",
+    "project_id": "uerto-287508",
+    "storage_bucket": "uerto-287508.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836039419493:android:94ba62f810dc10b9f6488c",
+        "android_client_info": {
+          "package_name": "com.example.uerto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836039419493-sgabpoen21k06pa72t7ec1j8flhorvju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwVwYYqzfyU0lnPhH9Mf5yhkl35ksQKBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836039419493-sgabpoen21k06pa72t7ec1j8flhorvju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

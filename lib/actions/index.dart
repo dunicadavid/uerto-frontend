@@ -1,10 +1,14 @@
 library actions;
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uerto/models/index.dart';
 
 
 part 'index.freezed.dart';
-part 'initialize_app.dart';
+part 'auth/initialize_app.dart';
+part 'auth/register.dart';
+part 'auth/login.dart';
+part 'auth/signout.dart';
 
 
 

@@ -15,6 +15,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   AppState._();
 
+  AppUser? get user;
+
   String? get error;
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this)! as Map<String, dynamic>;

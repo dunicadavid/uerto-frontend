@@ -22,6 +22,9 @@ dependencies:
   freezed_annotation: ^2.2.0
   flutter_appauth: ^4.2.1
   flutter_secure_storage: ^6.1.0
+  firebase_core: ^2.3.0
+  firebase_auth: ^4.1.4
+
 
 dev_dependencies:
   flutter_test:

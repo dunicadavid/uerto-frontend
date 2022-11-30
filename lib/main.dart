@@ -5,6 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:uerto/presentation/widgets/login_page.dart';
+import 'package:uerto/presentation/widgets/main_page.dart';
 
 import './mixin/init_mixin.dart';
 import '../models/index.dart';
@@ -36,6 +38,8 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
               title: 'Uerto',
               routes: <String, WidgetBuilder>{
                 '/': (BuildContext context) => const InitPage(),
+                '/main': (BuildContext context) => const MainPage(),
+                '/login': (BuildContext context) => const LoginPage(),
               },
             ),
           );
