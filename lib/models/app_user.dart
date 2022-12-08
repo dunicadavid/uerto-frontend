@@ -12,13 +12,15 @@ abstract class AppUser implements Built<AppUser, AppUserBuilder> {
 
   AppUser._();
 
-  String get uid;
+  int get userId;
 
   String get fullname;
 
   String get email;
 
   String get phoneNumber;
+
+  String get uid;
 
   String? get photoUrl;
 

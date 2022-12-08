@@ -4,6 +4,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:uerto/presentation/widgets/register2_page.dart';
 import 'package:uerto/presentation/widgets/verify_email_page.dart';
 
 import '../../containers/user_container.dart';
@@ -18,12 +19,14 @@ class InitPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return UserContainer(
       builder: (BuildContext context, AppUser? user) {
-        if (user == null) {
+        if (FirebaseAuth.instance.currentUser == null) {
           return const LoginPage();
-        } else if(FirebaseAuth.instance.currentUser!.emailVerified) {
-          return const MainPage();
-        } else {
+        } else if(!FirebaseAuth.instance.currentUser!.emailVerified) {
           return const VerifyEmailPage();
+        } else if(user == null){
+          return const Register2Page();
+        } else {
+          return const MainPage();
         }
       },
     );

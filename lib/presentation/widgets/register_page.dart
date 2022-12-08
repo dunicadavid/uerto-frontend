@@ -1,26 +1,25 @@
 // File created by
 // Dunica David-Gabriel <FLTY>
-// on 30/11/2022 15:50:40
+// on 07/12/2022 13:08:37
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-import 'package:uerto/models/index.dart';
-
 import '../../actions/index.dart';
+import '../../models/index.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final TextEditingController _rePassword = TextEditingController();
   bool _isLoading = false;
 
   void _onResult(AppAction action) {
@@ -28,23 +27,10 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = false;
     });
     if (action is ErrorAction) {
-
-      if(action.error.toString().split(' ')[0] == 'Deserializing') {
-        Navigator.of(context).pushReplacementNamed('/');
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Account not ready yet')));
-      }
-      else if (action.error.toString().split(' ')[0] == '[firebase_auth/wrong-password]') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email and password doesn't match")));
-      }
-      else if (action.error.toString().split(' ')[0] == '[firebase_auth/user-not-found]') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('There is no user with this email')));
-      }
-      else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(action.error.toString().split(' ')[0])));
-      }
-
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
-      Navigator.of(context).pushReplacementNamed('/');
+      //StoreProvider.of<AppState>(context).dispatch(const VerifyEmail());
+      Navigator.pushReplacementNamed(context, '/');
     }
   }
 
@@ -78,32 +64,26 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   Expanded(
                     child: Container(),
-                    flex: 2,
+                    flex: 3,
                   ),
                   const Text(
                     'Welcome',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 30,
-                      fontFamily: 'Plus',
+                      fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const Text(
-                    'Connect into your account to continue',
-                    style: TextStyle(
-                      color: Color(0x98ebebeb),
-                      fontSize: 18,
-                      fontFamily: 'Plus',
-                      fontWeight: FontWeight.bold,
-                    ),
+                    'Create an account to continue',
+                    style: TextStyle(color: Color(0x98ebebeb), fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Expanded(
                     child: Container(),
-                    flex: 5,
+                    flex: 6,
                   ),
                   Expanded(
-                    flex: 50,
+                    flex: 80,
                     child: Container(
                       color: const Color(0xffF0F0F0),
                       child: Form(
@@ -121,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.all(Radius.circular(0)),
                                 ),
                                 child: TextFormField(
-                                  style: const TextStyle(fontFamily: 'Plus',fontWeight: FontWeight.bold),
+                                  style: const TextStyle(fontFamily: 'Plus'),
                                   controller: _email,
                                   cursorColor: Theme.of(context).secondaryHeaderColor,
                                   decoration: InputDecoration(
@@ -134,18 +114,21 @@ class _LoginPageState extends State<LoginPage> {
                                   onChanged: (String value) {},
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please enter your email';
+                                      return 'Please enter an email address';
                                     } else if (!value.contains('@') || !value.contains('.')) {
                                       return 'Please enter a valid email address';
                                     }
+
                                     return null;
                                   },
                                 ),
                               ),
                             ),
+
+
                             Expanded(
                               child: Container(),
-                              flex: 2,
+                              flex: 3,
                             ),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -155,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.all(Radius.circular(0)),
                                 ),
                                 child: TextFormField(
-                                  style: const TextStyle(fontFamily: 'Plus',fontWeight: FontWeight.bold),
+                                  style: const TextStyle(fontFamily: 'Plus'),
                                   controller: _password,
                                   cursorColor: Theme.of(context).secondaryHeaderColor,
                                   decoration: InputDecoration(
@@ -166,50 +149,59 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   keyboardType: TextInputType.visiblePassword,
                                   obscureText: true,
-                                  onChanged: (String value) {},
                                   validator: (String? value) {
                                     if (value == null || value.isEmpty) {
-                                      return 'Please enter your password';
+                                      return 'Please enter a password';
                                     } else if (value.length < 6 || value.length > 24) {
                                       return 'Password has to be between 6 and 24 characters';
                                     }
+
+                                    if (!value.contains(RegExp(r'[!-`]'))) {
+                                      return 'Password must contain a capital letter, a number or a symbol';
+                                    }
+
                                     return null;
                                   },
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                  0,
-                                  15,
-                                  30,
-                                  0,
+                            Expanded(
+                              child: Container(),
+                              flex: 3,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 30),
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  color: Color(0x22262f4c),
+                                  borderRadius: BorderRadius.all(Radius.circular(0)),
                                 ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    //Navigator.of(context).pushReplacementNamed('/resetPassword');
-                                  },
-                                  child: Text(
-                                    'forgot password?',
-                                    textAlign: TextAlign.end,
-                                    style: TextStyle(
-                                      fontFamily: 'Plus',
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).primaryColor,
-                                      fontSize: 18,
-                                    ),
+                                child: TextFormField(
+                                  style: const TextStyle(fontFamily: 'Plus'),
+                                  controller: _rePassword,
+                                  cursorColor: Theme.of(context).secondaryHeaderColor,
+                                  decoration: InputDecoration(
+                                    hintText: 'rePasswords',
+                                    hintStyle: TextStyle(color: Theme.of(context).primaryColor),
+                                    contentPadding: const EdgeInsets.only(left: 20),
+                                    border: InputBorder.none,
                                   ),
+                                  keyboardType: TextInputType.visiblePassword,
+                                  obscureText: true,
+                                  validator: (String? value) {
+                                    if (value != _password.text) {
+                                      return "Password doesn't match";
+                                    }
+
+                                    return null;
+                                  },
                                 ),
                               ),
                             ),
                             Expanded(
                               child: Container(),
-                              flex: 4,
+                              flex: 8,
                             ),
-
-                            ///-----------EMAIL AUTH---------------
                             Builder(
                               builder: (BuildContext context) {
                                 if (_isLoading) {
@@ -223,13 +215,14 @@ class _LoginPageState extends State<LoginPage> {
                                       return;
                                     }
                                     setState(() => _isLoading = true);
-                                    StoreProvider.of<AppState>(context).dispatch(Login(_email.text, _password.text, _onResult));
+                                    StoreProvider.of<AppState>(context).dispatch(RegisterPhase1(
+                                        _email.text, _password.text, _onResult));
                                   },
                                   child: ClipRRect(
                                     borderRadius: const BorderRadius.all(Radius.circular(50)),
                                     child: Container(
-                                      height: _height * 0.06,
-                                      width: _width * 0.8,
+                                      height: MediaQuery.of(context).size.height * 0.06,
+                                      width: MediaQuery.of(context).size.width * 0.8,
                                       decoration: BoxDecoration(
                                         gradient: LinearGradient(
                                           begin: Alignment.topCenter,
@@ -244,16 +237,16 @@ class _LoginPageState extends State<LoginPage> {
                                         alignment: Alignment.center,
                                         child: Padding(
                                           padding: EdgeInsets.symmetric(
-                                            vertical: _height * 0.008,
+                                            vertical: MediaQuery.of(context).size.height * 0.008,
                                           ),
                                           child: FittedBox(
                                             child: Text(
-                                              'LOGIN',
+                                              'SIGN UP',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontFamily: 'Plus',
                                                 color: Theme.of(context).primaryColor,
-                                                fontSize: 28,
+                                                fontSize: 24,
                                               ),
                                             ),
                                           ),
@@ -264,7 +257,6 @@ class _LoginPageState extends State<LoginPage> {
                                 );
                               },
                             ),
-
                             Expanded(
                               child: Container(),
                               flex: 2,
@@ -273,7 +265,7 @@ class _LoginPageState extends State<LoginPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 const Text(
-                                  "Don't have an account? ",
+                                  'Do you have an account? ',
                                   style: TextStyle(
                                     fontFamily: 'Plus',
                                     color: Color(0xFF575757),
@@ -282,10 +274,10 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).pushNamed('/register');
+                                    Navigator.of(context).pushNamed('/');
                                   },
                                   child: Text(
-                                    'Register',
+                                    'LogIn',
                                     style: TextStyle(
                                       fontFamily: 'Plus',
                                       fontWeight: FontWeight.bold,
@@ -298,7 +290,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             Expanded(
                               child: Container(),
-                              flex: 4,
+                              flex: 6,
                             ),
                           ],
                         ),

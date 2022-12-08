@@ -15,7 +15,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   },
 
   TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
-  TypedReducer<AppState, RegisterSuccessful>(_registerSuccessful),
+  TypedReducer<AppState, RegisterPhase2Successful>(_registerPhase2Successful),
   TypedReducer<AppState, LoginSuccessful>(_loginSuccessful),
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
 
@@ -27,13 +27,13 @@ AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action
   });
 }
 
-AppState _registerSuccessful(AppState state, RegisterSuccessful action) {
-  return state.rebuild((AppStateBuilder b) => b.user = action.user.toBuilder());
+AppState _registerPhase2Successful(AppState state, RegisterPhase2Successful action) {
+  return state.rebuild((AppStateBuilder b) => b.user = action.user?.toBuilder());
 }
 
 AppState _loginSuccessful(AppState state, LoginSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    b.user = action.user.toBuilder();
+    b.user = action.user?.toBuilder();
   });
 }
 

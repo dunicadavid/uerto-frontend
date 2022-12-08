@@ -479,69 +479,67 @@ abstract class InitializeAppError implements InitializeApp, ErrorAction {
 }
 
 /// @nodoc
-mixin _$Register {
+mixin _$RegisterPhase1 {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)
+    TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser user) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)?
+    TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser user)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)?
+    TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser user)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(RegisterStart value) $default, {
-    required TResult Function(RegisterSuccessful value) successful,
-    required TResult Function(RegisterError value) error,
+    TResult Function(RegisterPhase1Start value) $default, {
+    required TResult Function(RegisterPhase1Successful value) successful,
+    required TResult Function(RegisterPhase1Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(RegisterStart value)? $default, {
-    TResult? Function(RegisterSuccessful value)? successful,
-    TResult? Function(RegisterError value)? error,
+    TResult? Function(RegisterPhase1Start value)? $default, {
+    TResult? Function(RegisterPhase1Successful value)? successful,
+    TResult? Function(RegisterPhase1Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(RegisterStart value)? $default, {
-    TResult Function(RegisterSuccessful value)? successful,
-    TResult Function(RegisterError value)? error,
+    TResult Function(RegisterPhase1Start value)? $default, {
+    TResult Function(RegisterPhase1Successful value)? successful,
+    TResult Function(RegisterPhase1Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $RegisterCopyWith<$Res> {
-  factory $RegisterCopyWith(Register value, $Res Function(Register) then) =
-      _$RegisterCopyWithImpl<$Res, Register>;
+abstract class $RegisterPhase1CopyWith<$Res> {
+  factory $RegisterPhase1CopyWith(
+          RegisterPhase1 value, $Res Function(RegisterPhase1) then) =
+      _$RegisterPhase1CopyWithImpl<$Res, RegisterPhase1>;
 }
 
 /// @nodoc
-class _$RegisterCopyWithImpl<$Res, $Val extends Register>
-    implements $RegisterCopyWith<$Res> {
-  _$RegisterCopyWithImpl(this._value, this._then);
+class _$RegisterPhase1CopyWithImpl<$Res, $Val extends RegisterPhase1>
+    implements $RegisterPhase1CopyWith<$Res> {
+  _$RegisterPhase1CopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -550,25 +548,20 @@ class _$RegisterCopyWithImpl<$Res, $Val extends Register>
 }
 
 /// @nodoc
-abstract class _$$RegisterStartCopyWith<$Res> {
-  factory _$$RegisterStartCopyWith(
-          _$RegisterStart value, $Res Function(_$RegisterStart) then) =
-      __$$RegisterStartCopyWithImpl<$Res>;
+abstract class _$$RegisterPhase1StartCopyWith<$Res> {
+  factory _$$RegisterPhase1StartCopyWith(_$RegisterPhase1Start value,
+          $Res Function(_$RegisterPhase1Start) then) =
+      __$$RegisterPhase1StartCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {String email,
-      String password,
-      String fullName,
-      String phoneNumber,
-      ActionResult result});
+  $Res call({String email, String password, ActionResult result});
 }
 
 /// @nodoc
-class __$$RegisterStartCopyWithImpl<$Res>
-    extends _$RegisterCopyWithImpl<$Res, _$RegisterStart>
-    implements _$$RegisterStartCopyWith<$Res> {
-  __$$RegisterStartCopyWithImpl(
-      _$RegisterStart _value, $Res Function(_$RegisterStart) _then)
+class __$$RegisterPhase1StartCopyWithImpl<$Res>
+    extends _$RegisterPhase1CopyWithImpl<$Res, _$RegisterPhase1Start>
+    implements _$$RegisterPhase1StartCopyWith<$Res> {
+  __$$RegisterPhase1StartCopyWithImpl(
+      _$RegisterPhase1Start _value, $Res Function(_$RegisterPhase1Start) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -576,11 +569,9 @@ class __$$RegisterStartCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? fullName = null,
-    Object? phoneNumber = null,
     Object? result = null,
   }) {
-    return _then(_$RegisterStart(
+    return _then(_$RegisterPhase1Start(
       null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -588,14 +579,6 @@ class __$$RegisterStartCopyWithImpl<$Res>
       null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == fullName
-          ? _value.fullName
-          : fullName // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == phoneNumber
-          ? _value.phoneNumber
-          : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
       null == result
           ? _value.result
@@ -607,87 +590,75 @@ class __$$RegisterStartCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RegisterStart implements RegisterStart {
-  const _$RegisterStart(
-      this.email, this.password, this.fullName, this.phoneNumber, this.result);
+class _$RegisterPhase1Start implements RegisterPhase1Start {
+  const _$RegisterPhase1Start(this.email, this.password, this.result);
 
   @override
   final String email;
   @override
   final String password;
   @override
-  final String fullName;
-  @override
-  final String phoneNumber;
-  @override
   final ActionResult result;
 
   @override
   String toString() {
-    return 'Register(email: $email, password: $password, fullName: $fullName, phoneNumber: $phoneNumber, result: $result)';
+    return 'RegisterPhase1(email: $email, password: $password, result: $result)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegisterStart &&
+            other is _$RegisterPhase1Start &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.fullName, fullName) ||
-                other.fullName == fullName) &&
-            (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, email, password, fullName, phoneNumber, result);
+  int get hashCode => Object.hash(runtimeType, email, password, result);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RegisterStartCopyWith<_$RegisterStart> get copyWith =>
-      __$$RegisterStartCopyWithImpl<_$RegisterStart>(this, _$identity);
+  _$$RegisterPhase1StartCopyWith<_$RegisterPhase1Start> get copyWith =>
+      __$$RegisterPhase1StartCopyWithImpl<_$RegisterPhase1Start>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)
+    TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser user) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(email, password, fullName, phoneNumber, result);
+    return $default(email, password, result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)?
+    TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser user)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(email, password, fullName, phoneNumber, result);
+    return $default?.call(email, password, result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)?
+    TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser user)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(email, password, fullName, phoneNumber, result);
+      return $default(email, password, result);
     }
     return orElse();
   }
@@ -695,9 +666,9 @@ class _$RegisterStart implements RegisterStart {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(RegisterStart value) $default, {
-    required TResult Function(RegisterSuccessful value) successful,
-    required TResult Function(RegisterError value) error,
+    TResult Function(RegisterPhase1Start value) $default, {
+    required TResult Function(RegisterPhase1Successful value) successful,
+    required TResult Function(RegisterPhase1Error value) error,
   }) {
     return $default(this);
   }
@@ -705,9 +676,9 @@ class _$RegisterStart implements RegisterStart {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(RegisterStart value)? $default, {
-    TResult? Function(RegisterSuccessful value)? successful,
-    TResult? Function(RegisterError value)? error,
+    TResult? Function(RegisterPhase1Start value)? $default, {
+    TResult? Function(RegisterPhase1Successful value)? successful,
+    TResult? Function(RegisterPhase1Error value)? error,
   }) {
     return $default?.call(this);
   }
@@ -715,9 +686,9 @@ class _$RegisterStart implements RegisterStart {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(RegisterStart value)? $default, {
-    TResult Function(RegisterSuccessful value)? successful,
-    TResult Function(RegisterError value)? error,
+    TResult Function(RegisterPhase1Start value)? $default, {
+    TResult Function(RegisterPhase1Successful value)? successful,
+    TResult Function(RegisterPhase1Error value)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
@@ -727,122 +698,87 @@ class _$RegisterStart implements RegisterStart {
   }
 }
 
-abstract class RegisterStart implements Register {
-  const factory RegisterStart(
-      final String email,
-      final String password,
-      final String fullName,
-      final String phoneNumber,
-      final ActionResult result) = _$RegisterStart;
+abstract class RegisterPhase1Start implements RegisterPhase1 {
+  const factory RegisterPhase1Start(final String email, final String password,
+      final ActionResult result) = _$RegisterPhase1Start;
 
   String get email;
   String get password;
-  String get fullName;
-  String get phoneNumber;
   ActionResult get result;
   @JsonKey(ignore: true)
-  _$$RegisterStartCopyWith<_$RegisterStart> get copyWith =>
+  _$$RegisterPhase1StartCopyWith<_$RegisterPhase1Start> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RegisterSuccessfulCopyWith<$Res> {
-  factory _$$RegisterSuccessfulCopyWith(_$RegisterSuccessful value,
-          $Res Function(_$RegisterSuccessful) then) =
-      __$$RegisterSuccessfulCopyWithImpl<$Res>;
-  @useResult
-  $Res call({AppUser user});
+abstract class _$$RegisterPhase1SuccessfulCopyWith<$Res> {
+  factory _$$RegisterPhase1SuccessfulCopyWith(_$RegisterPhase1Successful value,
+          $Res Function(_$RegisterPhase1Successful) then) =
+      __$$RegisterPhase1SuccessfulCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$RegisterSuccessfulCopyWithImpl<$Res>
-    extends _$RegisterCopyWithImpl<$Res, _$RegisterSuccessful>
-    implements _$$RegisterSuccessfulCopyWith<$Res> {
-  __$$RegisterSuccessfulCopyWithImpl(
-      _$RegisterSuccessful _value, $Res Function(_$RegisterSuccessful) _then)
+class __$$RegisterPhase1SuccessfulCopyWithImpl<$Res>
+    extends _$RegisterPhase1CopyWithImpl<$Res, _$RegisterPhase1Successful>
+    implements _$$RegisterPhase1SuccessfulCopyWith<$Res> {
+  __$$RegisterPhase1SuccessfulCopyWithImpl(_$RegisterPhase1Successful _value,
+      $Res Function(_$RegisterPhase1Successful) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$RegisterSuccessful(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as AppUser,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$RegisterSuccessful implements RegisterSuccessful {
-  const _$RegisterSuccessful(this.user);
-
-  @override
-  final AppUser user;
+class _$RegisterPhase1Successful implements RegisterPhase1Successful {
+  const _$RegisterPhase1Successful();
 
   @override
   String toString() {
-    return 'Register.successful(user: $user)';
+    return 'RegisterPhase1.successful()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegisterSuccessful &&
-            (identical(other.user, user) || other.user == user));
+            other is _$RegisterPhase1Successful);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RegisterSuccessfulCopyWith<_$RegisterSuccessful> get copyWith =>
-      __$$RegisterSuccessfulCopyWithImpl<_$RegisterSuccessful>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)
+    TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser user) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(user);
+    return successful();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)?
+    TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser user)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(user);
+    return successful?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)?
+    TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser user)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful(user);
+      return successful();
     }
     return orElse();
   }
@@ -850,9 +786,9 @@ class _$RegisterSuccessful implements RegisterSuccessful {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(RegisterStart value) $default, {
-    required TResult Function(RegisterSuccessful value) successful,
-    required TResult Function(RegisterError value) error,
+    TResult Function(RegisterPhase1Start value) $default, {
+    required TResult Function(RegisterPhase1Successful value) successful,
+    required TResult Function(RegisterPhase1Error value) error,
   }) {
     return successful(this);
   }
@@ -860,9 +796,9 @@ class _$RegisterSuccessful implements RegisterSuccessful {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(RegisterStart value)? $default, {
-    TResult? Function(RegisterSuccessful value)? successful,
-    TResult? Function(RegisterError value)? error,
+    TResult? Function(RegisterPhase1Start value)? $default, {
+    TResult? Function(RegisterPhase1Successful value)? successful,
+    TResult? Function(RegisterPhase1Error value)? error,
   }) {
     return successful?.call(this);
   }
@@ -870,9 +806,9 @@ class _$RegisterSuccessful implements RegisterSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(RegisterStart value)? $default, {
-    TResult Function(RegisterSuccessful value)? successful,
-    TResult Function(RegisterError value)? error,
+    TResult Function(RegisterPhase1Start value)? $default, {
+    TResult Function(RegisterPhase1Successful value)? successful,
+    TResult Function(RegisterPhase1Error value)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
@@ -882,30 +818,25 @@ class _$RegisterSuccessful implements RegisterSuccessful {
   }
 }
 
-abstract class RegisterSuccessful implements Register {
-  const factory RegisterSuccessful(final AppUser user) = _$RegisterSuccessful;
-
-  AppUser get user;
-  @JsonKey(ignore: true)
-  _$$RegisterSuccessfulCopyWith<_$RegisterSuccessful> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class RegisterPhase1Successful implements RegisterPhase1 {
+  const factory RegisterPhase1Successful() = _$RegisterPhase1Successful;
 }
 
 /// @nodoc
-abstract class _$$RegisterErrorCopyWith<$Res> {
-  factory _$$RegisterErrorCopyWith(
-          _$RegisterError value, $Res Function(_$RegisterError) then) =
-      __$$RegisterErrorCopyWithImpl<$Res>;
+abstract class _$$RegisterPhase1ErrorCopyWith<$Res> {
+  factory _$$RegisterPhase1ErrorCopyWith(_$RegisterPhase1Error value,
+          $Res Function(_$RegisterPhase1Error) then) =
+      __$$RegisterPhase1ErrorCopyWithImpl<$Res>;
   @useResult
   $Res call({Object error, StackTrace stackTrace});
 }
 
 /// @nodoc
-class __$$RegisterErrorCopyWithImpl<$Res>
-    extends _$RegisterCopyWithImpl<$Res, _$RegisterError>
-    implements _$$RegisterErrorCopyWith<$Res> {
-  __$$RegisterErrorCopyWithImpl(
-      _$RegisterError _value, $Res Function(_$RegisterError) _then)
+class __$$RegisterPhase1ErrorCopyWithImpl<$Res>
+    extends _$RegisterPhase1CopyWithImpl<$Res, _$RegisterPhase1Error>
+    implements _$$RegisterPhase1ErrorCopyWith<$Res> {
+  __$$RegisterPhase1ErrorCopyWithImpl(
+      _$RegisterPhase1Error _value, $Res Function(_$RegisterPhase1Error) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -914,7 +845,7 @@ class __$$RegisterErrorCopyWithImpl<$Res>
     Object? error = null,
     Object? stackTrace = null,
   }) {
-    return _then(_$RegisterError(
+    return _then(_$RegisterPhase1Error(
       null == error ? _value.error : error,
       null == stackTrace
           ? _value.stackTrace
@@ -926,8 +857,8 @@ class __$$RegisterErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RegisterError implements RegisterError {
-  const _$RegisterError(this.error, this.stackTrace);
+class _$RegisterPhase1Error implements RegisterPhase1Error {
+  const _$RegisterPhase1Error(this.error, this.stackTrace);
 
   @override
   final Object error;
@@ -936,14 +867,14 @@ class _$RegisterError implements RegisterError {
 
   @override
   String toString() {
-    return 'Register.error(error: $error, stackTrace: $stackTrace)';
+    return 'RegisterPhase1.error(error: $error, stackTrace: $stackTrace)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RegisterError &&
+            other is _$RegisterPhase1Error &&
             const DeepCollectionEquality().equals(other.error, error) &&
             (identical(other.stackTrace, stackTrace) ||
                 other.stackTrace == stackTrace));
@@ -956,16 +887,16 @@ class _$RegisterError implements RegisterError {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RegisterErrorCopyWith<_$RegisterError> get copyWith =>
-      __$$RegisterErrorCopyWithImpl<_$RegisterError>(this, _$identity);
+  _$$RegisterPhase1ErrorCopyWith<_$RegisterPhase1Error> get copyWith =>
+      __$$RegisterPhase1ErrorCopyWithImpl<_$RegisterPhase1Error>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)
+    TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser user) successful,
+    required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -974,10 +905,9 @@ class _$RegisterError implements RegisterError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)?
+    TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser user)? successful,
+    TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -986,10 +916,9 @@ class _$RegisterError implements RegisterError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String email, String password, String fullName,
-            String phoneNumber, ActionResult result)?
+    TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser user)? successful,
+    TResult Function()? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -1002,9 +931,9 @@ class _$RegisterError implements RegisterError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>(
-    TResult Function(RegisterStart value) $default, {
-    required TResult Function(RegisterSuccessful value) successful,
-    required TResult Function(RegisterError value) error,
+    TResult Function(RegisterPhase1Start value) $default, {
+    required TResult Function(RegisterPhase1Successful value) successful,
+    required TResult Function(RegisterPhase1Error value) error,
   }) {
     return error(this);
   }
@@ -1012,9 +941,9 @@ class _$RegisterError implements RegisterError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(RegisterStart value)? $default, {
-    TResult? Function(RegisterSuccessful value)? successful,
-    TResult? Function(RegisterError value)? error,
+    TResult? Function(RegisterPhase1Start value)? $default, {
+    TResult? Function(RegisterPhase1Successful value)? successful,
+    TResult? Function(RegisterPhase1Error value)? error,
   }) {
     return error?.call(this);
   }
@@ -1022,9 +951,9 @@ class _$RegisterError implements RegisterError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>(
-    TResult Function(RegisterStart value)? $default, {
-    TResult Function(RegisterSuccessful value)? successful,
-    TResult Function(RegisterError value)? error,
+    TResult Function(RegisterPhase1Start value)? $default, {
+    TResult Function(RegisterPhase1Successful value)? successful,
+    TResult Function(RegisterPhase1Error value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -1034,14 +963,1005 @@ class _$RegisterError implements RegisterError {
   }
 }
 
-abstract class RegisterError implements Register, ErrorAction {
-  const factory RegisterError(final Object error, final StackTrace stackTrace) =
-      _$RegisterError;
+abstract class RegisterPhase1Error implements RegisterPhase1, ErrorAction {
+  const factory RegisterPhase1Error(
+      final Object error, final StackTrace stackTrace) = _$RegisterPhase1Error;
 
   Object get error;
   StackTrace get stackTrace;
   @JsonKey(ignore: true)
-  _$$RegisterErrorCopyWith<_$RegisterError> get copyWith =>
+  _$$RegisterPhase1ErrorCopyWith<_$RegisterPhase1Error> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$RegisterPhase2 {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)
+        $default, {
+    required TResult Function(AppUser? user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)?
+        $default, {
+    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)?
+        $default, {
+    TResult Function(AppUser? user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RegisterPhase2Start value) $default, {
+    required TResult Function(RegisterPhase2Successful value) successful,
+    required TResult Function(RegisterPhase2Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(RegisterPhase2Start value)? $default, {
+    TResult? Function(RegisterPhase2Successful value)? successful,
+    TResult? Function(RegisterPhase2Error value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RegisterPhase2Start value)? $default, {
+    TResult Function(RegisterPhase2Successful value)? successful,
+    TResult Function(RegisterPhase2Error value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RegisterPhase2CopyWith<$Res> {
+  factory $RegisterPhase2CopyWith(
+          RegisterPhase2 value, $Res Function(RegisterPhase2) then) =
+      _$RegisterPhase2CopyWithImpl<$Res, RegisterPhase2>;
+}
+
+/// @nodoc
+class _$RegisterPhase2CopyWithImpl<$Res, $Val extends RegisterPhase2>
+    implements $RegisterPhase2CopyWith<$Res> {
+  _$RegisterPhase2CopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$RegisterPhase2StartCopyWith<$Res> {
+  factory _$$RegisterPhase2StartCopyWith(_$RegisterPhase2Start value,
+          $Res Function(_$RegisterPhase2Start) then) =
+      __$$RegisterPhase2StartCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {String fullname,
+      String phoneNumber,
+      String photoUrl,
+      ActionResult result});
+}
+
+/// @nodoc
+class __$$RegisterPhase2StartCopyWithImpl<$Res>
+    extends _$RegisterPhase2CopyWithImpl<$Res, _$RegisterPhase2Start>
+    implements _$$RegisterPhase2StartCopyWith<$Res> {
+  __$$RegisterPhase2StartCopyWithImpl(
+      _$RegisterPhase2Start _value, $Res Function(_$RegisterPhase2Start) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fullname = null,
+    Object? phoneNumber = null,
+    Object? photoUrl = null,
+    Object? result = null,
+  }) {
+    return _then(_$RegisterPhase2Start(
+      null == fullname
+          ? _value.fullname
+          : fullname // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterPhase2Start implements RegisterPhase2Start {
+  const _$RegisterPhase2Start(
+      this.fullname, this.phoneNumber, this.photoUrl, this.result);
+
+  @override
+  final String fullname;
+  @override
+  final String phoneNumber;
+  @override
+  final String photoUrl;
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'RegisterPhase2(fullname: $fullname, phoneNumber: $phoneNumber, photoUrl: $photoUrl, result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegisterPhase2Start &&
+            (identical(other.fullname, fullname) ||
+                other.fullname == fullname) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl) &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, fullname, phoneNumber, photoUrl, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegisterPhase2StartCopyWith<_$RegisterPhase2Start> get copyWith =>
+      __$$RegisterPhase2StartCopyWithImpl<_$RegisterPhase2Start>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)
+        $default, {
+    required TResult Function(AppUser? user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(fullname, phoneNumber, photoUrl, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)?
+        $default, {
+    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(fullname, phoneNumber, photoUrl, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)?
+        $default, {
+    TResult Function(AppUser? user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(fullname, phoneNumber, photoUrl, result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RegisterPhase2Start value) $default, {
+    required TResult Function(RegisterPhase2Successful value) successful,
+    required TResult Function(RegisterPhase2Error value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(RegisterPhase2Start value)? $default, {
+    TResult? Function(RegisterPhase2Successful value)? successful,
+    TResult? Function(RegisterPhase2Error value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RegisterPhase2Start value)? $default, {
+    TResult Function(RegisterPhase2Successful value)? successful,
+    TResult Function(RegisterPhase2Error value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterPhase2Start implements RegisterPhase2 {
+  const factory RegisterPhase2Start(
+      final String fullname,
+      final String phoneNumber,
+      final String photoUrl,
+      final ActionResult result) = _$RegisterPhase2Start;
+
+  String get fullname;
+  String get phoneNumber;
+  String get photoUrl;
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$RegisterPhase2StartCopyWith<_$RegisterPhase2Start> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RegisterPhase2SuccessfulCopyWith<$Res> {
+  factory _$$RegisterPhase2SuccessfulCopyWith(_$RegisterPhase2Successful value,
+          $Res Function(_$RegisterPhase2Successful) then) =
+      __$$RegisterPhase2SuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppUser? user});
+}
+
+/// @nodoc
+class __$$RegisterPhase2SuccessfulCopyWithImpl<$Res>
+    extends _$RegisterPhase2CopyWithImpl<$Res, _$RegisterPhase2Successful>
+    implements _$$RegisterPhase2SuccessfulCopyWith<$Res> {
+  __$$RegisterPhase2SuccessfulCopyWithImpl(_$RegisterPhase2Successful _value,
+      $Res Function(_$RegisterPhase2Successful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = freezed,
+  }) {
+    return _then(_$RegisterPhase2Successful(
+      freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterPhase2Successful implements RegisterPhase2Successful {
+  const _$RegisterPhase2Successful(this.user);
+
+  @override
+  final AppUser? user;
+
+  @override
+  String toString() {
+    return 'RegisterPhase2.successful(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegisterPhase2Successful &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegisterPhase2SuccessfulCopyWith<_$RegisterPhase2Successful>
+      get copyWith =>
+          __$$RegisterPhase2SuccessfulCopyWithImpl<_$RegisterPhase2Successful>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)
+        $default, {
+    required TResult Function(AppUser? user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)?
+        $default, {
+    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)?
+        $default, {
+    TResult Function(AppUser? user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RegisterPhase2Start value) $default, {
+    required TResult Function(RegisterPhase2Successful value) successful,
+    required TResult Function(RegisterPhase2Error value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(RegisterPhase2Start value)? $default, {
+    TResult? Function(RegisterPhase2Successful value)? successful,
+    TResult? Function(RegisterPhase2Error value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RegisterPhase2Start value)? $default, {
+    TResult Function(RegisterPhase2Successful value)? successful,
+    TResult Function(RegisterPhase2Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterPhase2Successful implements RegisterPhase2 {
+  const factory RegisterPhase2Successful(final AppUser? user) =
+      _$RegisterPhase2Successful;
+
+  AppUser? get user;
+  @JsonKey(ignore: true)
+  _$$RegisterPhase2SuccessfulCopyWith<_$RegisterPhase2Successful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RegisterPhase2ErrorCopyWith<$Res> {
+  factory _$$RegisterPhase2ErrorCopyWith(_$RegisterPhase2Error value,
+          $Res Function(_$RegisterPhase2Error) then) =
+      __$$RegisterPhase2ErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$RegisterPhase2ErrorCopyWithImpl<$Res>
+    extends _$RegisterPhase2CopyWithImpl<$Res, _$RegisterPhase2Error>
+    implements _$$RegisterPhase2ErrorCopyWith<$Res> {
+  __$$RegisterPhase2ErrorCopyWithImpl(
+      _$RegisterPhase2Error _value, $Res Function(_$RegisterPhase2Error) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$RegisterPhase2Error(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RegisterPhase2Error implements RegisterPhase2Error {
+  const _$RegisterPhase2Error(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'RegisterPhase2.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RegisterPhase2Error &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RegisterPhase2ErrorCopyWith<_$RegisterPhase2Error> get copyWith =>
+      __$$RegisterPhase2ErrorCopyWithImpl<_$RegisterPhase2Error>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)
+        $default, {
+    required TResult Function(AppUser? user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)?
+        $default, {
+    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String fullname, String phoneNumber, String photoUrl,
+            ActionResult result)?
+        $default, {
+    TResult Function(AppUser? user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(RegisterPhase2Start value) $default, {
+    required TResult Function(RegisterPhase2Successful value) successful,
+    required TResult Function(RegisterPhase2Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(RegisterPhase2Start value)? $default, {
+    TResult? Function(RegisterPhase2Successful value)? successful,
+    TResult? Function(RegisterPhase2Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(RegisterPhase2Start value)? $default, {
+    TResult Function(RegisterPhase2Successful value)? successful,
+    TResult Function(RegisterPhase2Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegisterPhase2Error implements RegisterPhase2, ErrorAction {
+  const factory RegisterPhase2Error(
+      final Object error, final StackTrace stackTrace) = _$RegisterPhase2Error;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$RegisterPhase2ErrorCopyWith<_$RegisterPhase2Error> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$EmailVerify {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EmailVerifyStart value) $default, {
+    required TResult Function(EmailVerifySuccessful value) successful,
+    required TResult Function(EmailVerifyError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EmailVerifyStart value)? $default, {
+    TResult? Function(EmailVerifySuccessful value)? successful,
+    TResult? Function(EmailVerifyError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EmailVerifyStart value)? $default, {
+    TResult Function(EmailVerifySuccessful value)? successful,
+    TResult Function(EmailVerifyError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EmailVerifyCopyWith<$Res> {
+  factory $EmailVerifyCopyWith(
+          EmailVerify value, $Res Function(EmailVerify) then) =
+      _$EmailVerifyCopyWithImpl<$Res, EmailVerify>;
+}
+
+/// @nodoc
+class _$EmailVerifyCopyWithImpl<$Res, $Val extends EmailVerify>
+    implements $EmailVerifyCopyWith<$Res> {
+  _$EmailVerifyCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$EmailVerifyStartCopyWith<$Res> {
+  factory _$$EmailVerifyStartCopyWith(
+          _$EmailVerifyStart value, $Res Function(_$EmailVerifyStart) then) =
+      __$$EmailVerifyStartCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmailVerifyStartCopyWithImpl<$Res>
+    extends _$EmailVerifyCopyWithImpl<$Res, _$EmailVerifyStart>
+    implements _$$EmailVerifyStartCopyWith<$Res> {
+  __$$EmailVerifyStartCopyWithImpl(
+      _$EmailVerifyStart _value, $Res Function(_$EmailVerifyStart) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$EmailVerifyStart implements EmailVerifyStart {
+  const _$EmailVerifyStart();
+
+  @override
+  String toString() {
+    return 'EmailVerify()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmailVerifyStart);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EmailVerifyStart value) $default, {
+    required TResult Function(EmailVerifySuccessful value) successful,
+    required TResult Function(EmailVerifyError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EmailVerifyStart value)? $default, {
+    TResult? Function(EmailVerifySuccessful value)? successful,
+    TResult? Function(EmailVerifyError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EmailVerifyStart value)? $default, {
+    TResult Function(EmailVerifySuccessful value)? successful,
+    TResult Function(EmailVerifyError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmailVerifyStart implements EmailVerify {
+  const factory EmailVerifyStart() = _$EmailVerifyStart;
+}
+
+/// @nodoc
+abstract class _$$EmailVerifySuccessfulCopyWith<$Res> {
+  factory _$$EmailVerifySuccessfulCopyWith(_$EmailVerifySuccessful value,
+          $Res Function(_$EmailVerifySuccessful) then) =
+      __$$EmailVerifySuccessfulCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmailVerifySuccessfulCopyWithImpl<$Res>
+    extends _$EmailVerifyCopyWithImpl<$Res, _$EmailVerifySuccessful>
+    implements _$$EmailVerifySuccessfulCopyWith<$Res> {
+  __$$EmailVerifySuccessfulCopyWithImpl(_$EmailVerifySuccessful _value,
+      $Res Function(_$EmailVerifySuccessful) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$EmailVerifySuccessful implements EmailVerifySuccessful {
+  const _$EmailVerifySuccessful();
+
+  @override
+  String toString() {
+    return 'EmailVerify.successful()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmailVerifySuccessful);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EmailVerifyStart value) $default, {
+    required TResult Function(EmailVerifySuccessful value) successful,
+    required TResult Function(EmailVerifyError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EmailVerifyStart value)? $default, {
+    TResult? Function(EmailVerifySuccessful value)? successful,
+    TResult? Function(EmailVerifyError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EmailVerifyStart value)? $default, {
+    TResult Function(EmailVerifySuccessful value)? successful,
+    TResult Function(EmailVerifyError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmailVerifySuccessful implements EmailVerify {
+  const factory EmailVerifySuccessful() = _$EmailVerifySuccessful;
+}
+
+/// @nodoc
+abstract class _$$EmailVerifyErrorCopyWith<$Res> {
+  factory _$$EmailVerifyErrorCopyWith(
+          _$EmailVerifyError value, $Res Function(_$EmailVerifyError) then) =
+      __$$EmailVerifyErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$EmailVerifyErrorCopyWithImpl<$Res>
+    extends _$EmailVerifyCopyWithImpl<$Res, _$EmailVerifyError>
+    implements _$$EmailVerifyErrorCopyWith<$Res> {
+  __$$EmailVerifyErrorCopyWithImpl(
+      _$EmailVerifyError _value, $Res Function(_$EmailVerifyError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$EmailVerifyError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EmailVerifyError implements EmailVerifyError {
+  const _$EmailVerifyError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'EmailVerify.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmailVerifyError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EmailVerifyErrorCopyWith<_$EmailVerifyError> get copyWith =>
+      __$$EmailVerifyErrorCopyWithImpl<_$EmailVerifyError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EmailVerifyStart value) $default, {
+    required TResult Function(EmailVerifySuccessful value) successful,
+    required TResult Function(EmailVerifyError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EmailVerifyStart value)? $default, {
+    TResult? Function(EmailVerifySuccessful value)? successful,
+    TResult? Function(EmailVerifyError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EmailVerifyStart value)? $default, {
+    TResult Function(EmailVerifySuccessful value)? successful,
+    TResult Function(EmailVerifyError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmailVerifyError implements EmailVerify, ErrorAction {
+  const factory EmailVerifyError(
+      final Object error, final StackTrace stackTrace) = _$EmailVerifyError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$EmailVerifyErrorCopyWith<_$EmailVerifyError> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1051,7 +1971,7 @@ mixin _$Login {
   TResult when<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser user) successful,
+    required TResult Function(AppUser? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -1059,7 +1979,7 @@ mixin _$Login {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser user)? successful,
+    TResult? Function(AppUser? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -1067,7 +1987,7 @@ mixin _$Login {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser user)? successful,
+    TResult Function(AppUser? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -1196,7 +2116,7 @@ class _$LoginStart implements LoginStart {
   TResult when<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser user) successful,
+    required TResult Function(AppUser? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(email, password, result);
@@ -1207,7 +2127,7 @@ class _$LoginStart implements LoginStart {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser user)? successful,
+    TResult? Function(AppUser? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(email, password, result);
@@ -1218,7 +2138,7 @@ class _$LoginStart implements LoginStart {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser user)? successful,
+    TResult Function(AppUser? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -1281,7 +2201,7 @@ abstract class _$$LoginSuccessfulCopyWith<$Res> {
           _$LoginSuccessful value, $Res Function(_$LoginSuccessful) then) =
       __$$LoginSuccessfulCopyWithImpl<$Res>;
   @useResult
-  $Res call({AppUser user});
+  $Res call({AppUser? user});
 }
 
 /// @nodoc
@@ -1295,13 +2215,13 @@ class __$$LoginSuccessfulCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? user = freezed,
   }) {
     return _then(_$LoginSuccessful(
-      null == user
+      freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as AppUser,
+              as AppUser?,
     ));
   }
 }
@@ -1312,7 +2232,7 @@ class _$LoginSuccessful implements LoginSuccessful {
   const _$LoginSuccessful(this.user);
 
   @override
-  final AppUser user;
+  final AppUser? user;
 
   @override
   String toString() {
@@ -1341,7 +2261,7 @@ class _$LoginSuccessful implements LoginSuccessful {
   TResult when<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser user) successful,
+    required TResult Function(AppUser? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return successful(user);
@@ -1352,7 +2272,7 @@ class _$LoginSuccessful implements LoginSuccessful {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser user)? successful,
+    TResult? Function(AppUser? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return successful?.call(user);
@@ -1363,7 +2283,7 @@ class _$LoginSuccessful implements LoginSuccessful {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser user)? successful,
+    TResult Function(AppUser? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -1409,9 +2329,9 @@ class _$LoginSuccessful implements LoginSuccessful {
 }
 
 abstract class LoginSuccessful implements Login {
-  const factory LoginSuccessful(final AppUser user) = _$LoginSuccessful;
+  const factory LoginSuccessful(final AppUser? user) = _$LoginSuccessful;
 
-  AppUser get user;
+  AppUser? get user;
   @JsonKey(ignore: true)
   _$$LoginSuccessfulCopyWith<_$LoginSuccessful> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1490,7 +2410,7 @@ class _$LoginError implements LoginError {
   TResult when<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser user) successful,
+    required TResult Function(AppUser? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -1501,7 +2421,7 @@ class _$LoginError implements LoginError {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser user)? successful,
+    TResult? Function(AppUser? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -1512,7 +2432,7 @@ class _$LoginError implements LoginError {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser user)? successful,
+    TResult Function(AppUser? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
