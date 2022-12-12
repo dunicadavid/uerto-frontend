@@ -9,6 +9,8 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:uerto/presentation/widgets/login_page.dart';
 import 'package:uerto/presentation/widgets/main_page.dart';
+import 'package:uerto/presentation/widgets/place_category_page.dart';
+import 'package:uerto/presentation/widgets/places_result_list_page.dart';
 import 'package:uerto/presentation/widgets/register_page.dart';
 
 import './mixin/init_mixin.dart';
@@ -54,6 +56,8 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                 '/main': (BuildContext context) => const MainPage(),
                 '/login': (BuildContext context) => const LoginPage(),
                 '/register': (BuildContext context) => const RegisterPage(),
+                '/placeFilter': (BuildContext context) => const PlaceCategoryPage(),
+                '/placeResult': (BuildContext context) => const PlacesResultListPage(),
               },
               theme: ThemeData(
                 fontFamily: 'Plus',

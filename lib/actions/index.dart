@@ -12,6 +12,7 @@ part 'auth/email_verify.dart';
 part 'auth/login.dart';
 part 'auth/signout.dart';
 
+part 'places/get_places.dart';
 
 
 abstract class AppAction {}

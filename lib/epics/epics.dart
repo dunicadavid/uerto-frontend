@@ -7,16 +7,16 @@ import 'package:rxdart/rxdart.dart';
 
 import '../actions/index.dart';
 import '../data/auth_api.dart';
-import '../data/user_api.dart';
+import '../data/place_api.dart';
 import '../models/index.dart';
 
 class AppEpics {
-  const AppEpics({required AuthApi authApi, required UserApi userApi})
+  const AppEpics({required AuthApi authApi, required PlaceApi placeApi})
       : _authApi = authApi,
-        _userApi = userApi;
+        _placeApi = placeApi;
 
   final AuthApi _authApi;
-  final UserApi _userApi;
+  final PlaceApi _placeApi;
 
   Epic<AppState> get epics {
     return combineEpics<AppState>(<Epic<AppState>>[
@@ -26,6 +26,8 @@ class AppEpics {
       TypedEpic<AppState, LoginStart>(_login),
       TypedEpic<AppState, SignoutStart>(_signOut),
       TypedEpic<AppState, EmailVerifyStart>(_verifyEmail),
+
+      TypedEpic<AppState, GetPlacesStart>(_getPlaces),
     ]);
   }
 
@@ -72,5 +74,13 @@ class AppEpics {
         .asyncMap((EmailVerifyStart action) => _authApi.verifyEmail())
         .map((_) => const EmailVerify.successful())
         .onErrorReturnWith((Object error, StackTrace stackTrace) => EmailVerify.error(error, stackTrace));
+  }
+
+  Stream<AppAction> _getPlaces(Stream<GetPlacesStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetPlacesStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _placeApi.getPlaces(action.filter,store.state.listOfPlacesNextPage,5))
+        .map((Map<String,dynamic> body) => GetPlaces.successful(body))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaces.error(error, stackTrace))
+        .doOnData(action.result));
   }
 }

@@ -1,0 +1,49 @@
+// File created by
+// Dunica David-Gabriel <FLTY>
+// on 27/11/2022 18:09:13
+
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:built_collection/built_collection.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:http/http.dart';
+import 'package:uerto/models/index.dart';
+
+
+class PlaceApi {
+
+  const PlaceApi({
+    required FirebaseAuth auth,
+    required String apiUrl,
+    required Client client,
+  }) : assert(auth != null),
+        _auth = auth,
+        _apiUrl = apiUrl,
+        _client = client;
+
+  final FirebaseAuth _auth;
+  final String _apiUrl;
+  final Client _client;
+
+  Future<Map<String,dynamic>> getPlaces(String filter, int page, int limit) async {
+
+    final String token = await _auth.currentUser!.getIdToken();
+    final Uri uri = Uri.parse('$_apiUrl/places?page=$page&limit=$limit&$filter');
+    final Response response = await _client.get(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+    );
+
+    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+
+    if(response.statusCode != 200) {
+      throw StateError(body['message'].toString());
+    }
+
+    return body;
+  }
+
+}

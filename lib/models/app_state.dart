@@ -7,7 +7,7 @@ part of models;
 abstract class AppState implements Built<AppState, AppStateBuilder> {
   factory AppState.initialState() {
     return _$AppState((AppStateBuilder b) {
-
+        b.listOfPlacesNextPage = 1;
     });
   }
 
@@ -16,6 +16,10 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   AppState._();
 
   AppUser? get user;
+
+  BuiltList<PlaceShort>? get listOfPlaces;
+
+  int get listOfPlacesNextPage;
 
   String? get error;
 

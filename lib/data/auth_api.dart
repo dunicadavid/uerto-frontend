@@ -51,7 +51,7 @@ class AuthApi {
         print('status code : --------------> ${response.statusCode}');
         throw StateError(response.body);
       }
-      return AppUser.fromJson(json.decode(response!.body));
+      return AppUser.fromJson(json.decode(response.body));
     }  catch (e) {
       return null;
     }
@@ -112,39 +112,45 @@ class AuthApi {
   Future<AppUser?> registerPhase2(String fullname, String phoneNumber, String photoUrl) async {
     final AppUser user = AppUser((AppUserBuilder b) {
       b
+        ..userId = 0
         ..uid = _auth.currentUser?.uid
         ..fullname = fullname
         ..email = _auth.currentUser?.email
         ..phoneNumber = phoneNumber
-        ..photoUrl = photoUrl;
+        ..photoUrl = photoUrl; //nefolosit inca
     });
 
     final String? token = await _auth.currentUser?.getIdToken();
 
-    try {
-      final Uri uri = Uri.parse('$_apiUrl/users/create');
-      final Response response = await _client.post(uri,
-        headers: {
-          HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-          HttpHeaders.authorizationHeader : 'Bearer $token',
-        },
-        body: json.encode(<String, String>{
-          'name' : user.fullname,
-          'email' : user.email,
-          'phone' : user.phoneNumber,
-          'authId' : user.uid
-        }),
-      );
+    final Uri uri = Uri.parse('$_apiUrl/users/create');
 
-      final  Map<String, dynamic> body = response.body as Map<String,dynamic>;
-      if (response.statusCode != 201) {
-        throw StateError(body.toString());
+    final Response response = await _client.post(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+      body: json.encode(<String, String>{
+        'name' : user.fullname,
+        'email' : user.email,
+        'phone' : user.phoneNumber,
+        'authId' : user.uid
+      }),
+    );
+
+    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+
+    if (response.statusCode != 201) {
+      if (response.statusCode == 405) {
+        throw StateError(body['message'].toString());
       }
-      ///user.userId = body['userId'];       -------------------------> de aici incep!
-      return user;
-    }  catch (e) {
-      return null;
+      else {
+        throw StateError('Something went wrong');
+      }
     }
+
+    final  Map<String, dynamic> userRes = body['user'] as Map<String,dynamic>;
+    return AppUser.fromJson(userRes);
+
 
   }
 

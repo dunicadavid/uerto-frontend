@@ -19,6 +19,8 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, LoginSuccessful>(_loginSuccessful),
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
 
+  TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
+
 ]);
 
 AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action) {
@@ -40,5 +42,13 @@ AppState _loginSuccessful(AppState state, LoginSuccessful action) {
 AppState _signOutSuccessful(AppState state, SignoutSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     b.user = null;
+  });
+}
+AppState _getPlacesSuccessful(AppState state, GetPlacesSuccessful action) {
+  final List<dynamic> places = action.body['results'] as List<dynamic>;
+  return state.rebuild((AppStateBuilder b) {
+    b
+      ..listOfPlaces.addAll(places.map((dynamic json) => PlaceShort.fromJson(json)).toList())
+      ..listOfPlacesNextPage = action.body.containsKey('next') ? b.listOfPlacesNextPage! + 1 : 0;
   });
 }

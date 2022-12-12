@@ -10,7 +10,7 @@ import 'package:redux_epics/redux_epics.dart';
 
 import '../actions/index.dart';
 import '../data/auth_api.dart';
-import '../data/user_api.dart';
+import '../data/place_api.dart';
 import '../epics/epics.dart';
 import '../firebase_options.dart';
 import '../models/index.dart';
@@ -25,11 +25,11 @@ Future<Store<AppState>> init() async {
   ///verify auth token
 
   final AuthApi authApi = AuthApi(auth: auth, apiUrl: apiUrl, client: client);
-  final UserApi userApi = UserApi();
+  final PlaceApi placeApi = PlaceApi(auth: auth, apiUrl: apiUrl, client: client);
 
   final AppEpics epics = AppEpics(
     authApi: authApi,
-    userApi: userApi,
+    placeApi: placeApi,
   );
 
   return Store<AppState>(

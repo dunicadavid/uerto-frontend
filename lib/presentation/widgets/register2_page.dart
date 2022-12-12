@@ -27,7 +27,6 @@ class _Register2PageState extends State<Register2Page> {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
-      //StoreProvider.of<AppState>(context).dispatch(const VerifyEmail());
       Navigator.pushReplacementNamed(context, '/');
     }
   }

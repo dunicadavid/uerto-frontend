@@ -2916,3 +2916,511 @@ abstract class SignoutError implements Signout, ErrorAction {
   _$$SignoutErrorCopyWith<_$SignoutError> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$GetPlaces {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String filter, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String filter, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String filter, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesStart value) $default, {
+    required TResult Function(GetPlacesSuccessful value) successful,
+    required TResult Function(GetPlacesError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesStart value)? $default, {
+    TResult? Function(GetPlacesSuccessful value)? successful,
+    TResult? Function(GetPlacesError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesStart value)? $default, {
+    TResult Function(GetPlacesSuccessful value)? successful,
+    TResult Function(GetPlacesError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetPlacesCopyWith<$Res> {
+  factory $GetPlacesCopyWith(GetPlaces value, $Res Function(GetPlaces) then) =
+      _$GetPlacesCopyWithImpl<$Res, GetPlaces>;
+}
+
+/// @nodoc
+class _$GetPlacesCopyWithImpl<$Res, $Val extends GetPlaces>
+    implements $GetPlacesCopyWith<$Res> {
+  _$GetPlacesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesStartCopyWith<$Res> {
+  factory _$$GetPlacesStartCopyWith(
+          _$GetPlacesStart value, $Res Function(_$GetPlacesStart) then) =
+      __$$GetPlacesStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String filter, ActionResult result});
+}
+
+/// @nodoc
+class __$$GetPlacesStartCopyWithImpl<$Res>
+    extends _$GetPlacesCopyWithImpl<$Res, _$GetPlacesStart>
+    implements _$$GetPlacesStartCopyWith<$Res> {
+  __$$GetPlacesStartCopyWithImpl(
+      _$GetPlacesStart _value, $Res Function(_$GetPlacesStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+    Object? result = null,
+  }) {
+    return _then(_$GetPlacesStart(
+      null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesStart implements GetPlacesStart {
+  const _$GetPlacesStart(this.filter, this.result);
+
+  @override
+  final String filter;
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'GetPlaces(filter: $filter, result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesStart &&
+            (identical(other.filter, filter) || other.filter == filter) &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesStartCopyWith<_$GetPlacesStart> get copyWith =>
+      __$$GetPlacesStartCopyWithImpl<_$GetPlacesStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String filter, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(filter, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String filter, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(filter, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String filter, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(filter, result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesStart value) $default, {
+    required TResult Function(GetPlacesSuccessful value) successful,
+    required TResult Function(GetPlacesError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesStart value)? $default, {
+    TResult? Function(GetPlacesSuccessful value)? successful,
+    TResult? Function(GetPlacesError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesStart value)? $default, {
+    TResult Function(GetPlacesSuccessful value)? successful,
+    TResult Function(GetPlacesError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesStart implements GetPlaces {
+  const factory GetPlacesStart(final String filter, final ActionResult result) =
+      _$GetPlacesStart;
+
+  String get filter;
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$GetPlacesStartCopyWith<_$GetPlacesStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesSuccessfulCopyWith<$Res> {
+  factory _$$GetPlacesSuccessfulCopyWith(_$GetPlacesSuccessful value,
+          $Res Function(_$GetPlacesSuccessful) then) =
+      __$$GetPlacesSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> body});
+}
+
+/// @nodoc
+class __$$GetPlacesSuccessfulCopyWithImpl<$Res>
+    extends _$GetPlacesCopyWithImpl<$Res, _$GetPlacesSuccessful>
+    implements _$$GetPlacesSuccessfulCopyWith<$Res> {
+  __$$GetPlacesSuccessfulCopyWithImpl(
+      _$GetPlacesSuccessful _value, $Res Function(_$GetPlacesSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? body = null,
+  }) {
+    return _then(_$GetPlacesSuccessful(
+      null == body
+          ? _value._body
+          : body // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesSuccessful implements GetPlacesSuccessful {
+  const _$GetPlacesSuccessful(final Map<String, dynamic> body) : _body = body;
+
+  final Map<String, dynamic> _body;
+  @override
+  Map<String, dynamic> get body {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_body);
+  }
+
+  @override
+  String toString() {
+    return 'GetPlaces.successful(body: $body)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesSuccessful &&
+            const DeepCollectionEquality().equals(other._body, _body));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_body));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesSuccessfulCopyWith<_$GetPlacesSuccessful> get copyWith =>
+      __$$GetPlacesSuccessfulCopyWithImpl<_$GetPlacesSuccessful>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String filter, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String filter, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String filter, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(body);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesStart value) $default, {
+    required TResult Function(GetPlacesSuccessful value) successful,
+    required TResult Function(GetPlacesError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesStart value)? $default, {
+    TResult? Function(GetPlacesSuccessful value)? successful,
+    TResult? Function(GetPlacesError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesStart value)? $default, {
+    TResult Function(GetPlacesSuccessful value)? successful,
+    TResult Function(GetPlacesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesSuccessful implements GetPlaces {
+  const factory GetPlacesSuccessful(final Map<String, dynamic> body) =
+      _$GetPlacesSuccessful;
+
+  Map<String, dynamic> get body;
+  @JsonKey(ignore: true)
+  _$$GetPlacesSuccessfulCopyWith<_$GetPlacesSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesErrorCopyWith<$Res> {
+  factory _$$GetPlacesErrorCopyWith(
+          _$GetPlacesError value, $Res Function(_$GetPlacesError) then) =
+      __$$GetPlacesErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$GetPlacesErrorCopyWithImpl<$Res>
+    extends _$GetPlacesCopyWithImpl<$Res, _$GetPlacesError>
+    implements _$$GetPlacesErrorCopyWith<$Res> {
+  __$$GetPlacesErrorCopyWithImpl(
+      _$GetPlacesError _value, $Res Function(_$GetPlacesError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$GetPlacesError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesError implements GetPlacesError {
+  const _$GetPlacesError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetPlaces.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesErrorCopyWith<_$GetPlacesError> get copyWith =>
+      __$$GetPlacesErrorCopyWithImpl<_$GetPlacesError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String filter, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String filter, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String filter, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesStart value) $default, {
+    required TResult Function(GetPlacesSuccessful value) successful,
+    required TResult Function(GetPlacesError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesStart value)? $default, {
+    TResult? Function(GetPlacesSuccessful value)? successful,
+    TResult? Function(GetPlacesError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesStart value)? $default, {
+    TResult Function(GetPlacesSuccessful value)? successful,
+    TResult Function(GetPlacesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesError implements GetPlaces, ErrorAction {
+  const factory GetPlacesError(
+      final Object error, final StackTrace stackTrace) = _$GetPlacesError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$GetPlacesErrorCopyWith<_$GetPlacesError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
