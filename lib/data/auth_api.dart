@@ -38,23 +38,24 @@ class AuthApi {
 
     Response? response;
     final String token = await user.getIdToken();
-    try {
-      final Uri uri = Uri.parse('$_apiUrl/users/authid=${_auth.currentUser?.uid}');
-      response = await _client.get(uri,
-        headers: {
-          HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-          HttpHeaders.authorizationHeader : 'Bearer $token',
-        },
-      );
+    print('aici' + token);
 
-      if (response.statusCode != 200 && response.statusCode != 204) {
-        print('status code : --------------> ${response.statusCode}');
-        throw StateError(response.body);
-      }
-      return AppUser.fromJson(json.decode(response.body));
-    }  catch (e) {
-      return null;
+    print('aici');
+    final Uri uri = Uri.parse('$_apiUrl/users/authid=${_auth.currentUser?.uid}');
+    print('aici');
+    response = await _client.get(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+    );
+    print('aici?');
+    if (response.statusCode != 200 && response.statusCode != 204) {
+      print('status code : --------------> ${response.statusCode}');
+      throw StateError(response.body);
     }
+    return AppUser.fromJson(json.decode(response.body));
+
 
 
   }
@@ -69,23 +70,20 @@ class AuthApi {
 
     final String? token = await _auth.currentUser?.getIdToken();
 
-    try {
-      final Uri uri = Uri.parse('$_apiUrl/users/authid=${_auth.currentUser?.uid}');
-      response = await _client.get(uri,
-        headers: {
-          HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-          HttpHeaders.authorizationHeader : 'Bearer $token',
-        },
-      );
-      if (response.statusCode != 200 && response.statusCode != 204) {
-        print('status code : --------------> ${response.statusCode}');
-        throw StateError(response.body);
-      }
-      return AppUser.fromJson(json.decode(response.body));
-    }  catch (e) {
-      return null;
+    final Uri uri = Uri.parse('$_apiUrl/users/authid=${_auth.currentUser?.uid}');
+    response = await _client.get(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode != 200 && response.statusCode != 204) {
+      print('status code : --------------> ${response.statusCode}');
+      throw StateError(response.body);
     }
 
+    return AppUser.fromJson(json.decode(response.body));
 
   }
 

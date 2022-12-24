@@ -28,6 +28,7 @@ class AppEpics {
       TypedEpic<AppState, EmailVerifyStart>(_verifyEmail),
 
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
+      TypedEpic<AppState, GetPlaceDetailsStart>(_getPlaceDetails),
     ]);
   }
 
@@ -81,6 +82,14 @@ class AppEpics {
         .asyncMap((_) => _placeApi.getPlaces(action.filter,store.state.listOfPlacesNextPage,5))
         .map((Map<String,dynamic> body) => GetPlaces.successful(body))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaces.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _getPlaceDetails(Stream<GetPlaceDetailsStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetPlaceDetailsStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _placeApi.getPlaceDetails(action.idplace))
+        .map((Place place) => GetPlaceDetails.successful(place))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaceDetails.error(error, stackTrace))
         .doOnData(action.result));
   }
 }

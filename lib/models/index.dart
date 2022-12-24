@@ -12,4 +12,5 @@ import './serializers.dart';
 part 'app_state.dart';
 part 'app_user.dart';
 part 'place_short.dart';
+part 'place.dart';
 part 'index.g.dart';

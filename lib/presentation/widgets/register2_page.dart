@@ -27,7 +27,7 @@ class _Register2PageState extends State<Register2Page> {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
-      Navigator.pushReplacementNamed(context, '/');
+     // Navigator.pushReplacementNamed(context, '/');
     }
   }
 

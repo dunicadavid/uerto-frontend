@@ -37,6 +37,7 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
           Center(
             child: GestureDetector(
               onTap: () {
+                StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
                 StoreProvider.of<AppState>(context).dispatch(GetPlaces(_filter, _onResult));
               },
               child: Text('Get Places'),

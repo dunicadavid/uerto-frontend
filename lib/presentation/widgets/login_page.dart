@@ -40,10 +40,12 @@ class _LoginPageState extends State<LoginPage> {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('There is no user with this email')));
       }
       else {
+        print('scaffolt');
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(action.error.toString().split(' ')[0])));
       }
 
     } else {
+      print('scaffolt2');
       Navigator.of(context).pushReplacementNamed('/');
     }
   }

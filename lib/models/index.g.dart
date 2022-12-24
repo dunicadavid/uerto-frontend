@@ -9,6 +9,7 @@ part of models;
 Serializer<AppState> _$appStateSerializer = new _$AppStateSerializer();
 Serializer<AppUser> _$appUserSerializer = new _$AppUserSerializer();
 Serializer<PlaceShort> _$placeShortSerializer = new _$PlaceShortSerializer();
+Serializer<Place> _$placeSerializer = new _$PlaceSerializer();
 
 class _$AppStateSerializer implements StructuredSerializer<AppState> {
   @override
@@ -23,6 +24,9 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       'listOfPlacesNextPage',
       serializers.serialize(object.listOfPlacesNextPage,
           specifiedType: const FullType(int)),
+      'isServerWorking',
+      serializers.serialize(object.isServerWorking,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
     value = object.user;
@@ -39,6 +43,13 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(PlaceShort)])));
+    }
+    value = object.placeDetails;
+    if (value != null) {
+      result
+        ..add('placeDetails')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(Place)));
     }
     value = object.error;
     if (value != null) {
@@ -75,9 +86,17 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           result.listOfPlacesNextPage = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
+        case 'placeDetails':
+          result.placeDetails.replace(serializers.deserialize(value,
+              specifiedType: const FullType(Place))! as Place);
+          break;
         case 'error':
           result.error = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'isServerWorking':
+          result.isServerWorking = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -222,6 +241,92 @@ class _$PlaceShortSerializer implements StructuredSerializer<PlaceShort> {
   }
 }
 
+class _$PlaceSerializer implements StructuredSerializer<Place> {
+  @override
+  final Iterable<Type> types = const [Place, _$Place];
+  @override
+  final String wireName = 'Place';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Place object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'idplace',
+      serializers.serialize(object.idplace, specifiedType: const FullType(int)),
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'location',
+      serializers.serialize(object.location,
+          specifiedType: const FullType(String)),
+      'latitude',
+      serializers.serialize(object.latitude,
+          specifiedType: const FullType(double)),
+      'longitude',
+      serializers.serialize(object.longitude,
+          specifiedType: const FullType(double)),
+      'category',
+      serializers.serialize(object.category,
+          specifiedType: const FullType(String)),
+      'hoursOfOpp',
+      serializers.serialize(object.hoursOfOpp,
+          specifiedType: const FullType(String)),
+      'rating',
+      serializers.serialize(object.rating, specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  Place deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new PlaceBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'idplace':
+          result.idplace = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'location':
+          result.location = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'latitude':
+          result.latitude = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'longitude':
+          result.longitude = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'hoursOfOpp':
+          result.hoursOfOpp = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'rating':
+          result.rating = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$AppState extends AppState {
   @override
   final AppUser? user;
@@ -230,7 +335,11 @@ class _$AppState extends AppState {
   @override
   final int listOfPlacesNextPage;
   @override
+  final Place? placeDetails;
+  @override
   final String? error;
+  @override
+  final bool isServerWorking;
 
   factory _$AppState([void Function(AppStateBuilder)? updates]) =>
       (new AppStateBuilder()..update(updates))._build();
@@ -239,10 +348,14 @@ class _$AppState extends AppState {
       {this.user,
       this.listOfPlaces,
       required this.listOfPlacesNextPage,
-      this.error})
+      this.placeDetails,
+      this.error,
+      required this.isServerWorking})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage');
+    BuiltValueNullFieldError.checkNotNull(
+        isServerWorking, r'AppState', 'isServerWorking');
   }
 
   @override
@@ -259,15 +372,21 @@ class _$AppState extends AppState {
         user == other.user &&
         listOfPlaces == other.listOfPlaces &&
         listOfPlacesNextPage == other.listOfPlacesNextPage &&
-        error == other.error;
+        placeDetails == other.placeDetails &&
+        error == other.error &&
+        isServerWorking == other.isServerWorking;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, user.hashCode), listOfPlaces.hashCode),
-            listOfPlacesNextPage.hashCode),
-        error.hashCode));
+        $jc(
+            $jc(
+                $jc($jc($jc(0, user.hashCode), listOfPlaces.hashCode),
+                    listOfPlacesNextPage.hashCode),
+                placeDetails.hashCode),
+            error.hashCode),
+        isServerWorking.hashCode));
   }
 
   @override
@@ -276,7 +395,9 @@ class _$AppState extends AppState {
           ..add('user', user)
           ..add('listOfPlaces', listOfPlaces)
           ..add('listOfPlacesNextPage', listOfPlacesNextPage)
-          ..add('error', error))
+          ..add('placeDetails', placeDetails)
+          ..add('error', error)
+          ..add('isServerWorking', isServerWorking))
         .toString();
   }
 }
@@ -299,9 +420,19 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set listOfPlacesNextPage(int? listOfPlacesNextPage) =>
       _$this._listOfPlacesNextPage = listOfPlacesNextPage;
 
+  PlaceBuilder? _placeDetails;
+  PlaceBuilder get placeDetails => _$this._placeDetails ??= new PlaceBuilder();
+  set placeDetails(PlaceBuilder? placeDetails) =>
+      _$this._placeDetails = placeDetails;
+
   String? _error;
   String? get error => _$this._error;
   set error(String? error) => _$this._error = error;
+
+  bool? _isServerWorking;
+  bool? get isServerWorking => _$this._isServerWorking;
+  set isServerWorking(bool? isServerWorking) =>
+      _$this._isServerWorking = isServerWorking;
 
   AppStateBuilder();
 
@@ -311,7 +442,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _user = $v.user?.toBuilder();
       _listOfPlaces = $v.listOfPlaces?.toBuilder();
       _listOfPlacesNextPage = $v.listOfPlacesNextPage;
+      _placeDetails = $v.placeDetails?.toBuilder();
       _error = $v.error;
+      _isServerWorking = $v.isServerWorking;
       _$v = null;
     }
     return this;
@@ -340,7 +473,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               listOfPlaces: _listOfPlaces?.build(),
               listOfPlacesNextPage: BuiltValueNullFieldError.checkNotNull(
                   listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage'),
-              error: error);
+              placeDetails: _placeDetails?.build(),
+              error: error,
+              isServerWorking: BuiltValueNullFieldError.checkNotNull(
+                  isServerWorking, r'AppState', 'isServerWorking'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -348,6 +484,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         _user?.build();
         _$failedField = 'listOfPlaces';
         _listOfPlaces?.build();
+
+        _$failedField = 'placeDetails';
+        _placeDetails?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'AppState', _$failedField, e.toString());
@@ -629,6 +768,189 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
                 location, r'PlaceShort', 'location'),
             category: BuiltValueNullFieldError.checkNotNull(
                 category, r'PlaceShort', 'category'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Place extends Place {
+  @override
+  final int idplace;
+  @override
+  final String name;
+  @override
+  final String location;
+  @override
+  final double latitude;
+  @override
+  final double longitude;
+  @override
+  final String category;
+  @override
+  final String hoursOfOpp;
+  @override
+  final int rating;
+
+  factory _$Place([void Function(PlaceBuilder)? updates]) =>
+      (new PlaceBuilder()..update(updates))._build();
+
+  _$Place._(
+      {required this.idplace,
+      required this.name,
+      required this.location,
+      required this.latitude,
+      required this.longitude,
+      required this.category,
+      required this.hoursOfOpp,
+      required this.rating})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(idplace, r'Place', 'idplace');
+    BuiltValueNullFieldError.checkNotNull(name, r'Place', 'name');
+    BuiltValueNullFieldError.checkNotNull(location, r'Place', 'location');
+    BuiltValueNullFieldError.checkNotNull(latitude, r'Place', 'latitude');
+    BuiltValueNullFieldError.checkNotNull(longitude, r'Place', 'longitude');
+    BuiltValueNullFieldError.checkNotNull(category, r'Place', 'category');
+    BuiltValueNullFieldError.checkNotNull(hoursOfOpp, r'Place', 'hoursOfOpp');
+    BuiltValueNullFieldError.checkNotNull(rating, r'Place', 'rating');
+  }
+
+  @override
+  Place rebuild(void Function(PlaceBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PlaceBuilder toBuilder() => new PlaceBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Place &&
+        idplace == other.idplace &&
+        name == other.name &&
+        location == other.location &&
+        latitude == other.latitude &&
+        longitude == other.longitude &&
+        category == other.category &&
+        hoursOfOpp == other.hoursOfOpp &&
+        rating == other.rating;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc(
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc($jc($jc(0, idplace.hashCode), name.hashCode),
+                            location.hashCode),
+                        latitude.hashCode),
+                    longitude.hashCode),
+                category.hashCode),
+            hoursOfOpp.hashCode),
+        rating.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Place')
+          ..add('idplace', idplace)
+          ..add('name', name)
+          ..add('location', location)
+          ..add('latitude', latitude)
+          ..add('longitude', longitude)
+          ..add('category', category)
+          ..add('hoursOfOpp', hoursOfOpp)
+          ..add('rating', rating))
+        .toString();
+  }
+}
+
+class PlaceBuilder implements Builder<Place, PlaceBuilder> {
+  _$Place? _$v;
+
+  int? _idplace;
+  int? get idplace => _$this._idplace;
+  set idplace(int? idplace) => _$this._idplace = idplace;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _location;
+  String? get location => _$this._location;
+  set location(String? location) => _$this._location = location;
+
+  double? _latitude;
+  double? get latitude => _$this._latitude;
+  set latitude(double? latitude) => _$this._latitude = latitude;
+
+  double? _longitude;
+  double? get longitude => _$this._longitude;
+  set longitude(double? longitude) => _$this._longitude = longitude;
+
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
+
+  String? _hoursOfOpp;
+  String? get hoursOfOpp => _$this._hoursOfOpp;
+  set hoursOfOpp(String? hoursOfOpp) => _$this._hoursOfOpp = hoursOfOpp;
+
+  int? _rating;
+  int? get rating => _$this._rating;
+  set rating(int? rating) => _$this._rating = rating;
+
+  PlaceBuilder();
+
+  PlaceBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _idplace = $v.idplace;
+      _name = $v.name;
+      _location = $v.location;
+      _latitude = $v.latitude;
+      _longitude = $v.longitude;
+      _category = $v.category;
+      _hoursOfOpp = $v.hoursOfOpp;
+      _rating = $v.rating;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Place other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Place;
+  }
+
+  @override
+  void update(void Function(PlaceBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Place build() => _build();
+
+  _$Place _build() {
+    final _$result = _$v ??
+        new _$Place._(
+            idplace: BuiltValueNullFieldError.checkNotNull(
+                idplace, r'Place', 'idplace'),
+            name: BuiltValueNullFieldError.checkNotNull(name, r'Place', 'name'),
+            location: BuiltValueNullFieldError.checkNotNull(
+                location, r'Place', 'location'),
+            latitude: BuiltValueNullFieldError.checkNotNull(
+                latitude, r'Place', 'latitude'),
+            longitude: BuiltValueNullFieldError.checkNotNull(
+                longitude, r'Place', 'longitude'),
+            category: BuiltValueNullFieldError.checkNotNull(
+                category, r'Place', 'category'),
+            hoursOfOpp: BuiltValueNullFieldError.checkNotNull(
+                hoursOfOpp, r'Place', 'hoursOfOpp'),
+            rating: BuiltValueNullFieldError.checkNotNull(
+                rating, r'Place', 'rating'));
     replace(_$result);
     return _$result;
   }

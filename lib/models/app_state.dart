@@ -8,6 +8,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   factory AppState.initialState() {
     return _$AppState((AppStateBuilder b) {
         b.listOfPlacesNextPage = 1;
+        b.isServerWorking = true;
     });
   }
 
@@ -21,7 +22,12 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   int get listOfPlacesNextPage;
 
+  Place? get placeDetails;
+
+
   String? get error;
+
+  bool get isServerWorking;
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this)! as Map<String, dynamic>;
 

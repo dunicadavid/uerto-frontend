@@ -9,6 +9,7 @@ part of 'serializers.dart';
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AppState.serializer)
       ..add(AppUser.serializer)
+      ..add(Place.serializer)
       ..add(PlaceShort.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(PlaceShort)]),

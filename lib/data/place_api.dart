@@ -42,8 +42,26 @@ class PlaceApi {
     if(response.statusCode != 200) {
       throw StateError(body['message'].toString());
     }
-
     return body;
+  }
+
+  Future<Place> getPlaceDetails(int id) async {
+    final String token = await _auth.currentUser!.getIdToken();
+    final Uri uri = Uri.parse('$_apiUrl/places/id=$id');
+    final Response response = await _client.get(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+    );
+
+    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+    print(body);
+    if(response.statusCode != 200) {
+      throw StateError(body['message'].toString());
+    }
+    print(body);
+    return  Place.fromJson(body['place']);
   }
 
 }

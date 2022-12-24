@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
+import 'package:uerto/presentation/widgets/place_details_page.dart';
 
 import '../../actions/index.dart';
 import '../../containers/places_short_container.dart';
@@ -19,6 +20,7 @@ class PlacesResultListPage extends StatefulWidget {
 
 class _PlacesResultListPageState extends State<PlacesResultListPage> {
   final ScrollController _controller = ScrollController();
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -35,8 +37,26 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double threshold = screenHeight * 0.5;
 
-    if (delta < threshold && store.state.listOfPlacesNextPage != 0) {
-      store.dispatch(GetPlaces('', (_){}));
+    if (delta < threshold && store.state.listOfPlacesNextPage != 0 && _isLoading == false) {
+      _isLoading = true;
+      store.dispatch(GetPlaces('', _onResultPlaces));
+    }
+  }
+
+  void _onResultPlaces(AppAction action) {
+    setState(() {
+      _isLoading = false;
+    });
+    if (action is ErrorAction) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    }
+  }
+
+  void _onResultDetails(AppAction action) {
+    if (action is ErrorAction) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    } else {
+     Navigator.pushReplacementNamed(context, '/placeDetails');
     }
   }
 
@@ -53,7 +73,10 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
           title: Text('PlaceResultPage'),
           leading: IconButton(
             icon: const Icon(Icons.backspace_outlined),
-            onPressed: ()=> Navigator.of(context).pushReplacementNamed('/placeFilter'),
+            onPressed: () {
+              StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
+              Navigator.of(context).pushReplacementNamed('/placeFilter');
+            },
           ),
 
         ),
@@ -62,7 +85,7 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
                 return GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 1,
-                    childAspectRatio: 0.69,
+                    childAspectRatio: 2,
                   ),
                   controller: _controller,
                   itemCount: places.length,
@@ -72,6 +95,15 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
 
                     return GestureDetector(
                       onTap: () {
+                        if(StoreProvider.of<AppState>(context).state.placeDetails != null) {
+                          if (place.idplace != StoreProvider.of<AppState>(context).state.placeDetails?.idplace) {
+                            StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace, _onResultDetails));
+                          } else {
+                            Navigator.of(context).pushReplacementNamed('/placeDetails');
+                          }
+                        } else {
+                          StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace, _onResultDetails));
+                        }
                       },
                       child: GridTile(
                         child: Image.network(
