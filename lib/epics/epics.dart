@@ -29,6 +29,7 @@ class AppEpics {
 
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
       TypedEpic<AppState, GetPlaceDetailsStart>(_getPlaceDetails),
+      TypedEpic<AppState, GetPlaceActivitiesStart>(_getPlaceActivities),
     ]);
   }
 
@@ -90,6 +91,14 @@ class AppEpics {
         .asyncMap((_) => _placeApi.getPlaceDetails(action.idplace))
         .map((Place place) => GetPlaceDetails.successful(place))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaceDetails.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _getPlaceActivities(Stream<GetPlaceActivitiesStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetPlaceActivitiesStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _placeApi.getPlaceActivities(action.idplace))
+        .map((List<PlaceActivity> activities) => GetPlaceActivities.successful(activities))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaceActivities.error(error, stackTrace))
         .doOnData(action.result));
   }
 }

@@ -14,6 +14,7 @@ part 'auth/signout.dart';
 
 part 'places/get_places.dart';
 part 'places/get_place_details.dart';
+part 'places/get_place_activities.dart';
 part 'places/delete_places.dart';
 
 abstract class AppAction {}

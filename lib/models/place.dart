@@ -24,7 +24,7 @@ abstract class Place implements Built<Place, PlaceBuilder> {
 
   String get hoursOfOpp;
 
-  int get rating;
+  double get rating;
 
   Map<String, dynamic> get json =>
       serializers.serializeWith(serializer, this) as Map<String, dynamic>;

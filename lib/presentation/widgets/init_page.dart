@@ -11,6 +11,7 @@ import 'package:uerto/presentation/widgets/verify_email_page.dart';
 import '../../containers/user_container.dart';
 import '../../models/index.dart';
 import 'error_page.dart';
+import 'loading_page.dart';
 import 'login_page.dart';
 import 'main_page.dart';
 
@@ -21,18 +22,23 @@ class InitPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return UserContainer(
       builder: (BuildContext context, AppUser? user) {
-        if (FirebaseAuth.instance.currentUser == null && StoreProvider.of<AppState>(context).state.isServerWorking) {
-          return const LoginPage();
-        } else if (!FirebaseAuth.instance.currentUser!.emailVerified &&
-            StoreProvider.of<AppState>(context).state.isServerWorking) {
-          return const VerifyEmailPage();
-        } else if (user == null && StoreProvider.of<AppState>(context).state.isServerWorking) {
-          return const Register2Page();
-        } else if (!StoreProvider.of<AppState>(context).state.isServerWorking) {
-          return const ErrorPage();
+        if( StoreProvider.of<AppState>(context).state.isInitDone == true) {
+          if (FirebaseAuth.instance.currentUser == null && StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            return const LoginPage();
+          } else if (!FirebaseAuth.instance.currentUser!.emailVerified &&
+              StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            return const VerifyEmailPage();
+          } else if (user == null && StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            return const Register2Page();
+          } else if (!StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            return const ErrorPage();
+          } else {
+            return const MainPage();
+          }
         } else {
-          return const MainPage();
+          return const LoadingPage();
         }
+
       },
     );
   }

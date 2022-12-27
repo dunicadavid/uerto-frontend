@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:uerto/actions/index.dart';
 import 'package:uerto/containers/place_container.dart';
 import 'package:uerto/models/index.dart';
 
@@ -27,12 +28,29 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
               Navigator.of(context).pushReplacementNamed('/placeResult');
             },
           ),
-        ),
-        body: Column(
-          children: <Widget>[
-
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.local_attraction),
+              onPressed: () {
+                setState(() {
+                  StoreProvider.of<AppState>(context).dispatch(GetPlaceActivities(place.idplace, (_){}));
+                });
+              },
+            ),
           ],
         ),
+        body: StoreProvider.of<AppState>(context).state.placeActivities != null ?
+          ListView.builder(
+            itemCount: StoreProvider.of<AppState>(context).state.placeActivities!.toList().length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 50,
+                color: index.isEven ? Colors.grey : Colors.white,
+                child: Center(child: Text(StoreProvider.of<AppState>(context).state.placeActivities!.toList()[index].name)),
+              );
+            },
+          ) :
+          const Center(child: Icon(Icons.hourglass_empty_outlined)),
       );
     });
   }

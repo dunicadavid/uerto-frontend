@@ -23,6 +23,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
 
   TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
   TypedReducer<AppState, GetPlaceDetailsSuccessful>(_getPlaceDetailsSuccessful),
+  TypedReducer<AppState, GetPlaceActivitiesSuccessful>(_getPlaceActivitiesSuccessful),
   TypedReducer<AppState, DeletePlaces$>(_deletePlaces),
 
 ]);
@@ -31,12 +32,14 @@ AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action
   return state.rebuild((AppStateBuilder b) {
     b.user = action.user?.toBuilder();
     b.isServerWorking = true;
+    b.isInitDone = true;
   });
 }
 
 AppState _initializeAppError(AppState state, InitializeAppError action) {
   return state.rebuild((AppStateBuilder b) {
     b.isServerWorking = false;
+    b.isInitDone = true;
   });
 }
 
@@ -48,12 +51,14 @@ AppState _loginSuccessful(AppState state, LoginSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     b.user = action.user?.toBuilder();
     b.isServerWorking = true;
+    b.isInitDone = true;
   });
 }
 
 AppState _loginError(AppState state, LoginError action) {
   return state.rebuild((AppStateBuilder b) {
     b.isServerWorking = false;
+    b.isInitDone = true;
   });
 }
 
@@ -77,6 +82,13 @@ AppState _getPlaceDetailsSuccessful(AppState state, GetPlaceDetailsSuccessful ac
   });
 }
 
+AppState _getPlaceActivitiesSuccessful(AppState state, GetPlaceActivitiesSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.placeActivities.clear();
+    b.placeActivities.addAll(action.activities);
+  });
+}
+
 
 AppState _deletePlaces(AppState state, DeletePlaces$ action) {
   return state.rebuild((AppStateBuilder b) {
@@ -84,6 +96,8 @@ AppState _deletePlaces(AppState state, DeletePlaces$ action) {
         ..listOfPlaces.clear();
   });
 }
+
+
 
 
 

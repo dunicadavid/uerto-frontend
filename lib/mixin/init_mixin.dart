@@ -23,7 +23,7 @@ mixin InitMixin<S extends StatefulWidget> on State<S> {
   Future<void> _initStore() async {
     final List<FutureOr<Store<AppState>>?> result = await ConcatStream<FutureOr<Store<AppState>>?>(<Stream<FutureOr<Store<AppState>>?>>[
       init().asStream(),
-      Future<FutureOr<Store<AppState>>?>.delayed(const Duration(seconds: 5)).asStream(),
+      Future<FutureOr<Store<AppState>>?>.delayed(const Duration(seconds: 3)).asStream(),
     ]).toList();
 
     _completer //
