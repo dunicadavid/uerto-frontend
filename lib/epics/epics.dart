@@ -30,6 +30,7 @@ class AppEpics {
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
       TypedEpic<AppState, GetPlaceDetailsStart>(_getPlaceDetails),
       TypedEpic<AppState, GetPlaceActivitiesStart>(_getPlaceActivities),
+      TypedEpic<AppState, GetPlaceActivityAvailabilityStart>(_getPlaceActivityAvailability),
     ]);
   }
 
@@ -88,7 +89,7 @@ class AppEpics {
 
   Stream<AppAction> _getPlaceDetails(Stream<GetPlaceDetailsStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetPlaceDetailsStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _placeApi.getPlaceDetails(action.idplace))
+        .asyncMap((_) => _placeApi.getPlaceDetails(action.idplace, action.iduser))
         .map((Place place) => GetPlaceDetails.successful(place))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaceDetails.error(error, stackTrace))
         .doOnData(action.result));
@@ -99,6 +100,14 @@ class AppEpics {
         .asyncMap((_) => _placeApi.getPlaceActivities(action.idplace))
         .map((List<PlaceActivity> activities) => GetPlaceActivities.successful(activities))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaceActivities.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _getPlaceActivityAvailability(Stream<GetPlaceActivityAvailabilityStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetPlaceActivityAvailabilityStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _placeApi.getPlaceActivityAvailability(action.idactivity,action.date,action.partySize))
+        .map((List<PlaceActivityAvailability> availability) => GetPlaceActivityAvailability.successful(availability))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaceActivityAvailability.error(error, stackTrace))
         .doOnData(action.result));
   }
 }

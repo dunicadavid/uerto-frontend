@@ -49,7 +49,7 @@ class AuthApi {
         HttpHeaders.authorizationHeader : 'Bearer $token',
       },
     );
-    print('aici?');
+    print(response.body);
     if (response.statusCode != 200 && response.statusCode != 204) {
       print('status code : --------------> ${response.statusCode}');
       throw StateError(response.body);
@@ -148,8 +148,6 @@ class AuthApi {
 
     final  Map<String, dynamic> userRes = body['user'] as Map<String,dynamic>;
     return AppUser.fromJson(userRes);
-
-
   }
 
   Future<void> signOut() async {

@@ -3429,21 +3429,21 @@ abstract class GetPlacesError implements GetPlaces, ErrorAction {
 mixin _$GetPlaceDetails {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int idplace, ActionResult result) $default, {
+    TResult Function(int idplace, int iduser, ActionResult result) $default, {
     required TResult Function(Place place) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int idplace, ActionResult result)? $default, {
+    TResult? Function(int idplace, int iduser, ActionResult result)? $default, {
     TResult? Function(Place place)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int idplace, ActionResult result)? $default, {
+    TResult Function(int idplace, int iduser, ActionResult result)? $default, {
     TResult Function(Place place)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -3497,7 +3497,7 @@ abstract class _$$GetPlaceDetailsStartCopyWith<$Res> {
           $Res Function(_$GetPlaceDetailsStart) then) =
       __$$GetPlaceDetailsStartCopyWithImpl<$Res>;
   @useResult
-  $Res call({int idplace, ActionResult result});
+  $Res call({int idplace, int iduser, ActionResult result});
 }
 
 /// @nodoc
@@ -3512,12 +3512,17 @@ class __$$GetPlaceDetailsStartCopyWithImpl<$Res>
   @override
   $Res call({
     Object? idplace = null,
+    Object? iduser = null,
     Object? result = null,
   }) {
     return _then(_$GetPlaceDetailsStart(
       null == idplace
           ? _value.idplace
           : idplace // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == iduser
+          ? _value.iduser
+          : iduser // ignore: cast_nullable_to_non_nullable
               as int,
       null == result
           ? _value.result
@@ -3530,16 +3535,18 @@ class __$$GetPlaceDetailsStartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetPlaceDetailsStart implements GetPlaceDetailsStart {
-  const _$GetPlaceDetailsStart(this.idplace, this.result);
+  const _$GetPlaceDetailsStart(this.idplace, this.iduser, this.result);
 
   @override
   final int idplace;
+  @override
+  final int iduser;
   @override
   final ActionResult result;
 
   @override
   String toString() {
-    return 'GetPlaceDetails(idplace: $idplace, result: $result)';
+    return 'GetPlaceDetails(idplace: $idplace, iduser: $iduser, result: $result)';
   }
 
   @override
@@ -3548,11 +3555,12 @@ class _$GetPlaceDetailsStart implements GetPlaceDetailsStart {
         (other.runtimeType == runtimeType &&
             other is _$GetPlaceDetailsStart &&
             (identical(other.idplace, idplace) || other.idplace == idplace) &&
+            (identical(other.iduser, iduser) || other.iduser == iduser) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, idplace, result);
+  int get hashCode => Object.hash(runtimeType, idplace, iduser, result);
 
   @JsonKey(ignore: true)
   @override
@@ -3564,33 +3572,33 @@ class _$GetPlaceDetailsStart implements GetPlaceDetailsStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int idplace, ActionResult result) $default, {
+    TResult Function(int idplace, int iduser, ActionResult result) $default, {
     required TResult Function(Place place) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(idplace, result);
+    return $default(idplace, iduser, result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int idplace, ActionResult result)? $default, {
+    TResult? Function(int idplace, int iduser, ActionResult result)? $default, {
     TResult? Function(Place place)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(idplace, result);
+    return $default?.call(idplace, iduser, result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int idplace, ActionResult result)? $default, {
+    TResult Function(int idplace, int iduser, ActionResult result)? $default, {
     TResult Function(Place place)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(idplace, result);
+      return $default(idplace, iduser, result);
     }
     return orElse();
   }
@@ -3632,9 +3640,11 @@ class _$GetPlaceDetailsStart implements GetPlaceDetailsStart {
 
 abstract class GetPlaceDetailsStart implements GetPlaceDetails {
   const factory GetPlaceDetailsStart(
-      final int idplace, final ActionResult result) = _$GetPlaceDetailsStart;
+          final int idplace, final int iduser, final ActionResult result) =
+      _$GetPlaceDetailsStart;
 
   int get idplace;
+  int get iduser;
   ActionResult get result;
   @JsonKey(ignore: true)
   _$$GetPlaceDetailsStartCopyWith<_$GetPlaceDetailsStart> get copyWith =>
@@ -3707,7 +3717,7 @@ class _$GetPlaceDetailsSuccessful implements GetPlaceDetailsSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int idplace, ActionResult result) $default, {
+    TResult Function(int idplace, int iduser, ActionResult result) $default, {
     required TResult Function(Place place) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -3717,7 +3727,7 @@ class _$GetPlaceDetailsSuccessful implements GetPlaceDetailsSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int idplace, ActionResult result)? $default, {
+    TResult? Function(int idplace, int iduser, ActionResult result)? $default, {
     TResult? Function(Place place)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -3727,7 +3737,7 @@ class _$GetPlaceDetailsSuccessful implements GetPlaceDetailsSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int idplace, ActionResult result)? $default, {
+    TResult Function(int idplace, int iduser, ActionResult result)? $default, {
     TResult Function(Place place)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -3855,7 +3865,7 @@ class _$GetPlaceDetailsError implements GetPlaceDetailsError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int idplace, ActionResult result) $default, {
+    TResult Function(int idplace, int iduser, ActionResult result) $default, {
     required TResult Function(Place place) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -3865,7 +3875,7 @@ class _$GetPlaceDetailsError implements GetPlaceDetailsError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int idplace, ActionResult result)? $default, {
+    TResult? Function(int idplace, int iduser, ActionResult result)? $default, {
     TResult? Function(Place place)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -3875,7 +3885,7 @@ class _$GetPlaceDetailsError implements GetPlaceDetailsError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int idplace, ActionResult result)? $default, {
+    TResult Function(int idplace, int iduser, ActionResult result)? $default, {
     TResult Function(Place place)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -4451,6 +4461,603 @@ abstract class GetPlaceActivitiesError
 }
 
 /// @nodoc
+mixin _$GetPlaceActivityAvailability {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int idactivity, String date, int partySize, ActionResult result)
+        $default, {
+    required TResult Function(List<PlaceActivityAvailability> availability)
+        successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int idactivity, String date, int partySize, ActionResult result)?
+        $default, {
+    TResult? Function(List<PlaceActivityAvailability> availability)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int idactivity, String date, int partySize, ActionResult result)?
+        $default, {
+    TResult Function(List<PlaceActivityAvailability> availability)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlaceActivityAvailabilityStart value) $default, {
+    required TResult Function(GetPlaceActivityAvailabilitySuccessful value)
+        successful,
+    required TResult Function(GetPlaceActivityAvailabilityError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlaceActivityAvailabilityStart value)? $default, {
+    TResult? Function(GetPlaceActivityAvailabilitySuccessful value)? successful,
+    TResult? Function(GetPlaceActivityAvailabilityError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlaceActivityAvailabilityStart value)? $default, {
+    TResult Function(GetPlaceActivityAvailabilitySuccessful value)? successful,
+    TResult Function(GetPlaceActivityAvailabilityError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetPlaceActivityAvailabilityCopyWith<$Res> {
+  factory $GetPlaceActivityAvailabilityCopyWith(
+          GetPlaceActivityAvailability value,
+          $Res Function(GetPlaceActivityAvailability) then) =
+      _$GetPlaceActivityAvailabilityCopyWithImpl<$Res,
+          GetPlaceActivityAvailability>;
+}
+
+/// @nodoc
+class _$GetPlaceActivityAvailabilityCopyWithImpl<$Res,
+        $Val extends GetPlaceActivityAvailability>
+    implements $GetPlaceActivityAvailabilityCopyWith<$Res> {
+  _$GetPlaceActivityAvailabilityCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetPlaceActivityAvailabilityStartCopyWith<$Res> {
+  factory _$$GetPlaceActivityAvailabilityStartCopyWith(
+          _$GetPlaceActivityAvailabilityStart value,
+          $Res Function(_$GetPlaceActivityAvailabilityStart) then) =
+      __$$GetPlaceActivityAvailabilityStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int idactivity, String date, int partySize, ActionResult result});
+}
+
+/// @nodoc
+class __$$GetPlaceActivityAvailabilityStartCopyWithImpl<$Res>
+    extends _$GetPlaceActivityAvailabilityCopyWithImpl<$Res,
+        _$GetPlaceActivityAvailabilityStart>
+    implements _$$GetPlaceActivityAvailabilityStartCopyWith<$Res> {
+  __$$GetPlaceActivityAvailabilityStartCopyWithImpl(
+      _$GetPlaceActivityAvailabilityStart _value,
+      $Res Function(_$GetPlaceActivityAvailabilityStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? idactivity = null,
+    Object? date = null,
+    Object? partySize = null,
+    Object? result = null,
+  }) {
+    return _then(_$GetPlaceActivityAvailabilityStart(
+      null == idactivity
+          ? _value.idactivity
+          : idactivity // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == partySize
+          ? _value.partySize
+          : partySize // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlaceActivityAvailabilityStart
+    implements GetPlaceActivityAvailabilityStart {
+  const _$GetPlaceActivityAvailabilityStart(
+      this.idactivity, this.date, this.partySize, this.result);
+
+  @override
+  final int idactivity;
+  @override
+  final String date;
+  @override
+  final int partySize;
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'GetPlaceActivityAvailability(idactivity: $idactivity, date: $date, partySize: $partySize, result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlaceActivityAvailabilityStart &&
+            (identical(other.idactivity, idactivity) ||
+                other.idactivity == idactivity) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.partySize, partySize) ||
+                other.partySize == partySize) &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, idactivity, date, partySize, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlaceActivityAvailabilityStartCopyWith<
+          _$GetPlaceActivityAvailabilityStart>
+      get copyWith => __$$GetPlaceActivityAvailabilityStartCopyWithImpl<
+          _$GetPlaceActivityAvailabilityStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int idactivity, String date, int partySize, ActionResult result)
+        $default, {
+    required TResult Function(List<PlaceActivityAvailability> availability)
+        successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(idactivity, date, partySize, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int idactivity, String date, int partySize, ActionResult result)?
+        $default, {
+    TResult? Function(List<PlaceActivityAvailability> availability)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(idactivity, date, partySize, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int idactivity, String date, int partySize, ActionResult result)?
+        $default, {
+    TResult Function(List<PlaceActivityAvailability> availability)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(idactivity, date, partySize, result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlaceActivityAvailabilityStart value) $default, {
+    required TResult Function(GetPlaceActivityAvailabilitySuccessful value)
+        successful,
+    required TResult Function(GetPlaceActivityAvailabilityError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlaceActivityAvailabilityStart value)? $default, {
+    TResult? Function(GetPlaceActivityAvailabilitySuccessful value)? successful,
+    TResult? Function(GetPlaceActivityAvailabilityError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlaceActivityAvailabilityStart value)? $default, {
+    TResult Function(GetPlaceActivityAvailabilitySuccessful value)? successful,
+    TResult Function(GetPlaceActivityAvailabilityError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlaceActivityAvailabilityStart
+    implements GetPlaceActivityAvailability {
+  const factory GetPlaceActivityAvailabilityStart(
+      final int idactivity,
+      final String date,
+      final int partySize,
+      final ActionResult result) = _$GetPlaceActivityAvailabilityStart;
+
+  int get idactivity;
+  String get date;
+  int get partySize;
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$GetPlaceActivityAvailabilityStartCopyWith<
+          _$GetPlaceActivityAvailabilityStart>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetPlaceActivityAvailabilitySuccessfulCopyWith<$Res> {
+  factory _$$GetPlaceActivityAvailabilitySuccessfulCopyWith(
+          _$GetPlaceActivityAvailabilitySuccessful value,
+          $Res Function(_$GetPlaceActivityAvailabilitySuccessful) then) =
+      __$$GetPlaceActivityAvailabilitySuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<PlaceActivityAvailability> availability});
+}
+
+/// @nodoc
+class __$$GetPlaceActivityAvailabilitySuccessfulCopyWithImpl<$Res>
+    extends _$GetPlaceActivityAvailabilityCopyWithImpl<$Res,
+        _$GetPlaceActivityAvailabilitySuccessful>
+    implements _$$GetPlaceActivityAvailabilitySuccessfulCopyWith<$Res> {
+  __$$GetPlaceActivityAvailabilitySuccessfulCopyWithImpl(
+      _$GetPlaceActivityAvailabilitySuccessful _value,
+      $Res Function(_$GetPlaceActivityAvailabilitySuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? availability = null,
+  }) {
+    return _then(_$GetPlaceActivityAvailabilitySuccessful(
+      null == availability
+          ? _value._availability
+          : availability // ignore: cast_nullable_to_non_nullable
+              as List<PlaceActivityAvailability>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlaceActivityAvailabilitySuccessful
+    implements GetPlaceActivityAvailabilitySuccessful {
+  const _$GetPlaceActivityAvailabilitySuccessful(
+      final List<PlaceActivityAvailability> availability)
+      : _availability = availability;
+
+  final List<PlaceActivityAvailability> _availability;
+  @override
+  List<PlaceActivityAvailability> get availability {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_availability);
+  }
+
+  @override
+  String toString() {
+    return 'GetPlaceActivityAvailability.successful(availability: $availability)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlaceActivityAvailabilitySuccessful &&
+            const DeepCollectionEquality()
+                .equals(other._availability, _availability));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_availability));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlaceActivityAvailabilitySuccessfulCopyWith<
+          _$GetPlaceActivityAvailabilitySuccessful>
+      get copyWith => __$$GetPlaceActivityAvailabilitySuccessfulCopyWithImpl<
+          _$GetPlaceActivityAvailabilitySuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int idactivity, String date, int partySize, ActionResult result)
+        $default, {
+    required TResult Function(List<PlaceActivityAvailability> availability)
+        successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(availability);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int idactivity, String date, int partySize, ActionResult result)?
+        $default, {
+    TResult? Function(List<PlaceActivityAvailability> availability)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(availability);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int idactivity, String date, int partySize, ActionResult result)?
+        $default, {
+    TResult Function(List<PlaceActivityAvailability> availability)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(availability);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlaceActivityAvailabilityStart value) $default, {
+    required TResult Function(GetPlaceActivityAvailabilitySuccessful value)
+        successful,
+    required TResult Function(GetPlaceActivityAvailabilityError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlaceActivityAvailabilityStart value)? $default, {
+    TResult? Function(GetPlaceActivityAvailabilitySuccessful value)? successful,
+    TResult? Function(GetPlaceActivityAvailabilityError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlaceActivityAvailabilityStart value)? $default, {
+    TResult Function(GetPlaceActivityAvailabilitySuccessful value)? successful,
+    TResult Function(GetPlaceActivityAvailabilityError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlaceActivityAvailabilitySuccessful
+    implements GetPlaceActivityAvailability {
+  const factory GetPlaceActivityAvailabilitySuccessful(
+          final List<PlaceActivityAvailability> availability) =
+      _$GetPlaceActivityAvailabilitySuccessful;
+
+  List<PlaceActivityAvailability> get availability;
+  @JsonKey(ignore: true)
+  _$$GetPlaceActivityAvailabilitySuccessfulCopyWith<
+          _$GetPlaceActivityAvailabilitySuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetPlaceActivityAvailabilityErrorCopyWith<$Res> {
+  factory _$$GetPlaceActivityAvailabilityErrorCopyWith(
+          _$GetPlaceActivityAvailabilityError value,
+          $Res Function(_$GetPlaceActivityAvailabilityError) then) =
+      __$$GetPlaceActivityAvailabilityErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$GetPlaceActivityAvailabilityErrorCopyWithImpl<$Res>
+    extends _$GetPlaceActivityAvailabilityCopyWithImpl<$Res,
+        _$GetPlaceActivityAvailabilityError>
+    implements _$$GetPlaceActivityAvailabilityErrorCopyWith<$Res> {
+  __$$GetPlaceActivityAvailabilityErrorCopyWithImpl(
+      _$GetPlaceActivityAvailabilityError _value,
+      $Res Function(_$GetPlaceActivityAvailabilityError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$GetPlaceActivityAvailabilityError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlaceActivityAvailabilityError
+    implements GetPlaceActivityAvailabilityError {
+  const _$GetPlaceActivityAvailabilityError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetPlaceActivityAvailability.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlaceActivityAvailabilityError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlaceActivityAvailabilityErrorCopyWith<
+          _$GetPlaceActivityAvailabilityError>
+      get copyWith => __$$GetPlaceActivityAvailabilityErrorCopyWithImpl<
+          _$GetPlaceActivityAvailabilityError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            int idactivity, String date, int partySize, ActionResult result)
+        $default, {
+    required TResult Function(List<PlaceActivityAvailability> availability)
+        successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            int idactivity, String date, int partySize, ActionResult result)?
+        $default, {
+    TResult? Function(List<PlaceActivityAvailability> availability)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            int idactivity, String date, int partySize, ActionResult result)?
+        $default, {
+    TResult Function(List<PlaceActivityAvailability> availability)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlaceActivityAvailabilityStart value) $default, {
+    required TResult Function(GetPlaceActivityAvailabilitySuccessful value)
+        successful,
+    required TResult Function(GetPlaceActivityAvailabilityError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlaceActivityAvailabilityStart value)? $default, {
+    TResult? Function(GetPlaceActivityAvailabilitySuccessful value)? successful,
+    TResult? Function(GetPlaceActivityAvailabilityError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlaceActivityAvailabilityStart value)? $default, {
+    TResult Function(GetPlaceActivityAvailabilitySuccessful value)? successful,
+    TResult Function(GetPlaceActivityAvailabilityError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlaceActivityAvailabilityError
+    implements GetPlaceActivityAvailability, ErrorAction {
+  const factory GetPlaceActivityAvailabilityError(
+          final Object error, final StackTrace stackTrace) =
+      _$GetPlaceActivityAvailabilityError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$GetPlaceActivityAvailabilityErrorCopyWith<
+          _$GetPlaceActivityAvailabilityError>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$DeletePlaces {}
 
 /// @nodoc
@@ -4509,4 +5116,66 @@ class _$DeletePlaces$ implements DeletePlaces$ {
 
 abstract class DeletePlaces$ implements DeletePlaces {
   const factory DeletePlaces$() = _$DeletePlaces$;
+}
+
+/// @nodoc
+mixin _$DeletePlaceActivities {}
+
+/// @nodoc
+abstract class $DeletePlaceActivitiesCopyWith<$Res> {
+  factory $DeletePlaceActivitiesCopyWith(DeletePlaceActivities value,
+          $Res Function(DeletePlaceActivities) then) =
+      _$DeletePlaceActivitiesCopyWithImpl<$Res, DeletePlaceActivities>;
+}
+
+/// @nodoc
+class _$DeletePlaceActivitiesCopyWithImpl<$Res,
+        $Val extends DeletePlaceActivities>
+    implements $DeletePlaceActivitiesCopyWith<$Res> {
+  _$DeletePlaceActivitiesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DeletePlaceActivities$CopyWith<$Res> {
+  factory _$$DeletePlaceActivities$CopyWith(_$DeletePlaceActivities$ value,
+          $Res Function(_$DeletePlaceActivities$) then) =
+      __$$DeletePlaceActivities$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeletePlaceActivities$CopyWithImpl<$Res>
+    extends _$DeletePlaceActivitiesCopyWithImpl<$Res, _$DeletePlaceActivities$>
+    implements _$$DeletePlaceActivities$CopyWith<$Res> {
+  __$$DeletePlaceActivities$CopyWithImpl(_$DeletePlaceActivities$ _value,
+      $Res Function(_$DeletePlaceActivities$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeletePlaceActivities$ implements DeletePlaceActivities$ {
+  const _$DeletePlaceActivities$();
+
+  @override
+  String toString() {
+    return 'DeletePlaceActivities()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeletePlaceActivities$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class DeletePlaceActivities$ implements DeletePlaceActivities {
+  const factory DeletePlaceActivities$() = _$DeletePlaceActivities$;
 }

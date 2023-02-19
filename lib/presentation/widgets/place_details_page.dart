@@ -39,14 +39,19 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
             ),
           ],
         ),
-        body: StoreProvider.of<AppState>(context).state.placeActivities != null ?
+        body: StoreProvider.of<AppState>(context).state.placeActivities!.isNotEmpty ?
           ListView.builder(
             itemCount: StoreProvider.of<AppState>(context).state.placeActivities!.toList().length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 50,
-                color: index.isEven ? Colors.grey : Colors.white,
-                child: Center(child: Text(StoreProvider.of<AppState>(context).state.placeActivities!.toList()[index].name)),
+              return GestureDetector(
+                onTap: () {
+                  StoreProvider.of<AppState>(context).dispatch(GetPlaceActivityAvailability(StoreProvider.of<AppState>(context).state.placeActivities!.toList()[index].idactivity, '2022-09-06', 3, (_){}));
+                },
+                child: Container(
+                  height: 50,
+                  color: index.isEven ? Colors.grey : Colors.white,
+                  child: Center(child: Text(StoreProvider.of<AppState>(context).state.placeActivities!.toList()[index].name)),
+                ),
               );
             },
           ) :

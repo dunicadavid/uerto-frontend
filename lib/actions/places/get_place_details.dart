@@ -6,7 +6,7 @@ part of actions;
 
 @freezed
 class GetPlaceDetails with _$GetPlaceDetails implements AppAction {
-  const factory GetPlaceDetails(int idplace, ActionResult result) = GetPlaceDetailsStart;
+  const factory GetPlaceDetails(int idplace, int iduser, ActionResult result) = GetPlaceDetailsStart;
 
   const factory GetPlaceDetails.successful(Place place) = GetPlaceDetailsSuccessful;
 

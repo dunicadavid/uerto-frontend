@@ -24,7 +24,9 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
   TypedReducer<AppState, GetPlaceDetailsSuccessful>(_getPlaceDetailsSuccessful),
   TypedReducer<AppState, GetPlaceActivitiesSuccessful>(_getPlaceActivitiesSuccessful),
+  TypedReducer<AppState, GetPlaceActivityAvailabilitySuccessful>(_getPlaceActivityAvailabilitySuccessful),
   TypedReducer<AppState, DeletePlaces$>(_deletePlaces),
+  TypedReducer<AppState, DeletePlaceActivities$>(_deletePlaceActivities),
 
 ]);
 
@@ -90,6 +92,14 @@ AppState _getPlaceActivitiesSuccessful(AppState state, GetPlaceActivitiesSuccess
 }
 
 
+AppState _getPlaceActivityAvailabilitySuccessful(AppState state, GetPlaceActivityAvailabilitySuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.placeActivityAvailability.clear();
+    b.placeActivityAvailability.addAll(action.availability);
+  });
+}
+
+
 AppState _deletePlaces(AppState state, DeletePlaces$ action) {
   return state.rebuild((AppStateBuilder b) {
     b..listOfPlacesNextPage = 1
@@ -97,8 +107,9 @@ AppState _deletePlaces(AppState state, DeletePlaces$ action) {
   });
 }
 
-
-
-
-
+AppState _deletePlaceActivities(AppState state, DeletePlaceActivities$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.placeActivities.clear();
+  });
+}
 

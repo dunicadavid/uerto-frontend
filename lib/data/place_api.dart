@@ -29,7 +29,7 @@ class PlaceApi {
   Future<Map<String,dynamic>> getPlaces(String filter, int page, int limit) async {
 
     final String token = await _auth.currentUser!.getIdToken();
-    final Uri uri = Uri.parse('$_apiUrl/places?page=$page&limit=$limit&$filter');
+    final Uri uri = Uri.parse('$_apiUrl/places?page=$page&limit=$limit&type=Bar&$filter');
     final Response response = await _client.get(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -45,16 +45,20 @@ class PlaceApi {
     return body;
   }
 
-  Future<Place> getPlaceDetails(int id) async {
+  Future<Place> getPlaceDetails(int id, int iduser) async {
     final String token = await _auth.currentUser!.getIdToken();
-    final Uri uri = Uri.parse('$_apiUrl/places/id=$id');
+
+    final Map<String, String> requestParams = <String, String>{
+      'iduser': iduser.toString()
+    };
+
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/places/id=$id',requestParams);
     final Response response = await _client.get(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
         HttpHeaders.authorizationHeader : 'Bearer $token',
       },
     );
-
     final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
 
     if(response.statusCode != 200) {
@@ -84,6 +88,36 @@ class PlaceApi {
 
     return movies //
         .map((dynamic json) => PlaceActivity.fromJson(json))
+        .toList();
+  }
+
+  Future<List<PlaceActivityAvailability>> getPlaceActivityAvailability(int idactivity, String date, int partySize) async {
+    final String token = await _auth.currentUser!.getIdToken();
+
+    final Map<String, String> requestParams = <String, String>{
+      'idactivity': idactivity.toString(),
+      'date': date,
+      'partySize': partySize.toString(),
+    };
+
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/places/availability',requestParams);
+    final Response response = await _client.get(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+    );
+
+    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+
+    if(response.statusCode != 200) {
+      throw StateError(body['message'].toString());
+    }
+
+    final List<dynamic> availability = body['result'] as List<dynamic>;
+
+    return availability //
+        .map((dynamic json) => PlaceActivityAvailability.fromJson(json))
         .toList();
   }
 

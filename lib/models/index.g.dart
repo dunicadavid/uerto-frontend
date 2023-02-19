@@ -11,6 +11,8 @@ Serializer<AppUser> _$appUserSerializer = new _$AppUserSerializer();
 Serializer<PlaceShort> _$placeShortSerializer = new _$PlaceShortSerializer();
 Serializer<PlaceActivity> _$placeActivitySerializer =
     new _$PlaceActivitySerializer();
+Serializer<PlaceActivityAvailability> _$placeActivityAvailabilitySerializer =
+    new _$PlaceActivityAvailabilitySerializer();
 Serializer<Place> _$placeSerializer = new _$PlaceSerializer();
 
 class _$AppStateSerializer implements StructuredSerializer<AppState> {
@@ -60,6 +62,14 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
                 BuiltList, const [const FullType(PlaceActivity)])));
+    }
+    value = object.placeActivityAvailability;
+    if (value != null) {
+      result
+        ..add('placeActivityAvailability')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(PlaceActivityAvailability)])));
     }
     value = object.error;
     if (value != null) {
@@ -112,6 +122,13 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(PlaceActivity)]))!
               as BuiltList<Object?>);
+          break;
+        case 'placeActivityAvailability':
+          result.placeActivityAvailability.replace(serializers.deserialize(
+              value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(PlaceActivityAvailability)
+              ]))! as BuiltList<Object?>);
           break;
         case 'error':
           result.error = serializers.deserialize(value,
@@ -329,6 +346,58 @@ class _$PlaceActivitySerializer implements StructuredSerializer<PlaceActivity> {
   }
 }
 
+class _$PlaceActivityAvailabilitySerializer
+    implements StructuredSerializer<PlaceActivityAvailability> {
+  @override
+  final Iterable<Type> types = const [
+    PlaceActivityAvailability,
+    _$PlaceActivityAvailability
+  ];
+  @override
+  final String wireName = 'PlaceActivityAvailability';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, PlaceActivityAvailability object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'idactivitySeating',
+      serializers.serialize(object.idactivitySeating,
+          specifiedType: const FullType(int)),
+      'hour',
+      serializers.serialize(object.hour, specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  PlaceActivityAvailability deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new PlaceActivityAvailabilityBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'idactivitySeating':
+          result.idactivitySeating = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'hour':
+          result.hour = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$PlaceSerializer implements StructuredSerializer<Place> {
   @override
   final Iterable<Type> types = const [Place, _$Place];
@@ -361,6 +430,9 @@ class _$PlaceSerializer implements StructuredSerializer<Place> {
       'rating',
       serializers.serialize(object.rating,
           specifiedType: const FullType(double)),
+      'favourite',
+      serializers.serialize(object.favourite,
+          specifiedType: const FullType(int)),
     ];
 
     return result;
@@ -409,6 +481,10 @@ class _$PlaceSerializer implements StructuredSerializer<Place> {
           result.rating = serializers.deserialize(value,
               specifiedType: const FullType(double))! as double;
           break;
+        case 'favourite':
+          result.favourite = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
       }
     }
 
@@ -428,6 +504,8 @@ class _$AppState extends AppState {
   @override
   final BuiltList<PlaceActivity>? placeActivities;
   @override
+  final BuiltList<PlaceActivityAvailability>? placeActivityAvailability;
+  @override
   final String? error;
   @override
   final bool? isServerWorking;
@@ -443,6 +521,7 @@ class _$AppState extends AppState {
       required this.listOfPlacesNextPage,
       this.placeDetails,
       this.placeActivities,
+      this.placeActivityAvailability,
       this.error,
       this.isServerWorking,
       required this.isInitDone})
@@ -469,6 +548,7 @@ class _$AppState extends AppState {
         listOfPlacesNextPage == other.listOfPlacesNextPage &&
         placeDetails == other.placeDetails &&
         placeActivities == other.placeActivities &&
+        placeActivityAvailability == other.placeActivityAvailability &&
         error == other.error &&
         isServerWorking == other.isServerWorking &&
         isInitDone == other.isInitDone;
@@ -481,10 +561,14 @@ class _$AppState extends AppState {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, user.hashCode), listOfPlaces.hashCode),
-                            listOfPlacesNextPage.hashCode),
-                        placeDetails.hashCode),
-                    placeActivities.hashCode),
+                        $jc(
+                            $jc(
+                                $jc($jc(0, user.hashCode),
+                                    listOfPlaces.hashCode),
+                                listOfPlacesNextPage.hashCode),
+                            placeDetails.hashCode),
+                        placeActivities.hashCode),
+                    placeActivityAvailability.hashCode),
                 error.hashCode),
             isServerWorking.hashCode),
         isInitDone.hashCode));
@@ -498,6 +582,7 @@ class _$AppState extends AppState {
           ..add('listOfPlacesNextPage', listOfPlacesNextPage)
           ..add('placeDetails', placeDetails)
           ..add('placeActivities', placeActivities)
+          ..add('placeActivityAvailability', placeActivityAvailability)
           ..add('error', error)
           ..add('isServerWorking', isServerWorking)
           ..add('isInitDone', isInitDone))
@@ -534,6 +619,14 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set placeActivities(ListBuilder<PlaceActivity>? placeActivities) =>
       _$this._placeActivities = placeActivities;
 
+  ListBuilder<PlaceActivityAvailability>? _placeActivityAvailability;
+  ListBuilder<PlaceActivityAvailability> get placeActivityAvailability =>
+      _$this._placeActivityAvailability ??=
+          new ListBuilder<PlaceActivityAvailability>();
+  set placeActivityAvailability(
+          ListBuilder<PlaceActivityAvailability>? placeActivityAvailability) =>
+      _$this._placeActivityAvailability = placeActivityAvailability;
+
   String? _error;
   String? get error => _$this._error;
   set error(String? error) => _$this._error = error;
@@ -557,6 +650,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _listOfPlacesNextPage = $v.listOfPlacesNextPage;
       _placeDetails = $v.placeDetails?.toBuilder();
       _placeActivities = $v.placeActivities?.toBuilder();
+      _placeActivityAvailability = $v.placeActivityAvailability?.toBuilder();
       _error = $v.error;
       _isServerWorking = $v.isServerWorking;
       _isInitDone = $v.isInitDone;
@@ -590,6 +684,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
                   listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage'),
               placeDetails: _placeDetails?.build(),
               placeActivities: _placeActivities?.build(),
+              placeActivityAvailability: _placeActivityAvailability?.build(),
               error: error,
               isServerWorking: isServerWorking,
               isInitDone: BuiltValueNullFieldError.checkNotNull(
@@ -606,6 +701,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         _placeDetails?.build();
         _$failedField = 'placeActivities';
         _placeActivities?.build();
+        _$failedField = 'placeActivityAvailability';
+        _placeActivityAvailability?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'AppState', _$failedField, e.toString());
@@ -1021,6 +1118,110 @@ class PlaceActivityBuilder
   }
 }
 
+class _$PlaceActivityAvailability extends PlaceActivityAvailability {
+  @override
+  final int idactivitySeating;
+  @override
+  final String hour;
+
+  factory _$PlaceActivityAvailability(
+          [void Function(PlaceActivityAvailabilityBuilder)? updates]) =>
+      (new PlaceActivityAvailabilityBuilder()..update(updates))._build();
+
+  _$PlaceActivityAvailability._(
+      {required this.idactivitySeating, required this.hour})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        idactivitySeating, r'PlaceActivityAvailability', 'idactivitySeating');
+    BuiltValueNullFieldError.checkNotNull(
+        hour, r'PlaceActivityAvailability', 'hour');
+  }
+
+  @override
+  PlaceActivityAvailability rebuild(
+          void Function(PlaceActivityAvailabilityBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  PlaceActivityAvailabilityBuilder toBuilder() =>
+      new PlaceActivityAvailabilityBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is PlaceActivityAvailability &&
+        idactivitySeating == other.idactivitySeating &&
+        hour == other.hour;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, idactivitySeating.hashCode), hour.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'PlaceActivityAvailability')
+          ..add('idactivitySeating', idactivitySeating)
+          ..add('hour', hour))
+        .toString();
+  }
+}
+
+class PlaceActivityAvailabilityBuilder
+    implements
+        Builder<PlaceActivityAvailability, PlaceActivityAvailabilityBuilder> {
+  _$PlaceActivityAvailability? _$v;
+
+  int? _idactivitySeating;
+  int? get idactivitySeating => _$this._idactivitySeating;
+  set idactivitySeating(int? idactivitySeating) =>
+      _$this._idactivitySeating = idactivitySeating;
+
+  String? _hour;
+  String? get hour => _$this._hour;
+  set hour(String? hour) => _$this._hour = hour;
+
+  PlaceActivityAvailabilityBuilder();
+
+  PlaceActivityAvailabilityBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _idactivitySeating = $v.idactivitySeating;
+      _hour = $v.hour;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(PlaceActivityAvailability other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$PlaceActivityAvailability;
+  }
+
+  @override
+  void update(void Function(PlaceActivityAvailabilityBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  PlaceActivityAvailability build() => _build();
+
+  _$PlaceActivityAvailability _build() {
+    final _$result = _$v ??
+        new _$PlaceActivityAvailability._(
+            idactivitySeating: BuiltValueNullFieldError.checkNotNull(
+                idactivitySeating,
+                r'PlaceActivityAvailability',
+                'idactivitySeating'),
+            hour: BuiltValueNullFieldError.checkNotNull(
+                hour, r'PlaceActivityAvailability', 'hour'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$Place extends Place {
   @override
   final int idplace;
@@ -1038,6 +1239,8 @@ class _$Place extends Place {
   final String hoursOfOpp;
   @override
   final double rating;
+  @override
+  final int favourite;
 
   factory _$Place([void Function(PlaceBuilder)? updates]) =>
       (new PlaceBuilder()..update(updates))._build();
@@ -1050,7 +1253,8 @@ class _$Place extends Place {
       required this.longitude,
       required this.category,
       required this.hoursOfOpp,
-      required this.rating})
+      required this.rating,
+      required this.favourite})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(idplace, r'Place', 'idplace');
     BuiltValueNullFieldError.checkNotNull(name, r'Place', 'name');
@@ -1060,6 +1264,7 @@ class _$Place extends Place {
     BuiltValueNullFieldError.checkNotNull(category, r'Place', 'category');
     BuiltValueNullFieldError.checkNotNull(hoursOfOpp, r'Place', 'hoursOfOpp');
     BuiltValueNullFieldError.checkNotNull(rating, r'Place', 'rating');
+    BuiltValueNullFieldError.checkNotNull(favourite, r'Place', 'favourite');
   }
 
   @override
@@ -1080,7 +1285,8 @@ class _$Place extends Place {
         longitude == other.longitude &&
         category == other.category &&
         hoursOfOpp == other.hoursOfOpp &&
-        rating == other.rating;
+        rating == other.rating &&
+        favourite == other.favourite;
   }
 
   @override
@@ -1090,13 +1296,15 @@ class _$Place extends Place {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, idplace.hashCode), name.hashCode),
-                            location.hashCode),
-                        latitude.hashCode),
-                    longitude.hashCode),
-                category.hashCode),
-            hoursOfOpp.hashCode),
-        rating.hashCode));
+                        $jc(
+                            $jc($jc($jc(0, idplace.hashCode), name.hashCode),
+                                location.hashCode),
+                            latitude.hashCode),
+                        longitude.hashCode),
+                    category.hashCode),
+                hoursOfOpp.hashCode),
+            rating.hashCode),
+        favourite.hashCode));
   }
 
   @override
@@ -1109,7 +1317,8 @@ class _$Place extends Place {
           ..add('longitude', longitude)
           ..add('category', category)
           ..add('hoursOfOpp', hoursOfOpp)
-          ..add('rating', rating))
+          ..add('rating', rating)
+          ..add('favourite', favourite))
         .toString();
   }
 }
@@ -1149,6 +1358,10 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
   double? get rating => _$this._rating;
   set rating(double? rating) => _$this._rating = rating;
 
+  int? _favourite;
+  int? get favourite => _$this._favourite;
+  set favourite(int? favourite) => _$this._favourite = favourite;
+
   PlaceBuilder();
 
   PlaceBuilder get _$this {
@@ -1162,6 +1375,7 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
       _category = $v.category;
       _hoursOfOpp = $v.hoursOfOpp;
       _rating = $v.rating;
+      _favourite = $v.favourite;
       _$v = null;
     }
     return this;
@@ -1198,7 +1412,9 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
             hoursOfOpp: BuiltValueNullFieldError.checkNotNull(
                 hoursOfOpp, r'Place', 'hoursOfOpp'),
             rating: BuiltValueNullFieldError.checkNotNull(
-                rating, r'Place', 'rating'));
+                rating, r'Place', 'rating'),
+            favourite: BuiltValueNullFieldError.checkNotNull(
+                favourite, r'Place', 'favourite'));
     replace(_$result);
     return _$result;
   }

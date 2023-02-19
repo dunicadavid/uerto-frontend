@@ -23,6 +23,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   Place? get placeDetails;
   BuiltList<PlaceActivity>? get placeActivities;
+  BuiltList<PlaceActivityAvailability>? get placeActivityAvailability;
 
   String? get error;
 

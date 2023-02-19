@@ -97,23 +97,25 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
                       onTap: () {
                         if(StoreProvider.of<AppState>(context).state.placeDetails != null) {
                           if (place.idplace != StoreProvider.of<AppState>(context).state.placeDetails?.idplace) {
-                            StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace, _onResultDetails));
+                            StoreProvider.of<AppState>(context).dispatch(const DeletePlaceActivities());
+                            StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace, StoreProvider.of<AppState>(context).state.user!.userId, _onResultDetails));
                           } else {
                             Navigator.of(context).pushReplacementNamed('/placeDetails');
                           }
                         } else {
-                          StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace, _onResultDetails));
+                          StoreProvider.of<AppState>(context).dispatch(const DeletePlaceActivities());
+                          StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace, StoreProvider.of<AppState>(context).state.user!.userId, _onResultDetails));
                         }
                       },
                       child: GridTile(
-                        child: Image.network(
-                          'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+',
-                          fit: BoxFit.cover,
-                        ),
                         footer: GridTileBar(
                           backgroundColor: Colors.black38,
                           title: Text(place.name),
                           subtitle: Text(place.location),
+                        ),
+                        child: Image.network(
+                          'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+',
+                          fit: BoxFit.cover,
                         ),
                       ),
                     );
