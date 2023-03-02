@@ -19,6 +19,8 @@ part 'places/get_place_activity_availability.dart';
 part 'places/delete_places.dart';
 part 'places/delete_place_activities.dart';
 
+part 'reservations/create_reservation.dart';
+
 abstract class AppAction {}
 
 abstract class ErrorAction implements AppAction {

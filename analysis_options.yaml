@@ -10,9 +10,6 @@
 include: package:flutter_lints/flutter.yaml
 
 analyzer:
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
   errors:
     # treat missing required parameters as a warning (not a hint)
     missing_required_param: warning
@@ -34,6 +31,9 @@ analyzer:
     # Ignore protoc generated files
     - "dev/tools/lib/proto/*"
     - "**.g.dart"
+  language:
+    strict-casts: true
+    strict-raw-types: true
 
 linter:
   rules:

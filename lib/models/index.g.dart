@@ -556,22 +556,18 @@ class _$AppState extends AppState {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc($jc(0, user.hashCode),
-                                    listOfPlaces.hashCode),
-                                listOfPlacesNextPage.hashCode),
-                            placeDetails.hashCode),
-                        placeActivities.hashCode),
-                    placeActivityAvailability.hashCode),
-                error.hashCode),
-            isServerWorking.hashCode),
-        isInitDone.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, user.hashCode);
+    _$hash = $jc(_$hash, listOfPlaces.hashCode);
+    _$hash = $jc(_$hash, listOfPlacesNextPage.hashCode);
+    _$hash = $jc(_$hash, placeDetails.hashCode);
+    _$hash = $jc(_$hash, placeActivities.hashCode);
+    _$hash = $jc(_$hash, placeActivityAvailability.hashCode);
+    _$hash = $jc(_$hash, error.hashCode);
+    _$hash = $jc(_$hash, isServerWorking.hashCode);
+    _$hash = $jc(_$hash, isInitDone.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -768,14 +764,15 @@ class _$AppUser extends AppUser {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc($jc($jc(0, userId.hashCode), fullname.hashCode),
-                    email.hashCode),
-                phoneNumber.hashCode),
-            uid.hashCode),
-        photoUrl.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, userId.hashCode);
+    _$hash = $jc(_$hash, fullname.hashCode);
+    _$hash = $jc(_$hash, email.hashCode);
+    _$hash = $jc(_$hash, phoneNumber.hashCode);
+    _$hash = $jc(_$hash, uid.hashCode);
+    _$hash = $jc(_$hash, photoUrl.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -910,9 +907,13 @@ class _$PlaceShort extends PlaceShort {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, idplace.hashCode), name.hashCode), location.hashCode),
-        category.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, idplace.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, location.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -1036,10 +1037,13 @@ class _$PlaceActivity extends PlaceActivity {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc($jc($jc(0, idactivity.hashCode), name.hashCode),
-            hoursOfOpp.hashCode),
-        reservationTime.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, idactivity.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, hoursOfOpp.hashCode);
+    _$hash = $jc(_$hash, reservationTime.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -1156,7 +1160,11 @@ class _$PlaceActivityAvailability extends PlaceActivityAvailability {
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, idactivitySeating.hashCode), hour.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, idactivitySeating.hashCode);
+    _$hash = $jc(_$hash, hour.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -1291,20 +1299,18 @@ class _$Place extends Place {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc($jc($jc(0, idplace.hashCode), name.hashCode),
-                                location.hashCode),
-                            latitude.hashCode),
-                        longitude.hashCode),
-                    category.hashCode),
-                hoursOfOpp.hashCode),
-            rating.hashCode),
-        favourite.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, idplace.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, location.hashCode);
+    _$hash = $jc(_$hash, latitude.hashCode);
+    _$hash = $jc(_$hash, longitude.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, hoursOfOpp.hashCode);
+    _$hash = $jc(_$hash, rating.hashCode);
+    _$hash = $jc(_$hash, favourite.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
@@ -1420,4 +1426,4 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,deprecated_member_use_from_same_package,lines_longer_than_80_chars,no_leading_underscores_for_local_identifiers,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new,unnecessary_lambdas
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

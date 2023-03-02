@@ -30,6 +30,7 @@ class PlaceApi {
 
     final String token = await _auth.currentUser!.getIdToken();
     final Uri uri = Uri.parse('$_apiUrl/places?page=$page&limit=$limit&type=Bar&$filter');
+
     final Response response = await _client.get(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -38,7 +39,7 @@ class PlaceApi {
     );
 
     final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
-
+    print(body);
     if(response.statusCode != 200) {
       throw StateError(body['message'].toString());
     }

@@ -8,15 +8,18 @@ import 'package:rxdart/rxdart.dart';
 import '../actions/index.dart';
 import '../data/auth_api.dart';
 import '../data/place_api.dart';
+import '../data/reservation_api.dart';
 import '../models/index.dart';
 
 class AppEpics {
-  const AppEpics({required AuthApi authApi, required PlaceApi placeApi})
+  const AppEpics({required AuthApi authApi, required PlaceApi placeApi, required ReservationApi reservationApi})
       : _authApi = authApi,
-        _placeApi = placeApi;
+        _placeApi = placeApi,
+        _reservationApi = reservationApi;
 
   final AuthApi _authApi;
   final PlaceApi _placeApi;
+  final ReservationApi _reservationApi;
 
   Epic<AppState> get epics {
     return combineEpics<AppState>(<Epic<AppState>>[
@@ -31,6 +34,8 @@ class AppEpics {
       TypedEpic<AppState, GetPlaceDetailsStart>(_getPlaceDetails),
       TypedEpic<AppState, GetPlaceActivitiesStart>(_getPlaceActivities),
       TypedEpic<AppState, GetPlaceActivityAvailabilityStart>(_getPlaceActivityAvailability),
+
+      TypedEpic<AppState, CreateReservationStart>(_createReservation),
     ]);
   }
 
@@ -108,6 +113,14 @@ class AppEpics {
         .asyncMap((_) => _placeApi.getPlaceActivityAvailability(action.idactivity,action.date,action.partySize))
         .map((List<PlaceActivityAvailability> availability) => GetPlaceActivityAvailability.successful(availability))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaceActivityAvailability.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _createReservation(Stream<CreateReservationStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((CreateReservationStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _reservationApi.createReservation(action.idplace, action.idactivity, action.idactivitySeating, action.iduser, action.date, action.hour, action.party_size))
+        .map((_) => const CreateReservation.successful())
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => CreateReservation.error(error, stackTrace))
         .doOnData(action.result));
   }
 }

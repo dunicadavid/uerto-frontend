@@ -30,6 +30,10 @@ class _ErrorPageState extends State<ErrorPage> {
                 onTap: () => StoreProvider.of<AppState>(context).dispatch(const InitializeApp()),
                 child: const Text('Try Again!'),
               ),
+              GestureDetector(
+                onTap: () => Navigator.of(context).pushReplacementNamed('/main'),
+                child: const Text('Tgo to main page!'),
+              ),
             ],
           ),
         ),

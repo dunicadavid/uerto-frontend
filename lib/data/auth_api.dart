@@ -40,9 +40,9 @@ class AuthApi {
     final String token = await user.getIdToken();
     print('aici' + token);
 
-    print('aici');
-    final Uri uri = Uri.parse('$_apiUrl/users/authid=${_auth.currentUser?.uid}');
-    print('aici');
+    print('aici + ${_auth.currentUser?.uid}');
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/users/authid=${_auth.currentUser?.uid}');
+    print(uri);
     response = await _client.get(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
