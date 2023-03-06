@@ -25,6 +25,9 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   BuiltList<PlaceActivity>? get placeActivities;
   BuiltList<PlaceActivityAvailability>? get placeActivityAvailability;
 
+  BuiltList<Reservation>? get listOfFutureReservations;
+  BuiltList<Reservation>? get listOfPreviousReservations;
+
   String? get error;
 
   bool? get isServerWorking;

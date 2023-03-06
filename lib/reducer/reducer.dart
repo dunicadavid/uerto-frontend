@@ -28,6 +28,9 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, DeletePlaces$>(_deletePlaces),
   TypedReducer<AppState, DeletePlaceActivities$>(_deletePlaceActivities),
 
+  TypedReducer<AppState, GetReservationsFutureSuccessful>(_getReservationsFuture),
+  TypedReducer<AppState, GetReservationsPreviousSuccessful>(_getReservationsPrevious),
+
 ]);
 
 AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action) {
@@ -95,7 +98,27 @@ AppState _getPlaceActivitiesSuccessful(AppState state, GetPlaceActivitiesSuccess
 AppState _getPlaceActivityAvailabilitySuccessful(AppState state, GetPlaceActivityAvailabilitySuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     b.placeActivityAvailability.clear();
-    b.placeActivityAvailability.addAll(action.availability);
+
+    for (final PlaceActivityAvailability availability in action.availability) {
+      String hour = availability.hour;
+      if(availability.hour[1] == ':'){
+        hour = '0${availability.hour}';
+      }
+      if(availability.hour[availability.hour.length-2] == ':'){
+        hour = '${availability.hour}0';
+        if(availability.hour[1] == ':'){
+          hour = '0$hour';
+        }
+      }
+
+      final PlaceActivityAvailability formatDataAvailability = PlaceActivityAvailability((PlaceActivityAvailabilityBuilder b) {
+        b
+          ..hour = hour
+          ..idactivitySeating = availability.idactivitySeating;
+      });
+
+      b.placeActivityAvailability.add(formatDataAvailability);
+    }
   });
 }
 
@@ -113,3 +136,16 @@ AppState _deletePlaceActivities(AppState state, DeletePlaceActivities$ action) {
   });
 }
 
+AppState _getReservationsFuture(AppState state, GetReservationsFutureSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.listOfFutureReservations.clear();
+    b.listOfFutureReservations.addAll(action.reservations);
+  });
+}
+
+AppState _getReservationsPrevious(AppState state, GetReservationsPreviousSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.listOfPreviousReservations.clear();
+    b.listOfPreviousReservations.addAll(action.reservations);
+  });
+}

@@ -13,6 +13,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PlaceActivity.serializer)
       ..add(PlaceActivityAvailability.serializer)
       ..add(PlaceShort.serializer)
+      ..add(Reservation.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(PlaceShort)]),
           () => new ListBuilder<PlaceShort>())
@@ -22,7 +23,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(PlaceActivityAvailability)]),
-          () => new ListBuilder<PlaceActivityAvailability>()))
+          () => new ListBuilder<PlaceActivityAvailability>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Reservation)]),
+          () => new ListBuilder<Reservation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(Reservation)]),
+          () => new ListBuilder<Reservation>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

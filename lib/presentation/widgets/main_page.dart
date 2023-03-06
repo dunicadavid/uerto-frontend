@@ -17,6 +17,23 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+
+  void _onResultGetReservationsFuture(AppAction action) {
+    if (action is ErrorAction) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    } else {
+        print('ok');
+    }
+  }
+
+  void _onResultGetReservationsPrevious(AppAction action) {
+    if (action is ErrorAction) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    } else {
+      print('ok');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final double _height = MediaQuery.of(context).size.height;
@@ -28,7 +45,7 @@ class _MainPageState extends State<MainPage> {
             child: Column(
               children: <Widget>[
                 const Text('MAIN PAGE'),
-                Text('Hello, ${user?.fullname}'),
+                Text('Hello, ${user!.fullname}'),
                 SizedBox(
                   height: _height * 0.05,
                 ),
@@ -37,6 +54,24 @@ class _MainPageState extends State<MainPage> {
                     Navigator.of(context).pushReplacementNamed('/placeFilter');
                   },
                   child: const Text('places'),
+                ),
+                SizedBox(
+                  height: _height * 0.05,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    StoreProvider.of<AppState>(context).dispatch(GetReservationsFuture(user.userId, _onResultGetReservationsFuture));
+                  },
+                  child: const Text('Reservations'),
+                ),
+                SizedBox(
+                  height: _height * 0.05,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    StoreProvider.of<AppState>(context).dispatch(GetReservationsPrevious(user.userId, _onResultGetReservationsPrevious));
+                  },
+                  child: const Text('Previous'),
                 ),
                 SizedBox(
                   height: _height * 0.05,

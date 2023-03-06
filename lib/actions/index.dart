@@ -20,6 +20,8 @@ part 'places/delete_places.dart';
 part 'places/delete_place_activities.dart';
 
 part 'reservations/create_reservation.dart';
+part 'reservations/get_reservations_future.dart';
+part 'reservations/get_reservations_previous.dart';
 
 abstract class AppAction {}
 

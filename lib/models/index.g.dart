@@ -14,6 +14,7 @@ Serializer<PlaceActivity> _$placeActivitySerializer =
 Serializer<PlaceActivityAvailability> _$placeActivityAvailabilitySerializer =
     new _$PlaceActivityAvailabilitySerializer();
 Serializer<Place> _$placeSerializer = new _$PlaceSerializer();
+Serializer<Reservation> _$reservationSerializer = new _$ReservationSerializer();
 
 class _$AppStateSerializer implements StructuredSerializer<AppState> {
   @override
@@ -70,6 +71,22 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(
                 BuiltList, const [const FullType(PlaceActivityAvailability)])));
+    }
+    value = object.listOfFutureReservations;
+    if (value != null) {
+      result
+        ..add('listOfFutureReservations')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(Reservation)])));
+    }
+    value = object.listOfPreviousReservations;
+    if (value != null) {
+      result
+        ..add('listOfPreviousReservations')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(Reservation)])));
     }
     value = object.error;
     if (value != null) {
@@ -129,6 +146,19 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
               specifiedType: const FullType(BuiltList, const [
                 const FullType(PlaceActivityAvailability)
               ]))! as BuiltList<Object?>);
+          break;
+        case 'listOfFutureReservations':
+          result.listOfFutureReservations.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Reservation)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'listOfPreviousReservations':
+          result.listOfPreviousReservations.replace(serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(Reservation)]))!
+              as BuiltList<Object?>);
           break;
         case 'error':
           result.error = serializers.deserialize(value,
@@ -492,6 +522,78 @@ class _$PlaceSerializer implements StructuredSerializer<Place> {
   }
 }
 
+class _$ReservationSerializer implements StructuredSerializer<Reservation> {
+  @override
+  final Iterable<Type> types = const [Reservation, _$Reservation];
+  @override
+  final String wireName = 'Reservation';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, Reservation object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'idreservation',
+      serializers.serialize(object.idreservation,
+          specifiedType: const FullType(int)),
+      'place',
+      serializers.serialize(object.place, specifiedType: const FullType(int)),
+      'activity',
+      serializers.serialize(object.activity,
+          specifiedType: const FullType(int)),
+      'date',
+      serializers.serialize(object.date, specifiedType: const FullType(String)),
+      'hour',
+      serializers.serialize(object.hour, specifiedType: const FullType(String)),
+      'partySize',
+      serializers.serialize(object.partySize,
+          specifiedType: const FullType(int)),
+    ];
+
+    return result;
+  }
+
+  @override
+  Reservation deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new ReservationBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'idreservation':
+          result.idreservation = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'place':
+          result.place = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'activity':
+          result.activity = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'date':
+          result.date = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'hour':
+          result.hour = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'partySize':
+          result.partySize = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$AppState extends AppState {
   @override
   final AppUser? user;
@@ -505,6 +607,10 @@ class _$AppState extends AppState {
   final BuiltList<PlaceActivity>? placeActivities;
   @override
   final BuiltList<PlaceActivityAvailability>? placeActivityAvailability;
+  @override
+  final BuiltList<Reservation>? listOfFutureReservations;
+  @override
+  final BuiltList<Reservation>? listOfPreviousReservations;
   @override
   final String? error;
   @override
@@ -522,6 +628,8 @@ class _$AppState extends AppState {
       this.placeDetails,
       this.placeActivities,
       this.placeActivityAvailability,
+      this.listOfFutureReservations,
+      this.listOfPreviousReservations,
       this.error,
       this.isServerWorking,
       required this.isInitDone})
@@ -549,6 +657,8 @@ class _$AppState extends AppState {
         placeDetails == other.placeDetails &&
         placeActivities == other.placeActivities &&
         placeActivityAvailability == other.placeActivityAvailability &&
+        listOfFutureReservations == other.listOfFutureReservations &&
+        listOfPreviousReservations == other.listOfPreviousReservations &&
         error == other.error &&
         isServerWorking == other.isServerWorking &&
         isInitDone == other.isInitDone;
@@ -563,6 +673,8 @@ class _$AppState extends AppState {
     _$hash = $jc(_$hash, placeDetails.hashCode);
     _$hash = $jc(_$hash, placeActivities.hashCode);
     _$hash = $jc(_$hash, placeActivityAvailability.hashCode);
+    _$hash = $jc(_$hash, listOfFutureReservations.hashCode);
+    _$hash = $jc(_$hash, listOfPreviousReservations.hashCode);
     _$hash = $jc(_$hash, error.hashCode);
     _$hash = $jc(_$hash, isServerWorking.hashCode);
     _$hash = $jc(_$hash, isInitDone.hashCode);
@@ -579,6 +691,8 @@ class _$AppState extends AppState {
           ..add('placeDetails', placeDetails)
           ..add('placeActivities', placeActivities)
           ..add('placeActivityAvailability', placeActivityAvailability)
+          ..add('listOfFutureReservations', listOfFutureReservations)
+          ..add('listOfPreviousReservations', listOfPreviousReservations)
           ..add('error', error)
           ..add('isServerWorking', isServerWorking)
           ..add('isInitDone', isInitDone))
@@ -623,6 +737,20 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
           ListBuilder<PlaceActivityAvailability>? placeActivityAvailability) =>
       _$this._placeActivityAvailability = placeActivityAvailability;
 
+  ListBuilder<Reservation>? _listOfFutureReservations;
+  ListBuilder<Reservation> get listOfFutureReservations =>
+      _$this._listOfFutureReservations ??= new ListBuilder<Reservation>();
+  set listOfFutureReservations(
+          ListBuilder<Reservation>? listOfFutureReservations) =>
+      _$this._listOfFutureReservations = listOfFutureReservations;
+
+  ListBuilder<Reservation>? _listOfPreviousReservations;
+  ListBuilder<Reservation> get listOfPreviousReservations =>
+      _$this._listOfPreviousReservations ??= new ListBuilder<Reservation>();
+  set listOfPreviousReservations(
+          ListBuilder<Reservation>? listOfPreviousReservations) =>
+      _$this._listOfPreviousReservations = listOfPreviousReservations;
+
   String? _error;
   String? get error => _$this._error;
   set error(String? error) => _$this._error = error;
@@ -647,6 +775,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _placeDetails = $v.placeDetails?.toBuilder();
       _placeActivities = $v.placeActivities?.toBuilder();
       _placeActivityAvailability = $v.placeActivityAvailability?.toBuilder();
+      _listOfFutureReservations = $v.listOfFutureReservations?.toBuilder();
+      _listOfPreviousReservations = $v.listOfPreviousReservations?.toBuilder();
       _error = $v.error;
       _isServerWorking = $v.isServerWorking;
       _isInitDone = $v.isInitDone;
@@ -681,6 +811,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               placeDetails: _placeDetails?.build(),
               placeActivities: _placeActivities?.build(),
               placeActivityAvailability: _placeActivityAvailability?.build(),
+              listOfFutureReservations: _listOfFutureReservations?.build(),
+              listOfPreviousReservations: _listOfPreviousReservations?.build(),
               error: error,
               isServerWorking: isServerWorking,
               isInitDone: BuiltValueNullFieldError.checkNotNull(
@@ -699,6 +831,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         _placeActivities?.build();
         _$failedField = 'placeActivityAvailability';
         _placeActivityAvailability?.build();
+        _$failedField = 'listOfFutureReservations';
+        _listOfFutureReservations?.build();
+        _$failedField = 'listOfPreviousReservations';
+        _listOfPreviousReservations?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'AppState', _$failedField, e.toString());
@@ -1421,6 +1557,164 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
                 rating, r'Place', 'rating'),
             favourite: BuiltValueNullFieldError.checkNotNull(
                 favourite, r'Place', 'favourite'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$Reservation extends Reservation {
+  @override
+  final int idreservation;
+  @override
+  final int place;
+  @override
+  final int activity;
+  @override
+  final String date;
+  @override
+  final String hour;
+  @override
+  final int partySize;
+
+  factory _$Reservation([void Function(ReservationBuilder)? updates]) =>
+      (new ReservationBuilder()..update(updates))._build();
+
+  _$Reservation._(
+      {required this.idreservation,
+      required this.place,
+      required this.activity,
+      required this.date,
+      required this.hour,
+      required this.partySize})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        idreservation, r'Reservation', 'idreservation');
+    BuiltValueNullFieldError.checkNotNull(place, r'Reservation', 'place');
+    BuiltValueNullFieldError.checkNotNull(activity, r'Reservation', 'activity');
+    BuiltValueNullFieldError.checkNotNull(date, r'Reservation', 'date');
+    BuiltValueNullFieldError.checkNotNull(hour, r'Reservation', 'hour');
+    BuiltValueNullFieldError.checkNotNull(
+        partySize, r'Reservation', 'partySize');
+  }
+
+  @override
+  Reservation rebuild(void Function(ReservationBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ReservationBuilder toBuilder() => new ReservationBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is Reservation &&
+        idreservation == other.idreservation &&
+        place == other.place &&
+        activity == other.activity &&
+        date == other.date &&
+        hour == other.hour &&
+        partySize == other.partySize;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, idreservation.hashCode);
+    _$hash = $jc(_$hash, place.hashCode);
+    _$hash = $jc(_$hash, activity.hashCode);
+    _$hash = $jc(_$hash, date.hashCode);
+    _$hash = $jc(_$hash, hour.hashCode);
+    _$hash = $jc(_$hash, partySize.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'Reservation')
+          ..add('idreservation', idreservation)
+          ..add('place', place)
+          ..add('activity', activity)
+          ..add('date', date)
+          ..add('hour', hour)
+          ..add('partySize', partySize))
+        .toString();
+  }
+}
+
+class ReservationBuilder implements Builder<Reservation, ReservationBuilder> {
+  _$Reservation? _$v;
+
+  int? _idreservation;
+  int? get idreservation => _$this._idreservation;
+  set idreservation(int? idreservation) =>
+      _$this._idreservation = idreservation;
+
+  int? _place;
+  int? get place => _$this._place;
+  set place(int? place) => _$this._place = place;
+
+  int? _activity;
+  int? get activity => _$this._activity;
+  set activity(int? activity) => _$this._activity = activity;
+
+  String? _date;
+  String? get date => _$this._date;
+  set date(String? date) => _$this._date = date;
+
+  String? _hour;
+  String? get hour => _$this._hour;
+  set hour(String? hour) => _$this._hour = hour;
+
+  int? _partySize;
+  int? get partySize => _$this._partySize;
+  set partySize(int? partySize) => _$this._partySize = partySize;
+
+  ReservationBuilder();
+
+  ReservationBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _idreservation = $v.idreservation;
+      _place = $v.place;
+      _activity = $v.activity;
+      _date = $v.date;
+      _hour = $v.hour;
+      _partySize = $v.partySize;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(Reservation other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$Reservation;
+  }
+
+  @override
+  void update(void Function(ReservationBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  Reservation build() => _build();
+
+  _$Reservation _build() {
+    final _$result = _$v ??
+        new _$Reservation._(
+            idreservation: BuiltValueNullFieldError.checkNotNull(
+                idreservation, r'Reservation', 'idreservation'),
+            place: BuiltValueNullFieldError.checkNotNull(
+                place, r'Reservation', 'place'),
+            activity: BuiltValueNullFieldError.checkNotNull(
+                activity, r'Reservation', 'activity'),
+            date: BuiltValueNullFieldError.checkNotNull(
+                date, r'Reservation', 'date'),
+            hour: BuiltValueNullFieldError.checkNotNull(
+                hour, r'Reservation', 'hour'),
+            partySize: BuiltValueNullFieldError.checkNotNull(
+                partySize, r'Reservation', 'partySize'));
     replace(_$result);
     return _$result;
   }

@@ -27,7 +27,7 @@ class ReservationApi {
   final String _apiUrl;
   final Client _client;
 
-  Future<void> createReservation(int idplace, int idactivity, int idactivitySeating, int iduser, String date, String hour, int party_size) async {
+  Future<void> createReservation(int idplace, int idactivity, int idactivitySeating, int iduser, String date, String hour, int partySize) async {
 
     final String? token = await _auth.currentUser?.getIdToken();
 
@@ -44,7 +44,7 @@ class ReservationApi {
         'iduser' : iduser,
         'date' : date,
         'hour' : hour,
-        'party_size' : party_size,
+        'partySize' : partySize,
       }),
     );
 
@@ -59,6 +59,64 @@ class ReservationApi {
         throw StateError('Something went wrong');
       }
     }
+  }
+
+  Future<List<Reservation>> getReservationsFuture(int iduser) async {
+    final String? token = await _auth.currentUser?.getIdToken();
+
+    final Map<String, String> requestParams = <String, String>{
+      'iduser': iduser.toString(),
+      'time': 'future'
+    };
+
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/reservations',requestParams);
+    final Response response = await _client.get(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+    );
+
+    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+
+    if(response.statusCode != 200) {
+      throw StateError(body['message'].toString());
+    }
+
+    final List<dynamic> reservations = body['reservation'] as List<dynamic>;
+
+    return reservations //
+        .map((dynamic json) => Reservation.fromJson(json))
+        .toList();
+  }
+
+  Future<List<Reservation>> getReservationsPrevious(int iduser) async {
+    final String? token = await _auth.currentUser?.getIdToken();
+
+    final Map<String, String> requestParams = <String, String>{
+      'iduser': iduser.toString(),
+      'time': 'previous'
+    };
+
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/reservations',requestParams);
+    final Response response = await _client.get(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+    );
+
+    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+
+    if(response.statusCode != 200) {
+      throw StateError(body['message'].toString());
+    }
+
+    final List<dynamic> reservations = body['reservation'] as List<dynamic>;
+
+    return reservations //
+        .map((dynamic json) => Reservation.fromJson(json))
+        .toList();
   }
 
 }
