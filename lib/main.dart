@@ -7,16 +7,22 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:uerto/presentation/widgets/login_page.dart';
-import 'package:uerto/presentation/widgets/main_page.dart';
-import 'package:uerto/presentation/widgets/place_category_page.dart';
-import 'package:uerto/presentation/widgets/place_details_page.dart';
-import 'package:uerto/presentation/widgets/places_result_list_page.dart';
-import 'package:uerto/presentation/widgets/register_page.dart';
+import 'package:uerto/actions/index.dart';
+import 'package:uerto/presentation/edit_profile_page.dart';
+import 'package:uerto/presentation/login_page.dart';
+import 'package:uerto/presentation/main_page.dart';
+import 'package:uerto/presentation/place_category_page.dart';
+import 'package:uerto/presentation/place_details_page.dart';
+import 'package:uerto/presentation/places_result_list_page.dart';
+import 'package:uerto/presentation/register_page.dart';
+import 'package:uerto/presentation/reservations_future_page.dart';
+import 'package:uerto/presentation/reservations_previous_page.dart';
+import 'package:uerto/presentation/reset_password_page.dart';
+
 
 import './mixin/init_mixin.dart';
 import '../models/index.dart';
-import '../presentation/widgets/init_page.dart';
+import 'presentation/init_page.dart';
 
 void main() {
   /// ---------RunApp-----------------
@@ -57,9 +63,13 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                 '/main': (BuildContext context) => const MainPage(),
                 '/login': (BuildContext context) => const LoginPage(),
                 '/register': (BuildContext context) => const RegisterPage(),
+                '/resetPassword': (BuildContext context) => const ResetPasswordPage(),
+                '/editProfile': (BuildContext context) => const EditProfilePage(),
                 '/placeFilter': (BuildContext context) => const PlaceCategoryPage(),
                 '/placeResult': (BuildContext context) => const PlacesResultListPage(),
                 '/placeDetails': (BuildContext context) => const PlaceDetailsPage(),
+                '/reservationsPrevious': (BuildContext context) => const ReservationsPreviousPage(),
+                '/reservationsFuture': (BuildContext context) => const ReservationsFuturePage(),
               },
               theme: ThemeData(
                 fontFamily: 'Plus',

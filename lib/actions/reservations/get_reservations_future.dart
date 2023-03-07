@@ -6,7 +6,7 @@ part of actions;
 
 @freezed
 class GetReservationsFuture with _$GetReservationsFuture implements AppAction {
-  const factory GetReservationsFuture(int iduser, ActionResult result) = GetReservationsFutureStart;
+  const factory GetReservationsFuture(int iduser, int page, int limit, ActionResult result) = GetReservationsFutureStart;
 
   const factory GetReservationsFuture.successful(List<Reservation> reservations) = GetReservationsFutureSuccessful;
 

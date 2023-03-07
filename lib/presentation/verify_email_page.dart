@@ -9,7 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:uerto/actions/index.dart';
-import 'package:uerto/presentation/widgets/init_page.dart';
+import 'package:uerto/presentation/init_page.dart';
 
 import '../../models/index.dart';
 

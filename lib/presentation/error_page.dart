@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:uerto/actions/index.dart';
 
-import '../../models/index.dart';
+import '../models/index.dart';
 
 class ErrorPage extends StatefulWidget {
   const ErrorPage({Key ? key}) : super(key: key);

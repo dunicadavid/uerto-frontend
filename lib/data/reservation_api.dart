@@ -61,12 +61,14 @@ class ReservationApi {
     }
   }
 
-  Future<List<Reservation>> getReservationsFuture(int iduser) async {
+  Future<List<Reservation>> getReservationsFuture(int iduser, int page, int limit) async {
     final String? token = await _auth.currentUser?.getIdToken();
 
     final Map<String, String> requestParams = <String, String>{
       'iduser': iduser.toString(),
-      'time': 'future'
+      'time': 'future',
+      'page': page.toString(),
+      'limit': limit.toString(),
     };
 
     final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/reservations',requestParams);
@@ -83,19 +85,21 @@ class ReservationApi {
       throw StateError(body['message'].toString());
     }
 
-    final List<dynamic> reservations = body['reservation'] as List<dynamic>;
+    final List<dynamic> reservations = body['results'] as List<dynamic>;
 
     return reservations //
         .map((dynamic json) => Reservation.fromJson(json))
         .toList();
   }
 
-  Future<List<Reservation>> getReservationsPrevious(int iduser) async {
+  Future<List<Reservation>> getReservationsPrevious(int iduser, int page, int limit) async {
     final String? token = await _auth.currentUser?.getIdToken();
 
     final Map<String, String> requestParams = <String, String>{
       'iduser': iduser.toString(),
-      'time': 'previous'
+      'time': 'previous',
+      'page': page.toString(),
+      'limit': limit.toString(),
     };
 
     final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/reservations',requestParams);
@@ -112,7 +116,7 @@ class ReservationApi {
       throw StateError(body['message'].toString());
     }
 
-    final List<dynamic> reservations = body['reservation'] as List<dynamic>;
+    final List<dynamic> reservations = body['results'] as List<dynamic>;
 
     return reservations //
         .map((dynamic json) => Reservation.fromJson(json))

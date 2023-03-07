@@ -17,6 +17,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
   TypedReducer<AppState, InitializeAppError>(_initializeAppError),
   TypedReducer<AppState, RegisterPhase2Successful>(_registerPhase2Successful),
+  TypedReducer<AppState, EditProfileSuccessful>(_editProfile),
   TypedReducer<AppState, LoginSuccessful>(_loginSuccessful),
   TypedReducer<AppState, LoginError>(_loginError),
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
@@ -50,6 +51,10 @@ AppState _initializeAppError(AppState state, InitializeAppError action) {
 
 AppState _registerPhase2Successful(AppState state, RegisterPhase2Successful action) {
   return state.rebuild((AppStateBuilder b) => b.user = action.user?.toBuilder());
+}
+
+AppState _editProfile(AppState state, EditProfileSuccessful action) {
+  return state.rebuild((AppStateBuilder b) => b.user = action.user.toBuilder());
 }
 
 AppState _loginSuccessful(AppState state, LoginSuccessful action) {
@@ -138,14 +143,14 @@ AppState _deletePlaceActivities(AppState state, DeletePlaceActivities$ action) {
 
 AppState _getReservationsFuture(AppState state, GetReservationsFutureSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    b.listOfFutureReservations.clear();
     b.listOfFutureReservations.addAll(action.reservations);
   });
 }
 
 AppState _getReservationsPrevious(AppState state, GetReservationsPreviousSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    b.listOfPreviousReservations.clear();
     b.listOfPreviousReservations.addAll(action.reservations);
   });
 }
+
+

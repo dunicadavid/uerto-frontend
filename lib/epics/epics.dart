@@ -29,6 +29,8 @@ class AppEpics {
       TypedEpic<AppState, LoginStart>(_login),
       TypedEpic<AppState, SignoutStart>(_signOut),
       TypedEpic<AppState, EmailVerifyStart>(_verifyEmail),
+      TypedEpic<AppState, ResetPasswordStart>(_resetPassword),
+      TypedEpic<AppState, EditProfileStart>(_editProfile),
 
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
       TypedEpic<AppState, GetPlaceDetailsStart>(_getPlaceDetails),
@@ -86,6 +88,21 @@ class AppEpics {
         .onErrorReturnWith((Object error, StackTrace stackTrace) => EmailVerify.error(error, stackTrace));
   }
 
+  Stream<AppAction> _resetPassword(Stream<ResetPasswordStart> actions, EpicStore<AppState> store) {
+    return actions
+        .asyncMap((ResetPasswordStart action) => _authApi.resetPassword(action.email))
+        .map((_) => const ResetPassword.successful())
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => ResetPassword.error(error, stackTrace));
+  }
+
+  Stream<AppAction> _editProfile(Stream<EditProfileStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((EditProfileStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _authApi.editProfile(action.iduser, action.fullname, action.phoneNumber, action.photoUrl))
+        .map((AppUser user) => EditProfile.successful(user))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => EditProfile.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
   Stream<AppAction> _getPlaces(Stream<GetPlacesStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetPlacesStart action) => Stream<void>.value(null)
         .asyncMap((_) => _placeApi.getPlaces(action.filter,store.state.listOfPlacesNextPage,5))
@@ -120,7 +137,7 @@ class AppEpics {
 
   Stream<AppAction> _createReservation(Stream<CreateReservationStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((CreateReservationStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _reservationApi.createReservation(action.idplace, action.idactivity, action.idactivitySeating, action.iduser, action.date, action.hour, action.party_size))
+        .asyncMap((_) => _reservationApi.createReservation(action.idplace, action.idactivity, action.idactivitySeating, action.iduser, action.date, action.hour, action.partySize))
         .map((_) => const CreateReservation.successful())
         .onErrorReturnWith((Object error, StackTrace stackTrace) => CreateReservation.error(error, stackTrace))
         .doOnData(action.result));
@@ -128,7 +145,7 @@ class AppEpics {
 
   Stream<AppAction> _getReservationsPrevious(Stream<GetReservationsPreviousStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetReservationsPreviousStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _reservationApi.getReservationsPrevious(action.iduser))
+        .asyncMap((_) => _reservationApi.getReservationsPrevious(action.iduser, action.page, action.limit))
         .map((List<Reservation> reservations) => GetReservationsPrevious.successful(reservations))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetReservationsPrevious.error(error, stackTrace))
         .doOnData(action.result));
@@ -136,7 +153,7 @@ class AppEpics {
 
   Stream<AppAction> _getReservationsFuture(Stream<GetReservationsFutureStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetReservationsFutureStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _reservationApi.getReservationsFuture(action.iduser))
+        .asyncMap((_) => _reservationApi.getReservationsFuture(action.iduser, action.page, action.limit))
         .map((List<Reservation> reservations) => GetReservationsFuture.successful(reservations))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetReservationsFuture.error(error, stackTrace))
         .doOnData(action.result));

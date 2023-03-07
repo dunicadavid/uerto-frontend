@@ -75,12 +75,12 @@ class _LoginPageState extends State<LoginPage> {
                     height: _height * 0.1,
                     width: _height * 0.1,
                     child: const FittedBox(
-                      child: Icon(CupertinoIcons.camera_circle_fill, color: Colors.white70),
+                      child: Icon(CupertinoIcons.ant_circle_fill, color: Colors.white70),
                     ),
                   ),
                   Expanded(
-                    child: Container(),
                     flex: 2,
+                    child: Container(),
                   ),
                   const Text(
                     'Welcome',
@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 child: GestureDetector(
                                   onTap: () {
-                                    //Navigator.of(context).pushReplacementNamed('/resetPassword');
+                                    Navigator.of(context).pushReplacementNamed('/resetPassword');
                                   },
                                   child: Text(
                                     'forgot password?',
@@ -207,8 +207,8 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             Expanded(
-                              child: Container(),
                               flex: 4,
+                              child: Container(),
                             ),
 
                             ///-----------EMAIL AUTH---------------

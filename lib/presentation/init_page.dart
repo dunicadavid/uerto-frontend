@@ -5,15 +5,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:uerto/presentation/widgets/register2_page.dart';
-import 'package:uerto/presentation/widgets/verify_email_page.dart';
+import 'package:uerto/presentation/register2_page.dart';
+import 'package:uerto/presentation/verify_email_page.dart';
 
-import '../../containers/user_container.dart';
-import '../../models/index.dart';
+
+import '../containers/user_container.dart';
+import '../models/index.dart';
 import 'error_page.dart';
 import 'loading_page.dart';
 import 'login_page.dart';
 import 'main_page.dart';
+
 
 class InitPage extends StatelessWidget {
   const InitPage({Key? key}) : super(key: key);

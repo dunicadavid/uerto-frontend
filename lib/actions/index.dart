@@ -8,6 +8,8 @@ part 'index.freezed.dart';
 part 'auth/initialize_app.dart';
 part 'auth/register_phase1.dart';
 part 'auth/register_phase2.dart';
+part 'auth/edit_profile.dart';
+part 'auth/reset_password.dart';
 part 'auth/email_verify.dart';
 part 'auth/login.dart';
 part 'auth/signout.dart';

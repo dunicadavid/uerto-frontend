@@ -5,7 +5,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:uerto/presentation/widgets/place_details_page.dart';
 
 import '../../actions/index.dart';
 import '../../containers/places_short_container.dart';
@@ -70,7 +69,7 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('PlaceResultPage'),
+          title: const Text('PlaceResultPage'),
           leading: IconButton(
             icon: const Icon(Icons.backspace_outlined),
             onPressed: () {

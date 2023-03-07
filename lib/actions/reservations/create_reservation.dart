@@ -6,7 +6,7 @@ part of actions;
 
 @freezed
 class CreateReservation with _$CreateReservation implements AppAction {
-  const factory CreateReservation(int idplace, int idactivity, int idactivitySeating, int iduser, String date, String hour, int party_size, ActionResult result) = CreateReservationStart;
+  const factory CreateReservation(int idplace, int idactivity, int idactivitySeating, int iduser, String date, String hour, int partySize, ActionResult result) = CreateReservationStart;
 
   const factory CreateReservation.successful() = CreateReservationSuccessful;
 

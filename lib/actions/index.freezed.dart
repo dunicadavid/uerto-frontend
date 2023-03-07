@@ -1536,6 +1536,1039 @@ abstract class RegisterPhase2Error implements RegisterPhase2, ErrorAction {
 }
 
 /// @nodoc
+mixin _$EditProfile {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)
+        $default, {
+    required TResult Function(AppUser user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)?
+        $default, {
+    TResult? Function(AppUser user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)?
+        $default, {
+    TResult Function(AppUser user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditProfileStart value) $default, {
+    required TResult Function(EditProfileSuccessful value) successful,
+    required TResult Function(EditProfileError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EditProfileStart value)? $default, {
+    TResult? Function(EditProfileSuccessful value)? successful,
+    TResult? Function(EditProfileError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditProfileStart value)? $default, {
+    TResult Function(EditProfileSuccessful value)? successful,
+    TResult Function(EditProfileError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EditProfileCopyWith<$Res> {
+  factory $EditProfileCopyWith(
+          EditProfile value, $Res Function(EditProfile) then) =
+      _$EditProfileCopyWithImpl<$Res, EditProfile>;
+}
+
+/// @nodoc
+class _$EditProfileCopyWithImpl<$Res, $Val extends EditProfile>
+    implements $EditProfileCopyWith<$Res> {
+  _$EditProfileCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$EditProfileStartCopyWith<$Res> {
+  factory _$$EditProfileStartCopyWith(
+          _$EditProfileStart value, $Res Function(_$EditProfileStart) then) =
+      __$$EditProfileStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {int iduser,
+      String fullname,
+      String phoneNumber,
+      String photoUrl,
+      ActionResult result});
+}
+
+/// @nodoc
+class __$$EditProfileStartCopyWithImpl<$Res>
+    extends _$EditProfileCopyWithImpl<$Res, _$EditProfileStart>
+    implements _$$EditProfileStartCopyWith<$Res> {
+  __$$EditProfileStartCopyWithImpl(
+      _$EditProfileStart _value, $Res Function(_$EditProfileStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? iduser = null,
+    Object? fullname = null,
+    Object? phoneNumber = null,
+    Object? photoUrl = null,
+    Object? result = null,
+  }) {
+    return _then(_$EditProfileStart(
+      null == iduser
+          ? _value.iduser
+          : iduser // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == fullname
+          ? _value.fullname
+          : fullname // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditProfileStart implements EditProfileStart {
+  const _$EditProfileStart(
+      this.iduser, this.fullname, this.phoneNumber, this.photoUrl, this.result);
+
+  @override
+  final int iduser;
+  @override
+  final String fullname;
+  @override
+  final String phoneNumber;
+  @override
+  final String photoUrl;
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'EditProfile(iduser: $iduser, fullname: $fullname, phoneNumber: $phoneNumber, photoUrl: $photoUrl, result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditProfileStart &&
+            (identical(other.iduser, iduser) || other.iduser == iduser) &&
+            (identical(other.fullname, fullname) ||
+                other.fullname == fullname) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl) &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, iduser, fullname, phoneNumber, photoUrl, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditProfileStartCopyWith<_$EditProfileStart> get copyWith =>
+      __$$EditProfileStartCopyWithImpl<_$EditProfileStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)
+        $default, {
+    required TResult Function(AppUser user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(iduser, fullname, phoneNumber, photoUrl, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)?
+        $default, {
+    TResult? Function(AppUser user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(iduser, fullname, phoneNumber, photoUrl, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)?
+        $default, {
+    TResult Function(AppUser user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(iduser, fullname, phoneNumber, photoUrl, result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditProfileStart value) $default, {
+    required TResult Function(EditProfileSuccessful value) successful,
+    required TResult Function(EditProfileError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EditProfileStart value)? $default, {
+    TResult? Function(EditProfileSuccessful value)? successful,
+    TResult? Function(EditProfileError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditProfileStart value)? $default, {
+    TResult Function(EditProfileSuccessful value)? successful,
+    TResult Function(EditProfileError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditProfileStart implements EditProfile {
+  const factory EditProfileStart(
+      final int iduser,
+      final String fullname,
+      final String phoneNumber,
+      final String photoUrl,
+      final ActionResult result) = _$EditProfileStart;
+
+  int get iduser;
+  String get fullname;
+  String get phoneNumber;
+  String get photoUrl;
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$EditProfileStartCopyWith<_$EditProfileStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditProfileSuccessfulCopyWith<$Res> {
+  factory _$$EditProfileSuccessfulCopyWith(_$EditProfileSuccessful value,
+          $Res Function(_$EditProfileSuccessful) then) =
+      __$$EditProfileSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppUser user});
+}
+
+/// @nodoc
+class __$$EditProfileSuccessfulCopyWithImpl<$Res>
+    extends _$EditProfileCopyWithImpl<$Res, _$EditProfileSuccessful>
+    implements _$$EditProfileSuccessfulCopyWith<$Res> {
+  __$$EditProfileSuccessfulCopyWithImpl(_$EditProfileSuccessful _value,
+      $Res Function(_$EditProfileSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$EditProfileSuccessful(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditProfileSuccessful implements EditProfileSuccessful {
+  const _$EditProfileSuccessful(this.user);
+
+  @override
+  final AppUser user;
+
+  @override
+  String toString() {
+    return 'EditProfile.successful(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditProfileSuccessful &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditProfileSuccessfulCopyWith<_$EditProfileSuccessful> get copyWith =>
+      __$$EditProfileSuccessfulCopyWithImpl<_$EditProfileSuccessful>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)
+        $default, {
+    required TResult Function(AppUser user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)?
+        $default, {
+    TResult? Function(AppUser user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)?
+        $default, {
+    TResult Function(AppUser user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditProfileStart value) $default, {
+    required TResult Function(EditProfileSuccessful value) successful,
+    required TResult Function(EditProfileError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EditProfileStart value)? $default, {
+    TResult? Function(EditProfileSuccessful value)? successful,
+    TResult? Function(EditProfileError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditProfileStart value)? $default, {
+    TResult Function(EditProfileSuccessful value)? successful,
+    TResult Function(EditProfileError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditProfileSuccessful implements EditProfile {
+  const factory EditProfileSuccessful(final AppUser user) =
+      _$EditProfileSuccessful;
+
+  AppUser get user;
+  @JsonKey(ignore: true)
+  _$$EditProfileSuccessfulCopyWith<_$EditProfileSuccessful> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditProfileErrorCopyWith<$Res> {
+  factory _$$EditProfileErrorCopyWith(
+          _$EditProfileError value, $Res Function(_$EditProfileError) then) =
+      __$$EditProfileErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$EditProfileErrorCopyWithImpl<$Res>
+    extends _$EditProfileCopyWithImpl<$Res, _$EditProfileError>
+    implements _$$EditProfileErrorCopyWith<$Res> {
+  __$$EditProfileErrorCopyWithImpl(
+      _$EditProfileError _value, $Res Function(_$EditProfileError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$EditProfileError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditProfileError implements EditProfileError {
+  const _$EditProfileError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'EditProfile.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditProfileError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditProfileErrorCopyWith<_$EditProfileError> get copyWith =>
+      __$$EditProfileErrorCopyWithImpl<_$EditProfileError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)
+        $default, {
+    required TResult Function(AppUser user) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)?
+        $default, {
+    TResult? Function(AppUser user)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int iduser, String fullname, String phoneNumber,
+            String photoUrl, ActionResult result)?
+        $default, {
+    TResult Function(AppUser user)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditProfileStart value) $default, {
+    required TResult Function(EditProfileSuccessful value) successful,
+    required TResult Function(EditProfileError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EditProfileStart value)? $default, {
+    TResult? Function(EditProfileSuccessful value)? successful,
+    TResult? Function(EditProfileError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditProfileStart value)? $default, {
+    TResult Function(EditProfileSuccessful value)? successful,
+    TResult Function(EditProfileError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditProfileError implements EditProfile, ErrorAction {
+  const factory EditProfileError(
+      final Object error, final StackTrace stackTrace) = _$EditProfileError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$EditProfileErrorCopyWith<_$EditProfileError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$ResetPassword {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String email) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String email)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String email)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(ResetPasswordStart value) $default, {
+    required TResult Function(ResetPasswordSuccessful value) successful,
+    required TResult Function(ResetPasswordError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(ResetPasswordStart value)? $default, {
+    TResult? Function(ResetPasswordSuccessful value)? successful,
+    TResult? Function(ResetPasswordError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(ResetPasswordStart value)? $default, {
+    TResult Function(ResetPasswordSuccessful value)? successful,
+    TResult Function(ResetPasswordError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ResetPasswordCopyWith<$Res> {
+  factory $ResetPasswordCopyWith(
+          ResetPassword value, $Res Function(ResetPassword) then) =
+      _$ResetPasswordCopyWithImpl<$Res, ResetPassword>;
+}
+
+/// @nodoc
+class _$ResetPasswordCopyWithImpl<$Res, $Val extends ResetPassword>
+    implements $ResetPasswordCopyWith<$Res> {
+  _$ResetPasswordCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$ResetPasswordStartCopyWith<$Res> {
+  factory _$$ResetPasswordStartCopyWith(_$ResetPasswordStart value,
+          $Res Function(_$ResetPasswordStart) then) =
+      __$$ResetPasswordStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String email});
+}
+
+/// @nodoc
+class __$$ResetPasswordStartCopyWithImpl<$Res>
+    extends _$ResetPasswordCopyWithImpl<$Res, _$ResetPasswordStart>
+    implements _$$ResetPasswordStartCopyWith<$Res> {
+  __$$ResetPasswordStartCopyWithImpl(
+      _$ResetPasswordStart _value, $Res Function(_$ResetPasswordStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? email = null,
+  }) {
+    return _then(_$ResetPasswordStart(
+      null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ResetPasswordStart implements ResetPasswordStart {
+  const _$ResetPasswordStart(this.email);
+
+  @override
+  final String email;
+
+  @override
+  String toString() {
+    return 'ResetPassword(email: $email)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResetPasswordStart &&
+            (identical(other.email, email) || other.email == email));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, email);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResetPasswordStartCopyWith<_$ResetPasswordStart> get copyWith =>
+      __$$ResetPasswordStartCopyWithImpl<_$ResetPasswordStart>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String email) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String email)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(email);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String email)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(email);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(ResetPasswordStart value) $default, {
+    required TResult Function(ResetPasswordSuccessful value) successful,
+    required TResult Function(ResetPasswordError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(ResetPasswordStart value)? $default, {
+    TResult? Function(ResetPasswordSuccessful value)? successful,
+    TResult? Function(ResetPasswordError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(ResetPasswordStart value)? $default, {
+    TResult Function(ResetPasswordSuccessful value)? successful,
+    TResult Function(ResetPasswordError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResetPasswordStart implements ResetPassword {
+  const factory ResetPasswordStart(final String email) = _$ResetPasswordStart;
+
+  String get email;
+  @JsonKey(ignore: true)
+  _$$ResetPasswordStartCopyWith<_$ResetPasswordStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetPasswordSuccessfulCopyWith<$Res> {
+  factory _$$ResetPasswordSuccessfulCopyWith(_$ResetPasswordSuccessful value,
+          $Res Function(_$ResetPasswordSuccessful) then) =
+      __$$ResetPasswordSuccessfulCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetPasswordSuccessfulCopyWithImpl<$Res>
+    extends _$ResetPasswordCopyWithImpl<$Res, _$ResetPasswordSuccessful>
+    implements _$$ResetPasswordSuccessfulCopyWith<$Res> {
+  __$$ResetPasswordSuccessfulCopyWithImpl(_$ResetPasswordSuccessful _value,
+      $Res Function(_$ResetPasswordSuccessful) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ResetPasswordSuccessful implements ResetPasswordSuccessful {
+  const _$ResetPasswordSuccessful();
+
+  @override
+  String toString() {
+    return 'ResetPassword.successful()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResetPasswordSuccessful);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String email) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String email)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String email)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(ResetPasswordStart value) $default, {
+    required TResult Function(ResetPasswordSuccessful value) successful,
+    required TResult Function(ResetPasswordError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(ResetPasswordStart value)? $default, {
+    TResult? Function(ResetPasswordSuccessful value)? successful,
+    TResult? Function(ResetPasswordError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(ResetPasswordStart value)? $default, {
+    TResult Function(ResetPasswordSuccessful value)? successful,
+    TResult Function(ResetPasswordError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResetPasswordSuccessful implements ResetPassword {
+  const factory ResetPasswordSuccessful() = _$ResetPasswordSuccessful;
+}
+
+/// @nodoc
+abstract class _$$ResetPasswordErrorCopyWith<$Res> {
+  factory _$$ResetPasswordErrorCopyWith(_$ResetPasswordError value,
+          $Res Function(_$ResetPasswordError) then) =
+      __$$ResetPasswordErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$ResetPasswordErrorCopyWithImpl<$Res>
+    extends _$ResetPasswordCopyWithImpl<$Res, _$ResetPasswordError>
+    implements _$$ResetPasswordErrorCopyWith<$Res> {
+  __$$ResetPasswordErrorCopyWithImpl(
+      _$ResetPasswordError _value, $Res Function(_$ResetPasswordError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$ResetPasswordError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ResetPasswordError implements ResetPasswordError {
+  const _$ResetPasswordError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'ResetPassword.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResetPasswordError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResetPasswordErrorCopyWith<_$ResetPasswordError> get copyWith =>
+      __$$ResetPasswordErrorCopyWithImpl<_$ResetPasswordError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String email) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String email)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String email)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(ResetPasswordStart value) $default, {
+    required TResult Function(ResetPasswordSuccessful value) successful,
+    required TResult Function(ResetPasswordError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(ResetPasswordStart value)? $default, {
+    TResult? Function(ResetPasswordSuccessful value)? successful,
+    TResult? Function(ResetPasswordError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(ResetPasswordStart value)? $default, {
+    TResult Function(ResetPasswordSuccessful value)? successful,
+    TResult Function(ResetPasswordError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResetPasswordError implements ResetPassword, ErrorAction {
+  const factory ResetPasswordError(
+      final Object error, final StackTrace stackTrace) = _$ResetPasswordError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$ResetPasswordErrorCopyWith<_$ResetPasswordError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$EmailVerify {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
@@ -5194,7 +6227,7 @@ mixin _$CreateReservation {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)
         $default, {
     required TResult Function() successful,
@@ -5210,7 +6243,7 @@ mixin _$CreateReservation {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)?
         $default, {
     TResult? Function()? successful,
@@ -5226,7 +6259,7 @@ mixin _$CreateReservation {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)?
         $default, {
     TResult Function()? successful,
@@ -5289,7 +6322,7 @@ abstract class _$$CreateReservationStartCopyWith<$Res> {
       int iduser,
       String date,
       String hour,
-      int party_size,
+      int partySize,
       ActionResult result});
 }
 
@@ -5310,7 +6343,7 @@ class __$$CreateReservationStartCopyWithImpl<$Res>
     Object? iduser = null,
     Object? date = null,
     Object? hour = null,
-    Object? party_size = null,
+    Object? partySize = null,
     Object? result = null,
   }) {
     return _then(_$CreateReservationStart(
@@ -5338,9 +6371,9 @@ class __$$CreateReservationStartCopyWithImpl<$Res>
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
               as String,
-      null == party_size
-          ? _value.party_size
-          : party_size // ignore: cast_nullable_to_non_nullable
+      null == partySize
+          ? _value.partySize
+          : partySize // ignore: cast_nullable_to_non_nullable
               as int,
       null == result
           ? _value.result
@@ -5360,7 +6393,7 @@ class _$CreateReservationStart implements CreateReservationStart {
       this.iduser,
       this.date,
       this.hour,
-      this.party_size,
+      this.partySize,
       this.result);
 
   @override
@@ -5376,13 +6409,13 @@ class _$CreateReservationStart implements CreateReservationStart {
   @override
   final String hour;
   @override
-  final int party_size;
+  final int partySize;
   @override
   final ActionResult result;
 
   @override
   String toString() {
-    return 'CreateReservation(idplace: $idplace, idactivity: $idactivity, idactivitySeating: $idactivitySeating, iduser: $iduser, date: $date, hour: $hour, party_size: $party_size, result: $result)';
+    return 'CreateReservation(idplace: $idplace, idactivity: $idactivity, idactivitySeating: $idactivitySeating, iduser: $iduser, date: $date, hour: $hour, partySize: $partySize, result: $result)';
   }
 
   @override
@@ -5398,14 +6431,14 @@ class _$CreateReservationStart implements CreateReservationStart {
             (identical(other.iduser, iduser) || other.iduser == iduser) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.hour, hour) || other.hour == hour) &&
-            (identical(other.party_size, party_size) ||
-                other.party_size == party_size) &&
+            (identical(other.partySize, partySize) ||
+                other.partySize == partySize) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, idplace, idactivity,
-      idactivitySeating, iduser, date, hour, party_size, result);
+      idactivitySeating, iduser, date, hour, partySize, result);
 
   @JsonKey(ignore: true)
   @override
@@ -5424,14 +6457,14 @@ class _$CreateReservationStart implements CreateReservationStart {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)
         $default, {
     required TResult Function() successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(idplace, idactivity, idactivitySeating, iduser, date, hour,
-        party_size, result);
+        partySize, result);
   }
 
   @override
@@ -5444,14 +6477,14 @@ class _$CreateReservationStart implements CreateReservationStart {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)?
         $default, {
     TResult? Function()? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(idplace, idactivity, idactivitySeating, iduser, date,
-        hour, party_size, result);
+        hour, partySize, result);
   }
 
   @override
@@ -5464,7 +6497,7 @@ class _$CreateReservationStart implements CreateReservationStart {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)?
         $default, {
     TResult Function()? successful,
@@ -5473,7 +6506,7 @@ class _$CreateReservationStart implements CreateReservationStart {
   }) {
     if ($default != null) {
       return $default(idplace, idactivity, idactivitySeating, iduser, date,
-          hour, party_size, result);
+          hour, partySize, result);
     }
     return orElse();
   }
@@ -5521,7 +6554,7 @@ abstract class CreateReservationStart implements CreateReservation {
       final int iduser,
       final String date,
       final String hour,
-      final int party_size,
+      final int partySize,
       final ActionResult result) = _$CreateReservationStart;
 
   int get idplace;
@@ -5530,7 +6563,7 @@ abstract class CreateReservationStart implements CreateReservation {
   int get iduser;
   String get date;
   String get hour;
-  int get party_size;
+  int get partySize;
   ActionResult get result;
   @JsonKey(ignore: true)
   _$$CreateReservationStartCopyWith<_$CreateReservationStart> get copyWith =>
@@ -5585,7 +6618,7 @@ class _$CreateReservationSuccessful implements CreateReservationSuccessful {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)
         $default, {
     required TResult Function() successful,
@@ -5604,7 +6637,7 @@ class _$CreateReservationSuccessful implements CreateReservationSuccessful {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)?
         $default, {
     TResult? Function()? successful,
@@ -5623,7 +6656,7 @@ class _$CreateReservationSuccessful implements CreateReservationSuccessful {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)?
         $default, {
     TResult Function()? successful,
@@ -5754,7 +6787,7 @@ class _$CreateReservationError implements CreateReservationError {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)
         $default, {
     required TResult Function() successful,
@@ -5773,7 +6806,7 @@ class _$CreateReservationError implements CreateReservationError {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)?
         $default, {
     TResult? Function()? successful,
@@ -5792,7 +6825,7 @@ class _$CreateReservationError implements CreateReservationError {
             int iduser,
             String date,
             String hour,
-            int party_size,
+            int partySize,
             ActionResult result)?
         $default, {
     TResult Function()? successful,
@@ -5857,21 +6890,24 @@ abstract class CreateReservationError
 mixin _$GetReservationsFuture {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result) $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)
+        $default, {
     required TResult Function(List<Reservation> reservations) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, ActionResult result)? $default, {
+    TResult? Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult? Function(List<Reservation> reservations)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result)? $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult Function(List<Reservation> reservations)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -5927,7 +6963,7 @@ abstract class _$$GetReservationsFutureStartCopyWith<$Res> {
           $Res Function(_$GetReservationsFutureStart) then) =
       __$$GetReservationsFutureStartCopyWithImpl<$Res>;
   @useResult
-  $Res call({int iduser, ActionResult result});
+  $Res call({int iduser, int page, int limit, ActionResult result});
 }
 
 /// @nodoc
@@ -5944,12 +6980,22 @@ class __$$GetReservationsFutureStartCopyWithImpl<$Res>
   @override
   $Res call({
     Object? iduser = null,
+    Object? page = null,
+    Object? limit = null,
     Object? result = null,
   }) {
     return _then(_$GetReservationsFutureStart(
       null == iduser
           ? _value.iduser
           : iduser // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
               as int,
       null == result
           ? _value.result
@@ -5962,16 +7008,21 @@ class __$$GetReservationsFutureStartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetReservationsFutureStart implements GetReservationsFutureStart {
-  const _$GetReservationsFutureStart(this.iduser, this.result);
+  const _$GetReservationsFutureStart(
+      this.iduser, this.page, this.limit, this.result);
 
   @override
   final int iduser;
+  @override
+  final int page;
+  @override
+  final int limit;
   @override
   final ActionResult result;
 
   @override
   String toString() {
-    return 'GetReservationsFuture(iduser: $iduser, result: $result)';
+    return 'GetReservationsFuture(iduser: $iduser, page: $page, limit: $limit, result: $result)';
   }
 
   @override
@@ -5980,11 +7031,13 @@ class _$GetReservationsFutureStart implements GetReservationsFutureStart {
         (other.runtimeType == runtimeType &&
             other is _$GetReservationsFutureStart &&
             (identical(other.iduser, iduser) || other.iduser == iduser) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, iduser, result);
+  int get hashCode => Object.hash(runtimeType, iduser, page, limit, result);
 
   @JsonKey(ignore: true)
   @override
@@ -5996,33 +7049,36 @@ class _$GetReservationsFutureStart implements GetReservationsFutureStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result) $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)
+        $default, {
     required TResult Function(List<Reservation> reservations) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(iduser, result);
+    return $default(iduser, page, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, ActionResult result)? $default, {
+    TResult? Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult? Function(List<Reservation> reservations)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(iduser, result);
+    return $default?.call(iduser, page, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result)? $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult Function(List<Reservation> reservations)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(iduser, result);
+      return $default(iduser, page, limit, result);
     }
     return orElse();
   }
@@ -6064,10 +7120,14 @@ class _$GetReservationsFutureStart implements GetReservationsFutureStart {
 
 abstract class GetReservationsFutureStart implements GetReservationsFuture {
   const factory GetReservationsFutureStart(
-          final int iduser, final ActionResult result) =
-      _$GetReservationsFutureStart;
+      final int iduser,
+      final int page,
+      final int limit,
+      final ActionResult result) = _$GetReservationsFutureStart;
 
   int get iduser;
+  int get page;
+  int get limit;
   ActionResult get result;
   @JsonKey(ignore: true)
   _$$GetReservationsFutureStartCopyWith<_$GetReservationsFutureStart>
@@ -6151,7 +7211,8 @@ class _$GetReservationsFutureSuccessful
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result) $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)
+        $default, {
     required TResult Function(List<Reservation> reservations) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -6161,7 +7222,8 @@ class _$GetReservationsFutureSuccessful
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, ActionResult result)? $default, {
+    TResult? Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult? Function(List<Reservation> reservations)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -6171,7 +7233,8 @@ class _$GetReservationsFutureSuccessful
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result)? $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult Function(List<Reservation> reservations)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -6303,7 +7366,8 @@ class _$GetReservationsFutureError implements GetReservationsFutureError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result) $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)
+        $default, {
     required TResult Function(List<Reservation> reservations) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -6313,7 +7377,8 @@ class _$GetReservationsFutureError implements GetReservationsFutureError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, ActionResult result)? $default, {
+    TResult? Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult? Function(List<Reservation> reservations)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -6323,7 +7388,8 @@ class _$GetReservationsFutureError implements GetReservationsFutureError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result)? $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult Function(List<Reservation> reservations)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -6386,21 +7452,24 @@ abstract class GetReservationsFutureError
 mixin _$GetReservationsPrevious {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result) $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)
+        $default, {
     required TResult Function(List<Reservation> reservations) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, ActionResult result)? $default, {
+    TResult? Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult? Function(List<Reservation> reservations)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result)? $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult Function(List<Reservation> reservations)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -6457,7 +7526,7 @@ abstract class _$$GetReservationsPreviousStartCopyWith<$Res> {
           $Res Function(_$GetReservationsPreviousStart) then) =
       __$$GetReservationsPreviousStartCopyWithImpl<$Res>;
   @useResult
-  $Res call({int iduser, ActionResult result});
+  $Res call({int iduser, int page, int limit, ActionResult result});
 }
 
 /// @nodoc
@@ -6474,12 +7543,22 @@ class __$$GetReservationsPreviousStartCopyWithImpl<$Res>
   @override
   $Res call({
     Object? iduser = null,
+    Object? page = null,
+    Object? limit = null,
     Object? result = null,
   }) {
     return _then(_$GetReservationsPreviousStart(
       null == iduser
           ? _value.iduser
           : iduser // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == page
+          ? _value.page
+          : page // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
               as int,
       null == result
           ? _value.result
@@ -6492,16 +7571,21 @@ class __$$GetReservationsPreviousStartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
-  const _$GetReservationsPreviousStart(this.iduser, this.result);
+  const _$GetReservationsPreviousStart(
+      this.iduser, this.page, this.limit, this.result);
 
   @override
   final int iduser;
+  @override
+  final int page;
+  @override
+  final int limit;
   @override
   final ActionResult result;
 
   @override
   String toString() {
-    return 'GetReservationsPrevious(iduser: $iduser, result: $result)';
+    return 'GetReservationsPrevious(iduser: $iduser, page: $page, limit: $limit, result: $result)';
   }
 
   @override
@@ -6510,11 +7594,13 @@ class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
         (other.runtimeType == runtimeType &&
             other is _$GetReservationsPreviousStart &&
             (identical(other.iduser, iduser) || other.iduser == iduser) &&
+            (identical(other.page, page) || other.page == page) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, iduser, result);
+  int get hashCode => Object.hash(runtimeType, iduser, page, limit, result);
 
   @JsonKey(ignore: true)
   @override
@@ -6526,33 +7612,36 @@ class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result) $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)
+        $default, {
     required TResult Function(List<Reservation> reservations) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(iduser, result);
+    return $default(iduser, page, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, ActionResult result)? $default, {
+    TResult? Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult? Function(List<Reservation> reservations)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(iduser, result);
+    return $default?.call(iduser, page, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result)? $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult Function(List<Reservation> reservations)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(iduser, result);
+      return $default(iduser, page, limit, result);
     }
     return orElse();
   }
@@ -6595,10 +7684,14 @@ class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
 
 abstract class GetReservationsPreviousStart implements GetReservationsPrevious {
   const factory GetReservationsPreviousStart(
-          final int iduser, final ActionResult result) =
-      _$GetReservationsPreviousStart;
+      final int iduser,
+      final int page,
+      final int limit,
+      final ActionResult result) = _$GetReservationsPreviousStart;
 
   int get iduser;
+  int get page;
+  int get limit;
   ActionResult get result;
   @JsonKey(ignore: true)
   _$$GetReservationsPreviousStartCopyWith<_$GetReservationsPreviousStart>
@@ -6684,7 +7777,8 @@ class _$GetReservationsPreviousSuccessful
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result) $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)
+        $default, {
     required TResult Function(List<Reservation> reservations) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -6694,7 +7788,8 @@ class _$GetReservationsPreviousSuccessful
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, ActionResult result)? $default, {
+    TResult? Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult? Function(List<Reservation> reservations)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -6704,7 +7799,8 @@ class _$GetReservationsPreviousSuccessful
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result)? $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult Function(List<Reservation> reservations)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -6839,7 +7935,8 @@ class _$GetReservationsPreviousError implements GetReservationsPreviousError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result) $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)
+        $default, {
     required TResult Function(List<Reservation> reservations) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -6849,7 +7946,8 @@ class _$GetReservationsPreviousError implements GetReservationsPreviousError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, ActionResult result)? $default, {
+    TResult? Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult? Function(List<Reservation> reservations)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -6859,7 +7957,8 @@ class _$GetReservationsPreviousError implements GetReservationsPreviousError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, ActionResult result)? $default, {
+    TResult Function(int iduser, int page, int limit, ActionResult result)?
+        $default, {
     TResult Function(List<Reservation> reservations)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),

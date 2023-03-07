@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
-import '../../actions/index.dart';
-import '../../models/index.dart';
+import '../actions/index.dart';
+import '../models/index.dart';
 
 class Register2Page extends StatefulWidget {
   const Register2Page({Key? key}) : super(key: key);
