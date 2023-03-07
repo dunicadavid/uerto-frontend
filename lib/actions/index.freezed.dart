@@ -8017,3 +8017,136 @@ abstract class GetReservationsPreviousError
   _$$GetReservationsPreviousErrorCopyWith<_$GetReservationsPreviousError>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$DeleteReservationsFuture {}
+
+/// @nodoc
+abstract class $DeleteReservationsFutureCopyWith<$Res> {
+  factory $DeleteReservationsFutureCopyWith(DeleteReservationsFuture value,
+          $Res Function(DeleteReservationsFuture) then) =
+      _$DeleteReservationsFutureCopyWithImpl<$Res, DeleteReservationsFuture>;
+}
+
+/// @nodoc
+class _$DeleteReservationsFutureCopyWithImpl<$Res,
+        $Val extends DeleteReservationsFuture>
+    implements $DeleteReservationsFutureCopyWith<$Res> {
+  _$DeleteReservationsFutureCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DeleteReservationsFuture$CopyWith<$Res> {
+  factory _$$DeleteReservationsFuture$CopyWith(
+          _$DeleteReservationsFuture$ value,
+          $Res Function(_$DeleteReservationsFuture$) then) =
+      __$$DeleteReservationsFuture$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeleteReservationsFuture$CopyWithImpl<$Res>
+    extends _$DeleteReservationsFutureCopyWithImpl<$Res,
+        _$DeleteReservationsFuture$>
+    implements _$$DeleteReservationsFuture$CopyWith<$Res> {
+  __$$DeleteReservationsFuture$CopyWithImpl(_$DeleteReservationsFuture$ _value,
+      $Res Function(_$DeleteReservationsFuture$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeleteReservationsFuture$ implements DeleteReservationsFuture$ {
+  const _$DeleteReservationsFuture$();
+
+  @override
+  String toString() {
+    return 'DeleteReservationsFuture()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteReservationsFuture$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class DeleteReservationsFuture$ implements DeleteReservationsFuture {
+  const factory DeleteReservationsFuture$() = _$DeleteReservationsFuture$;
+}
+
+/// @nodoc
+mixin _$DeleteReservationsPrevious {}
+
+/// @nodoc
+abstract class $DeleteReservationsPreviousCopyWith<$Res> {
+  factory $DeleteReservationsPreviousCopyWith(DeleteReservationsPrevious value,
+          $Res Function(DeleteReservationsPrevious) then) =
+      _$DeleteReservationsPreviousCopyWithImpl<$Res,
+          DeleteReservationsPrevious>;
+}
+
+/// @nodoc
+class _$DeleteReservationsPreviousCopyWithImpl<$Res,
+        $Val extends DeleteReservationsPrevious>
+    implements $DeleteReservationsPreviousCopyWith<$Res> {
+  _$DeleteReservationsPreviousCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DeleteReservationsPrevious$CopyWith<$Res> {
+  factory _$$DeleteReservationsPrevious$CopyWith(
+          _$DeleteReservationsPrevious$ value,
+          $Res Function(_$DeleteReservationsPrevious$) then) =
+      __$$DeleteReservationsPrevious$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeleteReservationsPrevious$CopyWithImpl<$Res>
+    extends _$DeleteReservationsPreviousCopyWithImpl<$Res,
+        _$DeleteReservationsPrevious$>
+    implements _$$DeleteReservationsPrevious$CopyWith<$Res> {
+  __$$DeleteReservationsPrevious$CopyWithImpl(
+      _$DeleteReservationsPrevious$ _value,
+      $Res Function(_$DeleteReservationsPrevious$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeleteReservationsPrevious$ implements DeleteReservationsPrevious$ {
+  const _$DeleteReservationsPrevious$();
+
+  @override
+  String toString() {
+    return 'DeleteReservationsPrevious()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteReservationsPrevious$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class DeleteReservationsPrevious$
+    implements DeleteReservationsPrevious {
+  const factory DeleteReservationsPrevious$() = _$DeleteReservationsPrevious$;
+}

@@ -35,11 +35,9 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
     final double threshold = screenHeight * 0.5;
     const int limit = 10;
 
-    if (delta < threshold && store.state.listOfPlacesNextPage != 0 && _isLoading == false) {
+    if (delta < threshold  && _isLoading == false) {
       _isLoading = true;
-      print(store.state.listOfPreviousReservations!.length % limit + 1);
       store.dispatch(GetReservationsPrevious(store.state.user!.userId, page, limit, _onResult));
-      page++;
     }
   }
 
@@ -49,6 +47,8 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
     });
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    } else {
+      page++;
     }
   }
 
@@ -66,6 +66,7 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
+            StoreProvider.of<AppState>(context).dispatch(const DeleteReservationsPrevious());
             Navigator.of(context).pushReplacementNamed('/main');
           },
         ),
@@ -75,7 +76,7 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1,
-              childAspectRatio: 2,
+              childAspectRatio: 4,
             ),
             controller: _controller,
             itemCount: reservations.length,
@@ -84,16 +85,10 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
                 final Reservation reservation = reservations[index];
                 return GestureDetector(
                   onTap: () {},
-                  child: GridTile(
-                    footer: GridTileBar(
-                      backgroundColor: Colors.black38,
-                      title: Text('${reservation.date} ${reservation.hour}'),
-                      subtitle: Text('for ${reservation.partySize.toString()} people'),
-                    ),
-                    child: Image.network(
-                      'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+',
-                      fit: BoxFit.cover,
-                    ),
+                  child: GridTileBar(
+                      backgroundColor: index.isEven ? Colors.black38 : Colors.black12,
+                      title: Text('${reservation.date} ${reservation.hour}',style: const TextStyle(color: Colors.black),),
+                      subtitle: Text('for ${reservation.partySize.toString()} people',style: const TextStyle(color: Colors.black),),
                   ),
                 );
             },
