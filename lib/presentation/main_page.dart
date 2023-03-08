@@ -79,7 +79,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      StoreProvider.of<AppState>(context).dispatch(GetReservationsFuture(user.userId, 1, 10,_onResultGetReservationsFuture));
+                      StoreProvider.of<AppState>(context).dispatch(GetReservationsFuture(user.userId, 10,_onResultGetReservationsFuture));
                     },
                     child: const Text('Reservations'),
                   ),
@@ -88,7 +88,7 @@ class _MainPageState extends State<MainPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      StoreProvider.of<AppState>(context).dispatch(GetReservationsPrevious(user.userId, 1, 10,_onResultGetReservationsPrevious));
+                      StoreProvider.of<AppState>(context).dispatch(GetReservationsPrevious(user.userId, 10,_onResultGetReservationsPrevious));
                     },
                     child: const Text('Previous'),
                   ),

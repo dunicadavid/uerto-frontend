@@ -7,8 +7,11 @@ part of models;
 abstract class AppState implements Built<AppState, AppStateBuilder> {
   factory AppState.initialState() {
     return _$AppState((AppStateBuilder b) {
-        b.listOfPlacesNextPage = 1;
-        b.isInitDone = false;
+      b
+        ..listOfPlacesNextPage = 1
+        ..listOfFutureReservationsNextPage = 1
+        ..listOfPreviousReservationsNextPage = 1
+        ..isInitDone = false;
     });
   }
 
@@ -27,6 +30,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   BuiltList<Reservation>? get listOfFutureReservations;
   BuiltList<Reservation>? get listOfPreviousReservations;
+  int get listOfFutureReservationsNextPage;
+  int get listOfPreviousReservationsNextPage;
 
   String? get error;
 

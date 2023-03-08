@@ -29,6 +29,12 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       'listOfPlacesNextPage',
       serializers.serialize(object.listOfPlacesNextPage,
           specifiedType: const FullType(int)),
+      'listOfFutureReservationsNextPage',
+      serializers.serialize(object.listOfFutureReservationsNextPage,
+          specifiedType: const FullType(int)),
+      'listOfPreviousReservationsNextPage',
+      serializers.serialize(object.listOfPreviousReservationsNextPage,
+          specifiedType: const FullType(int)),
       'isInitDone',
       serializers.serialize(object.isInitDone,
           specifiedType: const FullType(bool)),
@@ -159,6 +165,14 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(Reservation)]))!
               as BuiltList<Object?>);
+          break;
+        case 'listOfFutureReservationsNextPage':
+          result.listOfFutureReservationsNextPage = serializers
+              .deserialize(value, specifiedType: const FullType(int))! as int;
+          break;
+        case 'listOfPreviousReservationsNextPage':
+          result.listOfPreviousReservationsNextPage = serializers
+              .deserialize(value, specifiedType: const FullType(int))! as int;
           break;
         case 'error':
           result.error = serializers.deserialize(value,
@@ -612,6 +626,10 @@ class _$AppState extends AppState {
   @override
   final BuiltList<Reservation>? listOfPreviousReservations;
   @override
+  final int listOfFutureReservationsNextPage;
+  @override
+  final int listOfPreviousReservationsNextPage;
+  @override
   final String? error;
   @override
   final bool? isServerWorking;
@@ -630,12 +648,18 @@ class _$AppState extends AppState {
       this.placeActivityAvailability,
       this.listOfFutureReservations,
       this.listOfPreviousReservations,
+      required this.listOfFutureReservationsNextPage,
+      required this.listOfPreviousReservationsNextPage,
       this.error,
       this.isServerWorking,
       required this.isInitDone})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage');
+    BuiltValueNullFieldError.checkNotNull(listOfFutureReservationsNextPage,
+        r'AppState', 'listOfFutureReservationsNextPage');
+    BuiltValueNullFieldError.checkNotNull(listOfPreviousReservationsNextPage,
+        r'AppState', 'listOfPreviousReservationsNextPage');
     BuiltValueNullFieldError.checkNotNull(
         isInitDone, r'AppState', 'isInitDone');
   }
@@ -659,6 +683,10 @@ class _$AppState extends AppState {
         placeActivityAvailability == other.placeActivityAvailability &&
         listOfFutureReservations == other.listOfFutureReservations &&
         listOfPreviousReservations == other.listOfPreviousReservations &&
+        listOfFutureReservationsNextPage ==
+            other.listOfFutureReservationsNextPage &&
+        listOfPreviousReservationsNextPage ==
+            other.listOfPreviousReservationsNextPage &&
         error == other.error &&
         isServerWorking == other.isServerWorking &&
         isInitDone == other.isInitDone;
@@ -675,6 +703,8 @@ class _$AppState extends AppState {
     _$hash = $jc(_$hash, placeActivityAvailability.hashCode);
     _$hash = $jc(_$hash, listOfFutureReservations.hashCode);
     _$hash = $jc(_$hash, listOfPreviousReservations.hashCode);
+    _$hash = $jc(_$hash, listOfFutureReservationsNextPage.hashCode);
+    _$hash = $jc(_$hash, listOfPreviousReservationsNextPage.hashCode);
     _$hash = $jc(_$hash, error.hashCode);
     _$hash = $jc(_$hash, isServerWorking.hashCode);
     _$hash = $jc(_$hash, isInitDone.hashCode);
@@ -693,6 +723,10 @@ class _$AppState extends AppState {
           ..add('placeActivityAvailability', placeActivityAvailability)
           ..add('listOfFutureReservations', listOfFutureReservations)
           ..add('listOfPreviousReservations', listOfPreviousReservations)
+          ..add('listOfFutureReservationsNextPage',
+              listOfFutureReservationsNextPage)
+          ..add('listOfPreviousReservationsNextPage',
+              listOfPreviousReservationsNextPage)
           ..add('error', error)
           ..add('isServerWorking', isServerWorking)
           ..add('isInitDone', isInitDone))
@@ -751,6 +785,21 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
           ListBuilder<Reservation>? listOfPreviousReservations) =>
       _$this._listOfPreviousReservations = listOfPreviousReservations;
 
+  int? _listOfFutureReservationsNextPage;
+  int? get listOfFutureReservationsNextPage =>
+      _$this._listOfFutureReservationsNextPage;
+  set listOfFutureReservationsNextPage(int? listOfFutureReservationsNextPage) =>
+      _$this._listOfFutureReservationsNextPage =
+          listOfFutureReservationsNextPage;
+
+  int? _listOfPreviousReservationsNextPage;
+  int? get listOfPreviousReservationsNextPage =>
+      _$this._listOfPreviousReservationsNextPage;
+  set listOfPreviousReservationsNextPage(
+          int? listOfPreviousReservationsNextPage) =>
+      _$this._listOfPreviousReservationsNextPage =
+          listOfPreviousReservationsNextPage;
+
   String? _error;
   String? get error => _$this._error;
   set error(String? error) => _$this._error = error;
@@ -777,6 +826,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _placeActivityAvailability = $v.placeActivityAvailability?.toBuilder();
       _listOfFutureReservations = $v.listOfFutureReservations?.toBuilder();
       _listOfPreviousReservations = $v.listOfPreviousReservations?.toBuilder();
+      _listOfFutureReservationsNextPage = $v.listOfFutureReservationsNextPage;
+      _listOfPreviousReservationsNextPage =
+          $v.listOfPreviousReservationsNextPage;
       _error = $v.error;
       _isServerWorking = $v.isServerWorking;
       _isInitDone = $v.isInitDone;
@@ -813,6 +865,16 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               placeActivityAvailability: _placeActivityAvailability?.build(),
               listOfFutureReservations: _listOfFutureReservations?.build(),
               listOfPreviousReservations: _listOfPreviousReservations?.build(),
+              listOfFutureReservationsNextPage:
+                  BuiltValueNullFieldError.checkNotNull(
+                      listOfFutureReservationsNextPage,
+                      r'AppState',
+                      'listOfFutureReservationsNextPage'),
+              listOfPreviousReservationsNextPage:
+                  BuiltValueNullFieldError.checkNotNull(
+                      listOfPreviousReservationsNextPage,
+                      r'AppState',
+                      'listOfPreviousReservationsNextPage'),
               error: error,
               isServerWorking: isServerWorking,
               isInitDone: BuiltValueNullFieldError.checkNotNull(

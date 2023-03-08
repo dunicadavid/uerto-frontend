@@ -6890,25 +6890,22 @@ abstract class CreateReservationError
 mixin _$GetReservationsFuture {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)
-        $default, {
-    required TResult Function(List<Reservation> reservations) successful,
+    TResult Function(int iduser, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult? Function(List<Reservation> reservations)? successful,
+    TResult? Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult Function(List<Reservation> reservations)? successful,
+    TResult Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -6963,7 +6960,7 @@ abstract class _$$GetReservationsFutureStartCopyWith<$Res> {
           $Res Function(_$GetReservationsFutureStart) then) =
       __$$GetReservationsFutureStartCopyWithImpl<$Res>;
   @useResult
-  $Res call({int iduser, int page, int limit, ActionResult result});
+  $Res call({int iduser, int limit, ActionResult result});
 }
 
 /// @nodoc
@@ -6980,7 +6977,6 @@ class __$$GetReservationsFutureStartCopyWithImpl<$Res>
   @override
   $Res call({
     Object? iduser = null,
-    Object? page = null,
     Object? limit = null,
     Object? result = null,
   }) {
@@ -6988,10 +6984,6 @@ class __$$GetReservationsFutureStartCopyWithImpl<$Res>
       null == iduser
           ? _value.iduser
           : iduser // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
               as int,
       null == limit
           ? _value.limit
@@ -7008,13 +7000,10 @@ class __$$GetReservationsFutureStartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetReservationsFutureStart implements GetReservationsFutureStart {
-  const _$GetReservationsFutureStart(
-      this.iduser, this.page, this.limit, this.result);
+  const _$GetReservationsFutureStart(this.iduser, this.limit, this.result);
 
   @override
   final int iduser;
-  @override
-  final int page;
   @override
   final int limit;
   @override
@@ -7022,7 +7011,7 @@ class _$GetReservationsFutureStart implements GetReservationsFutureStart {
 
   @override
   String toString() {
-    return 'GetReservationsFuture(iduser: $iduser, page: $page, limit: $limit, result: $result)';
+    return 'GetReservationsFuture(iduser: $iduser, limit: $limit, result: $result)';
   }
 
   @override
@@ -7031,13 +7020,12 @@ class _$GetReservationsFutureStart implements GetReservationsFutureStart {
         (other.runtimeType == runtimeType &&
             other is _$GetReservationsFutureStart &&
             (identical(other.iduser, iduser) || other.iduser == iduser) &&
-            (identical(other.page, page) || other.page == page) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, iduser, page, limit, result);
+  int get hashCode => Object.hash(runtimeType, iduser, limit, result);
 
   @JsonKey(ignore: true)
   @override
@@ -7049,36 +7037,33 @@ class _$GetReservationsFutureStart implements GetReservationsFutureStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)
-        $default, {
-    required TResult Function(List<Reservation> reservations) successful,
+    TResult Function(int iduser, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(iduser, page, limit, result);
+    return $default(iduser, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult? Function(List<Reservation> reservations)? successful,
+    TResult? Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(iduser, page, limit, result);
+    return $default?.call(iduser, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult Function(List<Reservation> reservations)? successful,
+    TResult Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(iduser, page, limit, result);
+      return $default(iduser, limit, result);
     }
     return orElse();
   }
@@ -7120,13 +7105,10 @@ class _$GetReservationsFutureStart implements GetReservationsFutureStart {
 
 abstract class GetReservationsFutureStart implements GetReservationsFuture {
   const factory GetReservationsFutureStart(
-      final int iduser,
-      final int page,
-      final int limit,
-      final ActionResult result) = _$GetReservationsFutureStart;
+          final int iduser, final int limit, final ActionResult result) =
+      _$GetReservationsFutureStart;
 
   int get iduser;
-  int get page;
   int get limit;
   ActionResult get result;
   @JsonKey(ignore: true)
@@ -7141,7 +7123,7 @@ abstract class _$$GetReservationsFutureSuccessfulCopyWith<$Res> {
           $Res Function(_$GetReservationsFutureSuccessful) then) =
       __$$GetReservationsFutureSuccessfulCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Reservation> reservations});
+  $Res call({Map<String, dynamic> body});
 }
 
 /// @nodoc
@@ -7157,13 +7139,13 @@ class __$$GetReservationsFutureSuccessfulCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? reservations = null,
+    Object? body = null,
   }) {
     return _then(_$GetReservationsFutureSuccessful(
-      null == reservations
-          ? _value._reservations
-          : reservations // ignore: cast_nullable_to_non_nullable
-              as List<Reservation>,
+      null == body
+          ? _value._body
+          : body // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -7172,20 +7154,20 @@ class __$$GetReservationsFutureSuccessfulCopyWithImpl<$Res>
 
 class _$GetReservationsFutureSuccessful
     implements GetReservationsFutureSuccessful {
-  const _$GetReservationsFutureSuccessful(final List<Reservation> reservations)
-      : _reservations = reservations;
+  const _$GetReservationsFutureSuccessful(final Map<String, dynamic> body)
+      : _body = body;
 
-  final List<Reservation> _reservations;
+  final Map<String, dynamic> _body;
   @override
-  List<Reservation> get reservations {
-    if (_reservations is EqualUnmodifiableListView) return _reservations;
+  Map<String, dynamic> get body {
+    if (_body is EqualUnmodifiableMapView) return _body;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_reservations);
+    return EqualUnmodifiableMapView(_body);
   }
 
   @override
   String toString() {
-    return 'GetReservationsFuture.successful(reservations: $reservations)';
+    return 'GetReservationsFuture.successful(body: $body)';
   }
 
   @override
@@ -7193,13 +7175,12 @@ class _$GetReservationsFutureSuccessful
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetReservationsFutureSuccessful &&
-            const DeepCollectionEquality()
-                .equals(other._reservations, _reservations));
+            const DeepCollectionEquality().equals(other._body, _body));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_reservations));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_body));
 
   @JsonKey(ignore: true)
   @override
@@ -7211,36 +7192,33 @@ class _$GetReservationsFutureSuccessful
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)
-        $default, {
-    required TResult Function(List<Reservation> reservations) successful,
+    TResult Function(int iduser, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(reservations);
+    return successful(body);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult? Function(List<Reservation> reservations)? successful,
+    TResult? Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(reservations);
+    return successful?.call(body);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult Function(List<Reservation> reservations)? successful,
+    TResult Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful(reservations);
+      return successful(body);
     }
     return orElse();
   }
@@ -7283,9 +7261,9 @@ class _$GetReservationsFutureSuccessful
 abstract class GetReservationsFutureSuccessful
     implements GetReservationsFuture {
   const factory GetReservationsFutureSuccessful(
-      final List<Reservation> reservations) = _$GetReservationsFutureSuccessful;
+      final Map<String, dynamic> body) = _$GetReservationsFutureSuccessful;
 
-  List<Reservation> get reservations;
+  Map<String, dynamic> get body;
   @JsonKey(ignore: true)
   _$$GetReservationsFutureSuccessfulCopyWith<_$GetReservationsFutureSuccessful>
       get copyWith => throw _privateConstructorUsedError;
@@ -7366,9 +7344,8 @@ class _$GetReservationsFutureError implements GetReservationsFutureError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)
-        $default, {
-    required TResult Function(List<Reservation> reservations) successful,
+    TResult Function(int iduser, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -7377,9 +7354,8 @@ class _$GetReservationsFutureError implements GetReservationsFutureError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult? Function(List<Reservation> reservations)? successful,
+    TResult? Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -7388,9 +7364,8 @@ class _$GetReservationsFutureError implements GetReservationsFutureError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult Function(List<Reservation> reservations)? successful,
+    TResult Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -7452,25 +7427,22 @@ abstract class GetReservationsFutureError
 mixin _$GetReservationsPrevious {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)
-        $default, {
-    required TResult Function(List<Reservation> reservations) successful,
+    TResult Function(int iduser, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult? Function(List<Reservation> reservations)? successful,
+    TResult? Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult Function(List<Reservation> reservations)? successful,
+    TResult Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -7526,7 +7498,7 @@ abstract class _$$GetReservationsPreviousStartCopyWith<$Res> {
           $Res Function(_$GetReservationsPreviousStart) then) =
       __$$GetReservationsPreviousStartCopyWithImpl<$Res>;
   @useResult
-  $Res call({int iduser, int page, int limit, ActionResult result});
+  $Res call({int iduser, int limit, ActionResult result});
 }
 
 /// @nodoc
@@ -7543,7 +7515,6 @@ class __$$GetReservationsPreviousStartCopyWithImpl<$Res>
   @override
   $Res call({
     Object? iduser = null,
-    Object? page = null,
     Object? limit = null,
     Object? result = null,
   }) {
@@ -7551,10 +7522,6 @@ class __$$GetReservationsPreviousStartCopyWithImpl<$Res>
       null == iduser
           ? _value.iduser
           : iduser // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
               as int,
       null == limit
           ? _value.limit
@@ -7571,13 +7538,10 @@ class __$$GetReservationsPreviousStartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
-  const _$GetReservationsPreviousStart(
-      this.iduser, this.page, this.limit, this.result);
+  const _$GetReservationsPreviousStart(this.iduser, this.limit, this.result);
 
   @override
   final int iduser;
-  @override
-  final int page;
   @override
   final int limit;
   @override
@@ -7585,7 +7549,7 @@ class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
 
   @override
   String toString() {
-    return 'GetReservationsPrevious(iduser: $iduser, page: $page, limit: $limit, result: $result)';
+    return 'GetReservationsPrevious(iduser: $iduser, limit: $limit, result: $result)';
   }
 
   @override
@@ -7594,13 +7558,12 @@ class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
         (other.runtimeType == runtimeType &&
             other is _$GetReservationsPreviousStart &&
             (identical(other.iduser, iduser) || other.iduser == iduser) &&
-            (identical(other.page, page) || other.page == page) &&
             (identical(other.limit, limit) || other.limit == limit) &&
             (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, iduser, page, limit, result);
+  int get hashCode => Object.hash(runtimeType, iduser, limit, result);
 
   @JsonKey(ignore: true)
   @override
@@ -7612,36 +7575,33 @@ class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)
-        $default, {
-    required TResult Function(List<Reservation> reservations) successful,
+    TResult Function(int iduser, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(iduser, page, limit, result);
+    return $default(iduser, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult? Function(List<Reservation> reservations)? successful,
+    TResult? Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(iduser, page, limit, result);
+    return $default?.call(iduser, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult Function(List<Reservation> reservations)? successful,
+    TResult Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(iduser, page, limit, result);
+      return $default(iduser, limit, result);
     }
     return orElse();
   }
@@ -7684,13 +7644,10 @@ class _$GetReservationsPreviousStart implements GetReservationsPreviousStart {
 
 abstract class GetReservationsPreviousStart implements GetReservationsPrevious {
   const factory GetReservationsPreviousStart(
-      final int iduser,
-      final int page,
-      final int limit,
-      final ActionResult result) = _$GetReservationsPreviousStart;
+          final int iduser, final int limit, final ActionResult result) =
+      _$GetReservationsPreviousStart;
 
   int get iduser;
-  int get page;
   int get limit;
   ActionResult get result;
   @JsonKey(ignore: true)
@@ -7705,7 +7662,7 @@ abstract class _$$GetReservationsPreviousSuccessfulCopyWith<$Res> {
           $Res Function(_$GetReservationsPreviousSuccessful) then) =
       __$$GetReservationsPreviousSuccessfulCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Reservation> reservations});
+  $Res call({Map<String, dynamic> body});
 }
 
 /// @nodoc
@@ -7721,13 +7678,13 @@ class __$$GetReservationsPreviousSuccessfulCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? reservations = null,
+    Object? body = null,
   }) {
     return _then(_$GetReservationsPreviousSuccessful(
-      null == reservations
-          ? _value._reservations
-          : reservations // ignore: cast_nullable_to_non_nullable
-              as List<Reservation>,
+      null == body
+          ? _value._body
+          : body // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
     ));
   }
 }
@@ -7736,21 +7693,20 @@ class __$$GetReservationsPreviousSuccessfulCopyWithImpl<$Res>
 
 class _$GetReservationsPreviousSuccessful
     implements GetReservationsPreviousSuccessful {
-  const _$GetReservationsPreviousSuccessful(
-      final List<Reservation> reservations)
-      : _reservations = reservations;
+  const _$GetReservationsPreviousSuccessful(final Map<String, dynamic> body)
+      : _body = body;
 
-  final List<Reservation> _reservations;
+  final Map<String, dynamic> _body;
   @override
-  List<Reservation> get reservations {
-    if (_reservations is EqualUnmodifiableListView) return _reservations;
+  Map<String, dynamic> get body {
+    if (_body is EqualUnmodifiableMapView) return _body;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_reservations);
+    return EqualUnmodifiableMapView(_body);
   }
 
   @override
   String toString() {
-    return 'GetReservationsPrevious.successful(reservations: $reservations)';
+    return 'GetReservationsPrevious.successful(body: $body)';
   }
 
   @override
@@ -7758,13 +7714,12 @@ class _$GetReservationsPreviousSuccessful
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetReservationsPreviousSuccessful &&
-            const DeepCollectionEquality()
-                .equals(other._reservations, _reservations));
+            const DeepCollectionEquality().equals(other._body, _body));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_reservations));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_body));
 
   @JsonKey(ignore: true)
   @override
@@ -7777,36 +7732,33 @@ class _$GetReservationsPreviousSuccessful
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)
-        $default, {
-    required TResult Function(List<Reservation> reservations) successful,
+    TResult Function(int iduser, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return successful(reservations);
+    return successful(body);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult? Function(List<Reservation> reservations)? successful,
+    TResult? Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return successful?.call(reservations);
+    return successful?.call(body);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult Function(List<Reservation> reservations)? successful,
+    TResult Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if (successful != null) {
-      return successful(reservations);
+      return successful(body);
     }
     return orElse();
   }
@@ -7850,10 +7802,9 @@ class _$GetReservationsPreviousSuccessful
 abstract class GetReservationsPreviousSuccessful
     implements GetReservationsPrevious {
   const factory GetReservationsPreviousSuccessful(
-          final List<Reservation> reservations) =
-      _$GetReservationsPreviousSuccessful;
+      final Map<String, dynamic> body) = _$GetReservationsPreviousSuccessful;
 
-  List<Reservation> get reservations;
+  Map<String, dynamic> get body;
   @JsonKey(ignore: true)
   _$$GetReservationsPreviousSuccessfulCopyWith<
           _$GetReservationsPreviousSuccessful>
@@ -7935,9 +7886,8 @@ class _$GetReservationsPreviousError implements GetReservationsPreviousError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)
-        $default, {
-    required TResult Function(List<Reservation> reservations) successful,
+    TResult Function(int iduser, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -7946,9 +7896,8 @@ class _$GetReservationsPreviousError implements GetReservationsPreviousError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult? Function(List<Reservation> reservations)? successful,
+    TResult? Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -7957,9 +7906,8 @@ class _$GetReservationsPreviousError implements GetReservationsPreviousError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(int iduser, int page, int limit, ActionResult result)?
-        $default, {
-    TResult Function(List<Reservation> reservations)? successful,
+    TResult Function(int iduser, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {

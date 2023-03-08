@@ -35,9 +35,9 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
     final double threshold = screenHeight * 0.5;
     const int limit = 10;
 
-    if (delta < threshold  && _isLoading == false) {
+    if (delta < threshold  && store.state.listOfPreviousReservationsNextPage != 0 && _isLoading == false) {
       _isLoading = true;
-      store.dispatch(GetReservationsPrevious(store.state.user!.userId, page, limit, _onResult));
+      store.dispatch(GetReservationsPrevious(store.state.user!.userId, limit, _onResult));
     }
   }
 

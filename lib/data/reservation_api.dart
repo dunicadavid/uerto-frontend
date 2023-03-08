@@ -61,7 +61,7 @@ class ReservationApi {
     }
   }
 
-  Future<List<Reservation>> getReservationsFuture(int iduser, int page, int limit) async {
+  Future<Map<String,dynamic>> getReservationsFuture(int iduser, int page, int limit) async {
     final String? token = await _auth.currentUser?.getIdToken();
 
     final Map<String, String> requestParams = <String, String>{
@@ -85,14 +85,10 @@ class ReservationApi {
       throw StateError(body['message'].toString());
     }
 
-    final List<dynamic> reservations = body['results'] as List<dynamic>;
-
-    return reservations //
-        .map((dynamic json) => Reservation.fromJson(json))
-        .toList();
+    return body;
   }
 
-  Future<List<Reservation>> getReservationsPrevious(int iduser, int page, int limit) async {
+  Future<Map<String,dynamic>> getReservationsPrevious(int iduser, int page, int limit) async {
     final String? token = await _auth.currentUser?.getIdToken();
 
     final Map<String, String> requestParams = <String, String>{
@@ -116,11 +112,7 @@ class ReservationApi {
       throw StateError(body['message'].toString());
     }
 
-    final List<dynamic> reservations = body['results'] as List<dynamic>;
-
-    return reservations //
-        .map((dynamic json) => Reservation.fromJson(json))
-        .toList();
+    return body;
   }
 
 }

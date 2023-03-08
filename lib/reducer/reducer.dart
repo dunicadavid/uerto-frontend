@@ -144,25 +144,33 @@ AppState _deletePlaceActivities(AppState state, DeletePlaceActivities$ action) {
 }
 
 AppState _getReservationsFuture(AppState state, GetReservationsFutureSuccessful action) {
+  final List<dynamic> reservations = action.body['results'] as List<dynamic>; ///modifica aici si mao jos 'results'
   return state.rebuild((AppStateBuilder b) {
-    b.listOfFutureReservations.addAll(action.reservations);
+    b
+      ..listOfFutureReservations.addAll(reservations.map((dynamic json) => Reservation.fromJson(json)).toList())
+      ..listOfFutureReservationsNextPage = action.body.containsKey('next') ? b.listOfFutureReservationsNextPage! + 1 : 0;
   });
 }
 
 AppState _getReservationsPrevious(AppState state, GetReservationsPreviousSuccessful action) {
+  final List<dynamic> reservations = action.body['results'] as List<dynamic>; ///modifica aici si mao jos 'results'
   return state.rebuild((AppStateBuilder b) {
-    b.listOfPreviousReservations.addAll(action.reservations);
+    b
+      ..listOfPreviousReservations.addAll(reservations.map((dynamic json) => Reservation.fromJson(json)).toList())
+      ..listOfPreviousReservationsNextPage = action.body.containsKey('next') ? b.listOfPreviousReservationsNextPage! + 1 : 0;
   });
 }
 
 AppState _deleteReservationsFuture(AppState state, DeleteReservationsFuture$ action) {
   return state.rebuild((AppStateBuilder b) {
-    b.listOfFutureReservations.clear();
+    b..listOfFutureReservationsNextPage = 1
+    ..listOfFutureReservations.clear();
   });
 }
 
 AppState _deleteReservationsPrevious(AppState state, DeleteReservationsPrevious$ action) {
   return state.rebuild((AppStateBuilder b) {
-    b.listOfPreviousReservations.clear();
+    b..listOfPreviousReservationsNextPage = 1
+    ..listOfPreviousReservations.clear();
   });
 }
