@@ -6,7 +6,7 @@ part of actions;
 
 @freezed
 class GetPlaces with _$GetPlaces implements AppAction {
-  const factory GetPlaces(String filter, ActionResult result) = GetPlacesStart;
+  const factory GetPlaces(String filter, String category, ActionResult result) = GetPlacesStart;
 
   const factory GetPlaces.successful(Map<String,dynamic> body) = GetPlacesSuccessful;
 

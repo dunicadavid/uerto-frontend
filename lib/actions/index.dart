@@ -14,6 +14,8 @@ part 'auth/email_verify.dart';
 part 'auth/login.dart';
 part 'auth/signout.dart';
 
+part 'places/filters/set_places_category.dart';
+
 part 'places/get_places.dart';
 part 'places/get_place_details.dart';
 part 'places/get_place_activities.dart';

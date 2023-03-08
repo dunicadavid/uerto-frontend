@@ -55,6 +55,13 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
             specifiedType:
                 const FullType(BuiltList, const [const FullType(PlaceShort)])));
     }
+    value = object.category;
+    if (value != null) {
+      result
+        ..add('category')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.placeDetails;
     if (value != null) {
       result
@@ -135,6 +142,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         case 'listOfPlacesNextPage':
           result.listOfPlacesNextPage = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'category':
+          result.category = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'placeDetails':
           result.placeDetails.replace(serializers.deserialize(value,
@@ -616,6 +627,8 @@ class _$AppState extends AppState {
   @override
   final int listOfPlacesNextPage;
   @override
+  final String? category;
+  @override
   final Place? placeDetails;
   @override
   final BuiltList<PlaceActivity>? placeActivities;
@@ -643,6 +656,7 @@ class _$AppState extends AppState {
       {this.user,
       this.listOfPlaces,
       required this.listOfPlacesNextPage,
+      this.category,
       this.placeDetails,
       this.placeActivities,
       this.placeActivityAvailability,
@@ -678,6 +692,7 @@ class _$AppState extends AppState {
         user == other.user &&
         listOfPlaces == other.listOfPlaces &&
         listOfPlacesNextPage == other.listOfPlacesNextPage &&
+        category == other.category &&
         placeDetails == other.placeDetails &&
         placeActivities == other.placeActivities &&
         placeActivityAvailability == other.placeActivityAvailability &&
@@ -698,6 +713,7 @@ class _$AppState extends AppState {
     _$hash = $jc(_$hash, user.hashCode);
     _$hash = $jc(_$hash, listOfPlaces.hashCode);
     _$hash = $jc(_$hash, listOfPlacesNextPage.hashCode);
+    _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, placeDetails.hashCode);
     _$hash = $jc(_$hash, placeActivities.hashCode);
     _$hash = $jc(_$hash, placeActivityAvailability.hashCode);
@@ -718,6 +734,7 @@ class _$AppState extends AppState {
           ..add('user', user)
           ..add('listOfPlaces', listOfPlaces)
           ..add('listOfPlacesNextPage', listOfPlacesNextPage)
+          ..add('category', category)
           ..add('placeDetails', placeDetails)
           ..add('placeActivities', placeActivities)
           ..add('placeActivityAvailability', placeActivityAvailability)
@@ -751,6 +768,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   int? get listOfPlacesNextPage => _$this._listOfPlacesNextPage;
   set listOfPlacesNextPage(int? listOfPlacesNextPage) =>
       _$this._listOfPlacesNextPage = listOfPlacesNextPage;
+
+  String? _category;
+  String? get category => _$this._category;
+  set category(String? category) => _$this._category = category;
 
   PlaceBuilder? _placeDetails;
   PlaceBuilder get placeDetails => _$this._placeDetails ??= new PlaceBuilder();
@@ -821,6 +842,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _user = $v.user?.toBuilder();
       _listOfPlaces = $v.listOfPlaces?.toBuilder();
       _listOfPlacesNextPage = $v.listOfPlacesNextPage;
+      _category = $v.category;
       _placeDetails = $v.placeDetails?.toBuilder();
       _placeActivities = $v.placeActivities?.toBuilder();
       _placeActivityAvailability = $v.placeActivityAvailability?.toBuilder();
@@ -860,6 +882,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               listOfPlaces: _listOfPlaces?.build(),
               listOfPlacesNextPage: BuiltValueNullFieldError.checkNotNull(
                   listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage'),
+              category: category,
               placeDetails: _placeDetails?.build(),
               placeActivities: _placeActivities?.build(),
               placeActivityAvailability: _placeActivityAvailability?.build(),

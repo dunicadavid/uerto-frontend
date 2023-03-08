@@ -26,10 +26,10 @@ class PlaceApi {
   final String _apiUrl;
   final Client _client;
 
-  Future<Map<String,dynamic>> getPlaces(String filter, int page, int limit) async {
+  Future<Map<String,dynamic>> getPlaces(String filter, String category, int page, int limit) async {
 
     final String token = await _auth.currentUser!.getIdToken();
-    final Uri uri = Uri.parse('$_apiUrl/places?page=$page&limit=$limit&type=Bar&$filter');
+    final Uri uri = Uri.parse('$_apiUrl/places?page=$page&limit=$limit&type=$category&$filter');
 
     final Response response = await _client.get(uri,
       headers: {

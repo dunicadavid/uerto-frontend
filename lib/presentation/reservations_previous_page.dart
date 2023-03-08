@@ -1,3 +1,7 @@
+// File created by
+// Dunica David-Gabriel <FLTY>
+// on 07/03/2023 15:43:55
+
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -17,7 +21,6 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
 
   final ScrollController _controller = ScrollController();
   bool _isLoading = false;
-  int page = 2;
 
   @override
   void initState() {
@@ -47,8 +50,6 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
     });
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
-    } else {
-      page++;
     }
   }
 

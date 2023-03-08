@@ -36,9 +36,9 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double threshold = screenHeight * 0.5;
 
-    if (delta < threshold && store.state.listOfPlacesNextPage != 0 && _isLoading == false) {
+    if (delta < threshold && store.state.listOfPlacesNextPage != 0 && _isLoading == false && store.state.category != null) {
       _isLoading = true;
-      store.dispatch(GetPlaces('', _onResultPlaces));
+      store.dispatch(GetPlaces('', store.state.category!, _onResultPlaces));
     }
   }
 

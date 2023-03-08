@@ -29,6 +29,8 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, DeletePlaces$>(_deletePlaces),
   TypedReducer<AppState, DeletePlaceActivities$>(_deletePlaceActivities),
 
+  TypedReducer<AppState, SetPlacesCategory$>(_setPlacesCategory),
+
   TypedReducer<AppState, GetReservationsFutureSuccessful>(_getReservationsFuture),
   TypedReducer<AppState, GetReservationsPreviousSuccessful>(_getReservationsPrevious),
   TypedReducer<AppState, DeleteReservationsFuture$>(_deleteReservationsFuture),
@@ -143,6 +145,12 @@ AppState _deletePlaceActivities(AppState state, DeletePlaceActivities$ action) {
   });
 }
 
+AppState _setPlacesCategory(AppState state, SetPlacesCategory$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.category = action.category;
+  });
+}
+
 AppState _getReservationsFuture(AppState state, GetReservationsFutureSuccessful action) {
   final List<dynamic> reservations = action.body['results'] as List<dynamic>; ///modifica aici si mao jos 'results'
   return state.rebuild((AppStateBuilder b) {
@@ -174,3 +182,5 @@ AppState _deleteReservationsPrevious(AppState state, DeleteReservationsPrevious$
     ..listOfPreviousReservations.clear();
   });
 }
+
+
