@@ -15,6 +15,989 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$VerifyLocationService {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(bool locationEnabled) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(bool locationEnabled)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(bool locationEnabled)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(VerifyLocationServiceStart value) $default, {
+    required TResult Function(VerifyLocationServiceSuccessful value) successful,
+    required TResult Function(VerifyLocationServiceError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(VerifyLocationServiceStart value)? $default, {
+    TResult? Function(VerifyLocationServiceSuccessful value)? successful,
+    TResult? Function(VerifyLocationServiceError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(VerifyLocationServiceStart value)? $default, {
+    TResult Function(VerifyLocationServiceSuccessful value)? successful,
+    TResult Function(VerifyLocationServiceError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $VerifyLocationServiceCopyWith<$Res> {
+  factory $VerifyLocationServiceCopyWith(VerifyLocationService value,
+          $Res Function(VerifyLocationService) then) =
+      _$VerifyLocationServiceCopyWithImpl<$Res, VerifyLocationService>;
+}
+
+/// @nodoc
+class _$VerifyLocationServiceCopyWithImpl<$Res,
+        $Val extends VerifyLocationService>
+    implements $VerifyLocationServiceCopyWith<$Res> {
+  _$VerifyLocationServiceCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$VerifyLocationServiceStartCopyWith<$Res> {
+  factory _$$VerifyLocationServiceStartCopyWith(
+          _$VerifyLocationServiceStart value,
+          $Res Function(_$VerifyLocationServiceStart) then) =
+      __$$VerifyLocationServiceStartCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$VerifyLocationServiceStartCopyWithImpl<$Res>
+    extends _$VerifyLocationServiceCopyWithImpl<$Res,
+        _$VerifyLocationServiceStart>
+    implements _$$VerifyLocationServiceStartCopyWith<$Res> {
+  __$$VerifyLocationServiceStartCopyWithImpl(
+      _$VerifyLocationServiceStart _value,
+      $Res Function(_$VerifyLocationServiceStart) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$VerifyLocationServiceStart implements VerifyLocationServiceStart {
+  const _$VerifyLocationServiceStart();
+
+  @override
+  String toString() {
+    return 'VerifyLocationService()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VerifyLocationServiceStart);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(bool locationEnabled) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(bool locationEnabled)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(bool locationEnabled)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(VerifyLocationServiceStart value) $default, {
+    required TResult Function(VerifyLocationServiceSuccessful value) successful,
+    required TResult Function(VerifyLocationServiceError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(VerifyLocationServiceStart value)? $default, {
+    TResult? Function(VerifyLocationServiceSuccessful value)? successful,
+    TResult? Function(VerifyLocationServiceError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(VerifyLocationServiceStart value)? $default, {
+    TResult Function(VerifyLocationServiceSuccessful value)? successful,
+    TResult Function(VerifyLocationServiceError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VerifyLocationServiceStart implements VerifyLocationService {
+  const factory VerifyLocationServiceStart() = _$VerifyLocationServiceStart;
+}
+
+/// @nodoc
+abstract class _$$VerifyLocationServiceSuccessfulCopyWith<$Res> {
+  factory _$$VerifyLocationServiceSuccessfulCopyWith(
+          _$VerifyLocationServiceSuccessful value,
+          $Res Function(_$VerifyLocationServiceSuccessful) then) =
+      __$$VerifyLocationServiceSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool locationEnabled});
+}
+
+/// @nodoc
+class __$$VerifyLocationServiceSuccessfulCopyWithImpl<$Res>
+    extends _$VerifyLocationServiceCopyWithImpl<$Res,
+        _$VerifyLocationServiceSuccessful>
+    implements _$$VerifyLocationServiceSuccessfulCopyWith<$Res> {
+  __$$VerifyLocationServiceSuccessfulCopyWithImpl(
+      _$VerifyLocationServiceSuccessful _value,
+      $Res Function(_$VerifyLocationServiceSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? locationEnabled = null,
+  }) {
+    return _then(_$VerifyLocationServiceSuccessful(
+      null == locationEnabled
+          ? _value.locationEnabled
+          : locationEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$VerifyLocationServiceSuccessful
+    implements VerifyLocationServiceSuccessful {
+  const _$VerifyLocationServiceSuccessful(this.locationEnabled);
+
+  @override
+  final bool locationEnabled;
+
+  @override
+  String toString() {
+    return 'VerifyLocationService.successful(locationEnabled: $locationEnabled)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VerifyLocationServiceSuccessful &&
+            (identical(other.locationEnabled, locationEnabled) ||
+                other.locationEnabled == locationEnabled));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, locationEnabled);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VerifyLocationServiceSuccessfulCopyWith<_$VerifyLocationServiceSuccessful>
+      get copyWith => __$$VerifyLocationServiceSuccessfulCopyWithImpl<
+          _$VerifyLocationServiceSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(bool locationEnabled) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(locationEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(bool locationEnabled)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(locationEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(bool locationEnabled)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(locationEnabled);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(VerifyLocationServiceStart value) $default, {
+    required TResult Function(VerifyLocationServiceSuccessful value) successful,
+    required TResult Function(VerifyLocationServiceError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(VerifyLocationServiceStart value)? $default, {
+    TResult? Function(VerifyLocationServiceSuccessful value)? successful,
+    TResult? Function(VerifyLocationServiceError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(VerifyLocationServiceStart value)? $default, {
+    TResult Function(VerifyLocationServiceSuccessful value)? successful,
+    TResult Function(VerifyLocationServiceError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VerifyLocationServiceSuccessful
+    implements VerifyLocationService {
+  const factory VerifyLocationServiceSuccessful(final bool locationEnabled) =
+      _$VerifyLocationServiceSuccessful;
+
+  bool get locationEnabled;
+  @JsonKey(ignore: true)
+  _$$VerifyLocationServiceSuccessfulCopyWith<_$VerifyLocationServiceSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$VerifyLocationServiceErrorCopyWith<$Res> {
+  factory _$$VerifyLocationServiceErrorCopyWith(
+          _$VerifyLocationServiceError value,
+          $Res Function(_$VerifyLocationServiceError) then) =
+      __$$VerifyLocationServiceErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$VerifyLocationServiceErrorCopyWithImpl<$Res>
+    extends _$VerifyLocationServiceCopyWithImpl<$Res,
+        _$VerifyLocationServiceError>
+    implements _$$VerifyLocationServiceErrorCopyWith<$Res> {
+  __$$VerifyLocationServiceErrorCopyWithImpl(
+      _$VerifyLocationServiceError _value,
+      $Res Function(_$VerifyLocationServiceError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$VerifyLocationServiceError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$VerifyLocationServiceError implements VerifyLocationServiceError {
+  const _$VerifyLocationServiceError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'VerifyLocationService.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VerifyLocationServiceError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VerifyLocationServiceErrorCopyWith<_$VerifyLocationServiceError>
+      get copyWith => __$$VerifyLocationServiceErrorCopyWithImpl<
+          _$VerifyLocationServiceError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function() $default, {
+    required TResult Function(bool locationEnabled) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function()? $default, {
+    TResult? Function(bool locationEnabled)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function()? $default, {
+    TResult Function(bool locationEnabled)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(VerifyLocationServiceStart value) $default, {
+    required TResult Function(VerifyLocationServiceSuccessful value) successful,
+    required TResult Function(VerifyLocationServiceError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(VerifyLocationServiceStart value)? $default, {
+    TResult? Function(VerifyLocationServiceSuccessful value)? successful,
+    TResult? Function(VerifyLocationServiceError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(VerifyLocationServiceStart value)? $default, {
+    TResult Function(VerifyLocationServiceSuccessful value)? successful,
+    TResult Function(VerifyLocationServiceError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class VerifyLocationServiceError
+    implements VerifyLocationService, ErrorAction {
+  const factory VerifyLocationServiceError(
+          final Object error, final StackTrace stackTrace) =
+      _$VerifyLocationServiceError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$VerifyLocationServiceErrorCopyWith<_$VerifyLocationServiceError>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$GetCurrentLocation {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result) $default, {
+    required TResult Function(Position currentLocation) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result)? $default, {
+    TResult? Function(Position currentLocation)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result)? $default, {
+    TResult Function(Position currentLocation)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCurrentLocationStart value) $default, {
+    required TResult Function(GetCurrentLocationSuccessful value) successful,
+    required TResult Function(GetCurrentLocationError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetCurrentLocationStart value)? $default, {
+    TResult? Function(GetCurrentLocationSuccessful value)? successful,
+    TResult? Function(GetCurrentLocationError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCurrentLocationStart value)? $default, {
+    TResult Function(GetCurrentLocationSuccessful value)? successful,
+    TResult Function(GetCurrentLocationError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetCurrentLocationCopyWith<$Res> {
+  factory $GetCurrentLocationCopyWith(
+          GetCurrentLocation value, $Res Function(GetCurrentLocation) then) =
+      _$GetCurrentLocationCopyWithImpl<$Res, GetCurrentLocation>;
+}
+
+/// @nodoc
+class _$GetCurrentLocationCopyWithImpl<$Res, $Val extends GetCurrentLocation>
+    implements $GetCurrentLocationCopyWith<$Res> {
+  _$GetCurrentLocationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetCurrentLocationStartCopyWith<$Res> {
+  factory _$$GetCurrentLocationStartCopyWith(_$GetCurrentLocationStart value,
+          $Res Function(_$GetCurrentLocationStart) then) =
+      __$$GetCurrentLocationStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ActionResult result});
+}
+
+/// @nodoc
+class __$$GetCurrentLocationStartCopyWithImpl<$Res>
+    extends _$GetCurrentLocationCopyWithImpl<$Res, _$GetCurrentLocationStart>
+    implements _$$GetCurrentLocationStartCopyWith<$Res> {
+  __$$GetCurrentLocationStartCopyWithImpl(_$GetCurrentLocationStart _value,
+      $Res Function(_$GetCurrentLocationStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? result = null,
+  }) {
+    return _then(_$GetCurrentLocationStart(
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetCurrentLocationStart implements GetCurrentLocationStart {
+  const _$GetCurrentLocationStart(this.result);
+
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'GetCurrentLocation(result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetCurrentLocationStart &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCurrentLocationStartCopyWith<_$GetCurrentLocationStart> get copyWith =>
+      __$$GetCurrentLocationStartCopyWithImpl<_$GetCurrentLocationStart>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result) $default, {
+    required TResult Function(Position currentLocation) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result)? $default, {
+    TResult? Function(Position currentLocation)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result)? $default, {
+    TResult Function(Position currentLocation)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCurrentLocationStart value) $default, {
+    required TResult Function(GetCurrentLocationSuccessful value) successful,
+    required TResult Function(GetCurrentLocationError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetCurrentLocationStart value)? $default, {
+    TResult? Function(GetCurrentLocationSuccessful value)? successful,
+    TResult? Function(GetCurrentLocationError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCurrentLocationStart value)? $default, {
+    TResult Function(GetCurrentLocationSuccessful value)? successful,
+    TResult Function(GetCurrentLocationError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCurrentLocationStart implements GetCurrentLocation {
+  const factory GetCurrentLocationStart(final ActionResult result) =
+      _$GetCurrentLocationStart;
+
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$GetCurrentLocationStartCopyWith<_$GetCurrentLocationStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetCurrentLocationSuccessfulCopyWith<$Res> {
+  factory _$$GetCurrentLocationSuccessfulCopyWith(
+          _$GetCurrentLocationSuccessful value,
+          $Res Function(_$GetCurrentLocationSuccessful) then) =
+      __$$GetCurrentLocationSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Position currentLocation});
+}
+
+/// @nodoc
+class __$$GetCurrentLocationSuccessfulCopyWithImpl<$Res>
+    extends _$GetCurrentLocationCopyWithImpl<$Res,
+        _$GetCurrentLocationSuccessful>
+    implements _$$GetCurrentLocationSuccessfulCopyWith<$Res> {
+  __$$GetCurrentLocationSuccessfulCopyWithImpl(
+      _$GetCurrentLocationSuccessful _value,
+      $Res Function(_$GetCurrentLocationSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? currentLocation = null,
+  }) {
+    return _then(_$GetCurrentLocationSuccessful(
+      null == currentLocation
+          ? _value.currentLocation
+          : currentLocation // ignore: cast_nullable_to_non_nullable
+              as Position,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetCurrentLocationSuccessful implements GetCurrentLocationSuccessful {
+  const _$GetCurrentLocationSuccessful(this.currentLocation);
+
+  @override
+  final Position currentLocation;
+
+  @override
+  String toString() {
+    return 'GetCurrentLocation.successful(currentLocation: $currentLocation)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetCurrentLocationSuccessful &&
+            (identical(other.currentLocation, currentLocation) ||
+                other.currentLocation == currentLocation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, currentLocation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCurrentLocationSuccessfulCopyWith<_$GetCurrentLocationSuccessful>
+      get copyWith => __$$GetCurrentLocationSuccessfulCopyWithImpl<
+          _$GetCurrentLocationSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result) $default, {
+    required TResult Function(Position currentLocation) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(currentLocation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result)? $default, {
+    TResult? Function(Position currentLocation)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(currentLocation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result)? $default, {
+    TResult Function(Position currentLocation)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(currentLocation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCurrentLocationStart value) $default, {
+    required TResult Function(GetCurrentLocationSuccessful value) successful,
+    required TResult Function(GetCurrentLocationError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetCurrentLocationStart value)? $default, {
+    TResult? Function(GetCurrentLocationSuccessful value)? successful,
+    TResult? Function(GetCurrentLocationError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCurrentLocationStart value)? $default, {
+    TResult Function(GetCurrentLocationSuccessful value)? successful,
+    TResult Function(GetCurrentLocationError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCurrentLocationSuccessful implements GetCurrentLocation {
+  const factory GetCurrentLocationSuccessful(final Position currentLocation) =
+      _$GetCurrentLocationSuccessful;
+
+  Position get currentLocation;
+  @JsonKey(ignore: true)
+  _$$GetCurrentLocationSuccessfulCopyWith<_$GetCurrentLocationSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetCurrentLocationErrorCopyWith<$Res> {
+  factory _$$GetCurrentLocationErrorCopyWith(_$GetCurrentLocationError value,
+          $Res Function(_$GetCurrentLocationError) then) =
+      __$$GetCurrentLocationErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$GetCurrentLocationErrorCopyWithImpl<$Res>
+    extends _$GetCurrentLocationCopyWithImpl<$Res, _$GetCurrentLocationError>
+    implements _$$GetCurrentLocationErrorCopyWith<$Res> {
+  __$$GetCurrentLocationErrorCopyWithImpl(_$GetCurrentLocationError _value,
+      $Res Function(_$GetCurrentLocationError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$GetCurrentLocationError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetCurrentLocationError implements GetCurrentLocationError {
+  const _$GetCurrentLocationError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetCurrentLocation.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetCurrentLocationError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetCurrentLocationErrorCopyWith<_$GetCurrentLocationError> get copyWith =>
+      __$$GetCurrentLocationErrorCopyWithImpl<_$GetCurrentLocationError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result) $default, {
+    required TResult Function(Position currentLocation) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result)? $default, {
+    TResult? Function(Position currentLocation)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result)? $default, {
+    TResult Function(Position currentLocation)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetCurrentLocationStart value) $default, {
+    required TResult Function(GetCurrentLocationSuccessful value) successful,
+    required TResult Function(GetCurrentLocationError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetCurrentLocationStart value)? $default, {
+    TResult? Function(GetCurrentLocationSuccessful value)? successful,
+    TResult? Function(GetCurrentLocationError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetCurrentLocationStart value)? $default, {
+    TResult Function(GetCurrentLocationSuccessful value)? successful,
+    TResult Function(GetCurrentLocationError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetCurrentLocationError
+    implements GetCurrentLocation, ErrorAction {
+  const factory GetCurrentLocationError(
+          final Object error, final StackTrace stackTrace) =
+      _$GetCurrentLocationError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$GetCurrentLocationErrorCopyWith<_$GetCurrentLocationError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$InitializeApp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
@@ -4067,6 +5050,483 @@ abstract class SetPlacesCategory$ implements SetPlacesCategory {
   @override
   @JsonKey(ignore: true)
   _$$SetPlacesCategory$CopyWith<_$SetPlacesCategory$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SetPlacesFilters {
+  String get filter => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetPlacesFiltersCopyWith<SetPlacesFilters> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetPlacesFiltersCopyWith<$Res> {
+  factory $SetPlacesFiltersCopyWith(
+          SetPlacesFilters value, $Res Function(SetPlacesFilters) then) =
+      _$SetPlacesFiltersCopyWithImpl<$Res, SetPlacesFilters>;
+  @useResult
+  $Res call({String filter});
+}
+
+/// @nodoc
+class _$SetPlacesFiltersCopyWithImpl<$Res, $Val extends SetPlacesFilters>
+    implements $SetPlacesFiltersCopyWith<$Res> {
+  _$SetPlacesFiltersCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_value.copyWith(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SetPlacesFilters$CopyWith<$Res>
+    implements $SetPlacesFiltersCopyWith<$Res> {
+  factory _$$SetPlacesFilters$CopyWith(
+          _$SetPlacesFilters$ value, $Res Function(_$SetPlacesFilters$) then) =
+      __$$SetPlacesFilters$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String filter});
+}
+
+/// @nodoc
+class __$$SetPlacesFilters$CopyWithImpl<$Res>
+    extends _$SetPlacesFiltersCopyWithImpl<$Res, _$SetPlacesFilters$>
+    implements _$$SetPlacesFilters$CopyWith<$Res> {
+  __$$SetPlacesFilters$CopyWithImpl(
+      _$SetPlacesFilters$ _value, $Res Function(_$SetPlacesFilters$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$SetPlacesFilters$(
+      null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetPlacesFilters$ implements SetPlacesFilters$ {
+  const _$SetPlacesFilters$(this.filter);
+
+  @override
+  final String filter;
+
+  @override
+  String toString() {
+    return 'SetPlacesFilters(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetPlacesFilters$ &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetPlacesFilters$CopyWith<_$SetPlacesFilters$> get copyWith =>
+      __$$SetPlacesFilters$CopyWithImpl<_$SetPlacesFilters$>(this, _$identity);
+}
+
+abstract class SetPlacesFilters$ implements SetPlacesFilters {
+  const factory SetPlacesFilters$(final String filter) = _$SetPlacesFilters$;
+
+  @override
+  String get filter;
+  @override
+  @JsonKey(ignore: true)
+  _$$SetPlacesFilters$CopyWith<_$SetPlacesFilters$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SetPlacesSortedBy {
+  String get sortBy => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SetPlacesSortedByCopyWith<SetPlacesSortedBy> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetPlacesSortedByCopyWith<$Res> {
+  factory $SetPlacesSortedByCopyWith(
+          SetPlacesSortedBy value, $Res Function(SetPlacesSortedBy) then) =
+      _$SetPlacesSortedByCopyWithImpl<$Res, SetPlacesSortedBy>;
+  @useResult
+  $Res call({String sortBy});
+}
+
+/// @nodoc
+class _$SetPlacesSortedByCopyWithImpl<$Res, $Val extends SetPlacesSortedBy>
+    implements $SetPlacesSortedByCopyWith<$Res> {
+  _$SetPlacesSortedByCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sortBy = null,
+  }) {
+    return _then(_value.copyWith(
+      sortBy: null == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$SetPlacesSortedBy$CopyWith<$Res>
+    implements $SetPlacesSortedByCopyWith<$Res> {
+  factory _$$SetPlacesSortedBy$CopyWith(_$SetPlacesSortedBy$ value,
+          $Res Function(_$SetPlacesSortedBy$) then) =
+      __$$SetPlacesSortedBy$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String sortBy});
+}
+
+/// @nodoc
+class __$$SetPlacesSortedBy$CopyWithImpl<$Res>
+    extends _$SetPlacesSortedByCopyWithImpl<$Res, _$SetPlacesSortedBy$>
+    implements _$$SetPlacesSortedBy$CopyWith<$Res> {
+  __$$SetPlacesSortedBy$CopyWithImpl(
+      _$SetPlacesSortedBy$ _value, $Res Function(_$SetPlacesSortedBy$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sortBy = null,
+  }) {
+    return _then(_$SetPlacesSortedBy$(
+      null == sortBy
+          ? _value.sortBy
+          : sortBy // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetPlacesSortedBy$ implements SetPlacesSortedBy$ {
+  const _$SetPlacesSortedBy$(this.sortBy);
+
+  @override
+  final String sortBy;
+
+  @override
+  String toString() {
+    return 'SetPlacesSortedBy(sortBy: $sortBy)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetPlacesSortedBy$ &&
+            (identical(other.sortBy, sortBy) || other.sortBy == sortBy));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, sortBy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetPlacesSortedBy$CopyWith<_$SetPlacesSortedBy$> get copyWith =>
+      __$$SetPlacesSortedBy$CopyWithImpl<_$SetPlacesSortedBy$>(
+          this, _$identity);
+}
+
+abstract class SetPlacesSortedBy$ implements SetPlacesSortedBy {
+  const factory SetPlacesSortedBy$(final String sortBy) = _$SetPlacesSortedBy$;
+
+  @override
+  String get sortBy;
+  @override
+  @JsonKey(ignore: true)
+  _$$SetPlacesSortedBy$CopyWith<_$SetPlacesSortedBy$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$DeletePlacesFilters {}
+
+/// @nodoc
+abstract class $DeletePlacesFiltersCopyWith<$Res> {
+  factory $DeletePlacesFiltersCopyWith(
+          DeletePlacesFilters value, $Res Function(DeletePlacesFilters) then) =
+      _$DeletePlacesFiltersCopyWithImpl<$Res, DeletePlacesFilters>;
+}
+
+/// @nodoc
+class _$DeletePlacesFiltersCopyWithImpl<$Res, $Val extends DeletePlacesFilters>
+    implements $DeletePlacesFiltersCopyWith<$Res> {
+  _$DeletePlacesFiltersCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DeletePlacesFilters$CopyWith<$Res> {
+  factory _$$DeletePlacesFilters$CopyWith(_$DeletePlacesFilters$ value,
+          $Res Function(_$DeletePlacesFilters$) then) =
+      __$$DeletePlacesFilters$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeletePlacesFilters$CopyWithImpl<$Res>
+    extends _$DeletePlacesFiltersCopyWithImpl<$Res, _$DeletePlacesFilters$>
+    implements _$$DeletePlacesFilters$CopyWith<$Res> {
+  __$$DeletePlacesFilters$CopyWithImpl(_$DeletePlacesFilters$ _value,
+      $Res Function(_$DeletePlacesFilters$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeletePlacesFilters$ implements DeletePlacesFilters$ {
+  const _$DeletePlacesFilters$();
+
+  @override
+  String toString() {
+    return 'DeletePlacesFilters()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeletePlacesFilters$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class DeletePlacesFilters$ implements DeletePlacesFilters {
+  const factory DeletePlacesFilters$() = _$DeletePlacesFilters$;
+}
+
+/// @nodoc
+mixin _$DeletePlacesSortedBy {}
+
+/// @nodoc
+abstract class $DeletePlacesSortedByCopyWith<$Res> {
+  factory $DeletePlacesSortedByCopyWith(DeletePlacesSortedBy value,
+          $Res Function(DeletePlacesSortedBy) then) =
+      _$DeletePlacesSortedByCopyWithImpl<$Res, DeletePlacesSortedBy>;
+}
+
+/// @nodoc
+class _$DeletePlacesSortedByCopyWithImpl<$Res,
+        $Val extends DeletePlacesSortedBy>
+    implements $DeletePlacesSortedByCopyWith<$Res> {
+  _$DeletePlacesSortedByCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DeletePlacesSortedBy$CopyWith<$Res> {
+  factory _$$DeletePlacesSortedBy$CopyWith(_$DeletePlacesSortedBy$ value,
+          $Res Function(_$DeletePlacesSortedBy$) then) =
+      __$$DeletePlacesSortedBy$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeletePlacesSortedBy$CopyWithImpl<$Res>
+    extends _$DeletePlacesSortedByCopyWithImpl<$Res, _$DeletePlacesSortedBy$>
+    implements _$$DeletePlacesSortedBy$CopyWith<$Res> {
+  __$$DeletePlacesSortedBy$CopyWithImpl(_$DeletePlacesSortedBy$ _value,
+      $Res Function(_$DeletePlacesSortedBy$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeletePlacesSortedBy$ implements DeletePlacesSortedBy$ {
+  const _$DeletePlacesSortedBy$();
+
+  @override
+  String toString() {
+    return 'DeletePlacesSortedBy()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeletePlacesSortedBy$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class DeletePlacesSortedBy$ implements DeletePlacesSortedBy {
+  const factory DeletePlacesSortedBy$() = _$DeletePlacesSortedBy$;
+}
+
+/// @nodoc
+mixin _$RemovePlacesFilters {
+  String get filter => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $RemovePlacesFiltersCopyWith<RemovePlacesFilters> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemovePlacesFiltersCopyWith<$Res> {
+  factory $RemovePlacesFiltersCopyWith(
+          RemovePlacesFilters value, $Res Function(RemovePlacesFilters) then) =
+      _$RemovePlacesFiltersCopyWithImpl<$Res, RemovePlacesFilters>;
+  @useResult
+  $Res call({String filter});
+}
+
+/// @nodoc
+class _$RemovePlacesFiltersCopyWithImpl<$Res, $Val extends RemovePlacesFilters>
+    implements $RemovePlacesFiltersCopyWith<$Res> {
+  _$RemovePlacesFiltersCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_value.copyWith(
+      filter: null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$RemovePlacesFilters$CopyWith<$Res>
+    implements $RemovePlacesFiltersCopyWith<$Res> {
+  factory _$$RemovePlacesFilters$CopyWith(_$RemovePlacesFilters$ value,
+          $Res Function(_$RemovePlacesFilters$) then) =
+      __$$RemovePlacesFilters$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String filter});
+}
+
+/// @nodoc
+class __$$RemovePlacesFilters$CopyWithImpl<$Res>
+    extends _$RemovePlacesFiltersCopyWithImpl<$Res, _$RemovePlacesFilters$>
+    implements _$$RemovePlacesFilters$CopyWith<$Res> {
+  __$$RemovePlacesFilters$CopyWithImpl(_$RemovePlacesFilters$ _value,
+      $Res Function(_$RemovePlacesFilters$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filter = null,
+  }) {
+    return _then(_$RemovePlacesFilters$(
+      null == filter
+          ? _value.filter
+          : filter // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemovePlacesFilters$ implements RemovePlacesFilters$ {
+  const _$RemovePlacesFilters$(this.filter);
+
+  @override
+  final String filter;
+
+  @override
+  String toString() {
+    return 'RemovePlacesFilters(filter: $filter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemovePlacesFilters$ &&
+            (identical(other.filter, filter) || other.filter == filter));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filter);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemovePlacesFilters$CopyWith<_$RemovePlacesFilters$> get copyWith =>
+      __$$RemovePlacesFilters$CopyWithImpl<_$RemovePlacesFilters$>(
+          this, _$identity);
+}
+
+abstract class RemovePlacesFilters$ implements RemovePlacesFilters {
+  const factory RemovePlacesFilters$(final String filter) =
+      _$RemovePlacesFilters$;
+
+  @override
+  String get filter;
+  @override
+  @JsonKey(ignore: true)
+  _$$RemovePlacesFilters$CopyWith<_$RemovePlacesFilters$> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

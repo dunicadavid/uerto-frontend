@@ -11,6 +11,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
         ..listOfPlacesNextPage = 1
         ..listOfFutureReservationsNextPage = 1
         ..listOfPreviousReservationsNextPage = 1
+        ..filters.clear()
         ..isInitDone = false;
     });
   }
@@ -24,6 +25,10 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   BuiltList<PlaceShort>? get listOfPlaces;
   int get listOfPlacesNextPage;
   String? get category;
+  BuiltList<String>? get filters;
+  String? get sortBy;
+  double? get latitude;
+  double? get longitude;
 
   Place? get placeDetails;
   BuiltList<PlaceActivity>? get placeActivities;
@@ -38,6 +43,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   bool? get isServerWorking;
   bool get isInitDone;
+  bool? get locationEnabled;
 
   Map<String, dynamic> get json => serializers.serializeWith(serializer, this)! as Map<String, dynamic>;
 

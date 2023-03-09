@@ -62,6 +62,35 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.filters;
+    if (value != null) {
+      result
+        ..add('filters')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.sortBy;
+    if (value != null) {
+      result
+        ..add('sortBy')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.latitude;
+    if (value != null) {
+      result
+        ..add('latitude')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
+    value = object.longitude;
+    if (value != null) {
+      result
+        ..add('longitude')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
     value = object.placeDetails;
     if (value != null) {
       result
@@ -115,6 +144,13 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.locationEnabled;
+    if (value != null) {
+      result
+        ..add('locationEnabled')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     return result;
   }
 
@@ -146,6 +182,24 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         case 'category':
           result.category = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
+          break;
+        case 'filters':
+          result.filters.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'sortBy':
+          result.sortBy = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'latitude':
+          result.latitude = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
+        case 'longitude':
+          result.longitude = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
           break;
         case 'placeDetails':
           result.placeDetails.replace(serializers.deserialize(value,
@@ -196,6 +250,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         case 'isInitDone':
           result.isInitDone = serializers.deserialize(value,
               specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'locationEnabled':
+          result.locationEnabled = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -629,6 +687,14 @@ class _$AppState extends AppState {
   @override
   final String? category;
   @override
+  final BuiltList<String>? filters;
+  @override
+  final String? sortBy;
+  @override
+  final double? latitude;
+  @override
+  final double? longitude;
+  @override
   final Place? placeDetails;
   @override
   final BuiltList<PlaceActivity>? placeActivities;
@@ -648,6 +714,8 @@ class _$AppState extends AppState {
   final bool? isServerWorking;
   @override
   final bool isInitDone;
+  @override
+  final bool? locationEnabled;
 
   factory _$AppState([void Function(AppStateBuilder)? updates]) =>
       (new AppStateBuilder()..update(updates))._build();
@@ -657,6 +725,10 @@ class _$AppState extends AppState {
       this.listOfPlaces,
       required this.listOfPlacesNextPage,
       this.category,
+      this.filters,
+      this.sortBy,
+      this.latitude,
+      this.longitude,
       this.placeDetails,
       this.placeActivities,
       this.placeActivityAvailability,
@@ -666,7 +738,8 @@ class _$AppState extends AppState {
       required this.listOfPreviousReservationsNextPage,
       this.error,
       this.isServerWorking,
-      required this.isInitDone})
+      required this.isInitDone,
+      this.locationEnabled})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage');
@@ -693,6 +766,10 @@ class _$AppState extends AppState {
         listOfPlaces == other.listOfPlaces &&
         listOfPlacesNextPage == other.listOfPlacesNextPage &&
         category == other.category &&
+        filters == other.filters &&
+        sortBy == other.sortBy &&
+        latitude == other.latitude &&
+        longitude == other.longitude &&
         placeDetails == other.placeDetails &&
         placeActivities == other.placeActivities &&
         placeActivityAvailability == other.placeActivityAvailability &&
@@ -704,7 +781,8 @@ class _$AppState extends AppState {
             other.listOfPreviousReservationsNextPage &&
         error == other.error &&
         isServerWorking == other.isServerWorking &&
-        isInitDone == other.isInitDone;
+        isInitDone == other.isInitDone &&
+        locationEnabled == other.locationEnabled;
   }
 
   @override
@@ -714,6 +792,10 @@ class _$AppState extends AppState {
     _$hash = $jc(_$hash, listOfPlaces.hashCode);
     _$hash = $jc(_$hash, listOfPlacesNextPage.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, filters.hashCode);
+    _$hash = $jc(_$hash, sortBy.hashCode);
+    _$hash = $jc(_$hash, latitude.hashCode);
+    _$hash = $jc(_$hash, longitude.hashCode);
     _$hash = $jc(_$hash, placeDetails.hashCode);
     _$hash = $jc(_$hash, placeActivities.hashCode);
     _$hash = $jc(_$hash, placeActivityAvailability.hashCode);
@@ -724,6 +806,7 @@ class _$AppState extends AppState {
     _$hash = $jc(_$hash, error.hashCode);
     _$hash = $jc(_$hash, isServerWorking.hashCode);
     _$hash = $jc(_$hash, isInitDone.hashCode);
+    _$hash = $jc(_$hash, locationEnabled.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -735,6 +818,10 @@ class _$AppState extends AppState {
           ..add('listOfPlaces', listOfPlaces)
           ..add('listOfPlacesNextPage', listOfPlacesNextPage)
           ..add('category', category)
+          ..add('filters', filters)
+          ..add('sortBy', sortBy)
+          ..add('latitude', latitude)
+          ..add('longitude', longitude)
           ..add('placeDetails', placeDetails)
           ..add('placeActivities', placeActivities)
           ..add('placeActivityAvailability', placeActivityAvailability)
@@ -746,7 +833,8 @@ class _$AppState extends AppState {
               listOfPreviousReservationsNextPage)
           ..add('error', error)
           ..add('isServerWorking', isServerWorking)
-          ..add('isInitDone', isInitDone))
+          ..add('isInitDone', isInitDone)
+          ..add('locationEnabled', locationEnabled))
         .toString();
   }
 }
@@ -772,6 +860,23 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   String? _category;
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
+
+  ListBuilder<String>? _filters;
+  ListBuilder<String> get filters =>
+      _$this._filters ??= new ListBuilder<String>();
+  set filters(ListBuilder<String>? filters) => _$this._filters = filters;
+
+  String? _sortBy;
+  String? get sortBy => _$this._sortBy;
+  set sortBy(String? sortBy) => _$this._sortBy = sortBy;
+
+  double? _latitude;
+  double? get latitude => _$this._latitude;
+  set latitude(double? latitude) => _$this._latitude = latitude;
+
+  double? _longitude;
+  double? get longitude => _$this._longitude;
+  set longitude(double? longitude) => _$this._longitude = longitude;
 
   PlaceBuilder? _placeDetails;
   PlaceBuilder get placeDetails => _$this._placeDetails ??= new PlaceBuilder();
@@ -834,6 +939,11 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   bool? get isInitDone => _$this._isInitDone;
   set isInitDone(bool? isInitDone) => _$this._isInitDone = isInitDone;
 
+  bool? _locationEnabled;
+  bool? get locationEnabled => _$this._locationEnabled;
+  set locationEnabled(bool? locationEnabled) =>
+      _$this._locationEnabled = locationEnabled;
+
   AppStateBuilder();
 
   AppStateBuilder get _$this {
@@ -843,6 +953,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _listOfPlaces = $v.listOfPlaces?.toBuilder();
       _listOfPlacesNextPage = $v.listOfPlacesNextPage;
       _category = $v.category;
+      _filters = $v.filters?.toBuilder();
+      _sortBy = $v.sortBy;
+      _latitude = $v.latitude;
+      _longitude = $v.longitude;
       _placeDetails = $v.placeDetails?.toBuilder();
       _placeActivities = $v.placeActivities?.toBuilder();
       _placeActivityAvailability = $v.placeActivityAvailability?.toBuilder();
@@ -854,6 +968,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _error = $v.error;
       _isServerWorking = $v.isServerWorking;
       _isInitDone = $v.isInitDone;
+      _locationEnabled = $v.locationEnabled;
       _$v = null;
     }
     return this;
@@ -883,6 +998,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               listOfPlacesNextPage: BuiltValueNullFieldError.checkNotNull(
                   listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage'),
               category: category,
+              filters: _filters?.build(),
+              sortBy: sortBy,
+              latitude: latitude,
+              longitude: longitude,
               placeDetails: _placeDetails?.build(),
               placeActivities: _placeActivities?.build(),
               placeActivityAvailability: _placeActivityAvailability?.build(),
@@ -901,7 +1020,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               error: error,
               isServerWorking: isServerWorking,
               isInitDone: BuiltValueNullFieldError.checkNotNull(
-                  isInitDone, r'AppState', 'isInitDone'));
+                  isInitDone, r'AppState', 'isInitDone'),
+              locationEnabled: locationEnabled);
     } catch (_) {
       late String _$failedField;
       try {
@@ -909,6 +1029,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         _user?.build();
         _$failedField = 'listOfPlaces';
         _listOfPlaces?.build();
+
+        _$failedField = 'filters';
+        _filters?.build();
 
         _$failedField = 'placeDetails';
         _placeDetails?.build();

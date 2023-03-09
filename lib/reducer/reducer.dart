@@ -7,13 +7,14 @@ import 'package:redux/redux.dart';
 import '../actions/index.dart';
 import '../models/index.dart';
 
-
 Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
-      (AppState state, dynamic action) {
+  (AppState state, dynamic action) {
     print(action);
     return state;
   },
-
+  TypedReducer<AppState, VerifyLocationServiceSuccessful>(_verifyLocationServiceSuccessful),
+  TypedReducer<AppState, VerifyLocationServiceError>(_verifyLocationServiceError),
+  TypedReducer<AppState, GetCurrentLocationSuccessful>(_getCurrentLocationSuccessful),
   TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
   TypedReducer<AppState, InitializeAppError>(_initializeAppError),
   TypedReducer<AppState, RegisterPhase2Successful>(_registerPhase2Successful),
@@ -21,22 +22,43 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, LoginSuccessful>(_loginSuccessful),
   TypedReducer<AppState, LoginError>(_loginError),
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
-
   TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
   TypedReducer<AppState, GetPlaceDetailsSuccessful>(_getPlaceDetailsSuccessful),
   TypedReducer<AppState, GetPlaceActivitiesSuccessful>(_getPlaceActivitiesSuccessful),
   TypedReducer<AppState, GetPlaceActivityAvailabilitySuccessful>(_getPlaceActivityAvailabilitySuccessful),
   TypedReducer<AppState, DeletePlaces$>(_deletePlaces),
   TypedReducer<AppState, DeletePlaceActivities$>(_deletePlaceActivities),
-
   TypedReducer<AppState, SetPlacesCategory$>(_setPlacesCategory),
-
+  TypedReducer<AppState, SetPlacesFilters$>(_setPlacesFilters),
+  TypedReducer<AppState, SetPlacesSortedBy$>(_setPlacesSortedBy),
+  TypedReducer<AppState, RemovePlacesFilters$>(_removePlacesFilters),
+  TypedReducer<AppState, DeletePlacesFilters$>(_deletePlacesFilters),
+  TypedReducer<AppState, DeletePlacesSortedBy$>(_deletePlacesSortedBy),
   TypedReducer<AppState, GetReservationsFutureSuccessful>(_getReservationsFuture),
   TypedReducer<AppState, GetReservationsPreviousSuccessful>(_getReservationsPrevious),
   TypedReducer<AppState, DeleteReservationsFuture$>(_deleteReservationsFuture),
   TypedReducer<AppState, DeleteReservationsPrevious$>(_deleteReservationsPrevious),
-
 ]);
+
+AppState _verifyLocationServiceSuccessful(AppState state, VerifyLocationServiceSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.locationEnabled = action.locationEnabled;
+  });
+}
+
+AppState _verifyLocationServiceError(AppState state, VerifyLocationServiceError action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.locationEnabled = false;
+  });
+}
+
+AppState _getCurrentLocationSuccessful(AppState state, GetCurrentLocationSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
+      ..latitude = action.currentLocation.latitude
+      ..longitude = action.currentLocation.longitude;
+  });
+}
 
 AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
@@ -81,6 +103,7 @@ AppState _signOutSuccessful(AppState state, SignoutSuccessful action) {
     b.user = null;
   });
 }
+
 AppState _getPlacesSuccessful(AppState state, GetPlacesSuccessful action) {
   final List<dynamic> places = action.body['results'] as List<dynamic>;
   return state.rebuild((AppStateBuilder b) {
@@ -103,24 +126,24 @@ AppState _getPlaceActivitiesSuccessful(AppState state, GetPlaceActivitiesSuccess
   });
 }
 
-
 AppState _getPlaceActivityAvailabilitySuccessful(AppState state, GetPlaceActivityAvailabilitySuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     b.placeActivityAvailability.clear();
 
     for (final PlaceActivityAvailability availability in action.availability) {
       String hour = availability.hour;
-      if(availability.hour[1] == ':'){
+      if (availability.hour[1] == ':') {
         hour = '0${availability.hour}';
       }
-      if(availability.hour[availability.hour.length-2] == ':'){
+      if (availability.hour[availability.hour.length - 2] == ':') {
         hour = '${availability.hour}0';
-        if(availability.hour[1] == ':'){
+        if (availability.hour[1] == ':') {
           hour = '0$hour';
         }
       }
 
-      final PlaceActivityAvailability formatDataAvailability = PlaceActivityAvailability((PlaceActivityAvailabilityBuilder b) {
+      final PlaceActivityAvailability formatDataAvailability =
+          PlaceActivityAvailability((PlaceActivityAvailabilityBuilder b) {
         b
           ..hour = hour
           ..idactivitySeating = availability.idactivitySeating;
@@ -131,11 +154,11 @@ AppState _getPlaceActivityAvailabilitySuccessful(AppState state, GetPlaceActivit
   });
 }
 
-
 AppState _deletePlaces(AppState state, DeletePlaces$ action) {
   return state.rebuild((AppStateBuilder b) {
-    b..listOfPlacesNextPage = 1
-        ..listOfPlaces.clear();
+    b
+      ..listOfPlacesNextPage = 1
+      ..listOfPlaces.clear();
   });
 }
 
@@ -151,36 +174,72 @@ AppState _setPlacesCategory(AppState state, SetPlacesCategory$ action) {
   });
 }
 
+AppState _setPlacesFilters(AppState state, SetPlacesFilters$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.filters.add(action.filter);
+  });
+}
+
+AppState _setPlacesSortedBy(AppState state, SetPlacesSortedBy$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.sortBy = action.sortBy;
+  });
+}
+
+AppState _removePlacesFilters(AppState state, RemovePlacesFilters$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.filters.removeWhere((String element) => element == action.filter);
+  });
+}
+
+AppState _deletePlacesFilters(AppState state, DeletePlacesFilters$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.filters.clear();
+  });
+}
+
+AppState _deletePlacesSortedBy(AppState state, DeletePlacesSortedBy$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.sortBy = null;
+  });
+}
+
 AppState _getReservationsFuture(AppState state, GetReservationsFutureSuccessful action) {
-  final List<dynamic> reservations = action.body['results'] as List<dynamic>; ///modifica aici si mao jos 'results'
+  final List<dynamic> reservations = action.body['results'] as List<dynamic>;
+
+  ///modifica aici si mao jos 'results'
   return state.rebuild((AppStateBuilder b) {
     b
       ..listOfFutureReservations.addAll(reservations.map((dynamic json) => Reservation.fromJson(json)).toList())
-      ..listOfFutureReservationsNextPage = action.body.containsKey('next') ? b.listOfFutureReservationsNextPage! + 1 : 0;
+      ..listOfFutureReservationsNextPage =
+          action.body.containsKey('next') ? b.listOfFutureReservationsNextPage! + 1 : 0;
   });
 }
 
 AppState _getReservationsPrevious(AppState state, GetReservationsPreviousSuccessful action) {
-  final List<dynamic> reservations = action.body['results'] as List<dynamic>; ///modifica aici si mao jos 'results'
+  final List<dynamic> reservations = action.body['results'] as List<dynamic>;
+
+  ///modifica aici si mao jos 'results'
   return state.rebuild((AppStateBuilder b) {
     b
       ..listOfPreviousReservations.addAll(reservations.map((dynamic json) => Reservation.fromJson(json)).toList())
-      ..listOfPreviousReservationsNextPage = action.body.containsKey('next') ? b.listOfPreviousReservationsNextPage! + 1 : 0;
+      ..listOfPreviousReservationsNextPage =
+          action.body.containsKey('next') ? b.listOfPreviousReservationsNextPage! + 1 : 0;
   });
 }
 
 AppState _deleteReservationsFuture(AppState state, DeleteReservationsFuture$ action) {
   return state.rebuild((AppStateBuilder b) {
-    b..listOfFutureReservationsNextPage = 1
-    ..listOfFutureReservations.clear();
+    b
+      ..listOfFutureReservationsNextPage = 1
+      ..listOfFutureReservations.clear();
   });
 }
 
 AppState _deleteReservationsPrevious(AppState state, DeleteReservationsPrevious$ action) {
   return state.rebuild((AppStateBuilder b) {
-    b..listOfPreviousReservationsNextPage = 1
-    ..listOfPreviousReservations.clear();
+    b
+      ..listOfPreviousReservationsNextPage = 1
+      ..listOfPreviousReservations.clear();
   });
 }
-
-

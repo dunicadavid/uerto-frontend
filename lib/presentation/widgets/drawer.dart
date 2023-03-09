@@ -3,15 +3,34 @@
 // on 07/03/2023 12:41:56
 
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import '../../actions/index.dart';
 import '../../containers/user_container.dart';
 import '../../models/index.dart';
 import 'avatar_circle.dart';
 
 class DrawerUerto extends StatelessWidget {
   const DrawerUerto({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+
+    void _onResultGetReservationsFuture(AppAction action) {
+      if (action is ErrorAction) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+      } else {
+        Navigator.of(context).pushNamed('/reservationsFuture');
+      }
+    }
+
+    void _onResultGetReservationsPrevious(AppAction action) {
+      if (action is ErrorAction) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+      } else {
+        Navigator.of(context).pushNamed('/reservationsPrevious');
+      }
+    }
+
+
     return UserContainer(
       builder: (BuildContext context, AppUser? user) {
         return Drawer(
@@ -164,7 +183,7 @@ class DrawerUerto extends StatelessWidget {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/reservationsFuture');
+                      StoreProvider.of<AppState>(context).dispatch(GetReservationsFuture(user.userId, 10,_onResultGetReservationsFuture));
                     },
                     child: const Text(
                       'Appointments',
@@ -183,7 +202,7 @@ class DrawerUerto extends StatelessWidget {
                   ),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushNamed('/reservationsPrevious');
+                      StoreProvider.of<AppState>(context).dispatch(GetReservationsPrevious(user.userId, 10,_onResultGetReservationsPrevious));
                     },
                     child: const Text(
                       'Previous reservations',

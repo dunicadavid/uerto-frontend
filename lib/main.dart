@@ -11,6 +11,7 @@ import 'package:uerto/actions/index.dart';
 import 'package:uerto/presentation/edit_profile_page.dart';
 import 'package:uerto/presentation/login_page.dart';
 import 'package:uerto/presentation/main_page.dart';
+import 'package:uerto/presentation/place_category_detailed_filters_page.dart';
 import 'package:uerto/presentation/place_category_page.dart';
 import 'package:uerto/presentation/place_details_page.dart';
 import 'package:uerto/presentation/places_result_list_page.dart';
@@ -66,6 +67,7 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                 '/resetPassword': (BuildContext context) => const ResetPasswordPage(),
                 '/editProfile': (BuildContext context) => const EditProfilePage(),
                 '/placeFilter': (BuildContext context) => const PlaceCategoryPage(),
+                '/placeDetailedFilter': (BuildContext context) => const PlaceCategoryDetailedFilterPage(),
                 '/placeResult': (BuildContext context) => const PlacesResultListPage(),
                 '/placeDetails': (BuildContext context) => const PlaceDetailsPage(),
                 '/reservationsPrevious': (BuildContext context) => const ReservationsPreviousPage(),

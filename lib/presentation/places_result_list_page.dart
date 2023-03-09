@@ -77,7 +77,6 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
               Navigator.of(context).pushReplacementNamed('/placeFilter');
             },
           ),
-
         ),
         body: PlacesShortContainer(
           builder: (BuildContext context, List<PlaceShort> places) {

@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.5
-  built_value: ^8.4.3
+  built_value: ^8.4.4
   built_collection: ^5.1.1
   http: ^0.13.5
   redux: ^5.0.0
@@ -22,15 +22,16 @@ dependencies:
   freezed_annotation: ^2.2.0
   flutter_appauth: ^4.2.1
   flutter_secure_storage: ^8.0.0
-  firebase_core: ^2.7.0
-  firebase_auth: ^4.2.9
+  firebase_core: ^2.7.1
+  firebase_auth: ^4.2.10
+  geolocator: ^9.0.2
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.3.3
-  built_value_generator: ^8.4.3
+  built_value_generator: ^8.4.4
   freezed: ^2.3.2
   flutter_lints: ^2.0.1
 
@@ -38,7 +39,7 @@ dev_dependencies:
 dependency_overrides:
   rxdart: ^0.27.7
   meta: ^1.9.0
-  analyzer: ^5.2.0
+  analyzer: ^5.7.1
 
 flutter:
   uses-material-design: true

@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:uerto/data/reservation_api.dart';
+import 'package:uerto/data/services.dart';
 
 import '../actions/index.dart';
 import '../data/auth_api.dart';
@@ -28,11 +29,13 @@ Future<Store<AppState>> init() async {
   final AuthApi authApi = AuthApi(auth: auth, apiUrl: apiUrl, client: client);
   final PlaceApi placeApi = PlaceApi(auth: auth, apiUrl: apiUrl, client: client);
   final ReservationApi reservationApi = ReservationApi(auth: auth, apiUrl: apiUrl, client: client);
+  final Services services = Services();
 
   final AppEpics epics = AppEpics(
     authApi: authApi,
     placeApi: placeApi,
     reservationApi: reservationApi,
+    services: services,
   );
 
   return Store<AppState>(
@@ -41,5 +44,6 @@ Future<Store<AppState>> init() async {
     middleware: <Middleware<AppState>>[
       EpicMiddleware<AppState>(epics.epics),
     ],
-  )..dispatch(const InitializeApp());
+  )..dispatch(const InitializeApp())
+  ..dispatch(const VerifyLocationService());
 }

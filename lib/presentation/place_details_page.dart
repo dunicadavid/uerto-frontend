@@ -74,7 +74,11 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                 Navigator.of(context).pushReplacementNamed('/placeResult');
               },
             ),
+
             actions: [
+              if (place.favourite == 1) const Icon(
+                Icons.star
+              ) else const Icon(Icons.star_border),
               IconButton(
                 icon: const Icon(Icons.remove),
                 onPressed: () {

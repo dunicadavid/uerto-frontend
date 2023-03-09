@@ -2,6 +2,7 @@
 // Dunica David-Gabriel <FLTY>
 // on 27/11/2022 18:00:00
 
+import 'package:geolocator/geolocator.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -9,21 +10,26 @@ import '../actions/index.dart';
 import '../data/auth_api.dart';
 import '../data/place_api.dart';
 import '../data/reservation_api.dart';
+import '../data/services.dart';
 import '../models/index.dart';
 
 class AppEpics {
-  const AppEpics({required AuthApi authApi, required PlaceApi placeApi, required ReservationApi reservationApi})
+  const AppEpics({required AuthApi authApi, required PlaceApi placeApi, required ReservationApi reservationApi, required Services services})
       : _authApi = authApi,
         _placeApi = placeApi,
-        _reservationApi = reservationApi;
+        _reservationApi = reservationApi,
+        _services = services;
 
   final AuthApi _authApi;
   final PlaceApi _placeApi;
   final ReservationApi _reservationApi;
+  final Services _services;
 
   Epic<AppState> get epics {
     return combineEpics<AppState>(<Epic<AppState>>[
       TypedEpic<AppState, InitializeAppStart>(_initializeApp),
+      TypedEpic<AppState, VerifyLocationServiceStart>(_verifyLocationService),
+      TypedEpic<AppState, GetCurrentLocationStart>(_getCurrentLocation),
       TypedEpic<AppState, RegisterPhase1Start>(_registerPhase1),
       TypedEpic<AppState, RegisterPhase2Start>(_registerPhase2),
       TypedEpic<AppState, LoginStart>(_login),
@@ -46,6 +52,21 @@ class AppEpics {
         .asyncMap((InitializeAppStart action) => _authApi.getCurrentUser())
         .map((AppUser? user) => InitializeApp.successful(user))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeApp.error(error, stackTrace));
+  }
+
+  Stream<AppAction> _verifyLocationService(Stream<VerifyLocationServiceStart> actions, EpicStore<AppState> store) {
+    return actions
+        .asyncMap((VerifyLocationServiceStart action) => _services.verifyLocationService())
+        .map((bool locationEnabled) => VerifyLocationService.successful(locationEnabled))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => VerifyLocationService.error(error, stackTrace));
+  }
+
+  Stream<AppAction> _getCurrentLocation(Stream<GetCurrentLocationStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetCurrentLocationStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _services.getCurrentLocation())
+        .map((Position position) => GetCurrentLocation.successful(position))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetCurrentLocation.error(error, stackTrace))
+        .doOnData(action.result));
   }
 
   Stream<AppAction> _registerPhase1(Stream<RegisterPhase1Start> actions, EpicStore<AppState> store) {
