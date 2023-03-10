@@ -1,16 +1,8 @@
 # uerto
 
-Uerto will be the new standard for social activities outside your home.
+ //WORK IN PROGRESS//
+ //Full documentation in May//
 
-## Getting Started
+This is the frontend of my reservations app. It will contain all the functionalities needed to be launched on IOS and Android, including a Machine Learning algorithm for a recommander system.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Frontend Technologies: Flutter(dart), Redux, GoogleMapsAPI, Firebase Auth.
