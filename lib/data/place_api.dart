@@ -10,14 +10,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart';
 import 'package:uerto/models/index.dart';
 
-
 class PlaceApi {
-
   const PlaceApi({
     required FirebaseAuth auth,
     required String apiUrl,
     required Client client,
-  }) : assert(auth != null),
+  })  : assert(auth != null),
         _auth = auth,
         _apiUrl = apiUrl,
         _client = client;
@@ -26,21 +24,47 @@ class PlaceApi {
   final String _apiUrl;
   final Client _client;
 
-  Future<Map<String,dynamic>> getPlaces(String filter, String category, int page, int limit) async {
-
+  Future<Map<String, dynamic>> getPlaces(String filter, String category, int page, int limit) async {
     final String token = await _auth.currentUser!.getIdToken();
     final Uri uri = Uri.parse('$_apiUrl/places?page=$page&limit=$limit&type=$category&$filter');
 
-    final Response response = await _client.get(uri,
+    final Response response = await _client.get(
+      uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-        HttpHeaders.authorizationHeader : 'Bearer $token',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
 
-    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
     print(body);
-    if(response.statusCode != 200) {
+    if (response.statusCode != 200) {
+      throw StateError(body['message'].toString());
+    }
+    return body;
+  }
+
+  Future<Map<String, dynamic>> getPlacesFavourite(int iduser, int page, int limit) async {
+    final String token = await _auth.currentUser!.getIdToken();
+
+    final Map<String, String> requestParams = <String, String>{
+      'page': page.toString(),
+      'limit': limit.toString(),
+    };
+
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/favourites-of-user=$iduser', requestParams);
+
+    final Response response = await _client.get(
+      uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+    );
+
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+    print(body);
+    if (response.statusCode != 200) {
       throw StateError(body['message'].toString());
     }
     return body;
@@ -49,39 +73,39 @@ class PlaceApi {
   Future<Place> getPlaceDetails(int id, int iduser) async {
     final String token = await _auth.currentUser!.getIdToken();
 
-    final Map<String, String> requestParams = <String, String>{
-      'iduser': iduser.toString()
-    };
+    final Map<String, String> requestParams = <String, String>{'iduser': iduser.toString()};
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/places/id=$id',requestParams);
-    final Response response = await _client.get(uri,
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/id=$id', requestParams);
+    final Response response = await _client.get(
+      uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-        HttpHeaders.authorizationHeader : 'Bearer $token',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
-    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
 
-    if(response.statusCode != 200) {
+    if (response.statusCode != 200) {
       throw StateError(body['message'].toString());
     }
 
-    return  Place.fromJson(body['place']);
+    return Place.fromJson(body['place']);
   }
 
   Future<List<PlaceActivity>> getPlaceActivities(int id) async {
     final String token = await _auth.currentUser!.getIdToken();
     final Uri uri = Uri.parse('$_apiUrl/places/id=$id/activity');
-    final Response response = await _client.get(uri,
+    final Response response = await _client.get(
+      uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-        HttpHeaders.authorizationHeader : 'Bearer $token',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
 
-    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
 
-    if(response.statusCode != 200) {
+    if (response.statusCode != 200) {
       throw StateError(body['message'].toString());
     }
 
@@ -92,7 +116,8 @@ class PlaceApi {
         .toList();
   }
 
-  Future<List<PlaceActivityAvailability>> getPlaceActivityAvailability(int idactivity, String date, int partySize) async {
+  Future<List<PlaceActivityAvailability>> getPlaceActivityAvailability(
+      int idactivity, String date, int partySize) async {
     final String token = await _auth.currentUser!.getIdToken();
 
     final Map<String, String> requestParams = <String, String>{
@@ -101,17 +126,18 @@ class PlaceApi {
       'partySize': partySize.toString(),
     };
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/places/availability',requestParams);
-    final Response response = await _client.get(uri,
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/availability', requestParams);
+    final Response response = await _client.get(
+      uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-        HttpHeaders.authorizationHeader : 'Bearer $token',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
 
-    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
 
-    if(response.statusCode != 200) {
+    if (response.statusCode != 200) {
       throw StateError(body['message'].toString());
     }
 
@@ -122,4 +148,44 @@ class PlaceApi {
         .toList();
   }
 
+  Future<void> setPlaceFavourite(int iduser, int idplace, int addOrDelete) async {
+    final String token = await _auth.currentUser!.getIdToken();
+    Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),
+        addOrDelete == 1 ? '/users/interaction/favourite-place' : '/users/interaction/unfavourite-place');
+
+    final Response response = addOrDelete == 1
+        ? await _client.post(
+            uri,
+            headers: {
+              HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+              HttpHeaders.authorizationHeader: 'Bearer $token',
+            },
+            body: json.encode(<String, dynamic>{
+              'idplace': idplace,
+              'iduser': iduser,
+            }),
+          )
+        : await _client.delete(
+            uri,
+            headers: {
+              HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+              HttpHeaders.authorizationHeader: 'Bearer $token',
+            },
+            body: json.encode(<String, dynamic>{
+              'idplace': idplace,
+              'iduser': iduser,
+            }),
+          );
+
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode != 201 && response.statusCode != 200) {
+      if (response.statusCode == 405) {
+        print(body['message'].toString());
+        throw StateError(body['message'].toString());
+      } else {
+        throw StateError('Something went wrong');
+      }
+    }
+  }
 }

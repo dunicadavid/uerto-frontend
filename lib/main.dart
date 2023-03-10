@@ -19,6 +19,7 @@ import 'package:uerto/presentation/register_page.dart';
 import 'package:uerto/presentation/reservations_future_page.dart';
 import 'package:uerto/presentation/reservations_previous_page.dart';
 import 'package:uerto/presentation/reset_password_page.dart';
+import 'package:uerto/presentation/search_place_page.dart';
 
 
 import './mixin/init_mixin.dart';
@@ -66,6 +67,7 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                 '/register': (BuildContext context) => const RegisterPage(),
                 '/resetPassword': (BuildContext context) => const ResetPasswordPage(),
                 '/editProfile': (BuildContext context) => const EditProfilePage(),
+                '/placeSearch': (BuildContext context) => const SearchPlacePage(),
                 '/placeFilter': (BuildContext context) => const PlaceCategoryPage(),
                 '/placeDetailedFilter': (BuildContext context) => const PlaceCategoryDetailedFilterPage(),
                 '/placeResult': (BuildContext context) => const PlacesResultListPage(),

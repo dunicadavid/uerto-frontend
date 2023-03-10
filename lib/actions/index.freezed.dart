@@ -6062,6 +6062,515 @@ abstract class GetPlacesError implements GetPlaces, ErrorAction {
 }
 
 /// @nodoc
+mixin _$GetPlacesFavourite {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesFavouriteStart value) $default, {
+    required TResult Function(GetPlacesFavouriteSuccessful value) successful,
+    required TResult Function(GetPlacesFavouriteError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesFavouriteStart value)? $default, {
+    TResult? Function(GetPlacesFavouriteSuccessful value)? successful,
+    TResult? Function(GetPlacesFavouriteError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesFavouriteStart value)? $default, {
+    TResult Function(GetPlacesFavouriteSuccessful value)? successful,
+    TResult Function(GetPlacesFavouriteError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetPlacesFavouriteCopyWith<$Res> {
+  factory $GetPlacesFavouriteCopyWith(
+          GetPlacesFavourite value, $Res Function(GetPlacesFavourite) then) =
+      _$GetPlacesFavouriteCopyWithImpl<$Res, GetPlacesFavourite>;
+}
+
+/// @nodoc
+class _$GetPlacesFavouriteCopyWithImpl<$Res, $Val extends GetPlacesFavourite>
+    implements $GetPlacesFavouriteCopyWith<$Res> {
+  _$GetPlacesFavouriteCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesFavouriteStartCopyWith<$Res> {
+  factory _$$GetPlacesFavouriteStartCopyWith(_$GetPlacesFavouriteStart value,
+          $Res Function(_$GetPlacesFavouriteStart) then) =
+      __$$GetPlacesFavouriteStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ActionResult result});
+}
+
+/// @nodoc
+class __$$GetPlacesFavouriteStartCopyWithImpl<$Res>
+    extends _$GetPlacesFavouriteCopyWithImpl<$Res, _$GetPlacesFavouriteStart>
+    implements _$$GetPlacesFavouriteStartCopyWith<$Res> {
+  __$$GetPlacesFavouriteStartCopyWithImpl(_$GetPlacesFavouriteStart _value,
+      $Res Function(_$GetPlacesFavouriteStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? result = null,
+  }) {
+    return _then(_$GetPlacesFavouriteStart(
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesFavouriteStart implements GetPlacesFavouriteStart {
+  const _$GetPlacesFavouriteStart(this.result);
+
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'GetPlacesFavourite(result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesFavouriteStart &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesFavouriteStartCopyWith<_$GetPlacesFavouriteStart> get copyWith =>
+      __$$GetPlacesFavouriteStartCopyWithImpl<_$GetPlacesFavouriteStart>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesFavouriteStart value) $default, {
+    required TResult Function(GetPlacesFavouriteSuccessful value) successful,
+    required TResult Function(GetPlacesFavouriteError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesFavouriteStart value)? $default, {
+    TResult? Function(GetPlacesFavouriteSuccessful value)? successful,
+    TResult? Function(GetPlacesFavouriteError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesFavouriteStart value)? $default, {
+    TResult Function(GetPlacesFavouriteSuccessful value)? successful,
+    TResult Function(GetPlacesFavouriteError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesFavouriteStart implements GetPlacesFavourite {
+  const factory GetPlacesFavouriteStart(final ActionResult result) =
+      _$GetPlacesFavouriteStart;
+
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$GetPlacesFavouriteStartCopyWith<_$GetPlacesFavouriteStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesFavouriteSuccessfulCopyWith<$Res> {
+  factory _$$GetPlacesFavouriteSuccessfulCopyWith(
+          _$GetPlacesFavouriteSuccessful value,
+          $Res Function(_$GetPlacesFavouriteSuccessful) then) =
+      __$$GetPlacesFavouriteSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> body});
+}
+
+/// @nodoc
+class __$$GetPlacesFavouriteSuccessfulCopyWithImpl<$Res>
+    extends _$GetPlacesFavouriteCopyWithImpl<$Res,
+        _$GetPlacesFavouriteSuccessful>
+    implements _$$GetPlacesFavouriteSuccessfulCopyWith<$Res> {
+  __$$GetPlacesFavouriteSuccessfulCopyWithImpl(
+      _$GetPlacesFavouriteSuccessful _value,
+      $Res Function(_$GetPlacesFavouriteSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? body = null,
+  }) {
+    return _then(_$GetPlacesFavouriteSuccessful(
+      null == body
+          ? _value._body
+          : body // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesFavouriteSuccessful implements GetPlacesFavouriteSuccessful {
+  const _$GetPlacesFavouriteSuccessful(final Map<String, dynamic> body)
+      : _body = body;
+
+  final Map<String, dynamic> _body;
+  @override
+  Map<String, dynamic> get body {
+    if (_body is EqualUnmodifiableMapView) return _body;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_body);
+  }
+
+  @override
+  String toString() {
+    return 'GetPlacesFavourite.successful(body: $body)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesFavouriteSuccessful &&
+            const DeepCollectionEquality().equals(other._body, _body));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_body));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesFavouriteSuccessfulCopyWith<_$GetPlacesFavouriteSuccessful>
+      get copyWith => __$$GetPlacesFavouriteSuccessfulCopyWithImpl<
+          _$GetPlacesFavouriteSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(body);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesFavouriteStart value) $default, {
+    required TResult Function(GetPlacesFavouriteSuccessful value) successful,
+    required TResult Function(GetPlacesFavouriteError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesFavouriteStart value)? $default, {
+    TResult? Function(GetPlacesFavouriteSuccessful value)? successful,
+    TResult? Function(GetPlacesFavouriteError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesFavouriteStart value)? $default, {
+    TResult Function(GetPlacesFavouriteSuccessful value)? successful,
+    TResult Function(GetPlacesFavouriteError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesFavouriteSuccessful implements GetPlacesFavourite {
+  const factory GetPlacesFavouriteSuccessful(final Map<String, dynamic> body) =
+      _$GetPlacesFavouriteSuccessful;
+
+  Map<String, dynamic> get body;
+  @JsonKey(ignore: true)
+  _$$GetPlacesFavouriteSuccessfulCopyWith<_$GetPlacesFavouriteSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesFavouriteErrorCopyWith<$Res> {
+  factory _$$GetPlacesFavouriteErrorCopyWith(_$GetPlacesFavouriteError value,
+          $Res Function(_$GetPlacesFavouriteError) then) =
+      __$$GetPlacesFavouriteErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$GetPlacesFavouriteErrorCopyWithImpl<$Res>
+    extends _$GetPlacesFavouriteCopyWithImpl<$Res, _$GetPlacesFavouriteError>
+    implements _$$GetPlacesFavouriteErrorCopyWith<$Res> {
+  __$$GetPlacesFavouriteErrorCopyWithImpl(_$GetPlacesFavouriteError _value,
+      $Res Function(_$GetPlacesFavouriteError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$GetPlacesFavouriteError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesFavouriteError implements GetPlacesFavouriteError {
+  const _$GetPlacesFavouriteError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetPlacesFavourite.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesFavouriteError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesFavouriteErrorCopyWith<_$GetPlacesFavouriteError> get copyWith =>
+      __$$GetPlacesFavouriteErrorCopyWithImpl<_$GetPlacesFavouriteError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesFavouriteStart value) $default, {
+    required TResult Function(GetPlacesFavouriteSuccessful value) successful,
+    required TResult Function(GetPlacesFavouriteError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesFavouriteStart value)? $default, {
+    TResult? Function(GetPlacesFavouriteSuccessful value)? successful,
+    TResult? Function(GetPlacesFavouriteError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesFavouriteStart value)? $default, {
+    TResult Function(GetPlacesFavouriteSuccessful value)? successful,
+    TResult Function(GetPlacesFavouriteError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesFavouriteError
+    implements GetPlacesFavourite, ErrorAction {
+  const factory GetPlacesFavouriteError(
+          final Object error, final StackTrace stackTrace) =
+      _$GetPlacesFavouriteError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$GetPlacesFavouriteErrorCopyWith<_$GetPlacesFavouriteError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$GetPlaceDetails {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
@@ -7816,6 +8325,495 @@ class _$DeletePlaceActivities$ implements DeletePlaceActivities$ {
 
 abstract class DeletePlaceActivities$ implements DeletePlaceActivities {
   const factory DeletePlaceActivities$() = _$DeletePlaceActivities$;
+}
+
+/// @nodoc
+mixin _$SetPlaceFavourite {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int iduser, int idplace, int addOrDelete) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int iduser, int idplace, int addOrDelete)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int iduser, int idplace, int addOrDelete)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SetPlaceFavouriteStart value) $default, {
+    required TResult Function(SetPlaceFavouriteSuccessful value) successful,
+    required TResult Function(SetPlaceFavouriteError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SetPlaceFavouriteStart value)? $default, {
+    TResult? Function(SetPlaceFavouriteSuccessful value)? successful,
+    TResult? Function(SetPlaceFavouriteError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SetPlaceFavouriteStart value)? $default, {
+    TResult Function(SetPlaceFavouriteSuccessful value)? successful,
+    TResult Function(SetPlaceFavouriteError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetPlaceFavouriteCopyWith<$Res> {
+  factory $SetPlaceFavouriteCopyWith(
+          SetPlaceFavourite value, $Res Function(SetPlaceFavourite) then) =
+      _$SetPlaceFavouriteCopyWithImpl<$Res, SetPlaceFavourite>;
+}
+
+/// @nodoc
+class _$SetPlaceFavouriteCopyWithImpl<$Res, $Val extends SetPlaceFavourite>
+    implements $SetPlaceFavouriteCopyWith<$Res> {
+  _$SetPlaceFavouriteCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$SetPlaceFavouriteStartCopyWith<$Res> {
+  factory _$$SetPlaceFavouriteStartCopyWith(_$SetPlaceFavouriteStart value,
+          $Res Function(_$SetPlaceFavouriteStart) then) =
+      __$$SetPlaceFavouriteStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int iduser, int idplace, int addOrDelete});
+}
+
+/// @nodoc
+class __$$SetPlaceFavouriteStartCopyWithImpl<$Res>
+    extends _$SetPlaceFavouriteCopyWithImpl<$Res, _$SetPlaceFavouriteStart>
+    implements _$$SetPlaceFavouriteStartCopyWith<$Res> {
+  __$$SetPlaceFavouriteStartCopyWithImpl(_$SetPlaceFavouriteStart _value,
+      $Res Function(_$SetPlaceFavouriteStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? iduser = null,
+    Object? idplace = null,
+    Object? addOrDelete = null,
+  }) {
+    return _then(_$SetPlaceFavouriteStart(
+      null == iduser
+          ? _value.iduser
+          : iduser // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == idplace
+          ? _value.idplace
+          : idplace // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == addOrDelete
+          ? _value.addOrDelete
+          : addOrDelete // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetPlaceFavouriteStart implements SetPlaceFavouriteStart {
+  const _$SetPlaceFavouriteStart(this.iduser, this.idplace, this.addOrDelete);
+
+  @override
+  final int iduser;
+  @override
+  final int idplace;
+  @override
+  final int addOrDelete;
+
+  @override
+  String toString() {
+    return 'SetPlaceFavourite(iduser: $iduser, idplace: $idplace, addOrDelete: $addOrDelete)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetPlaceFavouriteStart &&
+            (identical(other.iduser, iduser) || other.iduser == iduser) &&
+            (identical(other.idplace, idplace) || other.idplace == idplace) &&
+            (identical(other.addOrDelete, addOrDelete) ||
+                other.addOrDelete == addOrDelete));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, iduser, idplace, addOrDelete);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetPlaceFavouriteStartCopyWith<_$SetPlaceFavouriteStart> get copyWith =>
+      __$$SetPlaceFavouriteStartCopyWithImpl<_$SetPlaceFavouriteStart>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int iduser, int idplace, int addOrDelete) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(iduser, idplace, addOrDelete);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int iduser, int idplace, int addOrDelete)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(iduser, idplace, addOrDelete);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int iduser, int idplace, int addOrDelete)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(iduser, idplace, addOrDelete);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SetPlaceFavouriteStart value) $default, {
+    required TResult Function(SetPlaceFavouriteSuccessful value) successful,
+    required TResult Function(SetPlaceFavouriteError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SetPlaceFavouriteStart value)? $default, {
+    TResult? Function(SetPlaceFavouriteSuccessful value)? successful,
+    TResult? Function(SetPlaceFavouriteError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SetPlaceFavouriteStart value)? $default, {
+    TResult Function(SetPlaceFavouriteSuccessful value)? successful,
+    TResult Function(SetPlaceFavouriteError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetPlaceFavouriteStart implements SetPlaceFavourite {
+  const factory SetPlaceFavouriteStart(
+          final int iduser, final int idplace, final int addOrDelete) =
+      _$SetPlaceFavouriteStart;
+
+  int get iduser;
+  int get idplace;
+  int get addOrDelete;
+  @JsonKey(ignore: true)
+  _$$SetPlaceFavouriteStartCopyWith<_$SetPlaceFavouriteStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetPlaceFavouriteSuccessfulCopyWith<$Res> {
+  factory _$$SetPlaceFavouriteSuccessfulCopyWith(
+          _$SetPlaceFavouriteSuccessful value,
+          $Res Function(_$SetPlaceFavouriteSuccessful) then) =
+      __$$SetPlaceFavouriteSuccessfulCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SetPlaceFavouriteSuccessfulCopyWithImpl<$Res>
+    extends _$SetPlaceFavouriteCopyWithImpl<$Res, _$SetPlaceFavouriteSuccessful>
+    implements _$$SetPlaceFavouriteSuccessfulCopyWith<$Res> {
+  __$$SetPlaceFavouriteSuccessfulCopyWithImpl(
+      _$SetPlaceFavouriteSuccessful _value,
+      $Res Function(_$SetPlaceFavouriteSuccessful) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SetPlaceFavouriteSuccessful implements SetPlaceFavouriteSuccessful {
+  const _$SetPlaceFavouriteSuccessful();
+
+  @override
+  String toString() {
+    return 'SetPlaceFavourite.successful()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetPlaceFavouriteSuccessful);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int iduser, int idplace, int addOrDelete) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int iduser, int idplace, int addOrDelete)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int iduser, int idplace, int addOrDelete)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SetPlaceFavouriteStart value) $default, {
+    required TResult Function(SetPlaceFavouriteSuccessful value) successful,
+    required TResult Function(SetPlaceFavouriteError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SetPlaceFavouriteStart value)? $default, {
+    TResult? Function(SetPlaceFavouriteSuccessful value)? successful,
+    TResult? Function(SetPlaceFavouriteError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SetPlaceFavouriteStart value)? $default, {
+    TResult Function(SetPlaceFavouriteSuccessful value)? successful,
+    TResult Function(SetPlaceFavouriteError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetPlaceFavouriteSuccessful implements SetPlaceFavourite {
+  const factory SetPlaceFavouriteSuccessful() = _$SetPlaceFavouriteSuccessful;
+}
+
+/// @nodoc
+abstract class _$$SetPlaceFavouriteErrorCopyWith<$Res> {
+  factory _$$SetPlaceFavouriteErrorCopyWith(_$SetPlaceFavouriteError value,
+          $Res Function(_$SetPlaceFavouriteError) then) =
+      __$$SetPlaceFavouriteErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$SetPlaceFavouriteErrorCopyWithImpl<$Res>
+    extends _$SetPlaceFavouriteCopyWithImpl<$Res, _$SetPlaceFavouriteError>
+    implements _$$SetPlaceFavouriteErrorCopyWith<$Res> {
+  __$$SetPlaceFavouriteErrorCopyWithImpl(_$SetPlaceFavouriteError _value,
+      $Res Function(_$SetPlaceFavouriteError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$SetPlaceFavouriteError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetPlaceFavouriteError implements SetPlaceFavouriteError {
+  const _$SetPlaceFavouriteError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'SetPlaceFavourite.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetPlaceFavouriteError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetPlaceFavouriteErrorCopyWith<_$SetPlaceFavouriteError> get copyWith =>
+      __$$SetPlaceFavouriteErrorCopyWithImpl<_$SetPlaceFavouriteError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int iduser, int idplace, int addOrDelete) $default, {
+    required TResult Function() successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int iduser, int idplace, int addOrDelete)? $default, {
+    TResult? Function()? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int iduser, int idplace, int addOrDelete)? $default, {
+    TResult Function()? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SetPlaceFavouriteStart value) $default, {
+    required TResult Function(SetPlaceFavouriteSuccessful value) successful,
+    required TResult Function(SetPlaceFavouriteError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SetPlaceFavouriteStart value)? $default, {
+    TResult? Function(SetPlaceFavouriteSuccessful value)? successful,
+    TResult? Function(SetPlaceFavouriteError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SetPlaceFavouriteStart value)? $default, {
+    TResult Function(SetPlaceFavouriteSuccessful value)? successful,
+    TResult Function(SetPlaceFavouriteError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetPlaceFavouriteError
+    implements SetPlaceFavourite, ErrorAction {
+  const factory SetPlaceFavouriteError(
+          final Object error, final StackTrace stackTrace) =
+      _$SetPlaceFavouriteError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$SetPlaceFavouriteErrorCopyWith<_$SetPlaceFavouriteError> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

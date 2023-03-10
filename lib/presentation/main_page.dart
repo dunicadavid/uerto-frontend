@@ -35,6 +35,14 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
+  void _onResultGetPlacesFavourite(AppAction action) {
+    if (action is ErrorAction) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    } else {
+      Navigator.pushReplacementNamed(context, '/placeResult');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
@@ -73,6 +81,24 @@ class _MainPageState extends State<MainPage> {
                       Navigator.of(context).pushReplacementNamed('/placeFilter');
                     },
                     child: const Text('places'),
+                  ),
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushReplacementNamed('/placeSearch');
+                    },
+                    child: const Text('search'),
+                  ),
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      StoreProvider.of<AppState>(context).dispatch(GetPlacesFavourite(_onResultGetPlacesFavourite));
+                    },
+                    child: const Text('Favourites   //bug back-button',style: TextStyle(color: Colors.red),),
                   ),
                   SizedBox(
                     height: height * 0.05,

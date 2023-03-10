@@ -17,10 +17,11 @@ class PlaceDetailsPage extends StatefulWidget {
 }
 
 class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
-  int _clickedIndex = -1;   // indexul activitatii selectate de user
-  int _partySize = 1;   // party size ales de user
-  String _chosenDate = '';    // data aleasa in format db
-  bool _isDateChosen = false;   // utilizat pentru null check safty atunci cand apare lista de date pe UI
+  int _clickedIndex = -1; // indexul activitatii selectate de user
+  int _partySize = 1; // party size ales de user
+  String _chosenDate = ''; // data aleasa in format db
+  bool _isDateChosen = false; // utilizat pentru null check safty atunci cand apare lista de date pe UI
+  int isFavourite = -1; //favourite check
 
   void _onResultGetPlaceActivityAvailability(AppAction action) {
     if (action is ErrorAction) {
@@ -36,6 +37,10 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
+      if(isFavourite != StoreProvider.of<AppState>(context).state.placeDetails!.favourite && isFavourite != -1){
+        final AppState store = StoreProvider.of<AppState>(context).state;
+        StoreProvider.of<AppState>(context).dispatch(SetPlaceFavourite(store.user!.userId, store.placeDetails!.idplace, isFavourite));
+      }
       Navigator.of(context).pushReplacementNamed('/main');
     }
   }
@@ -43,8 +48,8 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
   void _showDatePicker(int index) {
     showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2024))
         .then((DateTime? value) {
-          final String day = value!.day < 10 ? '0${value.day}' : value.day.toString();
-          final String month = value.month < 10 ? '0${value.month}' : value.month.toString();
+      final String day = value!.day < 10 ? '0${value.day}' : value.day.toString();
+      final String month = value.month < 10 ? '0${value.month}' : value.month.toString();
       _chosenDate = '${value.year}-$month-$day';
 
       setState(() {
@@ -71,14 +76,25 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
             leading: IconButton(
               icon: const Icon(Icons.backspace_outlined),
               onPressed: () {
+                if(isFavourite != place.favourite && isFavourite != -1){
+                  StoreProvider.of<AppState>(context).dispatch(SetPlaceFavourite(user!.userId, place.idplace, isFavourite));
+                }
                 Navigator.of(context).pushReplacementNamed('/placeResult');
               },
             ),
-
             actions: [
-              if (place.favourite == 1) const Icon(
-                Icons.star
-              ) else const Icon(Icons.star_border),
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    if(isFavourite == -1) {
+                      isFavourite = place.favourite == 1 ? 0 : 1;
+                    } else {
+                      isFavourite = isFavourite == 1 ? 0 : 1;
+                    }
+                  });
+                },
+                icon: isFavourite == 1 || (isFavourite == -1 && place.favourite == 1) ? const Icon(Icons.star) : const Icon(Icons.star_border),
+              ),
               IconButton(
                 icon: const Icon(Icons.remove),
                 onPressed: () {
@@ -106,7 +122,7 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                 icon: const Icon(Icons.local_attraction),
                 onPressed: () {
                   setState(() {
-                    StoreProvider.of<AppState>(context).dispatch(GetPlaceActivities(place.idplace, (_){}));
+                    StoreProvider.of<AppState>(context).dispatch(GetPlaceActivities(place.idplace, (_) {}));
                   });
                 },
               ),

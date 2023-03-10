@@ -30,17 +30,25 @@ class AppEpics {
       TypedEpic<AppState, InitializeAppStart>(_initializeApp),
       TypedEpic<AppState, VerifyLocationServiceStart>(_verifyLocationService),
       TypedEpic<AppState, GetCurrentLocationStart>(_getCurrentLocation),
+
       TypedEpic<AppState, RegisterPhase1Start>(_registerPhase1),
       TypedEpic<AppState, RegisterPhase2Start>(_registerPhase2),
       TypedEpic<AppState, LoginStart>(_login),
       TypedEpic<AppState, SignoutStart>(_signOut),
+
       TypedEpic<AppState, EmailVerifyStart>(_verifyEmail),
       TypedEpic<AppState, ResetPasswordStart>(_resetPassword),
+
       TypedEpic<AppState, EditProfileStart>(_editProfile),
+
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
+      TypedEpic<AppState, GetPlacesFavouriteStart>(_getPlacesFavourite),
       TypedEpic<AppState, GetPlaceDetailsStart>(_getPlaceDetails),
       TypedEpic<AppState, GetPlaceActivitiesStart>(_getPlaceActivities),
       TypedEpic<AppState, GetPlaceActivityAvailabilityStart>(_getPlaceActivityAvailability),
+
+      TypedEpic<AppState, SetPlaceFavouriteStart>(_setPlaceFavourite),
+
       TypedEpic<AppState, CreateReservationStart>(_createReservation),
       TypedEpic<AppState, GetReservationsPreviousStart>(_getReservationsPrevious),
       TypedEpic<AppState, GetReservationsFutureStart>(_getReservationsFuture),
@@ -130,6 +138,14 @@ class AppEpics {
         .doOnData(action.result));
   }
 
+  Stream<AppAction> _getPlacesFavourite(Stream<GetPlacesFavouriteStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetPlacesFavouriteStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _placeApi.getPlacesFavourite(store.state.user!.userId, store.state.listOfPlacesNextPage, 5))
+        .map((Map<String, dynamic> body) => GetPlacesFavourite.successful(body))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlacesFavourite.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
   Stream<AppAction> _getPlaceDetails(Stream<GetPlaceDetailsStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetPlaceDetailsStart action) => Stream<void>.value(null)
         .asyncMap((_) => _placeApi.getPlaceDetails(action.idplace, action.iduser))
@@ -155,6 +171,14 @@ class AppEpics {
             (Object error, StackTrace stackTrace) => GetPlaceActivityAvailability.error(error, stackTrace))
         .doOnData(action.result));
   }
+
+  Stream<AppAction> _setPlaceFavourite(Stream<SetPlaceFavouriteStart> actions, EpicStore<AppState> store) {
+    return actions
+        .asyncMap((SetPlaceFavouriteStart action) => _placeApi.setPlaceFavourite(action.iduser,action.idplace,action.addOrDelete))
+        .map((_) => const SetPlaceFavourite.successful())
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => SetPlaceFavourite.error(error, stackTrace));
+  }
+
 
   Stream<AppAction> _createReservation(Stream<CreateReservationStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((CreateReservationStart action) => Stream<void>.value(null)

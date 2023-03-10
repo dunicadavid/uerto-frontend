@@ -15,25 +15,33 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, VerifyLocationServiceSuccessful>(_verifyLocationServiceSuccessful),
   TypedReducer<AppState, VerifyLocationServiceError>(_verifyLocationServiceError),
   TypedReducer<AppState, GetCurrentLocationSuccessful>(_getCurrentLocationSuccessful),
+
   TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
   TypedReducer<AppState, InitializeAppError>(_initializeAppError),
+
   TypedReducer<AppState, RegisterPhase2Successful>(_registerPhase2Successful),
   TypedReducer<AppState, EditProfileSuccessful>(_editProfile),
   TypedReducer<AppState, LoginSuccessful>(_loginSuccessful),
   TypedReducer<AppState, LoginError>(_loginError),
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
+
   TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
+  TypedReducer<AppState, GetPlacesFavouriteSuccessful>(_getPlacesFavouriteSuccessful),
   TypedReducer<AppState, GetPlaceDetailsSuccessful>(_getPlaceDetailsSuccessful),
   TypedReducer<AppState, GetPlaceActivitiesSuccessful>(_getPlaceActivitiesSuccessful),
   TypedReducer<AppState, GetPlaceActivityAvailabilitySuccessful>(_getPlaceActivityAvailabilitySuccessful),
   TypedReducer<AppState, DeletePlaces$>(_deletePlaces),
   TypedReducer<AppState, DeletePlaceActivities$>(_deletePlaceActivities),
+
+  TypedReducer<AppState,SetPlaceFavouriteSuccessful>(_setPlaceSuccessful),
+
   TypedReducer<AppState, SetPlacesCategory$>(_setPlacesCategory),
   TypedReducer<AppState, SetPlacesFilters$>(_setPlacesFilters),
   TypedReducer<AppState, SetPlacesSortedBy$>(_setPlacesSortedBy),
   TypedReducer<AppState, RemovePlacesFilters$>(_removePlacesFilters),
   TypedReducer<AppState, DeletePlacesFilters$>(_deletePlacesFilters),
   TypedReducer<AppState, DeletePlacesSortedBy$>(_deletePlacesSortedBy),
+
   TypedReducer<AppState, GetReservationsFutureSuccessful>(_getReservationsFuture),
   TypedReducer<AppState, GetReservationsPreviousSuccessful>(_getReservationsPrevious),
   TypedReducer<AppState, DeleteReservationsFuture$>(_deleteReservationsFuture),
@@ -113,6 +121,15 @@ AppState _getPlacesSuccessful(AppState state, GetPlacesSuccessful action) {
   });
 }
 
+AppState _getPlacesFavouriteSuccessful(AppState state, GetPlacesFavouriteSuccessful action) {
+  final List<dynamic> places = action.body['results'] as List<dynamic>;
+  return state.rebuild((AppStateBuilder b) {
+    b
+      ..listOfPlaces.addAll(places.map((dynamic json) => PlaceShort.fromJson(json)).toList())
+      ..listOfPlacesNextPage = action.body.containsKey('next') ? b.listOfPlacesNextPage! + 1 : 0;
+  });
+}
+
 AppState _getPlaceDetailsSuccessful(AppState state, GetPlaceDetailsSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     b.placeDetails = action.place.toBuilder();
@@ -167,6 +184,13 @@ AppState _deletePlaceActivities(AppState state, DeletePlaceActivities$ action) {
     b.placeActivities.clear();
   });
 }
+
+AppState _setPlaceSuccessful(AppState state, SetPlaceFavouriteSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.placeDetails.favourite = b.placeDetails.favourite == 1 ? 0 : 1;
+  });
+}
+
 
 AppState _setPlacesCategory(AppState state, SetPlacesCategory$ action) {
   return state.rebuild((AppStateBuilder b) {
@@ -243,3 +267,4 @@ AppState _deleteReservationsPrevious(AppState state, DeleteReservationsPrevious$
       ..listOfPreviousReservations.clear();
   });
 }
+
