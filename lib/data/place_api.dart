@@ -37,7 +37,32 @@ class PlaceApi {
     );
 
     final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
-    print(body);
+
+    if (response.statusCode != 200) {
+      throw StateError(body['message'].toString());
+    }
+    return body;
+  }
+
+  Future<Map<String, dynamic>> getPlacesSearched(String name, int page, int limit) async {
+    final String token = await _auth.currentUser!.getIdToken();
+    final Map<String, String> requestParams = <String, String>{
+      'page': page.toString(),
+      'limit': limit.toString(),
+    };
+
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/search=$name', requestParams);
+
+    final Response response = await _client.get(
+      uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+    );
+
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
     if (response.statusCode != 200) {
       throw StateError(body['message'].toString());
     }

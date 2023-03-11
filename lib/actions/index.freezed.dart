@@ -6062,6 +6062,533 @@ abstract class GetPlacesError implements GetPlaces, ErrorAction {
 }
 
 /// @nodoc
+mixin _$GetPlacesSearched {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String name, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesSearchedStart value) $default, {
+    required TResult Function(GetPlacesSearchedSuccessful value) successful,
+    required TResult Function(GetPlacesSearchedError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesSearchedStart value)? $default, {
+    TResult? Function(GetPlacesSearchedSuccessful value)? successful,
+    TResult? Function(GetPlacesSearchedError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesSearchedStart value)? $default, {
+    TResult Function(GetPlacesSearchedSuccessful value)? successful,
+    TResult Function(GetPlacesSearchedError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetPlacesSearchedCopyWith<$Res> {
+  factory $GetPlacesSearchedCopyWith(
+          GetPlacesSearched value, $Res Function(GetPlacesSearched) then) =
+      _$GetPlacesSearchedCopyWithImpl<$Res, GetPlacesSearched>;
+}
+
+/// @nodoc
+class _$GetPlacesSearchedCopyWithImpl<$Res, $Val extends GetPlacesSearched>
+    implements $GetPlacesSearchedCopyWith<$Res> {
+  _$GetPlacesSearchedCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesSearchedStartCopyWith<$Res> {
+  factory _$$GetPlacesSearchedStartCopyWith(_$GetPlacesSearchedStart value,
+          $Res Function(_$GetPlacesSearchedStart) then) =
+      __$$GetPlacesSearchedStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String name, int limit, ActionResult result});
+}
+
+/// @nodoc
+class __$$GetPlacesSearchedStartCopyWithImpl<$Res>
+    extends _$GetPlacesSearchedCopyWithImpl<$Res, _$GetPlacesSearchedStart>
+    implements _$$GetPlacesSearchedStartCopyWith<$Res> {
+  __$$GetPlacesSearchedStartCopyWithImpl(_$GetPlacesSearchedStart _value,
+      $Res Function(_$GetPlacesSearchedStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = null,
+    Object? limit = null,
+    Object? result = null,
+  }) {
+    return _then(_$GetPlacesSearchedStart(
+      null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesSearchedStart implements GetPlacesSearchedStart {
+  const _$GetPlacesSearchedStart(this.name, this.limit, this.result);
+
+  @override
+  final String name;
+  @override
+  final int limit;
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'GetPlacesSearched(name: $name, limit: $limit, result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesSearchedStart &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, name, limit, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesSearchedStartCopyWith<_$GetPlacesSearchedStart> get copyWith =>
+      __$$GetPlacesSearchedStartCopyWithImpl<_$GetPlacesSearchedStart>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(name, limit, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String name, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(name, limit, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(name, limit, result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesSearchedStart value) $default, {
+    required TResult Function(GetPlacesSearchedSuccessful value) successful,
+    required TResult Function(GetPlacesSearchedError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesSearchedStart value)? $default, {
+    TResult? Function(GetPlacesSearchedSuccessful value)? successful,
+    TResult? Function(GetPlacesSearchedError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesSearchedStart value)? $default, {
+    TResult Function(GetPlacesSearchedSuccessful value)? successful,
+    TResult Function(GetPlacesSearchedError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesSearchedStart implements GetPlacesSearched {
+  const factory GetPlacesSearchedStart(
+          final String name, final int limit, final ActionResult result) =
+      _$GetPlacesSearchedStart;
+
+  String get name;
+  int get limit;
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$GetPlacesSearchedStartCopyWith<_$GetPlacesSearchedStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesSearchedSuccessfulCopyWith<$Res> {
+  factory _$$GetPlacesSearchedSuccessfulCopyWith(
+          _$GetPlacesSearchedSuccessful value,
+          $Res Function(_$GetPlacesSearchedSuccessful) then) =
+      __$$GetPlacesSearchedSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, dynamic> body});
+}
+
+/// @nodoc
+class __$$GetPlacesSearchedSuccessfulCopyWithImpl<$Res>
+    extends _$GetPlacesSearchedCopyWithImpl<$Res, _$GetPlacesSearchedSuccessful>
+    implements _$$GetPlacesSearchedSuccessfulCopyWith<$Res> {
+  __$$GetPlacesSearchedSuccessfulCopyWithImpl(
+      _$GetPlacesSearchedSuccessful _value,
+      $Res Function(_$GetPlacesSearchedSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? body = null,
+  }) {
+    return _then(_$GetPlacesSearchedSuccessful(
+      null == body
+          ? _value._body
+          : body // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesSearchedSuccessful implements GetPlacesSearchedSuccessful {
+  const _$GetPlacesSearchedSuccessful(final Map<String, dynamic> body)
+      : _body = body;
+
+  final Map<String, dynamic> _body;
+  @override
+  Map<String, dynamic> get body {
+    if (_body is EqualUnmodifiableMapView) return _body;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_body);
+  }
+
+  @override
+  String toString() {
+    return 'GetPlacesSearched.successful(body: $body)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesSearchedSuccessful &&
+            const DeepCollectionEquality().equals(other._body, _body));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_body));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesSearchedSuccessfulCopyWith<_$GetPlacesSearchedSuccessful>
+      get copyWith => __$$GetPlacesSearchedSuccessfulCopyWithImpl<
+          _$GetPlacesSearchedSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String name, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(body);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(body);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesSearchedStart value) $default, {
+    required TResult Function(GetPlacesSearchedSuccessful value) successful,
+    required TResult Function(GetPlacesSearchedError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesSearchedStart value)? $default, {
+    TResult? Function(GetPlacesSearchedSuccessful value)? successful,
+    TResult? Function(GetPlacesSearchedError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesSearchedStart value)? $default, {
+    TResult Function(GetPlacesSearchedSuccessful value)? successful,
+    TResult Function(GetPlacesSearchedError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesSearchedSuccessful implements GetPlacesSearched {
+  const factory GetPlacesSearchedSuccessful(final Map<String, dynamic> body) =
+      _$GetPlacesSearchedSuccessful;
+
+  Map<String, dynamic> get body;
+  @JsonKey(ignore: true)
+  _$$GetPlacesSearchedSuccessfulCopyWith<_$GetPlacesSearchedSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetPlacesSearchedErrorCopyWith<$Res> {
+  factory _$$GetPlacesSearchedErrorCopyWith(_$GetPlacesSearchedError value,
+          $Res Function(_$GetPlacesSearchedError) then) =
+      __$$GetPlacesSearchedErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$GetPlacesSearchedErrorCopyWithImpl<$Res>
+    extends _$GetPlacesSearchedCopyWithImpl<$Res, _$GetPlacesSearchedError>
+    implements _$$GetPlacesSearchedErrorCopyWith<$Res> {
+  __$$GetPlacesSearchedErrorCopyWithImpl(_$GetPlacesSearchedError _value,
+      $Res Function(_$GetPlacesSearchedError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$GetPlacesSearchedError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPlacesSearchedError implements GetPlacesSearchedError {
+  const _$GetPlacesSearchedError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetPlacesSearched.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPlacesSearchedError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPlacesSearchedErrorCopyWith<_$GetPlacesSearchedError> get copyWith =>
+      __$$GetPlacesSearchedErrorCopyWithImpl<_$GetPlacesSearchedError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(String name, int limit, ActionResult result) $default, {
+    required TResult Function(Map<String, dynamic> body) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(String name, int limit, ActionResult result)? $default, {
+    TResult? Function(Map<String, dynamic> body)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String name, int limit, ActionResult result)? $default, {
+    TResult Function(Map<String, dynamic> body)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetPlacesSearchedStart value) $default, {
+    required TResult Function(GetPlacesSearchedSuccessful value) successful,
+    required TResult Function(GetPlacesSearchedError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetPlacesSearchedStart value)? $default, {
+    TResult? Function(GetPlacesSearchedSuccessful value)? successful,
+    TResult? Function(GetPlacesSearchedError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetPlacesSearchedStart value)? $default, {
+    TResult Function(GetPlacesSearchedSuccessful value)? successful,
+    TResult Function(GetPlacesSearchedError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetPlacesSearchedError
+    implements GetPlacesSearched, ErrorAction {
+  const factory GetPlacesSearchedError(
+          final Object error, final StackTrace stackTrace) =
+      _$GetPlacesSearchedError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$GetPlacesSearchedErrorCopyWith<_$GetPlacesSearchedError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$GetPlacesFavourite {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
@@ -8263,6 +8790,68 @@ class _$DeletePlaces$ implements DeletePlaces$ {
 
 abstract class DeletePlaces$ implements DeletePlaces {
   const factory DeletePlaces$() = _$DeletePlaces$;
+}
+
+/// @nodoc
+mixin _$DeletePlacesSearched {}
+
+/// @nodoc
+abstract class $DeletePlacesSearchedCopyWith<$Res> {
+  factory $DeletePlacesSearchedCopyWith(DeletePlacesSearched value,
+          $Res Function(DeletePlacesSearched) then) =
+      _$DeletePlacesSearchedCopyWithImpl<$Res, DeletePlacesSearched>;
+}
+
+/// @nodoc
+class _$DeletePlacesSearchedCopyWithImpl<$Res,
+        $Val extends DeletePlacesSearched>
+    implements $DeletePlacesSearchedCopyWith<$Res> {
+  _$DeletePlacesSearchedCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DeletePlacesSearched$CopyWith<$Res> {
+  factory _$$DeletePlacesSearched$CopyWith(_$DeletePlacesSearched$ value,
+          $Res Function(_$DeletePlacesSearched$) then) =
+      __$$DeletePlacesSearched$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeletePlacesSearched$CopyWithImpl<$Res>
+    extends _$DeletePlacesSearchedCopyWithImpl<$Res, _$DeletePlacesSearched$>
+    implements _$$DeletePlacesSearched$CopyWith<$Res> {
+  __$$DeletePlacesSearched$CopyWithImpl(_$DeletePlacesSearched$ _value,
+      $Res Function(_$DeletePlacesSearched$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeletePlacesSearched$ implements DeletePlacesSearched$ {
+  const _$DeletePlacesSearched$();
+
+  @override
+  String toString() {
+    return 'DeletePlacesSearched()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$DeletePlacesSearched$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class DeletePlacesSearched$ implements DeletePlacesSearched {
+  const factory DeletePlacesSearched$() = _$DeletePlacesSearched$;
 }
 
 /// @nodoc

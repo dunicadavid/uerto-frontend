@@ -42,6 +42,7 @@ class AppEpics {
       TypedEpic<AppState, EditProfileStart>(_editProfile),
 
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
+      TypedEpic<AppState, GetPlacesSearchedStart>(_getPlacesSearched),
       TypedEpic<AppState, GetPlacesFavouriteStart>(_getPlacesFavourite),
       TypedEpic<AppState, GetPlaceDetailsStart>(_getPlaceDetails),
       TypedEpic<AppState, GetPlaceActivitiesStart>(_getPlaceActivities),
@@ -135,6 +136,14 @@ class AppEpics {
         .asyncMap((_) => _placeApi.getPlaces(action.filter, store.state.category!, store.state.listOfPlacesNextPage, 5))
         .map((Map<String, dynamic> body) => GetPlaces.successful(body))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaces.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _getPlacesSearched(Stream<GetPlacesSearchedStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetPlacesSearchedStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _placeApi.getPlacesSearched(action.name, store.state.listOfPlacesSearchedNextPage, action.limit))
+        .map((Map<String, dynamic> body) => GetPlacesSearched.successful(body))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlacesSearched.error(error, stackTrace))
         .doOnData(action.result));
   }
 

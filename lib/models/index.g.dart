@@ -26,8 +26,15 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
   Iterable<Object?> serialize(Serializers serializers, AppState object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'listOfPlaces',
+      serializers.serialize(object.listOfPlaces,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(PlaceShort)])),
       'listOfPlacesNextPage',
       serializers.serialize(object.listOfPlacesNextPage,
+          specifiedType: const FullType(int)),
+      'listOfPlacesSearchedNextPage',
+      serializers.serialize(object.listOfPlacesSearchedNextPage,
           specifiedType: const FullType(int)),
       'listOfFutureReservationsNextPage',
       serializers.serialize(object.listOfFutureReservationsNextPage,
@@ -47,10 +54,10 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(AppUser)));
     }
-    value = object.listOfPlaces;
+    value = object.listOfPlacesSearched;
     if (value != null) {
       result
-        ..add('listOfPlaces')
+        ..add('listOfPlacesSearched')
         ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(PlaceShort)])));
@@ -177,6 +184,16 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           break;
         case 'listOfPlacesNextPage':
           result.listOfPlacesNextPage = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'listOfPlacesSearched':
+          result.listOfPlacesSearched.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(PlaceShort)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'listOfPlacesSearchedNextPage':
+          result.listOfPlacesSearchedNextPage = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
         case 'category':
@@ -681,9 +698,13 @@ class _$AppState extends AppState {
   @override
   final AppUser? user;
   @override
-  final BuiltList<PlaceShort>? listOfPlaces;
+  final BuiltList<PlaceShort> listOfPlaces;
   @override
   final int listOfPlacesNextPage;
+  @override
+  final BuiltList<PlaceShort>? listOfPlacesSearched;
+  @override
+  final int listOfPlacesSearchedNextPage;
   @override
   final String? category;
   @override
@@ -722,8 +743,10 @@ class _$AppState extends AppState {
 
   _$AppState._(
       {this.user,
-      this.listOfPlaces,
+      required this.listOfPlaces,
       required this.listOfPlacesNextPage,
+      this.listOfPlacesSearched,
+      required this.listOfPlacesSearchedNextPage,
       this.category,
       this.filters,
       this.sortBy,
@@ -742,7 +765,11 @@ class _$AppState extends AppState {
       this.locationEnabled})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
+        listOfPlaces, r'AppState', 'listOfPlaces');
+    BuiltValueNullFieldError.checkNotNull(
         listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage');
+    BuiltValueNullFieldError.checkNotNull(listOfPlacesSearchedNextPage,
+        r'AppState', 'listOfPlacesSearchedNextPage');
     BuiltValueNullFieldError.checkNotNull(listOfFutureReservationsNextPage,
         r'AppState', 'listOfFutureReservationsNextPage');
     BuiltValueNullFieldError.checkNotNull(listOfPreviousReservationsNextPage,
@@ -765,6 +792,8 @@ class _$AppState extends AppState {
         user == other.user &&
         listOfPlaces == other.listOfPlaces &&
         listOfPlacesNextPage == other.listOfPlacesNextPage &&
+        listOfPlacesSearched == other.listOfPlacesSearched &&
+        listOfPlacesSearchedNextPage == other.listOfPlacesSearchedNextPage &&
         category == other.category &&
         filters == other.filters &&
         sortBy == other.sortBy &&
@@ -791,6 +820,8 @@ class _$AppState extends AppState {
     _$hash = $jc(_$hash, user.hashCode);
     _$hash = $jc(_$hash, listOfPlaces.hashCode);
     _$hash = $jc(_$hash, listOfPlacesNextPage.hashCode);
+    _$hash = $jc(_$hash, listOfPlacesSearched.hashCode);
+    _$hash = $jc(_$hash, listOfPlacesSearchedNextPage.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, filters.hashCode);
     _$hash = $jc(_$hash, sortBy.hashCode);
@@ -817,6 +848,8 @@ class _$AppState extends AppState {
           ..add('user', user)
           ..add('listOfPlaces', listOfPlaces)
           ..add('listOfPlacesNextPage', listOfPlacesNextPage)
+          ..add('listOfPlacesSearched', listOfPlacesSearched)
+          ..add('listOfPlacesSearchedNextPage', listOfPlacesSearchedNextPage)
           ..add('category', category)
           ..add('filters', filters)
           ..add('sortBy', sortBy)
@@ -856,6 +889,17 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   int? get listOfPlacesNextPage => _$this._listOfPlacesNextPage;
   set listOfPlacesNextPage(int? listOfPlacesNextPage) =>
       _$this._listOfPlacesNextPage = listOfPlacesNextPage;
+
+  ListBuilder<PlaceShort>? _listOfPlacesSearched;
+  ListBuilder<PlaceShort> get listOfPlacesSearched =>
+      _$this._listOfPlacesSearched ??= new ListBuilder<PlaceShort>();
+  set listOfPlacesSearched(ListBuilder<PlaceShort>? listOfPlacesSearched) =>
+      _$this._listOfPlacesSearched = listOfPlacesSearched;
+
+  int? _listOfPlacesSearchedNextPage;
+  int? get listOfPlacesSearchedNextPage => _$this._listOfPlacesSearchedNextPage;
+  set listOfPlacesSearchedNextPage(int? listOfPlacesSearchedNextPage) =>
+      _$this._listOfPlacesSearchedNextPage = listOfPlacesSearchedNextPage;
 
   String? _category;
   String? get category => _$this._category;
@@ -950,8 +994,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     final $v = _$v;
     if ($v != null) {
       _user = $v.user?.toBuilder();
-      _listOfPlaces = $v.listOfPlaces?.toBuilder();
+      _listOfPlaces = $v.listOfPlaces.toBuilder();
       _listOfPlacesNextPage = $v.listOfPlacesNextPage;
+      _listOfPlacesSearched = $v.listOfPlacesSearched?.toBuilder();
+      _listOfPlacesSearchedNextPage = $v.listOfPlacesSearchedNextPage;
       _category = $v.category;
       _filters = $v.filters?.toBuilder();
       _sortBy = $v.sortBy;
@@ -994,9 +1040,14 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _$result = _$v ??
           new _$AppState._(
               user: _user?.build(),
-              listOfPlaces: _listOfPlaces?.build(),
+              listOfPlaces: listOfPlaces.build(),
               listOfPlacesNextPage: BuiltValueNullFieldError.checkNotNull(
                   listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage'),
+              listOfPlacesSearched: _listOfPlacesSearched?.build(),
+              listOfPlacesSearchedNextPage: BuiltValueNullFieldError.checkNotNull(
+                  listOfPlacesSearchedNextPage,
+                  r'AppState',
+                  'listOfPlacesSearchedNextPage'),
               category: category,
               filters: _filters?.build(),
               sortBy: sortBy,
@@ -1007,11 +1058,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
               placeActivityAvailability: _placeActivityAvailability?.build(),
               listOfFutureReservations: _listOfFutureReservations?.build(),
               listOfPreviousReservations: _listOfPreviousReservations?.build(),
-              listOfFutureReservationsNextPage:
-                  BuiltValueNullFieldError.checkNotNull(
-                      listOfFutureReservationsNextPage,
-                      r'AppState',
-                      'listOfFutureReservationsNextPage'),
+              listOfFutureReservationsNextPage: BuiltValueNullFieldError.checkNotNull(
+                  listOfFutureReservationsNextPage,
+                  r'AppState',
+                  'listOfFutureReservationsNextPage'),
               listOfPreviousReservationsNextPage:
                   BuiltValueNullFieldError.checkNotNull(
                       listOfPreviousReservationsNextPage,
@@ -1028,7 +1078,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
         _$failedField = 'user';
         _user?.build();
         _$failedField = 'listOfPlaces';
-        _listOfPlaces?.build();
+        listOfPlaces.build();
+
+        _$failedField = 'listOfPlacesSearched';
+        _listOfPlacesSearched?.build();
 
         _$failedField = 'filters';
         _filters?.build();

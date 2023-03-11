@@ -9,6 +9,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
     return _$AppState((AppStateBuilder b) {
       b
         ..listOfPlacesNextPage = 1
+        ..listOfPlacesSearchedNextPage = 1
         ..listOfFutureReservationsNextPage = 1
         ..listOfPreviousReservationsNextPage = 1
         ..filters.clear()
@@ -22,8 +23,12 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   AppUser? get user;
 
-  BuiltList<PlaceShort>? get listOfPlaces;
+  BuiltList<PlaceShort> get listOfPlaces;
   int get listOfPlacesNextPage;
+
+  BuiltList<PlaceShort>? get listOfPlacesSearched;
+  int get listOfPlacesSearchedNextPage;
+
   String? get category;
   BuiltList<String>? get filters;
   String? get sortBy;

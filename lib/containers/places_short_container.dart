@@ -15,7 +15,7 @@ class PlacesShortContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, List<PlaceShort>>(
-      converter: (Store<AppState> store) => store.state.listOfPlaces!.asList(),
+      converter: (Store<AppState> store) => store.state.listOfPlaces.asList(),
       builder: builder,
     );
   }
