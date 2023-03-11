@@ -21,14 +21,14 @@ class SearchPlacePage extends StatefulWidget {
 }
 
 class _SearchPlacePageState extends State<SearchPlacePage> {
+  final TextEditingController _nameSearched = TextEditingController();
+  String lastNameSearched = '';
   Timer? timer;
-  bool hasChanged = false;
-  String nameToSearch = '';
 
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(milliseconds: 100), (_) => getSearchedPlaces());
+    timer = Timer.periodic(const Duration(milliseconds: 150), (_) => getSearchedPlaces());
   }
 
   @override
@@ -38,14 +38,23 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
   }
 
   Future<void> getSearchedPlaces() async {
-    if (hasChanged) {
-      hasChanged = false;
-      setState(() {
-        StoreProvider.of<AppState>(context).dispatch(const DeletePlacesSearched());
-        if (nameToSearch != '' && nameToSearch != ' ') {
-          StoreProvider.of<AppState>(context).dispatch(GetPlacesSearched(nameToSearch, 5, (_) {}));
+    setState(() {
+      if (_nameSearched.text != lastNameSearched) {
+        lastNameSearched = _nameSearched.text;
+        if (_nameSearched.text != '' && _nameSearched.text != ' ') {
+          StoreProvider.of<AppState>(context).dispatch(GetPlacesSearched(_nameSearched.text, 5, (_) {}));
+        } else if (_nameSearched.text == '') {
+          StoreProvider.of<AppState>(context).dispatch(const DeletePlacesSearched());
         }
-      });
+      }
+    });
+  }
+
+  void _onResultDetails(AppAction action) {
+    if (action is ErrorAction) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    } else {
+      Navigator.pushNamed(context, '/placeDetails');
     }
   }
 
@@ -61,7 +70,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
               backgroundColor: const Color(0xff262f4c),
               leading: GestureDetector(
                   onTap: () {
-                    timer?.cancel();
+                    timer?.cancel(); // dont need
                     StoreProvider.of<AppState>(context).dispatch(const DeletePlacesSearched());
                     Navigator.of(context).pushReplacementNamed('/main');
                   },
@@ -78,7 +87,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: TextField(
-                    //textAlignVertical: TextAlignVertical.top,
+                    controller: _nameSearched,
                     cursorColor: const Color(0xff12FCB2),
                     style: const TextStyle(color: Color(0xffF0F0F0), fontWeight: FontWeight.bold),
                     decoration: const InputDecoration(
@@ -87,36 +96,46 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                       hintText: 'search',
                       hintStyle: TextStyle(color: Colors.white70, fontWeight: FontWeight.bold, fontSize: 13),
                     ),
-                    onChanged: (String value) {
-                      if(value != ' ') {
-                        ///de revizuit aici 'str plin de spatii'
-                        nameToSearch = value;
-                        hasChanged = true;
-                      }
-                    },
                   ),
                 ),
               ),
             ),
-            body: placesSearched != null
+            body: placesSearched!.isNotEmpty
                 ? ListView.builder(
                     physics: const BouncingScrollPhysics(),
-                    itemCount: placesSearched.length,
+                    itemCount: placesSearched.length + (placesSearched.length == 5 ? 1 : 0),
                     itemBuilder: (BuildContext context, int index) {
-                      final PlaceShort place = placesSearched[index];
-
-                      return ListTile(
-                        onTap: () {
-                          timer?.cancel();
-                          //StoreProvider.of<AppState>(context).dispatch(SearchChoose(user));
-                          //Navigator.pushReplacementNamed(context, '/result');
-                        },
-                        title: Text(
-                          place.name,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: Text(place.location),
-                      );
+                      if (index != placesSearched.length) {
+                        final PlaceShort place = placesSearched[index];
+                        return ListTile(
+                          onTap: () {
+                            timer?.cancel(); // dont need
+                            if (StoreProvider.of<AppState>(context).state.placeDetails != null) {
+                              if (place.idplace != StoreProvider.of<AppState>(context).state.placeDetails?.idplace) {
+                                StoreProvider.of<AppState>(context).dispatch(const DeletePlaceActivities());
+                                StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace,
+                                    StoreProvider.of<AppState>(context).state.user!.userId, _onResultDetails));
+                              } else {
+                                Navigator.of(context).pushReplacementNamed('/placeDetails');
+                              }
+                            } else {
+                              StoreProvider.of<AppState>(context).dispatch(const DeletePlaceActivities());
+                              StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace,
+                                  StoreProvider.of<AppState>(context).state.user!.userId, _onResultDetails));
+                            }
+                          },
+                          title: Text(
+                            place.name,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(place.location),
+                        );
+                      } else {
+                        return const Text(
+                          'See all results..',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        );
+                      }
                     },
                   )
                 : const Center(

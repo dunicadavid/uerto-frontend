@@ -14,7 +14,11 @@ import '../data/services.dart';
 import '../models/index.dart';
 
 class AppEpics {
-  const AppEpics({required AuthApi authApi, required PlaceApi placeApi, required ReservationApi reservationApi, required Services services})
+  const AppEpics(
+      {required AuthApi authApi,
+      required PlaceApi placeApi,
+      required ReservationApi reservationApi,
+      required Services services})
       : _authApi = authApi,
         _placeApi = placeApi,
         _reservationApi = reservationApi,
@@ -30,26 +34,20 @@ class AppEpics {
       TypedEpic<AppState, InitializeAppStart>(_initializeApp),
       TypedEpic<AppState, VerifyLocationServiceStart>(_verifyLocationService),
       TypedEpic<AppState, GetCurrentLocationStart>(_getCurrentLocation),
-
       TypedEpic<AppState, RegisterPhase1Start>(_registerPhase1),
       TypedEpic<AppState, RegisterPhase2Start>(_registerPhase2),
       TypedEpic<AppState, LoginStart>(_login),
       TypedEpic<AppState, SignoutStart>(_signOut),
-
       TypedEpic<AppState, EmailVerifyStart>(_verifyEmail),
       TypedEpic<AppState, ResetPasswordStart>(_resetPassword),
-
       TypedEpic<AppState, EditProfileStart>(_editProfile),
-
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
       TypedEpic<AppState, GetPlacesSearchedStart>(_getPlacesSearched),
       TypedEpic<AppState, GetPlacesFavouriteStart>(_getPlacesFavourite),
       TypedEpic<AppState, GetPlaceDetailsStart>(_getPlaceDetails),
       TypedEpic<AppState, GetPlaceActivitiesStart>(_getPlaceActivities),
       TypedEpic<AppState, GetPlaceActivityAvailabilityStart>(_getPlaceActivityAvailability),
-
       TypedEpic<AppState, SetPlaceFavouriteStart>(_setPlaceFavourite),
-
       TypedEpic<AppState, CreateReservationStart>(_createReservation),
       TypedEpic<AppState, GetReservationsPreviousStart>(_getReservationsPrevious),
       TypedEpic<AppState, GetReservationsFutureStart>(_getReservationsFuture),
@@ -139,12 +137,16 @@ class AppEpics {
         .doOnData(action.result));
   }
 
-  Stream<AppAction> _getPlacesSearched(Stream<GetPlacesSearchedStart> actions, EpicStore<AppState> store) {
-    return actions.flatMap((GetPlacesSearchedStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _placeApi.getPlacesSearched(action.name, store.state.listOfPlacesSearchedNextPage, action.limit))
-        .map((Map<String, dynamic> body) => GetPlacesSearched.successful(body))
-        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlacesSearched.error(error, stackTrace))
-        .doOnData(action.result));
+  Stream<Object> _getPlacesSearched(Stream<GetPlacesSearchedStart> actions, EpicStore<AppState> store) {
+    return actions
+        .asyncMap((GetPlacesSearchedStart action) =>
+            _placeApi.getPlacesSearched(action.name, 1, action.limit))
+        .expand((Map<String, dynamic> body) {
+      return <Object>[
+        const DeletePlacesSearched(),
+        GetPlacesSearched.successful(body),
+      ];
+    }).onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlacesSearched.error(error, stackTrace));
   }
 
   Stream<AppAction> _getPlacesFavourite(Stream<GetPlacesFavouriteStart> actions, EpicStore<AppState> store) {
@@ -183,11 +185,11 @@ class AppEpics {
 
   Stream<AppAction> _setPlaceFavourite(Stream<SetPlaceFavouriteStart> actions, EpicStore<AppState> store) {
     return actions
-        .asyncMap((SetPlaceFavouriteStart action) => _placeApi.setPlaceFavourite(action.iduser,action.idplace,action.addOrDelete))
+        .asyncMap((SetPlaceFavouriteStart action) =>
+            _placeApi.setPlaceFavourite(action.iduser, action.idplace, action.addOrDelete))
         .map((_) => const SetPlaceFavourite.successful())
         .onErrorReturnWith((Object error, StackTrace stackTrace) => SetPlaceFavourite.error(error, stackTrace));
   }
-
 
   Stream<AppAction> _createReservation(Stream<CreateReservationStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((CreateReservationStart action) => Stream<void>.value(null)
