@@ -28,6 +28,7 @@ part 'places/filters/remove_places_filters.dart';
 
 part 'places/get_places.dart';
 part 'places/get_places_searched.dart';
+part 'places/get_places_searched_all.dart';
 part 'places/get_places_favourite.dart';
 part 'places/get_place_details.dart';
 part 'places/get_place_activities.dart';

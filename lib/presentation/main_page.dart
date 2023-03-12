@@ -89,7 +89,7 @@ class _MainPageState extends State<MainPage> {
                     onTap: () {
                       Navigator.of(context).pushReplacementNamed('/placeSearch');
                     },
-                    child: const Text('search  //bug back-button + verify request on same idplace',style: TextStyle(color: Colors.red),),
+                    child: const Text('search  //bug back-button',style: TextStyle(color: Colors.red),),
                   ),
                   SizedBox(
                     height: height * 0.05,
