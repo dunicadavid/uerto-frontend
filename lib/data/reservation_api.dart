@@ -61,6 +61,31 @@ class ReservationApi {
     }
   }
 
+  Future<void> deleteReservation(int idreservation) async {
+
+    final String? token = await _auth.currentUser?.getIdToken();
+
+    final Map<String, String> requestParams = <String, String>{
+      'idreservation' : idreservation.toString(),
+    };
+
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/reservations/delete', requestParams);
+
+    final Response response = await _client.delete(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+    );
+
+    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+
+    if (response.statusCode != 200) {
+        print(body['message'].toString());
+        throw StateError(body['message'].toString());
+    }
+  }
+
   Future<Map<String,dynamic>> getReservationsFuture(int iduser, int page, int limit) async {
     final String? token = await _auth.currentUser?.getIdToken();
 

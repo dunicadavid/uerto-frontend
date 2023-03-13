@@ -43,6 +43,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, GetReservationsPreviousSuccessful>(_getReservationsPrevious),
   TypedReducer<AppState, DeleteReservationsFuture$>(_deleteReservationsFuture),
   TypedReducer<AppState, DeleteReservationsPrevious$>(_deleteReservationsPrevious),
+  TypedReducer<AppState, DeleteReservationSuccessful>(_deleteReservationSuccessful),
 ]);
 
 AppState _verifyLocationServiceSuccessful(AppState state, VerifyLocationServiceSuccessful action) {
@@ -288,5 +289,13 @@ AppState _deleteReservationsPrevious(AppState state, DeleteReservationsPrevious$
     b
       ..listOfPreviousReservationsNextPage = 1
       ..listOfPreviousReservations.clear();
+  });
+}
+
+AppState _deleteReservationSuccessful(AppState state, DeleteReservationSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
+      ..listOfFutureReservationsNextPage = 1
+      ..listOfFutureReservations.clear();
   });
 }

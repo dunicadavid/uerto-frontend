@@ -20,6 +20,7 @@ import 'package:uerto/presentation/reservations_future_page.dart';
 import 'package:uerto/presentation/reservations_previous_page.dart';
 import 'package:uerto/presentation/reset_password_page.dart';
 import 'package:uerto/presentation/search_place_page.dart';
+import 'package:uerto/services/notification_service.dart';
 
 
 import './mixin/init_mixin.dart';
@@ -29,6 +30,8 @@ import 'presentation/init_page.dart';
 void main() {
   /// ---------RunApp-----------------
   HttpOverrides.global = MyHttpOverrides(); /// [testing-feature] SSL cert not verified
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService().initNotification();
   runApp(const UertoApp());
 }
 

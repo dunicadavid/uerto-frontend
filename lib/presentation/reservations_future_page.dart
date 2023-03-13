@@ -52,6 +52,17 @@ class _ReservationsFuturePageState extends State<ReservationsFuturePage> {
     }
   }
 
+  void _onResultDeleteReservation(AppAction action) {
+    if (action is ErrorAction) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    } else {
+      final Store<AppState> store = StoreProvider.of<AppState>(context);
+      const int limit = 10;
+      _isLoading = true;
+      store.dispatch(GetReservationsFuture(store.state.user!.userId, limit, _onResult));
+    }
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -83,13 +94,13 @@ class _ReservationsFuturePageState extends State<ReservationsFuturePage> {
             physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               final Reservation reservation = reservations[index];
-              return GestureDetector(
-                onTap: () {},
-                child: GridTileBar(
-                  backgroundColor: index.isEven ? Colors.black38 : Colors.black12,
-                  title: Text('${reservation.date} ${reservation.hour}',style: const TextStyle(color: Colors.black),),
-                  subtitle: Text('for ${reservation.partySize.toString()} people',style: const TextStyle(color: Colors.black),),
-                ),
+              return GridTileBar(
+                backgroundColor: index.isEven ? Colors.black38 : Colors.black12,
+                title: Text('${reservation.date} ${reservation.hour}',style: const TextStyle(color: Colors.black),),
+                subtitle: Text('for ${reservation.partySize.toString()} people',style: const TextStyle(color: Colors.black),),
+                trailing: IconButton(icon: const Icon(Icons.delete_outline_rounded),onPressed: (){
+                  StoreProvider.of<AppState>(context).dispatch(DeleteReservation(reservation.idreservation, _onResultDeleteReservation));
+                },),
               );
             },
           );

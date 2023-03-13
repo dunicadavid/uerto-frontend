@@ -8,6 +8,8 @@ import 'package:uerto/actions/index.dart';
 import 'package:uerto/containers/place_container.dart';
 import 'package:uerto/containers/user_container.dart';
 import 'package:uerto/models/index.dart';
+import '../services/notification_service.dart';
+
 
 class PlaceDetailsPage extends StatefulWidget {
   const PlaceDetailsPage({Key? key}) : super(key: key);
@@ -41,6 +43,7 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
         final AppState store = StoreProvider.of<AppState>(context).state;
         StoreProvider.of<AppState>(context).dispatch(SetPlaceFavourite(store.user!.userId, store.placeDetails!.idplace, isFavourite));
       }
+      NotificationService().showNotification(title: 'Reservation Created!',body:'Stay in touch!');
       Navigator.of(context).pushReplacementNamed('/main');
     }
   }

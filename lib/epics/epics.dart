@@ -50,6 +50,7 @@ class AppEpics {
       TypedEpic<AppState, GetPlaceActivityAvailabilityStart>(_getPlaceActivityAvailability),
       TypedEpic<AppState, SetPlaceFavouriteStart>(_setPlaceFavourite),
       TypedEpic<AppState, CreateReservationStart>(_createReservation),
+      TypedEpic<AppState, DeleteReservationStart>(_deleteReservation),
       TypedEpic<AppState, GetReservationsPreviousStart>(_getReservationsPrevious),
       TypedEpic<AppState, GetReservationsFutureStart>(_getReservationsFuture),
     ]);
@@ -206,6 +207,14 @@ class AppEpics {
             action.iduser, action.date, action.hour, action.partySize))
         .map((_) => const CreateReservation.successful())
         .onErrorReturnWith((Object error, StackTrace stackTrace) => CreateReservation.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _deleteReservation(Stream<DeleteReservationStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((DeleteReservationStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _reservationApi.deleteReservation(action.idreservation))
+        .map((_) => const DeleteReservation.successful())
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => DeleteReservation.error(error, stackTrace))
         .doOnData(action.result));
   }
 
