@@ -7,7 +7,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:uerto/actions/index.dart';
+import 'package:timezone/data/latest.dart' as tz;
 import 'package:uerto/presentation/edit_profile_page.dart';
 import 'package:uerto/presentation/login_page.dart';
 import 'package:uerto/presentation/main_page.dart';
@@ -22,7 +22,6 @@ import 'package:uerto/presentation/reset_password_page.dart';
 import 'package:uerto/presentation/search_place_page.dart';
 import 'package:uerto/services/notification_service.dart';
 
-
 import './mixin/init_mixin.dart';
 import '../models/index.dart';
 import 'presentation/init_page.dart';
@@ -32,6 +31,7 @@ void main() {
   HttpOverrides.global = MyHttpOverrides(); /// [testing-feature] SSL cert not verified
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().initNotification();
+  tz.initializeTimeZones();
   runApp(const UertoApp());
 }
 

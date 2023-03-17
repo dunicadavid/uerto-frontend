@@ -31,7 +31,10 @@ class _ErrorPageState extends State<ErrorPage> {
                 child: const Text('Try Again!'),
               ),
               GestureDetector(
-                onTap: () => Navigator.of(context).pushReplacementNamed('/main'),
+                onTap: () {
+                  StoreProvider.of<AppState>(context).dispatch(const Signout());
+                  Navigator.of(context).pushReplacementNamed('/login');
+                },
                 child: const Text('Tgo to main page!'),
               ),
             ],

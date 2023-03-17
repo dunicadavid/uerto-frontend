@@ -3,6 +3,9 @@
 // on 12/03/2023 18:08:50
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/timezone.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
   final FlutterLocalNotificationsPlugin notificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -18,15 +21,15 @@ class NotificationService {
 
     final InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-    await notificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) async {});
+    await notificationsPlugin.initialize(initializationSettings);
+       // onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) async {});
   }
 
   NotificationDetails notificationDetails() {
     return const NotificationDetails(
         android: AndroidNotificationDetails(
-          'channel_id',
-          'channelName',
+          'channel_id 6',
+          'channel_name',
           importance: Importance.max,
           priority: Priority.high,
         ),
@@ -35,5 +38,20 @@ class NotificationService {
 
   Future<dynamic> showNotification({int id = 0, String? title, String? body, String? payLoad}) async {
     return notificationsPlugin.show(id, title, body, notificationDetails());
+  }
+
+  Future<dynamic> scheduleNotification({int id = 0, String? title, String? body, String? payLoad, required DateTime scheduledNotificationDateTime}) async {
+    return notificationsPlugin.zonedSchedule(
+        id,
+        title,
+        body,
+        tz.TZDateTime.from(
+          scheduledNotificationDateTime,
+          tz.local,
+        ),
+        notificationDetails(),
+        androidAllowWhileIdle: true,
+        uiLocalNotificationDateInterpretation:
+        UILocalNotificationDateInterpretation.absoluteTime);
   }
 }
