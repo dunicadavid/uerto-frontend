@@ -998,6 +998,124 @@ abstract class GetCurrentLocationError
 }
 
 /// @nodoc
+mixin _$UpdateLocation {
+  LatLng get location => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UpdateLocationCopyWith<UpdateLocation> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateLocationCopyWith<$Res> {
+  factory $UpdateLocationCopyWith(
+          UpdateLocation value, $Res Function(UpdateLocation) then) =
+      _$UpdateLocationCopyWithImpl<$Res, UpdateLocation>;
+  @useResult
+  $Res call({LatLng location});
+}
+
+/// @nodoc
+class _$UpdateLocationCopyWithImpl<$Res, $Val extends UpdateLocation>
+    implements $UpdateLocationCopyWith<$Res> {
+  _$UpdateLocationCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+  }) {
+    return _then(_value.copyWith(
+      location: null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UpdateLocation$CopyWith<$Res>
+    implements $UpdateLocationCopyWith<$Res> {
+  factory _$$UpdateLocation$CopyWith(
+          _$UpdateLocation$ value, $Res Function(_$UpdateLocation$) then) =
+      __$$UpdateLocation$CopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({LatLng location});
+}
+
+/// @nodoc
+class __$$UpdateLocation$CopyWithImpl<$Res>
+    extends _$UpdateLocationCopyWithImpl<$Res, _$UpdateLocation$>
+    implements _$$UpdateLocation$CopyWith<$Res> {
+  __$$UpdateLocation$CopyWithImpl(
+      _$UpdateLocation$ _value, $Res Function(_$UpdateLocation$) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? location = null,
+  }) {
+    return _then(_$UpdateLocation$(
+      null == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateLocation$ implements UpdateLocation$ {
+  const _$UpdateLocation$(this.location);
+
+  @override
+  final LatLng location;
+
+  @override
+  String toString() {
+    return 'UpdateLocation(location: $location)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateLocation$ &&
+            (identical(other.location, location) ||
+                other.location == location));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, location);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateLocation$CopyWith<_$UpdateLocation$> get copyWith =>
+      __$$UpdateLocation$CopyWithImpl<_$UpdateLocation$>(this, _$identity);
+}
+
+abstract class UpdateLocation$ implements UpdateLocation {
+  const factory UpdateLocation$(final LatLng location) = _$UpdateLocation$;
+
+  @override
+  LatLng get location;
+  @override
+  @JsonKey(ignore: true)
+  _$$UpdateLocation$CopyWith<_$UpdateLocation$> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$InitializeApp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(

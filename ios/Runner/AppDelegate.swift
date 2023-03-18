@@ -1,5 +1,6 @@
 import UIKit
 import Flutter
+import GoogleMaps
 
 import flutter_local_notifications
 
@@ -14,6 +15,8 @@ import flutter_local_notifications
     GeneratedPluginRegistrant.register(with: registry)}
 
     GeneratedPluginRegistrant.register(with: self)
+
+    GMSServices.provideAPIKey("AIzaSyCzEElzedwILPIL_YDtHlKOWWDdOpUAm2A")
 
     if #available(iOS 10.0, *) {
      UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate

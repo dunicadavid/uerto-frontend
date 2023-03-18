@@ -4,7 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:uerto/presentation/widgets/avatar_circle.dart';
+import 'package:uerto/presentation/widgets/test_avatar_circle.dart';
 
 import '../actions/index.dart';
 import '../containers/user_container.dart';

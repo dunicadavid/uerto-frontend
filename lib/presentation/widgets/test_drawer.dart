@@ -7,7 +7,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import '../../actions/index.dart';
 import '../../containers/user_container.dart';
 import '../../models/index.dart';
-import 'avatar_circle.dart';
+import 'test_avatar_circle.dart';
 
 class DrawerUerto extends StatelessWidget {
   const DrawerUerto({Key? key}) : super(key: key);

@@ -14,6 +14,7 @@ import 'package:uerto/presentation/main_page.dart';
 import 'package:uerto/presentation/place_category_detailed_filters_page.dart';
 import 'package:uerto/presentation/place_category_page.dart';
 import 'package:uerto/presentation/place_details_page.dart';
+import 'package:uerto/presentation/place_location_filters_page.dart';
 import 'package:uerto/presentation/places_result_list_page.dart';
 import 'package:uerto/presentation/register_page.dart';
 import 'package:uerto/presentation/reservations_future_page.dart';
@@ -72,6 +73,7 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                 '/editProfile': (BuildContext context) => const EditProfilePage(),
                 '/placeSearch': (BuildContext context) => const SearchPlacePage(),
                 '/placeFilter': (BuildContext context) => const PlaceCategoryPage(),
+                '/placeLocationFilter': (BuildContext context) => const PlaceLocationFiltersPage(),
                 '/placeDetailedFilter': (BuildContext context) => const PlaceCategoryDetailedFilterPage(),
                 '/placeResult': (BuildContext context) => const PlacesResultListPage(),
                 '/placeDetails': (BuildContext context) => const PlaceDetailsPage(),

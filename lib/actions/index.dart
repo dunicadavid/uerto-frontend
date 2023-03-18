@@ -2,6 +2,7 @@ library actions;
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uerto/models/index.dart';
 
 
@@ -9,6 +10,7 @@ part 'index.freezed.dart';
 
 part 'services/verify_location_service.dart';
 part 'services/get_current_location.dart';
+part 'services/update_location.dart';
 
 part 'auth/initialize_app.dart';
 part 'auth/register_phase1.dart';

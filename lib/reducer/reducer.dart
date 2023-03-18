@@ -15,6 +15,8 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, VerifyLocationServiceSuccessful>(_verifyLocationServiceSuccessful),
   TypedReducer<AppState, VerifyLocationServiceError>(_verifyLocationServiceError),
   TypedReducer<AppState, GetCurrentLocationSuccessful>(_getCurrentLocationSuccessful),
+  TypedReducer<AppState, UpdateLocation$>(_updateLocation),
+
   TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
   TypedReducer<AppState, InitializeAppError>(_initializeAppError),
   TypedReducer<AppState, RegisterPhase2Successful>(_registerPhase2Successful),
@@ -63,6 +65,14 @@ AppState _getCurrentLocationSuccessful(AppState state, GetCurrentLocationSuccess
     b
       ..latitude = action.currentLocation.latitude
       ..longitude = action.currentLocation.longitude;
+  });
+}
+
+AppState _updateLocation(AppState state, UpdateLocation$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
+      ..latitude = action.location.latitude
+      ..longitude = action.location.longitude;
   });
 }
 

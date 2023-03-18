@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:uerto/actions/index.dart';
-import 'package:uerto/presentation/widgets/drawer.dart';
+import 'package:uerto/presentation/widgets/test_drawer.dart';
 
 import '../../containers/user_container.dart';
 import '../../models/index.dart';

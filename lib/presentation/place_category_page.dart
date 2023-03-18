@@ -25,10 +25,6 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
     });
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
-    } else {
-      StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
-      StoreProvider.of<AppState>(context)
-          .dispatch(GetPlaces(_filter, StoreProvider.of<AppState>(context).state.category!, _onResultGetPlaces));
     }
   }
 
@@ -38,6 +34,15 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
     } else {
       Navigator.pushReplacementNamed(context, '/placeResult');
     }
+  }
+
+  @override
+  void initState() {
+    if(StoreProvider.of<AppState>(context, listen: false).state.latitude == null && StoreProvider.of<AppState>(context, listen: false).state.longitude == null) {
+      setState(() => _isLoading = true);
+      StoreProvider.of<AppState>(context, listen: false).dispatch(GetCurrentLocation(_onResultGetCurrentLocation));
+    }
+    super.initState();
   }
 
   @override
@@ -203,7 +208,13 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
               height: height * 0.07,
               width: width,
               color: Colors.amber,
-              child: const Text('Location + radius //install maps'),
+              child: GestureDetector(
+                  onTap: () {
+                    if (_isLoading == false) {
+                      Navigator.of(context).pushReplacementNamed('/placeLocationFilter');
+                    }
+                  },
+                  child: Text('Location + radius //install maps',style: TextStyle(color: _isLoading == false ? Colors.black : Colors.black45),),),
             ),
             SizedBox(
               height: height * 0.02,
@@ -335,8 +346,9 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
                 return GestureDetector(
                   onTap: () {
                     if (StoreProvider.of<AppState>(context).state.category != null) {
-                      setState(() => _isLoading = true);
-                      StoreProvider.of<AppState>(context).dispatch(GetCurrentLocation(_onResultGetCurrentLocation));
+                      StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
+                      StoreProvider.of<AppState>(context)
+                          .dispatch(GetPlaces(_filter, StoreProvider.of<AppState>(context).state.category!, _onResultGetPlaces));
                     }
                   },
                   child: ClipRRect(
