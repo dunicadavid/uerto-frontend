@@ -24,9 +24,25 @@ class PlaceApi {
   final String _apiUrl;
   final Client _client;
 
-  Future<Map<String, dynamic>> getPlaces(String filter, String category, int page, int limit) async {
+  Future<Map<String, dynamic>> getPlaces(String filter, String category, double? latitude, double? longitude,
+      int? radius, String? sortedBy, int page, int limit) async {
     final String token = await _auth.currentUser!.getIdToken();
-    final Uri uri = Uri.parse('$_apiUrl/places?page=$page&limit=$limit&type=$category&$filter');
+
+    final Map<String, String> requestParams = <String, String>{
+      'page': page.toString(),
+      'limit': limit.toString(),
+      'type': category,
+      'filter': filter != '' ? filter : '0',
+      'sortedBy': sortedBy ?? '0',
+      'latitude': latitude != null ? latitude.toString() : '0',
+      'longitude': longitude != null ? longitude.toString() : '0',
+      'radius': radius != null ? radius.toString() : '0',
+    };
+
+    print(requestParams);
+
+    final Uri uri =
+    Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places', requestParams);
 
     final Response response = await _client.get(
       uri,
@@ -77,7 +93,8 @@ class PlaceApi {
       'limit': limit.toString(),
     };
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/favourites-of-user=$iduser', requestParams);
+    final Uri uri =
+        Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/favourites-of-user=$iduser', requestParams);
 
     final Response response = await _client.get(
       uri,

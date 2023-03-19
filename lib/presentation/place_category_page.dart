@@ -17,7 +17,7 @@ class PlaceCategoryPage extends StatefulWidget {
 
 class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
   bool _isLoading = false;
-  final String _filter = '';
+  String _filter = '';
 
   void _onResultGetCurrentLocation(AppAction action) {
     setState(() {
@@ -346,6 +346,9 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
                 return GestureDetector(
                   onTap: () {
                     if (StoreProvider.of<AppState>(context).state.category != null) {
+                      for (final String element in StoreProvider.of<AppState>(context).state.filters!) {
+                        _filter += element;
+                      }
                       StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
                       StoreProvider.of<AppState>(context)
                           .dispatch(GetPlaces(_filter, StoreProvider.of<AppState>(context).state.category!, _onResultGetPlaces));

@@ -133,7 +133,7 @@ class AppEpics {
 
   Stream<AppAction> _getPlaces(Stream<GetPlacesStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetPlacesStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _placeApi.getPlaces(action.filter, store.state.category!, store.state.listOfPlacesNextPage, 5))
+        .asyncMap((_) => _placeApi.getPlaces(action.filter, store.state.category!, store.state.latitude, store.state.longitude,2000, store.state.sortBy, store.state.listOfPlacesNextPage, 5))
         .map((Map<String, dynamic> body) => GetPlaces.successful(body))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaces.error(error, stackTrace))
         .doOnData(action.result));
