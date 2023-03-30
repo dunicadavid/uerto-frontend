@@ -123,6 +123,15 @@ class _MainPageState extends State<MainPage> {
                   ),
                   GestureDetector(
                     onTap: () {
+                      Navigator.of(context).pushReplacementNamed('/recommend');
+                    },
+                    child: const Text('recommander system',style: TextStyle(color: Colors.blue),),
+                  ),
+                  SizedBox(
+                    height: height * 0.05,
+                  ),
+                  GestureDetector(
+                    onTap: () {
                       StoreProvider.of<AppState>(context).dispatch(const Signout());
                       Navigator.of(context).pushReplacementNamed('/login');
                     },

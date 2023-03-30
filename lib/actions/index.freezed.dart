@@ -5649,6 +5649,531 @@ abstract class RemovePlacesFilters$ implements RemovePlacesFilters {
 }
 
 /// @nodoc
+mixin _$GetRecommendedPlaces {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result, int idplace) $default, {
+    required TResult Function(List<PlaceShort> places) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result, int idplace)? $default, {
+    TResult? Function(List<PlaceShort> places)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result, int idplace)? $default, {
+    TResult Function(List<PlaceShort> places)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetRecommendedPlacesStart value) $default, {
+    required TResult Function(GetRecommendedPlacesSuccessful value) successful,
+    required TResult Function(GetRecommendedPlacesError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetRecommendedPlacesStart value)? $default, {
+    TResult? Function(GetRecommendedPlacesSuccessful value)? successful,
+    TResult? Function(GetRecommendedPlacesError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetRecommendedPlacesStart value)? $default, {
+    TResult Function(GetRecommendedPlacesSuccessful value)? successful,
+    TResult Function(GetRecommendedPlacesError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetRecommendedPlacesCopyWith<$Res> {
+  factory $GetRecommendedPlacesCopyWith(GetRecommendedPlaces value,
+          $Res Function(GetRecommendedPlaces) then) =
+      _$GetRecommendedPlacesCopyWithImpl<$Res, GetRecommendedPlaces>;
+}
+
+/// @nodoc
+class _$GetRecommendedPlacesCopyWithImpl<$Res,
+        $Val extends GetRecommendedPlaces>
+    implements $GetRecommendedPlacesCopyWith<$Res> {
+  _$GetRecommendedPlacesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$GetRecommendedPlacesStartCopyWith<$Res> {
+  factory _$$GetRecommendedPlacesStartCopyWith(
+          _$GetRecommendedPlacesStart value,
+          $Res Function(_$GetRecommendedPlacesStart) then) =
+      __$$GetRecommendedPlacesStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ActionResult result, int idplace});
+}
+
+/// @nodoc
+class __$$GetRecommendedPlacesStartCopyWithImpl<$Res>
+    extends _$GetRecommendedPlacesCopyWithImpl<$Res,
+        _$GetRecommendedPlacesStart>
+    implements _$$GetRecommendedPlacesStartCopyWith<$Res> {
+  __$$GetRecommendedPlacesStartCopyWithImpl(_$GetRecommendedPlacesStart _value,
+      $Res Function(_$GetRecommendedPlacesStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? result = null,
+    Object? idplace = null,
+  }) {
+    return _then(_$GetRecommendedPlacesStart(
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+      null == idplace
+          ? _value.idplace
+          : idplace // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetRecommendedPlacesStart implements GetRecommendedPlacesStart {
+  const _$GetRecommendedPlacesStart(this.result, this.idplace);
+
+  @override
+  final ActionResult result;
+  @override
+  final int idplace;
+
+  @override
+  String toString() {
+    return 'GetRecommendedPlaces(result: $result, idplace: $idplace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetRecommendedPlacesStart &&
+            (identical(other.result, result) || other.result == result) &&
+            (identical(other.idplace, idplace) || other.idplace == idplace));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, result, idplace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetRecommendedPlacesStartCopyWith<_$GetRecommendedPlacesStart>
+      get copyWith => __$$GetRecommendedPlacesStartCopyWithImpl<
+          _$GetRecommendedPlacesStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result, int idplace) $default, {
+    required TResult Function(List<PlaceShort> places) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(result, idplace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result, int idplace)? $default, {
+    TResult? Function(List<PlaceShort> places)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(result, idplace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result, int idplace)? $default, {
+    TResult Function(List<PlaceShort> places)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(result, idplace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetRecommendedPlacesStart value) $default, {
+    required TResult Function(GetRecommendedPlacesSuccessful value) successful,
+    required TResult Function(GetRecommendedPlacesError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetRecommendedPlacesStart value)? $default, {
+    TResult? Function(GetRecommendedPlacesSuccessful value)? successful,
+    TResult? Function(GetRecommendedPlacesError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetRecommendedPlacesStart value)? $default, {
+    TResult Function(GetRecommendedPlacesSuccessful value)? successful,
+    TResult Function(GetRecommendedPlacesError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetRecommendedPlacesStart implements GetRecommendedPlaces {
+  const factory GetRecommendedPlacesStart(
+          final ActionResult result, final int idplace) =
+      _$GetRecommendedPlacesStart;
+
+  ActionResult get result;
+  int get idplace;
+  @JsonKey(ignore: true)
+  _$$GetRecommendedPlacesStartCopyWith<_$GetRecommendedPlacesStart>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetRecommendedPlacesSuccessfulCopyWith<$Res> {
+  factory _$$GetRecommendedPlacesSuccessfulCopyWith(
+          _$GetRecommendedPlacesSuccessful value,
+          $Res Function(_$GetRecommendedPlacesSuccessful) then) =
+      __$$GetRecommendedPlacesSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<PlaceShort> places});
+}
+
+/// @nodoc
+class __$$GetRecommendedPlacesSuccessfulCopyWithImpl<$Res>
+    extends _$GetRecommendedPlacesCopyWithImpl<$Res,
+        _$GetRecommendedPlacesSuccessful>
+    implements _$$GetRecommendedPlacesSuccessfulCopyWith<$Res> {
+  __$$GetRecommendedPlacesSuccessfulCopyWithImpl(
+      _$GetRecommendedPlacesSuccessful _value,
+      $Res Function(_$GetRecommendedPlacesSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? places = null,
+  }) {
+    return _then(_$GetRecommendedPlacesSuccessful(
+      null == places
+          ? _value._places
+          : places // ignore: cast_nullable_to_non_nullable
+              as List<PlaceShort>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetRecommendedPlacesSuccessful
+    implements GetRecommendedPlacesSuccessful {
+  const _$GetRecommendedPlacesSuccessful(final List<PlaceShort> places)
+      : _places = places;
+
+  final List<PlaceShort> _places;
+  @override
+  List<PlaceShort> get places {
+    if (_places is EqualUnmodifiableListView) return _places;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_places);
+  }
+
+  @override
+  String toString() {
+    return 'GetRecommendedPlaces.successful(places: $places)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetRecommendedPlacesSuccessful &&
+            const DeepCollectionEquality().equals(other._places, _places));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_places));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetRecommendedPlacesSuccessfulCopyWith<_$GetRecommendedPlacesSuccessful>
+      get copyWith => __$$GetRecommendedPlacesSuccessfulCopyWithImpl<
+          _$GetRecommendedPlacesSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result, int idplace) $default, {
+    required TResult Function(List<PlaceShort> places) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(places);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result, int idplace)? $default, {
+    TResult? Function(List<PlaceShort> places)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(places);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result, int idplace)? $default, {
+    TResult Function(List<PlaceShort> places)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(places);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetRecommendedPlacesStart value) $default, {
+    required TResult Function(GetRecommendedPlacesSuccessful value) successful,
+    required TResult Function(GetRecommendedPlacesError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetRecommendedPlacesStart value)? $default, {
+    TResult? Function(GetRecommendedPlacesSuccessful value)? successful,
+    TResult? Function(GetRecommendedPlacesError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetRecommendedPlacesStart value)? $default, {
+    TResult Function(GetRecommendedPlacesSuccessful value)? successful,
+    TResult Function(GetRecommendedPlacesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetRecommendedPlacesSuccessful implements GetRecommendedPlaces {
+  const factory GetRecommendedPlacesSuccessful(final List<PlaceShort> places) =
+      _$GetRecommendedPlacesSuccessful;
+
+  List<PlaceShort> get places;
+  @JsonKey(ignore: true)
+  _$$GetRecommendedPlacesSuccessfulCopyWith<_$GetRecommendedPlacesSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetRecommendedPlacesErrorCopyWith<$Res> {
+  factory _$$GetRecommendedPlacesErrorCopyWith(
+          _$GetRecommendedPlacesError value,
+          $Res Function(_$GetRecommendedPlacesError) then) =
+      __$$GetRecommendedPlacesErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$GetRecommendedPlacesErrorCopyWithImpl<$Res>
+    extends _$GetRecommendedPlacesCopyWithImpl<$Res,
+        _$GetRecommendedPlacesError>
+    implements _$$GetRecommendedPlacesErrorCopyWith<$Res> {
+  __$$GetRecommendedPlacesErrorCopyWithImpl(_$GetRecommendedPlacesError _value,
+      $Res Function(_$GetRecommendedPlacesError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$GetRecommendedPlacesError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetRecommendedPlacesError implements GetRecommendedPlacesError {
+  const _$GetRecommendedPlacesError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'GetRecommendedPlaces.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetRecommendedPlacesError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetRecommendedPlacesErrorCopyWith<_$GetRecommendedPlacesError>
+      get copyWith => __$$GetRecommendedPlacesErrorCopyWithImpl<
+          _$GetRecommendedPlacesError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(ActionResult result, int idplace) $default, {
+    required TResult Function(List<PlaceShort> places) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(ActionResult result, int idplace)? $default, {
+    TResult? Function(List<PlaceShort> places)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(ActionResult result, int idplace)? $default, {
+    TResult Function(List<PlaceShort> places)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(GetRecommendedPlacesStart value) $default, {
+    required TResult Function(GetRecommendedPlacesSuccessful value) successful,
+    required TResult Function(GetRecommendedPlacesError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(GetRecommendedPlacesStart value)? $default, {
+    TResult? Function(GetRecommendedPlacesSuccessful value)? successful,
+    TResult? Function(GetRecommendedPlacesError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(GetRecommendedPlacesStart value)? $default, {
+    TResult Function(GetRecommendedPlacesSuccessful value)? successful,
+    TResult Function(GetRecommendedPlacesError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GetRecommendedPlacesError
+    implements GetRecommendedPlaces, ErrorAction {
+  const factory GetRecommendedPlacesError(
+          final Object error, final StackTrace stackTrace) =
+      _$GetRecommendedPlacesError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$GetRecommendedPlacesErrorCopyWith<_$GetRecommendedPlacesError>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$GetPlaces {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(

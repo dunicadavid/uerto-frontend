@@ -25,6 +25,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, LoginError>(_loginError),
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
   TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
+  TypedReducer<AppState, GetRecommendedPlacesSuccessful>(_getRecommendedPlacesSuccessful),
   TypedReducer<AppState, GetPlacesSearchedSuccessful>(_getPlacesSearchedSuccessful),
   TypedReducer<AppState, GetPlacesSearchedAllSuccessful>(_getPlacesSearchedAllSuccessful),
   TypedReducer<AppState, GetPlacesFavouriteSuccessful>(_getPlacesFavouriteSuccessful),
@@ -129,13 +130,19 @@ AppState _getPlacesSuccessful(AppState state, GetPlacesSuccessful action) {
   });
 }
 
+AppState _getRecommendedPlacesSuccessful(AppState state, GetRecommendedPlacesSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.listOfPlacesRecommended.clear();
+    b.listOfPlacesRecommended.addAll(action.places);
+  });
+}
+
 AppState _getPlacesSearchedSuccessful(AppState state, GetPlacesSearchedSuccessful action) {
   final List<dynamic> places = action.body['results'] as List<dynamic>;
   return state.rebuild((AppStateBuilder b) {
     b
       ..listOfPlacesSearched.addAll(places.map((dynamic json) => PlaceShort.fromJson(json)).toList())
       ..listOfPlacesSearchedNextPage = action.body.containsKey('next') ? b.listOfPlacesSearchedNextPage! + 1 : 0;
-    print(b.listOfPlacesSearchedNextPage);
   });
 }
 

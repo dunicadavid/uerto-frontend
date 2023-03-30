@@ -246,6 +246,26 @@ class DrawerUerto extends StatelessWidget {
                   ),
                 ),
               ),
+              Container(
+                height: 250,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 7,
+                    horizontal: 10,
+                  ),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'version: Pre-alpha 1.0.0+1',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(color: Colors.black12, fontFamily: 'FontR', fontSize: 15),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         );

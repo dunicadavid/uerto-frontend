@@ -20,6 +20,8 @@ abstract class PlaceShort implements Built<PlaceShort, PlaceShortBuilder> {
 
   String get category;
 
+  String? get geohash;
+
   Map<String, dynamic> get json =>
       serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 

@@ -42,6 +42,7 @@ class AppEpics {
       TypedEpic<AppState, ResetPasswordStart>(_resetPassword),
       TypedEpic<AppState, EditProfileStart>(_editProfile),
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
+      TypedEpic<AppState, GetRecommendedPlacesStart>(_getRecommendedPlaces),
       TypedEpic<AppState, GetPlacesSearchedStart>(_getPlacesSearched),
       TypedEpic<AppState, GetPlacesSearchedAllStart>(_getPlacesSearchedAll),
       TypedEpic<AppState, GetPlacesFavouriteStart>(_getPlacesFavourite),
@@ -133,16 +134,25 @@ class AppEpics {
 
   Stream<AppAction> _getPlaces(Stream<GetPlacesStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetPlacesStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _placeApi.getPlaces(action.filter, store.state.category!, store.state.latitude, store.state.longitude,2000, store.state.sortBy, store.state.listOfPlacesNextPage, 5))
+        .asyncMap((_) => _placeApi.getPlaces(action.filter, store.state.category!, store.state.latitude,
+            store.state.longitude, 2000, store.state.sortBy, store.state.listOfPlacesNextPage, 4))
         .map((Map<String, dynamic> body) => GetPlaces.successful(body))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlaces.error(error, stackTrace))
         .doOnData(action.result));
   }
 
+  Stream<AppAction> _getRecommendedPlaces(Stream<GetRecommendedPlacesStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetRecommendedPlacesStart action) => Stream<void>.value(null)
+        .asyncMap((_) =>
+            _placeApi.getPlacesRecommended(store.state.user!.userId, action.idplace, store.state.user!.nextStrategy))
+        .map((List<PlaceShort> places) => GetRecommendedPlaces.successful(places))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetRecommendedPlaces.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
   Stream<Object> _getPlacesSearched(Stream<GetPlacesSearchedStart> actions, EpicStore<AppState> store) {
     return actions
-        .asyncMap((GetPlacesSearchedStart action) =>
-            _placeApi.getPlacesSearched(action.name, 1, action.limit))
+        .asyncMap((GetPlacesSearchedStart action) => _placeApi.getPlacesSearched(action.name, 1, action.limit))
         .expand((Map<String, dynamic> body) {
       return <Object>[
         const DeletePlacesSearched(),
@@ -153,7 +163,8 @@ class AppEpics {
 
   Stream<AppAction> _getPlacesSearchedAll(Stream<GetPlacesSearchedAllStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetPlacesSearchedAllStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _placeApi.getPlacesSearched(action.name, store.state.listOfPlacesSearchedNextPage, action.limit))
+        .asyncMap(
+            (_) => _placeApi.getPlacesSearched(action.name, store.state.listOfPlacesSearchedNextPage, action.limit))
         .map((Map<String, dynamic> body) => GetPlacesSearchedAll.successful(body))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlacesSearchedAll.error(error, stackTrace))
         .doOnData(action.result));

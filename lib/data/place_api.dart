@@ -105,11 +105,44 @@ class PlaceApi {
     );
 
     final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
-    print(body);
+
     if (response.statusCode != 200) {
       throw StateError(body['message'].toString());
     }
     return body;
+  }
+
+  Future<List<PlaceShort>> getPlacesRecommended(int iduser, int idplace, int strategy) async {
+    final String token = await _auth.currentUser!.getIdToken();
+
+    final Map<String, String> requestParams = <String, String>{
+      'iduser': iduser.toString(),
+      'idplace': idplace.toString(),
+      'strategy': strategy.toString(),
+    };
+
+    final Uri uri =
+    Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/recommend', requestParams);
+
+    final Response response = await _client.get(
+      uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+    );
+
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode != 200) {
+      throw StateError(body['message'].toString());
+    }
+
+    final List<dynamic> places = body['places'] as List<dynamic>;
+
+    return places
+        .map((dynamic json) => PlaceShort.fromJson(json))
+        .toList();
   }
 
   Future<Place> getPlaceDetails(int id, int iduser) async {

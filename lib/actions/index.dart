@@ -28,6 +28,8 @@ part 'places/filters/delete_places_filters.dart';
 part 'places/filters/delete_places_sortedBy.dart';
 part 'places/filters/remove_places_filters.dart';
 
+part 'places/recommendersys/get_recommended_places.dart';
+
 part 'places/get_places.dart';
 part 'places/get_places_searched.dart';
 part 'places/get_places_searched_all.dart';

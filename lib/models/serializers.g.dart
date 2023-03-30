@@ -21,6 +21,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(PlaceShort)]),
           () => new ListBuilder<PlaceShort>())
       ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(PlaceShort)]),
+          () => new ListBuilder<PlaceShort>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(

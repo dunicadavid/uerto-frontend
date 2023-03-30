@@ -30,6 +30,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   BuiltList<PlaceShort>? get listOfPlacesSearched;
   int get listOfPlacesSearchedNextPage;
 
+  BuiltList<PlaceShort>? get listOfPlacesRecommended;
+
   String? get category;
   BuiltList<String>? get filters;
   String? get sortBy;

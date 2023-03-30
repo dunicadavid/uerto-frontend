@@ -2,9 +2,13 @@
 // Dunica David-Gabriel <FLTY>
 // on 12/12/2022 18:23:18
 
+import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:redux/redux.dart';
+import 'package:uerto/presentation/widgets/test_maps.dart';
+import 'package:uerto/presentation/widgets/test_places_list.dart';
 
 import '../../actions/index.dart';
 import '../../containers/places_short_container.dart';
@@ -20,6 +24,7 @@ class PlacesResultListPage extends StatefulWidget {
 class _PlacesResultListPageState extends State<PlacesResultListPage> {
   final ScrollController _controller = ScrollController();
   bool _isLoading = false;
+  bool _listView = true;
 
   @override
   void initState() {
@@ -36,7 +41,10 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double threshold = screenHeight * 0.5;
 
-    if (delta < threshold && store.state.listOfPlacesNextPage != 0 && _isLoading == false && store.state.category != null) {
+    if (delta < threshold &&
+        store.state.listOfPlacesNextPage != 0 &&
+        _isLoading == false &&
+        store.state.category != null) {
       _isLoading = true;
       store.dispatch(GetPlaces('', store.state.category!, _onResultPlaces));
     }
@@ -55,7 +63,7 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
-     Navigator.pushReplacementNamed(context, '/placeDetails');
+      Navigator.pushReplacementNamed(context, '/placeDetails');
     }
   }
 
@@ -68,59 +76,51 @@ class _PlacesResultListPageState extends State<PlacesResultListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('PlaceResultPage'),
-          leading: IconButton(
-            icon: const Icon(Icons.backspace_outlined),
-            onPressed: () {
-              StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
-              Navigator.of(context).pushReplacementNamed('/placeFilter');
-            },
-          ),
+      appBar: AppBar(
+        title: const Text('PlaceResultPage'),
+        leading: IconButton(
+          icon: const Icon(Icons.backspace_outlined),
+          onPressed: () {
+            StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
+            Navigator.of(context).pushReplacementNamed('/placeFilter');
+          },
         ),
-        body: PlacesShortContainer(
-          builder: (BuildContext context, List<PlaceShort> places) {
-                return GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: 2,
-                  ),
-                  controller: _controller,
-                  itemCount: places.length,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    final PlaceShort place = places[index];
-
-                    return GestureDetector(
-                      onTap: () {
-                        if(StoreProvider.of<AppState>(context).state.placeDetails != null) {
-                          if (place.idplace != StoreProvider.of<AppState>(context).state.placeDetails?.idplace) {
-                            StoreProvider.of<AppState>(context).dispatch(const DeletePlaceActivities());
-                            StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace, StoreProvider.of<AppState>(context).state.user!.userId, _onResultDetails));
-                          } else {
-                            Navigator.of(context).pushReplacementNamed('/placeDetails');
-                          }
-                        } else {
-                          StoreProvider.of<AppState>(context).dispatch(const DeletePlaceActivities());
-                          StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace, StoreProvider.of<AppState>(context).state.user!.userId, _onResultDetails));
-                        }
-                      },
-                      child: GridTile(
-                        footer: GridTileBar(
-                          backgroundColor: Colors.black38,
-                          title: Text(place.name),
-                          subtitle: Text(place.location),
-                        ),
-                        child: Image.network(
-                          'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
+        actions: [
+          IconButton(
+            onPressed: () {
+              if (_listView == true) {
+                setState(() {
+                  _listView = false;
+                });
+              }
+            },
+            icon: AnimatedContainer(
+              duration: const Duration(seconds: 1),
+              child: Icon(Icons.map, color: _listView ? Colors.white24 : Colors.white),
             ),
+          ),
+          IconButton(
+            onPressed: () {
+              if (_listView == false) {
+                setState(() {
+                  _listView = true;
+                });
+              }
+            },
+            icon: AnimatedContainer(
+              duration: const Duration(seconds: 1),
+              child: Icon(Icons.list, color: _listView ? Colors.white : Colors.white24),
+            ),
+          ),
+        ],
+      ),
+      body: AnimatedContainer(
+        curve: Curves.fastOutSlowIn,
+        duration: const Duration(seconds: 1),
+        child: _listView
+            ? TestPlacesList(controller: _controller, onResultDetails: _onResultDetails)
+            : TestMaps(onResultDetails: _onResultDetails),
+      ),
     );
   }
 }

@@ -41,7 +41,7 @@ class AuthApi {
     final String token = await user.getIdToken();
     print('Token: ' + token);
     print('Uid: ${_auth.currentUser?.uid}');
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/users/authid=${_auth.currentUser?.uid}');
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/users/idauth');
     response = await _client.get(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -67,8 +67,7 @@ class AuthApi {
     result = await _auth.signInWithCredential(credential);
 
     final String? token = await _auth.currentUser?.getIdToken();
-
-    final Uri uri = Uri.parse('$_apiUrl/users/authid=${_auth.currentUser?.uid}');
+    final Uri uri = Uri.parse('$_apiUrl/users/idauth');
     response = await _client.get(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',

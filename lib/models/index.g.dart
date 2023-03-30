@@ -62,6 +62,14 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
             specifiedType:
                 const FullType(BuiltList, const [const FullType(PlaceShort)])));
     }
+    value = object.listOfPlacesRecommended;
+    if (value != null) {
+      result
+        ..add('listOfPlacesRecommended')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(PlaceShort)])));
+    }
     value = object.category;
     if (value != null) {
       result
@@ -196,6 +204,12 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
           result.listOfPlacesSearchedNextPage = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
+        case 'listOfPlacesRecommended':
+          result.listOfPlacesRecommended.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(PlaceShort)]))!
+              as BuiltList<Object?>);
+          break;
         case 'category':
           result.category = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -302,6 +316,9 @@ class _$AppUserSerializer implements StructuredSerializer<AppUser> {
           specifiedType: const FullType(String)),
       'uid',
       serializers.serialize(object.uid, specifiedType: const FullType(String)),
+      'nextStrategy',
+      serializers.serialize(object.nextStrategy,
+          specifiedType: const FullType(int)),
     ];
     Object? value;
     value = object.photoUrl;
@@ -349,6 +366,10 @@ class _$AppUserSerializer implements StructuredSerializer<AppUser> {
           result.photoUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'nextStrategy':
+          result.nextStrategy = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
       }
     }
 
@@ -377,7 +398,14 @@ class _$PlaceShortSerializer implements StructuredSerializer<PlaceShort> {
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.geohash;
+    if (value != null) {
+      result
+        ..add('geohash')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -407,6 +435,10 @@ class _$PlaceShortSerializer implements StructuredSerializer<PlaceShort> {
         case 'category':
           result.category = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'geohash':
+          result.geohash = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -706,6 +738,8 @@ class _$AppState extends AppState {
   @override
   final int listOfPlacesSearchedNextPage;
   @override
+  final BuiltList<PlaceShort>? listOfPlacesRecommended;
+  @override
   final String? category;
   @override
   final BuiltList<String>? filters;
@@ -747,6 +781,7 @@ class _$AppState extends AppState {
       required this.listOfPlacesNextPage,
       this.listOfPlacesSearched,
       required this.listOfPlacesSearchedNextPage,
+      this.listOfPlacesRecommended,
       this.category,
       this.filters,
       this.sortBy,
@@ -794,6 +829,7 @@ class _$AppState extends AppState {
         listOfPlacesNextPage == other.listOfPlacesNextPage &&
         listOfPlacesSearched == other.listOfPlacesSearched &&
         listOfPlacesSearchedNextPage == other.listOfPlacesSearchedNextPage &&
+        listOfPlacesRecommended == other.listOfPlacesRecommended &&
         category == other.category &&
         filters == other.filters &&
         sortBy == other.sortBy &&
@@ -822,6 +858,7 @@ class _$AppState extends AppState {
     _$hash = $jc(_$hash, listOfPlacesNextPage.hashCode);
     _$hash = $jc(_$hash, listOfPlacesSearched.hashCode);
     _$hash = $jc(_$hash, listOfPlacesSearchedNextPage.hashCode);
+    _$hash = $jc(_$hash, listOfPlacesRecommended.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, filters.hashCode);
     _$hash = $jc(_$hash, sortBy.hashCode);
@@ -850,6 +887,7 @@ class _$AppState extends AppState {
           ..add('listOfPlacesNextPage', listOfPlacesNextPage)
           ..add('listOfPlacesSearched', listOfPlacesSearched)
           ..add('listOfPlacesSearchedNextPage', listOfPlacesSearchedNextPage)
+          ..add('listOfPlacesRecommended', listOfPlacesRecommended)
           ..add('category', category)
           ..add('filters', filters)
           ..add('sortBy', sortBy)
@@ -900,6 +938,13 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   int? get listOfPlacesSearchedNextPage => _$this._listOfPlacesSearchedNextPage;
   set listOfPlacesSearchedNextPage(int? listOfPlacesSearchedNextPage) =>
       _$this._listOfPlacesSearchedNextPage = listOfPlacesSearchedNextPage;
+
+  ListBuilder<PlaceShort>? _listOfPlacesRecommended;
+  ListBuilder<PlaceShort> get listOfPlacesRecommended =>
+      _$this._listOfPlacesRecommended ??= new ListBuilder<PlaceShort>();
+  set listOfPlacesRecommended(
+          ListBuilder<PlaceShort>? listOfPlacesRecommended) =>
+      _$this._listOfPlacesRecommended = listOfPlacesRecommended;
 
   String? _category;
   String? get category => _$this._category;
@@ -998,6 +1043,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _listOfPlacesNextPage = $v.listOfPlacesNextPage;
       _listOfPlacesSearched = $v.listOfPlacesSearched?.toBuilder();
       _listOfPlacesSearchedNextPage = $v.listOfPlacesSearchedNextPage;
+      _listOfPlacesRecommended = $v.listOfPlacesRecommended?.toBuilder();
       _category = $v.category;
       _filters = $v.filters?.toBuilder();
       _sortBy = $v.sortBy;
@@ -1048,6 +1094,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
                   listOfPlacesSearchedNextPage,
                   r'AppState',
                   'listOfPlacesSearchedNextPage'),
+              listOfPlacesRecommended: _listOfPlacesRecommended?.build(),
               category: category,
               filters: _filters?.build(),
               sortBy: sortBy,
@@ -1082,6 +1129,9 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
 
         _$failedField = 'listOfPlacesSearched';
         _listOfPlacesSearched?.build();
+
+        _$failedField = 'listOfPlacesRecommended';
+        _listOfPlacesRecommended?.build();
 
         _$failedField = 'filters';
         _filters?.build();
@@ -1120,6 +1170,8 @@ class _$AppUser extends AppUser {
   final String uid;
   @override
   final String? photoUrl;
+  @override
+  final int nextStrategy;
 
   factory _$AppUser([void Function(AppUserBuilder)? updates]) =>
       (new AppUserBuilder()..update(updates))._build();
@@ -1130,7 +1182,8 @@ class _$AppUser extends AppUser {
       required this.email,
       required this.phoneNumber,
       required this.uid,
-      this.photoUrl})
+      this.photoUrl,
+      required this.nextStrategy})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(userId, r'AppUser', 'userId');
     BuiltValueNullFieldError.checkNotNull(fullname, r'AppUser', 'fullname');
@@ -1138,6 +1191,8 @@ class _$AppUser extends AppUser {
     BuiltValueNullFieldError.checkNotNull(
         phoneNumber, r'AppUser', 'phoneNumber');
     BuiltValueNullFieldError.checkNotNull(uid, r'AppUser', 'uid');
+    BuiltValueNullFieldError.checkNotNull(
+        nextStrategy, r'AppUser', 'nextStrategy');
   }
 
   @override
@@ -1156,7 +1211,8 @@ class _$AppUser extends AppUser {
         email == other.email &&
         phoneNumber == other.phoneNumber &&
         uid == other.uid &&
-        photoUrl == other.photoUrl;
+        photoUrl == other.photoUrl &&
+        nextStrategy == other.nextStrategy;
   }
 
   @override
@@ -1168,6 +1224,7 @@ class _$AppUser extends AppUser {
     _$hash = $jc(_$hash, phoneNumber.hashCode);
     _$hash = $jc(_$hash, uid.hashCode);
     _$hash = $jc(_$hash, photoUrl.hashCode);
+    _$hash = $jc(_$hash, nextStrategy.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -1180,7 +1237,8 @@ class _$AppUser extends AppUser {
           ..add('email', email)
           ..add('phoneNumber', phoneNumber)
           ..add('uid', uid)
-          ..add('photoUrl', photoUrl))
+          ..add('photoUrl', photoUrl)
+          ..add('nextStrategy', nextStrategy))
         .toString();
   }
 }
@@ -1212,6 +1270,10 @@ class AppUserBuilder implements Builder<AppUser, AppUserBuilder> {
   String? get photoUrl => _$this._photoUrl;
   set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
 
+  int? _nextStrategy;
+  int? get nextStrategy => _$this._nextStrategy;
+  set nextStrategy(int? nextStrategy) => _$this._nextStrategy = nextStrategy;
+
   AppUserBuilder();
 
   AppUserBuilder get _$this {
@@ -1223,6 +1285,7 @@ class AppUserBuilder implements Builder<AppUser, AppUserBuilder> {
       _phoneNumber = $v.phoneNumber;
       _uid = $v.uid;
       _photoUrl = $v.photoUrl;
+      _nextStrategy = $v.nextStrategy;
       _$v = null;
     }
     return this;
@@ -1254,7 +1317,9 @@ class AppUserBuilder implements Builder<AppUser, AppUserBuilder> {
             phoneNumber: BuiltValueNullFieldError.checkNotNull(
                 phoneNumber, r'AppUser', 'phoneNumber'),
             uid: BuiltValueNullFieldError.checkNotNull(uid, r'AppUser', 'uid'),
-            photoUrl: photoUrl);
+            photoUrl: photoUrl,
+            nextStrategy: BuiltValueNullFieldError.checkNotNull(
+                nextStrategy, r'AppUser', 'nextStrategy'));
     replace(_$result);
     return _$result;
   }
@@ -1269,6 +1334,8 @@ class _$PlaceShort extends PlaceShort {
   final String location;
   @override
   final String category;
+  @override
+  final String? geohash;
 
   factory _$PlaceShort([void Function(PlaceShortBuilder)? updates]) =>
       (new PlaceShortBuilder()..update(updates))._build();
@@ -1277,7 +1344,8 @@ class _$PlaceShort extends PlaceShort {
       {required this.idplace,
       required this.name,
       required this.location,
-      required this.category})
+      required this.category,
+      this.geohash})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(idplace, r'PlaceShort', 'idplace');
     BuiltValueNullFieldError.checkNotNull(name, r'PlaceShort', 'name');
@@ -1299,7 +1367,8 @@ class _$PlaceShort extends PlaceShort {
         idplace == other.idplace &&
         name == other.name &&
         location == other.location &&
-        category == other.category;
+        category == other.category &&
+        geohash == other.geohash;
   }
 
   @override
@@ -1309,6 +1378,7 @@ class _$PlaceShort extends PlaceShort {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, location.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, geohash.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -1319,7 +1389,8 @@ class _$PlaceShort extends PlaceShort {
           ..add('idplace', idplace)
           ..add('name', name)
           ..add('location', location)
-          ..add('category', category))
+          ..add('category', category)
+          ..add('geohash', geohash))
         .toString();
   }
 }
@@ -1343,6 +1414,10 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
 
+  String? _geohash;
+  String? get geohash => _$this._geohash;
+  set geohash(String? geohash) => _$this._geohash = geohash;
+
   PlaceShortBuilder();
 
   PlaceShortBuilder get _$this {
@@ -1352,6 +1427,7 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
       _name = $v.name;
       _location = $v.location;
       _category = $v.category;
+      _geohash = $v.geohash;
       _$v = null;
     }
     return this;
@@ -1381,7 +1457,8 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
             location: BuiltValueNullFieldError.checkNotNull(
                 location, r'PlaceShort', 'location'),
             category: BuiltValueNullFieldError.checkNotNull(
-                category, r'PlaceShort', 'category'));
+                category, r'PlaceShort', 'category'),
+            geohash: geohash);
     replace(_$result);
     return _$result;
   }
