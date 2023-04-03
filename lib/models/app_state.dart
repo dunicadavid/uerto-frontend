@@ -23,6 +23,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   AppState._();
 
   AppUser? get user;
+  BuiltList<RateRequest>? get listOfRateRequest;
 
   BuiltList<PlaceShort> get listOfPlaces;
   int get listOfPlacesNextPage;

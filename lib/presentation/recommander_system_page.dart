@@ -50,6 +50,7 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
                 margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                 height: 140,
                 width: width,
+                child: const Text('Work'),
               ),
             ),
           Container(
@@ -60,6 +61,7 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
             margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             height: 140,
             width: width,
+            child: const Text('Chill'),
           ),
           Container(
             decoration: const BoxDecoration(
@@ -69,6 +71,7 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
             margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             height: 140,
             width: width,
+            child: const Text('Friday Night'),
           ),
           Container(
             decoration: const BoxDecoration(
@@ -78,6 +81,7 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
             margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             height: 140,
             width: width,
+            child: const Text('Date'),
           ),
           Container(
             decoration: const BoxDecoration(
@@ -87,6 +91,7 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
             margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             height: 140,
             width: width,
+            child: const Text('Active Break'),
           ),
         ],
       ),

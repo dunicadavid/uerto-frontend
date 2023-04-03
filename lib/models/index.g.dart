@@ -14,6 +14,7 @@ Serializer<PlaceActivity> _$placeActivitySerializer =
 Serializer<PlaceActivityAvailability> _$placeActivityAvailabilitySerializer =
     new _$PlaceActivityAvailabilitySerializer();
 Serializer<Place> _$placeSerializer = new _$PlaceSerializer();
+Serializer<RateRequest> _$rateRequestSerializer = new _$RateRequestSerializer();
 Serializer<Reservation> _$reservationSerializer = new _$ReservationSerializer();
 
 class _$AppStateSerializer implements StructuredSerializer<AppState> {
@@ -53,6 +54,14 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add('user')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(AppUser)));
+    }
+    value = object.listOfRateRequest;
+    if (value != null) {
+      result
+        ..add('listOfRateRequest')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(RateRequest)])));
     }
     value = object.listOfPlacesSearched;
     if (value != null) {
@@ -183,6 +192,12 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         case 'user':
           result.user.replace(serializers.deserialize(value,
               specifiedType: const FullType(AppUser))! as AppUser);
+          break;
+        case 'listOfRateRequest':
+          result.listOfRateRequest.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(RateRequest)]))!
+              as BuiltList<Object?>);
           break;
         case 'listOfPlaces':
           result.listOfPlaces.replace(serializers.deserialize(value,
@@ -654,6 +669,58 @@ class _$PlaceSerializer implements StructuredSerializer<Place> {
   }
 }
 
+class _$RateRequestSerializer implements StructuredSerializer<RateRequest> {
+  @override
+  final Iterable<Type> types = const [RateRequest, _$RateRequest];
+  @override
+  final String wireName = 'RateRequest';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, RateRequest object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'idreservation',
+      serializers.serialize(object.idreservation,
+          specifiedType: const FullType(int)),
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'date',
+      serializers.serialize(object.date, specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  RateRequest deserialize(Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new RateRequestBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'idreservation':
+          result.idreservation = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'date':
+          result.date = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
 class _$ReservationSerializer implements StructuredSerializer<Reservation> {
   @override
   final Iterable<Type> types = const [Reservation, _$Reservation];
@@ -730,6 +797,8 @@ class _$AppState extends AppState {
   @override
   final AppUser? user;
   @override
+  final BuiltList<RateRequest>? listOfRateRequest;
+  @override
   final BuiltList<PlaceShort> listOfPlaces;
   @override
   final int listOfPlacesNextPage;
@@ -777,6 +846,7 @@ class _$AppState extends AppState {
 
   _$AppState._(
       {this.user,
+      this.listOfRateRequest,
       required this.listOfPlaces,
       required this.listOfPlacesNextPage,
       this.listOfPlacesSearched,
@@ -825,6 +895,7 @@ class _$AppState extends AppState {
     if (identical(other, this)) return true;
     return other is AppState &&
         user == other.user &&
+        listOfRateRequest == other.listOfRateRequest &&
         listOfPlaces == other.listOfPlaces &&
         listOfPlacesNextPage == other.listOfPlacesNextPage &&
         listOfPlacesSearched == other.listOfPlacesSearched &&
@@ -854,6 +925,7 @@ class _$AppState extends AppState {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, user.hashCode);
+    _$hash = $jc(_$hash, listOfRateRequest.hashCode);
     _$hash = $jc(_$hash, listOfPlaces.hashCode);
     _$hash = $jc(_$hash, listOfPlacesNextPage.hashCode);
     _$hash = $jc(_$hash, listOfPlacesSearched.hashCode);
@@ -883,6 +955,7 @@ class _$AppState extends AppState {
   String toString() {
     return (newBuiltValueToStringHelper(r'AppState')
           ..add('user', user)
+          ..add('listOfRateRequest', listOfRateRequest)
           ..add('listOfPlaces', listOfPlaces)
           ..add('listOfPlacesNextPage', listOfPlacesNextPage)
           ..add('listOfPlacesSearched', listOfPlacesSearched)
@@ -916,6 +989,12 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   AppUserBuilder? _user;
   AppUserBuilder get user => _$this._user ??= new AppUserBuilder();
   set user(AppUserBuilder? user) => _$this._user = user;
+
+  ListBuilder<RateRequest>? _listOfRateRequest;
+  ListBuilder<RateRequest> get listOfRateRequest =>
+      _$this._listOfRateRequest ??= new ListBuilder<RateRequest>();
+  set listOfRateRequest(ListBuilder<RateRequest>? listOfRateRequest) =>
+      _$this._listOfRateRequest = listOfRateRequest;
 
   ListBuilder<PlaceShort>? _listOfPlaces;
   ListBuilder<PlaceShort> get listOfPlaces =>
@@ -1039,6 +1118,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
     final $v = _$v;
     if ($v != null) {
       _user = $v.user?.toBuilder();
+      _listOfRateRequest = $v.listOfRateRequest?.toBuilder();
       _listOfPlaces = $v.listOfPlaces.toBuilder();
       _listOfPlacesNextPage = $v.listOfPlacesNextPage;
       _listOfPlacesSearched = $v.listOfPlacesSearched?.toBuilder();
@@ -1086,6 +1166,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _$result = _$v ??
           new _$AppState._(
               user: _user?.build(),
+              listOfRateRequest: _listOfRateRequest?.build(),
               listOfPlaces: listOfPlaces.build(),
               listOfPlacesNextPage: BuiltValueNullFieldError.checkNotNull(
                   listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage'),
@@ -1124,6 +1205,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       try {
         _$failedField = 'user';
         _user?.build();
+        _$failedField = 'listOfRateRequest';
+        _listOfRateRequest?.build();
         _$failedField = 'listOfPlaces';
         listOfPlaces.build();
 
@@ -1895,6 +1978,119 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
                 rating, r'Place', 'rating'),
             favourite: BuiltValueNullFieldError.checkNotNull(
                 favourite, r'Place', 'favourite'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$RateRequest extends RateRequest {
+  @override
+  final int idreservation;
+  @override
+  final String name;
+  @override
+  final String date;
+
+  factory _$RateRequest([void Function(RateRequestBuilder)? updates]) =>
+      (new RateRequestBuilder()..update(updates))._build();
+
+  _$RateRequest._(
+      {required this.idreservation, required this.name, required this.date})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        idreservation, r'RateRequest', 'idreservation');
+    BuiltValueNullFieldError.checkNotNull(name, r'RateRequest', 'name');
+    BuiltValueNullFieldError.checkNotNull(date, r'RateRequest', 'date');
+  }
+
+  @override
+  RateRequest rebuild(void Function(RateRequestBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  RateRequestBuilder toBuilder() => new RateRequestBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is RateRequest &&
+        idreservation == other.idreservation &&
+        name == other.name &&
+        date == other.date;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, idreservation.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, date.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'RateRequest')
+          ..add('idreservation', idreservation)
+          ..add('name', name)
+          ..add('date', date))
+        .toString();
+  }
+}
+
+class RateRequestBuilder implements Builder<RateRequest, RateRequestBuilder> {
+  _$RateRequest? _$v;
+
+  int? _idreservation;
+  int? get idreservation => _$this._idreservation;
+  set idreservation(int? idreservation) =>
+      _$this._idreservation = idreservation;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _date;
+  String? get date => _$this._date;
+  set date(String? date) => _$this._date = date;
+
+  RateRequestBuilder();
+
+  RateRequestBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _idreservation = $v.idreservation;
+      _name = $v.name;
+      _date = $v.date;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(RateRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$RateRequest;
+  }
+
+  @override
+  void update(void Function(RateRequestBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  RateRequest build() => _build();
+
+  _$RateRequest _build() {
+    final _$result = _$v ??
+        new _$RateRequest._(
+            idreservation: BuiltValueNullFieldError.checkNotNull(
+                idreservation, r'RateRequest', 'idreservation'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'RateRequest', 'name'),
+            date: BuiltValueNullFieldError.checkNotNull(
+                date, r'RateRequest', 'date'));
     replace(_$result);
     return _$result;
   }

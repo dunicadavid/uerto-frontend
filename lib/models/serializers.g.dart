@@ -13,7 +13,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PlaceActivity.serializer)
       ..add(PlaceActivityAvailability.serializer)
       ..add(PlaceShort.serializer)
+      ..add(RateRequest.serializer)
       ..add(Reservation.serializer)
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(RateRequest)]),
+          () => new ListBuilder<RateRequest>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(PlaceShort)]),
           () => new ListBuilder<PlaceShort>())

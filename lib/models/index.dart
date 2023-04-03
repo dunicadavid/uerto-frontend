@@ -15,5 +15,6 @@ part 'place_short.dart';
 part 'place_activity.dart';
 part 'place_activity_availability.dart';
 part 'place.dart';
+part 'rate_request.dart';
 part 'reservation.dart';
 part 'index.g.dart';

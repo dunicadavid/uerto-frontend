@@ -48,6 +48,7 @@ part 'reservations/get_reservations_future.dart';
 part 'reservations/get_reservations_previous.dart';
 part 'reservations/delete_reservations_future.dart';
 part 'reservations/delete_reservations_previous.dart';
+part 'reservations/get_reservations_rate_request.dart';
 
 abstract class AppAction {}
 

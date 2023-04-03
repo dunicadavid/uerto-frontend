@@ -54,14 +54,17 @@ class AppEpics {
       TypedEpic<AppState, DeleteReservationStart>(_deleteReservation),
       TypedEpic<AppState, GetReservationsPreviousStart>(_getReservationsPrevious),
       TypedEpic<AppState, GetReservationsFutureStart>(_getReservationsFuture),
+      TypedEpic<AppState, GetReservationsRateRequestStart>(_getReservationsRateRequest),
     ]);
   }
 
-  Stream<AppAction> _initializeApp(Stream<InitializeAppStart> actions, EpicStore<AppState> store) {
-    return actions
-        .asyncMap((InitializeAppStart action) => _authApi.getCurrentUser())
-        .map((AppUser? user) => InitializeApp.successful(user))
-        .onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeApp.error(error, stackTrace));
+  Stream<Object> _initializeApp(Stream<InitializeAppStart> actions, EpicStore<AppState> store) {
+    return actions.asyncMap((InitializeAppStart action) => _authApi.getCurrentUser()).expand((AppUser? user) {
+      return <Object>[
+        InitializeApp.successful(user),
+        GetReservationsRateRequest(user!.userId, (_) {}),
+      ];
+    }).onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeApp.error(error, stackTrace));
   }
 
   Stream<AppAction> _verifyLocationService(Stream<VerifyLocationServiceStart> actions, EpicStore<AppState> store) {
@@ -244,6 +247,15 @@ class AppEpics {
             action.iduser, store.state.listOfFutureReservationsNextPage, action.limit))
         .map((Map<String, dynamic> body) => GetReservationsFuture.successful(body))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetReservationsFuture.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _getReservationsRateRequest(
+      Stream<GetReservationsRateRequestStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((GetReservationsRateRequestStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _reservationApi.getReservationsRateRequest(action.iduser))
+        .map((List<RateRequest> rates) => GetReservationsRateRequest.successful(rates))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetReservationsRateRequest.error(error, stackTrace))
         .doOnData(action.result));
   }
 }
