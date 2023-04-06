@@ -13,6 +13,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
         ..listOfFutureReservationsNextPage = 1
         ..listOfPreviousReservationsNextPage = 1
         ..listOfPlacesSearched.clear() //null check cand intru pe pagina de search
+        ..listOfRateRequest.clear()
         ..filters.clear()
         ..isInitDone = false;
     });

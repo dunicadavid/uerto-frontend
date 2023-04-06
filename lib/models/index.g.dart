@@ -682,6 +682,8 @@ class _$RateRequestSerializer implements StructuredSerializer<RateRequest> {
       'idreservation',
       serializers.serialize(object.idreservation,
           specifiedType: const FullType(int)),
+      'idplace',
+      serializers.serialize(object.idplace, specifiedType: const FullType(int)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'date',
@@ -704,6 +706,10 @@ class _$RateRequestSerializer implements StructuredSerializer<RateRequest> {
       switch (key) {
         case 'idreservation':
           result.idreservation = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'idplace':
+          result.idplace = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
         case 'name':
@@ -1987,6 +1993,8 @@ class _$RateRequest extends RateRequest {
   @override
   final int idreservation;
   @override
+  final int idplace;
+  @override
   final String name;
   @override
   final String date;
@@ -1995,10 +2003,14 @@ class _$RateRequest extends RateRequest {
       (new RateRequestBuilder()..update(updates))._build();
 
   _$RateRequest._(
-      {required this.idreservation, required this.name, required this.date})
+      {required this.idreservation,
+      required this.idplace,
+      required this.name,
+      required this.date})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         idreservation, r'RateRequest', 'idreservation');
+    BuiltValueNullFieldError.checkNotNull(idplace, r'RateRequest', 'idplace');
     BuiltValueNullFieldError.checkNotNull(name, r'RateRequest', 'name');
     BuiltValueNullFieldError.checkNotNull(date, r'RateRequest', 'date');
   }
@@ -2015,6 +2027,7 @@ class _$RateRequest extends RateRequest {
     if (identical(other, this)) return true;
     return other is RateRequest &&
         idreservation == other.idreservation &&
+        idplace == other.idplace &&
         name == other.name &&
         date == other.date;
   }
@@ -2023,6 +2036,7 @@ class _$RateRequest extends RateRequest {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, idreservation.hashCode);
+    _$hash = $jc(_$hash, idplace.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, date.hashCode);
     _$hash = $jf(_$hash);
@@ -2033,6 +2047,7 @@ class _$RateRequest extends RateRequest {
   String toString() {
     return (newBuiltValueToStringHelper(r'RateRequest')
           ..add('idreservation', idreservation)
+          ..add('idplace', idplace)
           ..add('name', name)
           ..add('date', date))
         .toString();
@@ -2046,6 +2061,10 @@ class RateRequestBuilder implements Builder<RateRequest, RateRequestBuilder> {
   int? get idreservation => _$this._idreservation;
   set idreservation(int? idreservation) =>
       _$this._idreservation = idreservation;
+
+  int? _idplace;
+  int? get idplace => _$this._idplace;
+  set idplace(int? idplace) => _$this._idplace = idplace;
 
   String? _name;
   String? get name => _$this._name;
@@ -2061,6 +2080,7 @@ class RateRequestBuilder implements Builder<RateRequest, RateRequestBuilder> {
     final $v = _$v;
     if ($v != null) {
       _idreservation = $v.idreservation;
+      _idplace = $v.idplace;
       _name = $v.name;
       _date = $v.date;
       _$v = null;
@@ -2087,6 +2107,8 @@ class RateRequestBuilder implements Builder<RateRequest, RateRequestBuilder> {
         new _$RateRequest._(
             idreservation: BuiltValueNullFieldError.checkNotNull(
                 idreservation, r'RateRequest', 'idreservation'),
+            idplace: BuiltValueNullFieldError.checkNotNull(
+                idplace, r'RateRequest', 'idplace'),
             name: BuiltValueNullFieldError.checkNotNull(
                 name, r'RateRequest', 'name'),
             date: BuiltValueNullFieldError.checkNotNull(

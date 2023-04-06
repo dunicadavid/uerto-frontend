@@ -14,6 +14,8 @@ abstract class RateRequest implements Built<RateRequest, RateRequestBuilder> {
 
   int get idreservation;
 
+  int get idplace;
+
   String get name;
 
   String get date;

@@ -19,6 +19,14 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
 
+  @override
+  void initState() {
+    Future.delayed(Duration.zero, () {
+      print(StoreProvider.of<AppState>(context).state.listOfRateRequest);
+    });
+    super.initState();
+  }
+
   void _onResultGetReservationsFuture(AppAction action) {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));

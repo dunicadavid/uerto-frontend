@@ -55,14 +55,15 @@ class AppEpics {
       TypedEpic<AppState, GetReservationsPreviousStart>(_getReservationsPrevious),
       TypedEpic<AppState, GetReservationsFutureStart>(_getReservationsFuture),
       TypedEpic<AppState, GetReservationsRateRequestStart>(_getReservationsRateRequest),
+      TypedEpic<AppState, SetReservationRatingStart>(_setReservationRating),
     ]);
   }
 
   Stream<Object> _initializeApp(Stream<InitializeAppStart> actions, EpicStore<AppState> store) {
     return actions.asyncMap((InitializeAppStart action) => _authApi.getCurrentUser()).expand((AppUser? user) {
       return <Object>[
-        InitializeApp.successful(user),
         GetReservationsRateRequest(user!.userId, (_) {}),
+        InitializeApp.successful(user),
       ];
     }).onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeApp.error(error, stackTrace));
   }
@@ -256,6 +257,15 @@ class AppEpics {
         .asyncMap((_) => _reservationApi.getReservationsRateRequest(action.iduser))
         .map((List<RateRequest> rates) => GetReservationsRateRequest.successful(rates))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetReservationsRateRequest.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _setReservationRating(
+      Stream<SetReservationRatingStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((SetReservationRatingStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _reservationApi.setReservationRating(store.state.user!.userId,action.idplace,action.idreservation,action.rating))
+        .map((_) => SetReservationRating.successful(action.idreservation))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => SetReservationRating.error(error, stackTrace))
         .doOnData(action.result));
   }
 }

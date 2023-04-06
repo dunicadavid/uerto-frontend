@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:uerto/presentation/current_location_page.dart';
+import 'package:uerto/presentation/rate_place_page.dart';
 import 'package:uerto/presentation/register2_page.dart';
 import 'package:uerto/presentation/verify_email_page.dart';
 
@@ -37,6 +38,8 @@ class InitPage extends StatelessWidget {
             return const CurrentLocationPage();
           } else if (!StoreProvider.of<AppState>(context).state.isServerWorking!) {
             return const ErrorPage();
+          } else if (StoreProvider.of<AppState>(context).state.listOfRateRequest!.isNotEmpty) {
+            return const RatePlacePage();
           } else {
             return const MainPage();
           }
