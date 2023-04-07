@@ -171,32 +171,55 @@ class ReservationApi {
         .toList();
   }
 
-  Future<void> setReservationRating(int iduser, int idplace, int idreservation, double rating) async {
+  Future<void> setReservationRating(int iduser, int idplace, int idreservation, int rating) async {
 
     final String? token = await _auth.currentUser?.getIdToken();
 
-    final Map<String, String> requestParams = <String, String>{
-      'idreservation' : idreservation.toString(),
-      'idplace' : idplace.toString(),
-      'iduser' : iduser.toString(),
-      'rating' : rating.toString()
-    };
-
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/interaction/rate-place', requestParams);
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/interaction/rate-place');
 
     final Response response = await _client.post(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
         HttpHeaders.authorizationHeader : 'Bearer $token',
       },
+      body: json.encode(<String, dynamic>{
+        'idreservation' : idreservation.toString(),
+        'idplace' : idplace.toString(),
+        'iduser' : iduser.toString(),
+        'rating' : rating.toString()
+      }),
     );
 
     final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
 
-    if (response.statusCode != 200) {
+    if (response.statusCode != 201) {
       print(body['message'].toString());
       throw StateError(body['message'].toString());
     }
   }
 
+  Future<void> deleteReservationRating(int idreservation, int iduser) async {
+
+    final String? token = await _auth.currentUser?.getIdToken();
+
+    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/interaction/rate-requests');
+
+    final Response response = await _client.delete(uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader : 'Bearer $token',
+      },
+      body: json.encode(<String, dynamic>{
+        'idreservation' : idreservation.toString(),
+        'iduser' : iduser.toString()
+      }),
+    );
+
+    final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+
+    if (response.statusCode != 201) {
+      print(body['message'].toString());
+      throw StateError(body['message'].toString());
+    }
+  }
 }

@@ -13478,7 +13478,7 @@ mixin _$SetReservationRating {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int idplace, int idreservation, double rating, ActionResult result)
+            int idplace, int idreservation, int rating, ActionResult result)
         $default, {
     required TResult Function(int idreservation) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
@@ -13487,7 +13487,7 @@ mixin _$SetReservationRating {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int idplace, int idreservation, double rating, ActionResult result)?
+            int idplace, int idreservation, int rating, ActionResult result)?
         $default, {
     TResult? Function(int idreservation)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
@@ -13496,7 +13496,7 @@ mixin _$SetReservationRating {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int idplace, int idreservation, double rating, ActionResult result)?
+            int idplace, int idreservation, int rating, ActionResult result)?
         $default, {
     TResult Function(int idreservation)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
@@ -13553,8 +13553,7 @@ abstract class _$$SetReservationRatingStartCopyWith<$Res> {
           $Res Function(_$SetReservationRatingStart) then) =
       __$$SetReservationRatingStartCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {int idplace, int idreservation, double rating, ActionResult result});
+  $Res call({int idplace, int idreservation, int rating, ActionResult result});
 }
 
 /// @nodoc
@@ -13586,7 +13585,7 @@ class __$$SetReservationRatingStartCopyWithImpl<$Res>
       null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as double,
+              as int,
       null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
@@ -13606,7 +13605,7 @@ class _$SetReservationRatingStart implements SetReservationRatingStart {
   @override
   final int idreservation;
   @override
-  final double rating;
+  final int rating;
   @override
   final ActionResult result;
 
@@ -13642,7 +13641,7 @@ class _$SetReservationRatingStart implements SetReservationRatingStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int idplace, int idreservation, double rating, ActionResult result)
+            int idplace, int idreservation, int rating, ActionResult result)
         $default, {
     required TResult Function(int idreservation) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
@@ -13654,7 +13653,7 @@ class _$SetReservationRatingStart implements SetReservationRatingStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int idplace, int idreservation, double rating, ActionResult result)?
+            int idplace, int idreservation, int rating, ActionResult result)?
         $default, {
     TResult? Function(int idreservation)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
@@ -13666,7 +13665,7 @@ class _$SetReservationRatingStart implements SetReservationRatingStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int idplace, int idreservation, double rating, ActionResult result)?
+            int idplace, int idreservation, int rating, ActionResult result)?
         $default, {
     TResult Function(int idreservation)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
@@ -13717,12 +13716,12 @@ abstract class SetReservationRatingStart implements SetReservationRating {
   const factory SetReservationRatingStart(
       final int idplace,
       final int idreservation,
-      final double rating,
+      final int rating,
       final ActionResult result) = _$SetReservationRatingStart;
 
   int get idplace;
   int get idreservation;
-  double get rating;
+  int get rating;
   ActionResult get result;
   @JsonKey(ignore: true)
   _$$SetReservationRatingStartCopyWith<_$SetReservationRatingStart>
@@ -13800,7 +13799,7 @@ class _$SetReservationRatingSuccessful
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int idplace, int idreservation, double rating, ActionResult result)
+            int idplace, int idreservation, int rating, ActionResult result)
         $default, {
     required TResult Function(int idreservation) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
@@ -13812,7 +13811,7 @@ class _$SetReservationRatingSuccessful
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int idplace, int idreservation, double rating, ActionResult result)?
+            int idplace, int idreservation, int rating, ActionResult result)?
         $default, {
     TResult? Function(int idreservation)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
@@ -13824,7 +13823,7 @@ class _$SetReservationRatingSuccessful
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int idplace, int idreservation, double rating, ActionResult result)?
+            int idplace, int idreservation, int rating, ActionResult result)?
         $default, {
     TResult Function(int idreservation)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
@@ -13956,7 +13955,7 @@ class _$SetReservationRatingError implements SetReservationRatingError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
-            int idplace, int idreservation, double rating, ActionResult result)
+            int idplace, int idreservation, int rating, ActionResult result)
         $default, {
     required TResult Function(int idreservation) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
@@ -13968,7 +13967,7 @@ class _$SetReservationRatingError implements SetReservationRatingError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
-            int idplace, int idreservation, double rating, ActionResult result)?
+            int idplace, int idreservation, int rating, ActionResult result)?
         $default, {
     TResult? Function(int idreservation)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
@@ -13980,7 +13979,7 @@ class _$SetReservationRatingError implements SetReservationRatingError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
-            int idplace, int idreservation, double rating, ActionResult result)?
+            int idplace, int idreservation, int rating, ActionResult result)?
         $default, {
     TResult Function(int idreservation)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
@@ -14037,5 +14036,534 @@ abstract class SetReservationRatingError
   StackTrace get stackTrace;
   @JsonKey(ignore: true)
   _$$SetReservationRatingErrorCopyWith<_$SetReservationRatingError>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$DeleteReservationRating {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int idreservation, ActionResult result) $default, {
+    required TResult Function(int idreservation) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int idreservation, ActionResult result)? $default, {
+    TResult? Function(int idreservation)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int idreservation, ActionResult result)? $default, {
+    TResult Function(int idreservation)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeleteReservationRatingStart value) $default, {
+    required TResult Function(DeleteReservationRatingSuccessful value)
+        successful,
+    required TResult Function(DeleteReservationRatingError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(DeleteReservationRatingStart value)? $default, {
+    TResult? Function(DeleteReservationRatingSuccessful value)? successful,
+    TResult? Function(DeleteReservationRatingError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeleteReservationRatingStart value)? $default, {
+    TResult Function(DeleteReservationRatingSuccessful value)? successful,
+    TResult Function(DeleteReservationRatingError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeleteReservationRatingCopyWith<$Res> {
+  factory $DeleteReservationRatingCopyWith(DeleteReservationRating value,
+          $Res Function(DeleteReservationRating) then) =
+      _$DeleteReservationRatingCopyWithImpl<$Res, DeleteReservationRating>;
+}
+
+/// @nodoc
+class _$DeleteReservationRatingCopyWithImpl<$Res,
+        $Val extends DeleteReservationRating>
+    implements $DeleteReservationRatingCopyWith<$Res> {
+  _$DeleteReservationRatingCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DeleteReservationRatingStartCopyWith<$Res> {
+  factory _$$DeleteReservationRatingStartCopyWith(
+          _$DeleteReservationRatingStart value,
+          $Res Function(_$DeleteReservationRatingStart) then) =
+      __$$DeleteReservationRatingStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int idreservation, ActionResult result});
+}
+
+/// @nodoc
+class __$$DeleteReservationRatingStartCopyWithImpl<$Res>
+    extends _$DeleteReservationRatingCopyWithImpl<$Res,
+        _$DeleteReservationRatingStart>
+    implements _$$DeleteReservationRatingStartCopyWith<$Res> {
+  __$$DeleteReservationRatingStartCopyWithImpl(
+      _$DeleteReservationRatingStart _value,
+      $Res Function(_$DeleteReservationRatingStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? idreservation = null,
+    Object? result = null,
+  }) {
+    return _then(_$DeleteReservationRatingStart(
+      null == idreservation
+          ? _value.idreservation
+          : idreservation // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteReservationRatingStart implements DeleteReservationRatingStart {
+  const _$DeleteReservationRatingStart(this.idreservation, this.result);
+
+  @override
+  final int idreservation;
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'DeleteReservationRating(idreservation: $idreservation, result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteReservationRatingStart &&
+            (identical(other.idreservation, idreservation) ||
+                other.idreservation == idreservation) &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, idreservation, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteReservationRatingStartCopyWith<_$DeleteReservationRatingStart>
+      get copyWith => __$$DeleteReservationRatingStartCopyWithImpl<
+          _$DeleteReservationRatingStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int idreservation, ActionResult result) $default, {
+    required TResult Function(int idreservation) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(idreservation, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int idreservation, ActionResult result)? $default, {
+    TResult? Function(int idreservation)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(idreservation, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int idreservation, ActionResult result)? $default, {
+    TResult Function(int idreservation)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(idreservation, result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeleteReservationRatingStart value) $default, {
+    required TResult Function(DeleteReservationRatingSuccessful value)
+        successful,
+    required TResult Function(DeleteReservationRatingError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(DeleteReservationRatingStart value)? $default, {
+    TResult? Function(DeleteReservationRatingSuccessful value)? successful,
+    TResult? Function(DeleteReservationRatingError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeleteReservationRatingStart value)? $default, {
+    TResult Function(DeleteReservationRatingSuccessful value)? successful,
+    TResult Function(DeleteReservationRatingError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteReservationRatingStart implements DeleteReservationRating {
+  const factory DeleteReservationRatingStart(
+          final int idreservation, final ActionResult result) =
+      _$DeleteReservationRatingStart;
+
+  int get idreservation;
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$DeleteReservationRatingStartCopyWith<_$DeleteReservationRatingStart>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteReservationRatingSuccessfulCopyWith<$Res> {
+  factory _$$DeleteReservationRatingSuccessfulCopyWith(
+          _$DeleteReservationRatingSuccessful value,
+          $Res Function(_$DeleteReservationRatingSuccessful) then) =
+      __$$DeleteReservationRatingSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int idreservation});
+}
+
+/// @nodoc
+class __$$DeleteReservationRatingSuccessfulCopyWithImpl<$Res>
+    extends _$DeleteReservationRatingCopyWithImpl<$Res,
+        _$DeleteReservationRatingSuccessful>
+    implements _$$DeleteReservationRatingSuccessfulCopyWith<$Res> {
+  __$$DeleteReservationRatingSuccessfulCopyWithImpl(
+      _$DeleteReservationRatingSuccessful _value,
+      $Res Function(_$DeleteReservationRatingSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? idreservation = null,
+  }) {
+    return _then(_$DeleteReservationRatingSuccessful(
+      null == idreservation
+          ? _value.idreservation
+          : idreservation // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteReservationRatingSuccessful
+    implements DeleteReservationRatingSuccessful {
+  const _$DeleteReservationRatingSuccessful(this.idreservation);
+
+  @override
+  final int idreservation;
+
+  @override
+  String toString() {
+    return 'DeleteReservationRating.successful(idreservation: $idreservation)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteReservationRatingSuccessful &&
+            (identical(other.idreservation, idreservation) ||
+                other.idreservation == idreservation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, idreservation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteReservationRatingSuccessfulCopyWith<
+          _$DeleteReservationRatingSuccessful>
+      get copyWith => __$$DeleteReservationRatingSuccessfulCopyWithImpl<
+          _$DeleteReservationRatingSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int idreservation, ActionResult result) $default, {
+    required TResult Function(int idreservation) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(idreservation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int idreservation, ActionResult result)? $default, {
+    TResult? Function(int idreservation)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(idreservation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int idreservation, ActionResult result)? $default, {
+    TResult Function(int idreservation)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(idreservation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeleteReservationRatingStart value) $default, {
+    required TResult Function(DeleteReservationRatingSuccessful value)
+        successful,
+    required TResult Function(DeleteReservationRatingError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(DeleteReservationRatingStart value)? $default, {
+    TResult? Function(DeleteReservationRatingSuccessful value)? successful,
+    TResult? Function(DeleteReservationRatingError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeleteReservationRatingStart value)? $default, {
+    TResult Function(DeleteReservationRatingSuccessful value)? successful,
+    TResult Function(DeleteReservationRatingError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteReservationRatingSuccessful
+    implements DeleteReservationRating {
+  const factory DeleteReservationRatingSuccessful(final int idreservation) =
+      _$DeleteReservationRatingSuccessful;
+
+  int get idreservation;
+  @JsonKey(ignore: true)
+  _$$DeleteReservationRatingSuccessfulCopyWith<
+          _$DeleteReservationRatingSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteReservationRatingErrorCopyWith<$Res> {
+  factory _$$DeleteReservationRatingErrorCopyWith(
+          _$DeleteReservationRatingError value,
+          $Res Function(_$DeleteReservationRatingError) then) =
+      __$$DeleteReservationRatingErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$DeleteReservationRatingErrorCopyWithImpl<$Res>
+    extends _$DeleteReservationRatingCopyWithImpl<$Res,
+        _$DeleteReservationRatingError>
+    implements _$$DeleteReservationRatingErrorCopyWith<$Res> {
+  __$$DeleteReservationRatingErrorCopyWithImpl(
+      _$DeleteReservationRatingError _value,
+      $Res Function(_$DeleteReservationRatingError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$DeleteReservationRatingError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteReservationRatingError implements DeleteReservationRatingError {
+  const _$DeleteReservationRatingError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'DeleteReservationRating.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteReservationRatingError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteReservationRatingErrorCopyWith<_$DeleteReservationRatingError>
+      get copyWith => __$$DeleteReservationRatingErrorCopyWithImpl<
+          _$DeleteReservationRatingError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int idreservation, ActionResult result) $default, {
+    required TResult Function(int idreservation) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int idreservation, ActionResult result)? $default, {
+    TResult? Function(int idreservation)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int idreservation, ActionResult result)? $default, {
+    TResult Function(int idreservation)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(DeleteReservationRatingStart value) $default, {
+    required TResult Function(DeleteReservationRatingSuccessful value)
+        successful,
+    required TResult Function(DeleteReservationRatingError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(DeleteReservationRatingStart value)? $default, {
+    TResult? Function(DeleteReservationRatingSuccessful value)? successful,
+    TResult? Function(DeleteReservationRatingError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(DeleteReservationRatingStart value)? $default, {
+    TResult Function(DeleteReservationRatingSuccessful value)? successful,
+    TResult Function(DeleteReservationRatingError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteReservationRatingError
+    implements DeleteReservationRating, ErrorAction {
+  const factory DeleteReservationRatingError(
+          final Object error, final StackTrace stackTrace) =
+      _$DeleteReservationRatingError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$DeleteReservationRatingErrorCopyWith<_$DeleteReservationRatingError>
       get copyWith => throw _privateConstructorUsedError;
 }

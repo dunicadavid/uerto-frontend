@@ -6,7 +6,7 @@ part of actions;
 
 @freezed
 class SetReservationRating with _$SetReservationRating implements AppAction {
-  const factory SetReservationRating(int idplace ,int idreservation ,double rating, ActionResult result) = SetReservationRatingStart;
+  const factory SetReservationRating(int idplace ,int idreservation ,int rating, ActionResult result) = SetReservationRatingStart;
 
   const factory SetReservationRating.successful(int idreservation) = SetReservationRatingSuccessful;
 

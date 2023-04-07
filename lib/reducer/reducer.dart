@@ -46,6 +46,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, GetReservationsPreviousSuccessful>(_getReservationsPrevious),
   TypedReducer<AppState, GetReservationsRateRequestSuccessful>(_getReservationsRateRequest),
   TypedReducer<AppState, SetReservationRatingSuccessful>(_setReservationRating),
+  TypedReducer<AppState, DeleteReservationRatingSuccessful>(_deleteReservationRating),
   TypedReducer<AppState, DeleteReservationsFuture$>(_deleteReservationsFuture),
   TypedReducer<AppState, DeleteReservationsPrevious$>(_deleteReservationsPrevious),
   TypedReducer<AppState, DeleteReservationSuccessful>(_deleteReservationSuccessful),
@@ -302,6 +303,12 @@ AppState _getReservationsRateRequest(AppState state, GetReservationsRateRequestS
 }
 
 AppState _setReservationRating(AppState state, SetReservationRatingSuccessful action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.listOfRateRequest.removeWhere((RateRequest value) => value.idreservation == action.idreservation);
+  });
+}
+
+AppState _deleteReservationRating(AppState state, DeleteReservationRatingSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     b.listOfRateRequest.removeWhere((RateRequest value) => value.idreservation == action.idreservation);
   });

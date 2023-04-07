@@ -50,6 +50,7 @@ part 'reservations/delete_reservations_future.dart';
 part 'reservations/delete_reservations_previous.dart';
 part 'reservations/get_reservations_rate_request.dart';
 part 'reservations/set_reservation_rating.dart';
+part 'reservations/delete_reservation_rating.dart';
 
 abstract class AppAction {}
 

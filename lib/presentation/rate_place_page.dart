@@ -19,7 +19,7 @@ class RatePlacePage extends StatefulWidget {
 class _RatePlacePageState extends State<RatePlacePage> {
   late PageController _pageController;
   late int selectedIndex;
-  late List<double> rating;
+  late List<int> rating;
   int _currentPage = 0;
 
   void _onResult(AppAction action) {
@@ -39,7 +39,7 @@ class _RatePlacePageState extends State<RatePlacePage> {
   void initState() {
     super.initState();
     _pageController = PageController(initialPage: _currentPage);
-    rating = List<double>.filled(StoreProvider.of<AppState>(context, listen: false).state.listOfRateRequest!.length, 0, growable: true);
+    rating = List<int>.filled(StoreProvider.of<AppState>(context, listen: false).state.listOfRateRequest!.length, 0, growable: true);
   }
 
   @override
@@ -55,6 +55,8 @@ class _RatePlacePageState extends State<RatePlacePage> {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Rate your last reservation'),
+            leading: IconButton(icon:Icon(Icons.arrow_back),
+            onPressed: () => Navigator.of(context).pushReplacementNamed('/main'),)
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,6 +118,16 @@ class _RatePlacePageState extends State<RatePlacePage> {
                               onPressed: () {
                                 selectedIndex = index;
                                 StoreProvider.of<AppState>(context).dispatch(SetReservationRating(ratings[index].idplace, ratings[index].idreservation, rating[index], _onResult));
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Center(
+                            child: TextButton(
+                              child: const Text('Dont want to rate this place!'),
+                              onPressed: () {
+                                selectedIndex = index;
+                                StoreProvider.of<AppState>(context).dispatch(DeleteReservationRating(ratings[index].idreservation, _onResult));
                               },
                             ),
                           ),

@@ -56,6 +56,7 @@ class AppEpics {
       TypedEpic<AppState, GetReservationsFutureStart>(_getReservationsFuture),
       TypedEpic<AppState, GetReservationsRateRequestStart>(_getReservationsRateRequest),
       TypedEpic<AppState, SetReservationRatingStart>(_setReservationRating),
+      TypedEpic<AppState, DeleteReservationRatingStart>(_deleteReservationRating),
     ]);
   }
 
@@ -266,6 +267,15 @@ class AppEpics {
         .asyncMap((_) => _reservationApi.setReservationRating(store.state.user!.userId,action.idplace,action.idreservation,action.rating))
         .map((_) => SetReservationRating.successful(action.idreservation))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => SetReservationRating.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _deleteReservationRating(
+      Stream<DeleteReservationRatingStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((DeleteReservationRatingStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _reservationApi.deleteReservationRating(action.idreservation, store.state.user!.userId))
+        .map((_) => DeleteReservationRating.successful(action.idreservation))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => DeleteReservationRating.error(error, stackTrace))
         .doOnData(action.result));
   }
 }
