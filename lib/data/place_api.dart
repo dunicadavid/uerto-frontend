@@ -112,12 +112,11 @@ class PlaceApi {
     return body;
   }
 
-  Future<List<PlaceShort>> getPlacesRecommended(int iduser, int idplace, int strategy) async {
+  Future<List<PlaceShort>> getPlacesRecommended(int iduser, int strategy) async {
     final String token = await _auth.currentUser!.getIdToken();
 
     final Map<String, String> requestParams = <String, String>{
       'iduser': iduser.toString(),
-      'idplace': idplace.toString(),
       'strategy': strategy.toString(),
     };
 

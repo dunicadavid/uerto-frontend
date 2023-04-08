@@ -146,7 +146,7 @@ class AuthApi {
   }
 
   /// [ {editProfile} ]  --  modifica datele unui utilizator
-  Future<AppUser> editProfile(int iduser, String fullname, String phoneNumber, String photoUrl) async {
+  Future<AppUser> editProfile(int iduser, String fullname, String phoneNumber, String photoUrl, int nextStrategy) async {
 
     final AppUser user = AppUser((AppUserBuilder b) {
       b
@@ -154,7 +154,8 @@ class AuthApi {
         ..uid = _auth.currentUser?.uid
         ..fullname = fullname
         ..email = _auth.currentUser?.email
-        ..phoneNumber = phoneNumber;
+        ..phoneNumber = phoneNumber
+        ..nextStrategy = nextStrategy;
     });
 
     final String? token = await _auth.currentUser?.getIdToken();
@@ -204,5 +205,29 @@ class AuthApi {
     return _auth.sendPasswordResetEmail(email: email);
   }
 
+  /// [ {setRecommenderStrategy} ]  --  functia de setare a urmatoarei strategii de MachineLearning.
+  Future<void> setRecommenderStrategy(int iduser, int strategy) async {
+    final String token = await _auth.currentUser!.getIdToken();
 
+    final Uri uri =
+    Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/update/strategy');
+
+    final Response response = await _client.put(
+      uri,
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+      body:  json.encode(<String, String>{
+        'iduser': iduser.toString(),
+        'strategy': strategy.toString(),
+      }),
+    );
+
+    final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode != 201) {
+      throw StateError(body['message'].toString());
+    }
+  }
 }

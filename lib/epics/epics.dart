@@ -43,6 +43,7 @@ class AppEpics {
       TypedEpic<AppState, EditProfileStart>(_editProfile),
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
       TypedEpic<AppState, GetRecommendedPlacesStart>(_getRecommendedPlaces),
+      TypedEpic<AppState, SetRecommenderStrategyStart>(_setRecommenderStrategy),
       TypedEpic<AppState, GetPlacesSearchedStart>(_getPlacesSearched),
       TypedEpic<AppState, GetPlacesSearchedAllStart>(_getPlacesSearchedAll),
       TypedEpic<AppState, GetPlacesFavouriteStart>(_getPlacesFavourite),
@@ -131,7 +132,7 @@ class AppEpics {
 
   Stream<AppAction> _editProfile(Stream<EditProfileStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((EditProfileStart action) => Stream<void>.value(null)
-        .asyncMap((_) => _authApi.editProfile(action.iduser, action.fullname, action.phoneNumber, action.photoUrl))
+        .asyncMap((_) => _authApi.editProfile(action.iduser, action.fullname, action.phoneNumber, action.photoUrl, store.state.user!.nextStrategy))
         .map((AppUser user) => EditProfile.successful(user))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => EditProfile.error(error, stackTrace))
         .doOnData(action.result));
@@ -149,10 +150,18 @@ class AppEpics {
   Stream<AppAction> _getRecommendedPlaces(Stream<GetRecommendedPlacesStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((GetRecommendedPlacesStart action) => Stream<void>.value(null)
         .asyncMap((_) =>
-            _placeApi.getPlacesRecommended(store.state.user!.userId, action.idplace, store.state.user!.nextStrategy))
+            _placeApi.getPlacesRecommended(store.state.user!.userId, store.state.user!.nextStrategy))
         .map((List<PlaceShort> places) => GetRecommendedPlaces.successful(places))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => GetRecommendedPlaces.error(error, stackTrace))
         .doOnData(action.result));
+  }
+
+  Stream<AppAction> _setRecommenderStrategy(Stream<SetRecommenderStrategyStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((SetRecommenderStrategyStart action) => Stream<void>.value(null)
+        .asyncMap((_) =>
+        _authApi.setRecommenderStrategy(store.state.user!.userId, action.strategy))
+        .map((_) => SetRecommenderStrategy.successful(action.strategy))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => SetRecommenderStrategy.error(error, stackTrace)));
   }
 
   Stream<Object> _getPlacesSearched(Stream<GetPlacesSearchedStart> actions, EpicStore<AppState> store) {

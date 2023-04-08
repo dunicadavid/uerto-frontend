@@ -26,6 +26,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
   TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
   TypedReducer<AppState, GetRecommendedPlacesSuccessful>(_getRecommendedPlacesSuccessful),
+  TypedReducer<AppState, SetRecommenderStrategySuccessful>(_setRecommenderStrategySuccessful),
   TypedReducer<AppState, GetPlacesSearchedSuccessful>(_getPlacesSearchedSuccessful),
   TypedReducer<AppState, GetPlacesSearchedAllSuccessful>(_getPlacesSearchedAllSuccessful),
   TypedReducer<AppState, GetPlacesFavouriteSuccessful>(_getPlacesFavouriteSuccessful),
@@ -138,6 +139,19 @@ AppState _getRecommendedPlacesSuccessful(AppState state, GetRecommendedPlacesSuc
     b.listOfPlacesRecommended.clear();
     b.listOfPlacesRecommended.addAll(action.places);
   });
+}
+
+AppState _setRecommenderStrategySuccessful(AppState state, SetRecommenderStrategySuccessful action) {
+  final AppUser user = AppUser((AppUserBuilder b) {
+    b
+      ..userId = state.user!.userId
+      ..uid = state.user!.uid
+      ..fullname = state.user!.fullname
+      ..email = state.user!.email
+      ..phoneNumber = state.user!.phoneNumber
+      ..nextStrategy = action.strategy;
+  });
+  return state.rebuild((AppStateBuilder b) => b.user = user.toBuilder());
 }
 
 AppState _getPlacesSearchedSuccessful(AppState state, GetPlacesSearchedSuccessful action) {

@@ -5652,21 +5652,21 @@ abstract class RemovePlacesFilters$ implements RemovePlacesFilters {
 mixin _$GetRecommendedPlaces {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(ActionResult result, int idplace) $default, {
+    TResult Function(ActionResult result) $default, {
     required TResult Function(List<PlaceShort> places) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ActionResult result, int idplace)? $default, {
+    TResult? Function(ActionResult result)? $default, {
     TResult? Function(List<PlaceShort> places)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ActionResult result, int idplace)? $default, {
+    TResult Function(ActionResult result)? $default, {
     TResult Function(List<PlaceShort> places)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -5722,7 +5722,7 @@ abstract class _$$GetRecommendedPlacesStartCopyWith<$Res> {
           $Res Function(_$GetRecommendedPlacesStart) then) =
       __$$GetRecommendedPlacesStartCopyWithImpl<$Res>;
   @useResult
-  $Res call({ActionResult result, int idplace});
+  $Res call({ActionResult result});
 }
 
 /// @nodoc
@@ -5738,17 +5738,12 @@ class __$$GetRecommendedPlacesStartCopyWithImpl<$Res>
   @override
   $Res call({
     Object? result = null,
-    Object? idplace = null,
   }) {
     return _then(_$GetRecommendedPlacesStart(
       null == result
           ? _value.result
           : result // ignore: cast_nullable_to_non_nullable
               as ActionResult,
-      null == idplace
-          ? _value.idplace
-          : idplace // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -5756,16 +5751,14 @@ class __$$GetRecommendedPlacesStartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetRecommendedPlacesStart implements GetRecommendedPlacesStart {
-  const _$GetRecommendedPlacesStart(this.result, this.idplace);
+  const _$GetRecommendedPlacesStart(this.result);
 
   @override
   final ActionResult result;
-  @override
-  final int idplace;
 
   @override
   String toString() {
-    return 'GetRecommendedPlaces(result: $result, idplace: $idplace)';
+    return 'GetRecommendedPlaces(result: $result)';
   }
 
   @override
@@ -5773,12 +5766,11 @@ class _$GetRecommendedPlacesStart implements GetRecommendedPlacesStart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GetRecommendedPlacesStart &&
-            (identical(other.result, result) || other.result == result) &&
-            (identical(other.idplace, idplace) || other.idplace == idplace));
+            (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, result, idplace);
+  int get hashCode => Object.hash(runtimeType, result);
 
   @JsonKey(ignore: true)
   @override
@@ -5790,33 +5782,33 @@ class _$GetRecommendedPlacesStart implements GetRecommendedPlacesStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(ActionResult result, int idplace) $default, {
+    TResult Function(ActionResult result) $default, {
     required TResult Function(List<PlaceShort> places) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(result, idplace);
+    return $default(result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ActionResult result, int idplace)? $default, {
+    TResult? Function(ActionResult result)? $default, {
     TResult? Function(List<PlaceShort> places)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(result, idplace);
+    return $default?.call(result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ActionResult result, int idplace)? $default, {
+    TResult Function(ActionResult result)? $default, {
     TResult Function(List<PlaceShort> places)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(result, idplace);
+      return $default(result);
     }
     return orElse();
   }
@@ -5857,12 +5849,10 @@ class _$GetRecommendedPlacesStart implements GetRecommendedPlacesStart {
 }
 
 abstract class GetRecommendedPlacesStart implements GetRecommendedPlaces {
-  const factory GetRecommendedPlacesStart(
-          final ActionResult result, final int idplace) =
+  const factory GetRecommendedPlacesStart(final ActionResult result) =
       _$GetRecommendedPlacesStart;
 
   ActionResult get result;
-  int get idplace;
   @JsonKey(ignore: true)
   _$$GetRecommendedPlacesStartCopyWith<_$GetRecommendedPlacesStart>
       get copyWith => throw _privateConstructorUsedError;
@@ -5944,7 +5934,7 @@ class _$GetRecommendedPlacesSuccessful
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(ActionResult result, int idplace) $default, {
+    TResult Function(ActionResult result) $default, {
     required TResult Function(List<PlaceShort> places) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -5954,7 +5944,7 @@ class _$GetRecommendedPlacesSuccessful
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ActionResult result, int idplace)? $default, {
+    TResult? Function(ActionResult result)? $default, {
     TResult? Function(List<PlaceShort> places)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -5964,7 +5954,7 @@ class _$GetRecommendedPlacesSuccessful
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ActionResult result, int idplace)? $default, {
+    TResult Function(ActionResult result)? $default, {
     TResult Function(List<PlaceShort> places)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -6094,7 +6084,7 @@ class _$GetRecommendedPlacesError implements GetRecommendedPlacesError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(ActionResult result, int idplace) $default, {
+    TResult Function(ActionResult result) $default, {
     required TResult Function(List<PlaceShort> places) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -6104,7 +6094,7 @@ class _$GetRecommendedPlacesError implements GetRecommendedPlacesError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(ActionResult result, int idplace)? $default, {
+    TResult? Function(ActionResult result)? $default, {
     TResult? Function(List<PlaceShort> places)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -6114,7 +6104,7 @@ class _$GetRecommendedPlacesError implements GetRecommendedPlacesError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(ActionResult result, int idplace)? $default, {
+    TResult Function(ActionResult result)? $default, {
     TResult Function(List<PlaceShort> places)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -6170,6 +6160,525 @@ abstract class GetRecommendedPlacesError
   StackTrace get stackTrace;
   @JsonKey(ignore: true)
   _$$GetRecommendedPlacesErrorCopyWith<_$GetRecommendedPlacesError>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$SetRecommenderStrategy {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int strategy) $default, {
+    required TResult Function(int strategy) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int strategy)? $default, {
+    TResult? Function(int strategy)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int strategy)? $default, {
+    TResult Function(int strategy)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SetRecommenderStrategyStart value) $default, {
+    required TResult Function(SetRecommenderStrategySuccessful value)
+        successful,
+    required TResult Function(SetRecommenderStrategyError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SetRecommenderStrategyStart value)? $default, {
+    TResult? Function(SetRecommenderStrategySuccessful value)? successful,
+    TResult? Function(SetRecommenderStrategyError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SetRecommenderStrategyStart value)? $default, {
+    TResult Function(SetRecommenderStrategySuccessful value)? successful,
+    TResult Function(SetRecommenderStrategyError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SetRecommenderStrategyCopyWith<$Res> {
+  factory $SetRecommenderStrategyCopyWith(SetRecommenderStrategy value,
+          $Res Function(SetRecommenderStrategy) then) =
+      _$SetRecommenderStrategyCopyWithImpl<$Res, SetRecommenderStrategy>;
+}
+
+/// @nodoc
+class _$SetRecommenderStrategyCopyWithImpl<$Res,
+        $Val extends SetRecommenderStrategy>
+    implements $SetRecommenderStrategyCopyWith<$Res> {
+  _$SetRecommenderStrategyCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$SetRecommenderStrategyStartCopyWith<$Res> {
+  factory _$$SetRecommenderStrategyStartCopyWith(
+          _$SetRecommenderStrategyStart value,
+          $Res Function(_$SetRecommenderStrategyStart) then) =
+      __$$SetRecommenderStrategyStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int strategy});
+}
+
+/// @nodoc
+class __$$SetRecommenderStrategyStartCopyWithImpl<$Res>
+    extends _$SetRecommenderStrategyCopyWithImpl<$Res,
+        _$SetRecommenderStrategyStart>
+    implements _$$SetRecommenderStrategyStartCopyWith<$Res> {
+  __$$SetRecommenderStrategyStartCopyWithImpl(
+      _$SetRecommenderStrategyStart _value,
+      $Res Function(_$SetRecommenderStrategyStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? strategy = null,
+  }) {
+    return _then(_$SetRecommenderStrategyStart(
+      null == strategy
+          ? _value.strategy
+          : strategy // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetRecommenderStrategyStart implements SetRecommenderStrategyStart {
+  const _$SetRecommenderStrategyStart(this.strategy);
+
+  @override
+  final int strategy;
+
+  @override
+  String toString() {
+    return 'SetRecommenderStrategy(strategy: $strategy)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetRecommenderStrategyStart &&
+            (identical(other.strategy, strategy) ||
+                other.strategy == strategy));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, strategy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetRecommenderStrategyStartCopyWith<_$SetRecommenderStrategyStart>
+      get copyWith => __$$SetRecommenderStrategyStartCopyWithImpl<
+          _$SetRecommenderStrategyStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int strategy) $default, {
+    required TResult Function(int strategy) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(strategy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int strategy)? $default, {
+    TResult? Function(int strategy)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(strategy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int strategy)? $default, {
+    TResult Function(int strategy)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(strategy);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SetRecommenderStrategyStart value) $default, {
+    required TResult Function(SetRecommenderStrategySuccessful value)
+        successful,
+    required TResult Function(SetRecommenderStrategyError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SetRecommenderStrategyStart value)? $default, {
+    TResult? Function(SetRecommenderStrategySuccessful value)? successful,
+    TResult? Function(SetRecommenderStrategyError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SetRecommenderStrategyStart value)? $default, {
+    TResult Function(SetRecommenderStrategySuccessful value)? successful,
+    TResult Function(SetRecommenderStrategyError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetRecommenderStrategyStart implements SetRecommenderStrategy {
+  const factory SetRecommenderStrategyStart(final int strategy) =
+      _$SetRecommenderStrategyStart;
+
+  int get strategy;
+  @JsonKey(ignore: true)
+  _$$SetRecommenderStrategyStartCopyWith<_$SetRecommenderStrategyStart>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetRecommenderStrategySuccessfulCopyWith<$Res> {
+  factory _$$SetRecommenderStrategySuccessfulCopyWith(
+          _$SetRecommenderStrategySuccessful value,
+          $Res Function(_$SetRecommenderStrategySuccessful) then) =
+      __$$SetRecommenderStrategySuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int strategy});
+}
+
+/// @nodoc
+class __$$SetRecommenderStrategySuccessfulCopyWithImpl<$Res>
+    extends _$SetRecommenderStrategyCopyWithImpl<$Res,
+        _$SetRecommenderStrategySuccessful>
+    implements _$$SetRecommenderStrategySuccessfulCopyWith<$Res> {
+  __$$SetRecommenderStrategySuccessfulCopyWithImpl(
+      _$SetRecommenderStrategySuccessful _value,
+      $Res Function(_$SetRecommenderStrategySuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? strategy = null,
+  }) {
+    return _then(_$SetRecommenderStrategySuccessful(
+      null == strategy
+          ? _value.strategy
+          : strategy // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetRecommenderStrategySuccessful
+    implements SetRecommenderStrategySuccessful {
+  const _$SetRecommenderStrategySuccessful(this.strategy);
+
+  @override
+  final int strategy;
+
+  @override
+  String toString() {
+    return 'SetRecommenderStrategy.successful(strategy: $strategy)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetRecommenderStrategySuccessful &&
+            (identical(other.strategy, strategy) ||
+                other.strategy == strategy));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, strategy);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetRecommenderStrategySuccessfulCopyWith<
+          _$SetRecommenderStrategySuccessful>
+      get copyWith => __$$SetRecommenderStrategySuccessfulCopyWithImpl<
+          _$SetRecommenderStrategySuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int strategy) $default, {
+    required TResult Function(int strategy) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(strategy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int strategy)? $default, {
+    TResult? Function(int strategy)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(strategy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int strategy)? $default, {
+    TResult Function(int strategy)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(strategy);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SetRecommenderStrategyStart value) $default, {
+    required TResult Function(SetRecommenderStrategySuccessful value)
+        successful,
+    required TResult Function(SetRecommenderStrategyError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SetRecommenderStrategyStart value)? $default, {
+    TResult? Function(SetRecommenderStrategySuccessful value)? successful,
+    TResult? Function(SetRecommenderStrategyError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SetRecommenderStrategyStart value)? $default, {
+    TResult Function(SetRecommenderStrategySuccessful value)? successful,
+    TResult Function(SetRecommenderStrategyError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetRecommenderStrategySuccessful
+    implements SetRecommenderStrategy {
+  const factory SetRecommenderStrategySuccessful(final int strategy) =
+      _$SetRecommenderStrategySuccessful;
+
+  int get strategy;
+  @JsonKey(ignore: true)
+  _$$SetRecommenderStrategySuccessfulCopyWith<
+          _$SetRecommenderStrategySuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SetRecommenderStrategyErrorCopyWith<$Res> {
+  factory _$$SetRecommenderStrategyErrorCopyWith(
+          _$SetRecommenderStrategyError value,
+          $Res Function(_$SetRecommenderStrategyError) then) =
+      __$$SetRecommenderStrategyErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$SetRecommenderStrategyErrorCopyWithImpl<$Res>
+    extends _$SetRecommenderStrategyCopyWithImpl<$Res,
+        _$SetRecommenderStrategyError>
+    implements _$$SetRecommenderStrategyErrorCopyWith<$Res> {
+  __$$SetRecommenderStrategyErrorCopyWithImpl(
+      _$SetRecommenderStrategyError _value,
+      $Res Function(_$SetRecommenderStrategyError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$SetRecommenderStrategyError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SetRecommenderStrategyError implements SetRecommenderStrategyError {
+  const _$SetRecommenderStrategyError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'SetRecommenderStrategy.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SetRecommenderStrategyError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SetRecommenderStrategyErrorCopyWith<_$SetRecommenderStrategyError>
+      get copyWith => __$$SetRecommenderStrategyErrorCopyWithImpl<
+          _$SetRecommenderStrategyError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(int strategy) $default, {
+    required TResult Function(int strategy) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(int strategy)? $default, {
+    TResult? Function(int strategy)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(int strategy)? $default, {
+    TResult Function(int strategy)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(SetRecommenderStrategyStart value) $default, {
+    required TResult Function(SetRecommenderStrategySuccessful value)
+        successful,
+    required TResult Function(SetRecommenderStrategyError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(SetRecommenderStrategyStart value)? $default, {
+    TResult? Function(SetRecommenderStrategySuccessful value)? successful,
+    TResult? Function(SetRecommenderStrategyError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(SetRecommenderStrategyStart value)? $default, {
+    TResult Function(SetRecommenderStrategySuccessful value)? successful,
+    TResult Function(SetRecommenderStrategyError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SetRecommenderStrategyError
+    implements SetRecommenderStrategy, ErrorAction {
+  const factory SetRecommenderStrategyError(
+          final Object error, final StackTrace stackTrace) =
+      _$SetRecommenderStrategyError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$SetRecommenderStrategyErrorCopyWith<_$SetRecommenderStrategyError>
       get copyWith => throw _privateConstructorUsedError;
 }
 

@@ -6,7 +6,7 @@ part of actions;
 
 @freezed
 class GetRecommendedPlaces with _$GetRecommendedPlaces implements AppAction {
-  const factory GetRecommendedPlaces(ActionResult result, int idplace) = GetRecommendedPlacesStart;
+  const factory GetRecommendedPlaces(ActionResult result) = GetRecommendedPlacesStart;
 
   const factory GetRecommendedPlaces.successful(List<PlaceShort> places) = GetRecommendedPlacesSuccessful;
 

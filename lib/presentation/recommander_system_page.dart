@@ -21,6 +21,9 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
       //Navigator.pushReplacementNamed(context, '/placeResult');
+      if(StoreProvider.of<AppState>(context).state.user!.nextStrategy == 0) {
+        StoreProvider.of<AppState>(context).dispatch(const SetRecommenderStrategy(1));
+      }
     }
   }
 
@@ -40,7 +43,7 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
         children: <Widget>[
             GestureDetector(
               onTap: () {
-                StoreProvider.of<AppState>(context).dispatch(GetRecommendedPlaces(_onResultRecommend, 0));
+                StoreProvider.of<AppState>(context).dispatch(GetRecommendedPlaces(_onResultRecommend));
               },
               child: Container(
                 decoration: const BoxDecoration(
