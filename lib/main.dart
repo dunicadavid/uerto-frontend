@@ -17,6 +17,7 @@ import 'package:uerto/presentation/place_details_page.dart';
 import 'package:uerto/presentation/place_location_filters_page.dart';
 import 'package:uerto/presentation/places_result_list_page.dart';
 import 'package:uerto/presentation/recommander_system_page.dart';
+import 'package:uerto/presentation/recommander_system_result_page.dart';
 import 'package:uerto/presentation/register_page.dart';
 import 'package:uerto/presentation/reservations_future_page.dart';
 import 'package:uerto/presentation/reservations_previous_page.dart';
@@ -81,6 +82,7 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                 '/reservationsPrevious': (BuildContext context) => const ReservationsPreviousPage(),
                 '/reservationsFuture': (BuildContext context) => const ReservationsFuturePage(),
                 '/recommend':(BuildContext context) => const RecommanderSystemPage(),
+                '/recommendResult':(BuildContext context) => const RecommanderSystemResultPage(),
               },
               theme: ThemeData(
                 fontFamily: 'Plus',

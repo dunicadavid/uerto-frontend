@@ -26,6 +26,9 @@ class _RatePlacePageState extends State<RatePlacePage> {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
+      if(rating[selectedIndex] == 5) {
+        StoreProvider.of<AppState>(context).dispatch(const SetRecommenderStrategy(2));
+      }
       setState(() {
         rating.removeAt(selectedIndex);
       });

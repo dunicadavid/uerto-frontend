@@ -20,9 +20,9 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
-      //Navigator.pushReplacementNamed(context, '/placeResult');
+      Navigator.pushReplacementNamed(context, '/recommendResult');
       if(StoreProvider.of<AppState>(context).state.user!.nextStrategy == 0) {
-        StoreProvider.of<AppState>(context).dispatch(const SetRecommenderStrategy(1));
+        StoreProvider.of<AppState>(context).dispatch(const SetRecommenderStrategy(3));
       }
     }
   }
