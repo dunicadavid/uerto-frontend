@@ -64,7 +64,7 @@ class AppEpics {
   Stream<Object> _initializeApp(Stream<InitializeAppStart> actions, EpicStore<AppState> store) {
     return actions.asyncMap((InitializeAppStart action) => _authApi.getCurrentUser()).expand((AppUser? user) {
       return <Object>[
-        GetReservationsRateRequest(user!.userId, (_) {}),
+        if (user != null) GetReservationsRateRequest(user.userId, (_) {}) else Object,
         InitializeApp.successful(user),
       ];
     }).onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeApp.error(error, stackTrace));

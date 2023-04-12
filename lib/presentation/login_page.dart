@@ -18,7 +18,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool _isLoading = false;
@@ -28,26 +27,27 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = false;
     });
     if (action is ErrorAction) {
-
-      if(action.error.toString().split(' ')[0] == 'Deserializing') {
-        Navigator.of(context).pushReplacementNamed('/');
+      if (action.error.toString().split(' ')[0] == 'Deserializing') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Account not ready yet')));
-      }
-      else if (action.error.toString().split(' ')[0] == '[firebase_auth/wrong-password]') {
+      } else if (action.error.toString().split(' ')[0] == '[firebase_auth/wrong-password]') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email and password doesn't match")));
-      }
-      else if (action.error.toString().split(' ')[0] == '[firebase_auth/user-not-found]') {
+      } else if (action.error.toString().split(' ')[0] == '[firebase_auth/user-not-found]') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('There is no user with this email')));
-      }
-      else {
-        print('scaffolt');
+      } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(action.error.toString().split(' ')[0])));
       }
-
     } else {
-      print('scaffolt2');
+      StoreProvider.of<AppState>(context)
+          .dispatch(GetReservationsRateRequest(StoreProvider.of<AppState>(context).state.user!.userId, (_) {}));
       Navigator.of(context).pushReplacementNamed('/');
     }
+  }
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
   }
 
   @override
@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
         physics: const BouncingScrollPhysics(),
         child: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).highlightColor,
           ),
           child: SizedBox(
             height: _height,
@@ -68,46 +68,47 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(
                 children: <Widget>[
                   Expanded(
+                    flex: 3,
                     child: Container(),
-                    flex: 4,
                   ),
-                  SizedBox(
-                    height: _height * 0.1,
-                    width: _height * 0.1,
-                    child: const FittedBox(
-                      child: Icon(CupertinoIcons.ant_circle_fill, color: Colors.white70),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: _height * 0.06,
+                        child: Text(
+                          'Welcome ',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                      ),
+                      SizedBox(
+                        height: _height * 0.051,
+                        width: _height * 0.051,
+                        child: FittedBox(
+                          child: Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Container(),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Connect into your account to \ncontinue',
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
                   Expanded(
-                    flex: 2,
+                    flex: 6,
                     child: Container(),
-                  ),
-                  const Text(
-                    'Welcome',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontFamily: 'Plus',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Text(
-                    'Connect into your account to continue',
-                    style: TextStyle(
-                      color: Color(0x98ebebeb),
-                      fontSize: 18,
-                      fontFamily: 'Plus',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(),
-                    flex: 5,
                   ),
                   Expanded(
                     flex: 50,
                     child: Container(
-                      color: const Color(0xffF0F0F0),
+                      color: Theme.of(context).canvasColor,
                       child: Form(
                         child: Column(
                           children: <Widget>[
@@ -123,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.all(Radius.circular(0)),
                                 ),
                                 child: TextFormField(
-                                  style: const TextStyle(fontFamily: 'Plus',fontWeight: FontWeight.bold),
+                                  style: const TextStyle(fontFamily: 'Plus', fontWeight: FontWeight.bold),
                                   controller: _email,
                                   cursorColor: Theme.of(context).secondaryHeaderColor,
                                   decoration: InputDecoration(
@@ -157,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.all(Radius.circular(0)),
                                 ),
                                 child: TextFormField(
-                                  style: const TextStyle(fontFamily: 'Plus',fontWeight: FontWeight.bold),
+                                  style: const TextStyle(fontFamily: 'Plus', fontWeight: FontWeight.bold),
                                   controller: _password,
                                   cursorColor: Theme.of(context).secondaryHeaderColor,
                                   decoration: InputDecoration(
@@ -199,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                                     style: TextStyle(
                                       fontFamily: 'Plus',
                                       fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).primaryColor,
+                                      color: Theme.of(context).secondaryHeaderColor,
                                       fontSize: 18,
                                     ),
                                   ),
@@ -210,66 +211,86 @@ class _LoginPageState extends State<LoginPage> {
                               flex: 4,
                               child: Container(),
                             ),
-
-                            ///-----------EMAIL AUTH---------------
                             Builder(
                               builder: (BuildContext context) {
-                                if (_isLoading) {
-                                  return Center(
-                                    child: CircularProgressIndicator(color: Theme.of(context).secondaryHeaderColor,),
-                                  );
-                                }
                                 return GestureDetector(
                                   onTap: () {
                                     if (!Form.of(context).validate()) {
                                       return;
                                     }
                                     setState(() => _isLoading = true);
-                                    StoreProvider.of<AppState>(context).dispatch(Login(_email.text, _password.text, _onResult));
+                                    StoreProvider.of<AppState>(context)
+                                        .dispatch(Login(_email.text, _password.text, _onResult));
                                   },
-                                  child: ClipRRect(
-                                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                                    child: Container(
-                                      height: _height * 0.06,
-                                      width: _width * 0.8,
-                                      decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: <Color>[
-                                            Theme.of(context).secondaryHeaderColor,
-                                            Theme.of(context).secondaryHeaderColor,
-                                          ],
-                                        ),
+                                  child: AnimatedContainer(
+                                    duration: const Duration(milliseconds: 150),
+                                    height: _height * 0.06,
+                                    width: _isLoading ? _height * 0.06 : _width * 0.5,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).secondaryHeaderColor,
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(50),
                                       ),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            vertical: _height * 0.008,
-                                          ),
-                                          child: FittedBox(
-                                            child: Text(
-                                              'LOGIN',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'Plus',
-                                                color: Theme.of(context).primaryColor,
-                                                fontSize: 28,
+                                    ),
+                                    child: _isLoading
+                                        ? Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: CircularProgressIndicator(
+                                                color: Theme.of(context).highlightColor,
+                                              ),
+                                            ),
+                                          )
+                                        : Align(
+                                            alignment: Alignment.center,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                vertical: _height * 0.008,
+                                              ),
+                                              child: Row(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Container(),
+                                                  ),
+                                                  const Text(
+                                                    'Login',
+                                                    style:  TextStyle(
+                                                      color: Color(0xffffffff),
+                                                      fontSize: 25.0,
+                                                      fontFamily: 'Plus',
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Container(),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 7.0),
+                                                    child: Container(
+                                                      height: _height * 0.047,
+                                                      width: _height * 0.047,
+                                                      decoration: BoxDecoration(
+                                                        color: Theme.of(context).primaryColor,
+                                                        borderRadius: const BorderRadius.all(
+                                                          Radius.circular(50),
+                                                        ),
+                                                      ),
+                                                      child: const Icon(Icons.arrow_forward_rounded),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      ),
-                                    ),
                                   ),
                                 );
                               },
                             ),
-
                             Expanded(
+                              flex: 1,
                               child: Container(),
-                              flex: 2,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -291,7 +312,7 @@ class _LoginPageState extends State<LoginPage> {
                                     style: TextStyle(
                                       fontFamily: 'Plus',
                                       fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).secondaryHeaderColor,
+                                      color: Theme.of(context).highlightColor,
                                       fontSize: 16,
                                     ),
                                   ),

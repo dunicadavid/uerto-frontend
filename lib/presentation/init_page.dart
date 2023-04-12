@@ -23,30 +23,35 @@ class InitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserContainer(
-      builder: (BuildContext context, AppUser? user) {
         if (StoreProvider.of<AppState>(context).state.isInitDone == true) {
+          print('FirebaseAuth.instance.currentUser: '+ FirebaseAuth.instance.currentUser.toString());
+          print('StoreProvider.of<AppState>(context).state.isServerWorking!:' + StoreProvider.of<AppState>(context).state.isServerWorking.toString());
           if (FirebaseAuth.instance.currentUser == null && StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            print('----->LoginPage()');
             return const LoginPage();
           } else if (!FirebaseAuth.instance.currentUser!.emailVerified &&
               StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            print('----->VerifyEmailPage()');
             return const VerifyEmailPage();
-          } else if (user == null && StoreProvider.of<AppState>(context).state.isServerWorking!) {
+          } else if (StoreProvider.of<AppState>(context).state.user == null && StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            print('----->Register2Page()');
             return const Register2Page();
           } else if (StoreProvider.of<AppState>(context).state.locationEnabled == false &&
               StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            print('----->CurrentLocationPage()');
             return const CurrentLocationPage();
           } else if (!StoreProvider.of<AppState>(context).state.isServerWorking!) {
+            print('----->ErrorPage()');
             return const ErrorPage();
           } else if (StoreProvider.of<AppState>(context).state.listOfRateRequest!.isNotEmpty) {
+            print('----->RatePlacePage()');
             return const RatePlacePage();
           } else {
+            print('----->MainPage()');
             return const MainPage();
           }
         } else {
           return const LoadingPage();
         }
-      },
-    );
   }
 }

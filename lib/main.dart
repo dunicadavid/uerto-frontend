@@ -86,8 +86,43 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
               },
               theme: ThemeData(
                 fontFamily: 'Plus',
-                primaryColor: const Color(0xff262f4c),
-                secondaryHeaderColor: const Color(0xff12FCB2),
+                highlightColor: const Color(0xffCEF266),
+                canvasColor: const Color(0xffFCFAE6),
+                primaryColor: const Color(0xffFFFFFF),
+                primaryColorDark: const Color(0xff424242),
+                secondaryHeaderColor: const Color(0xff211D1D),
+                textTheme: const TextTheme(
+                  titleLarge: TextStyle(
+                    color: Color(0xff211D1D),
+                    fontSize: 50.0,
+                    fontFamily: 'Plus',
+                    fontWeight: FontWeight.bold,
+                  ),
+                  titleSmall: TextStyle(
+                    color: Color(0xff211D1D),
+                    fontSize: 25.0,
+                    fontFamily: 'Plus',
+                    fontWeight: FontWeight.bold,
+                  ),
+                  bodyLarge: TextStyle(
+                    color: Color(0xff211D1D),
+                    fontSize: 29.0,
+                    fontFamily: 'Plus',
+                    fontWeight: FontWeight.bold,
+                  ),
+                  bodyMedium: TextStyle(
+                    color: Color(0xff211D1D),
+                    fontSize: 22.0,
+                    fontFamily: 'Plus',
+                    fontWeight: FontWeight.bold,
+                  ),
+                  bodySmall: TextStyle(
+                    color: Color(0xff424242),
+                    fontSize: 16.0,
+                    fontFamily: 'Plus',
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
               ),
             ),
           );
