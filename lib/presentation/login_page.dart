@@ -21,10 +21,12 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   bool _isLoading = false;
+  bool _isDone = true;
 
   void _onResult(AppAction action) {
     setState(() {
       _isLoading = false;
+      _isDone = false;
     });
     if (action is ErrorAction) {
       if (action.error.toString().split(' ')[0] == 'Deserializing') {
@@ -121,7 +123,6 @@ class _LoginPageState extends State<LoginPage> {
                               child: Container(
                                 decoration: const BoxDecoration(
                                   color: Color(0x22262f4c),
-                                  borderRadius: BorderRadius.all(Radius.circular(0)),
                                 ),
                                 child: TextFormField(
                                   style: const TextStyle(fontFamily: 'Plus', fontWeight: FontWeight.bold),
@@ -218,7 +219,10 @@ class _LoginPageState extends State<LoginPage> {
                                     if (!Form.of(context).validate()) {
                                       return;
                                     }
-                                    setState(() => _isLoading = true);
+                                    setState(() {
+                                      _isLoading = true;
+                                      _isDone = false;
+                                    });
                                     StoreProvider.of<AppState>(context)
                                         .dispatch(Login(_email.text, _password.text, _onResult));
                                   },
@@ -226,18 +230,19 @@ class _LoginPageState extends State<LoginPage> {
                                     duration: const Duration(milliseconds: 150),
                                     height: _height * 0.06,
                                     width: _isLoading ? _height * 0.06 : _width * 0.5,
+                                    onEnd: () => setState(() => _isDone = true),
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).secondaryHeaderColor,
                                       borderRadius: const BorderRadius.all(
                                         Radius.circular(50),
                                       ),
                                     ),
-                                    child: _isLoading
+                                    child: _isDone == false ? Container() : _isLoading
                                         ? Center(
                                             child: Padding(
                                               padding: const EdgeInsets.all(8.0),
                                               child: CircularProgressIndicator(
-                                                color: Theme.of(context).highlightColor,
+                                                color: Theme.of(context).primaryColor,
                                               ),
                                             ),
                                           )
