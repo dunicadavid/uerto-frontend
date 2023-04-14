@@ -20,7 +20,7 @@ import 'main_page.dart';
 
 class InitPage extends StatelessWidget {
   const InitPage({Key? key}) : super(key: key);
-
+                                ///regamdeste putin treaba cu node nu merge ----> isSERVERworking (bug login (ori pica ca nu e user ori ca nu merge serverul))
   @override
   Widget build(BuildContext context) {
         if (StoreProvider.of<AppState>(context).state.isInitDone == true) {

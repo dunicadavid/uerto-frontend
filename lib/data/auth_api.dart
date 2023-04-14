@@ -87,17 +87,11 @@ class AuthApi {
 
   /// [ {registerPhase1} ]  --  phase1 authentifica in Firebase Userul
   Future<void> registerPhase1(String email, String password) async {
-    UserCredential result;
-
     try {
-      result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      await _auth.createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        final AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
-        result = await _auth.signInWithCredential(credential);
-      } else {
-        rethrow;
-      }
+      print('error message : ===========> ${e}');
+      rethrow;
     }
   }
 

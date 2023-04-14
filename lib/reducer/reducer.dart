@@ -91,7 +91,7 @@ AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action
 
 AppState _initializeAppError(AppState state, InitializeAppError action) {
   return state.rebuild((AppStateBuilder b) {
-    b.isServerWorking = false;
+    b.isServerWorking = true;
     b.isInitDone = true;
   });
 }
@@ -114,7 +114,7 @@ AppState _loginSuccessful(AppState state, LoginSuccessful action) {
 
 AppState _loginError(AppState state, LoginError action) {
   return state.rebuild((AppStateBuilder b) {
-    b.isServerWorking = false;
+    //b.isServerWorking = false;
     b.isInitDone = true;
   });
 }

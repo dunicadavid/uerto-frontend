@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:uerto/models/index.dart';
+import 'package:uerto/presentation/widgets/test_formfield.dart';
 
 import '../../actions/index.dart';
 
@@ -18,8 +19,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _email = TextEditingController();
+  final RegExp _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
   final TextEditingController _password = TextEditingController();
+  final TextEditingController _email = TextEditingController();
   bool _isLoading = false;
   bool _isDone = true;
 
@@ -54,289 +56,258 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final double _height = MediaQuery.of(context).size.height;
-    final double _width = MediaQuery.of(context).size.width;
+    final double height = MediaQuery.of(context).size.height;
+    final double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).highlightColor,
-          ),
-          child: SizedBox(
-            height: _height,
-            width: _width,
-            child: SafeArea(
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    flex: 3,
-                    child: Container(),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
+          children: <Widget>[
+            Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).highlightColor,
+              ),
+              child: SizedBox(
+                height: height,
+                width: width,
+                child: SafeArea(
+                  child: Column(
                     children: <Widget>[
-                      SizedBox(
-                        height: _height * 0.06,
+                      Expanded(
+                        flex: 3,
+                        child: Container(),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height: height * 0.06,
+                            child: Text(
+                              'Welcome ',
+                              style: Theme.of(context).textTheme.titleLarge,
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.051,
+                            width: height * 0.051,
+                            child: FittedBox(
+                              child: Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Container(),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
                         child: Text(
-                          'Welcome ',
-                          style: Theme.of(context).textTheme.titleLarge,
+                          'Connect into your account to \ncontinue',
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ),
-                      SizedBox(
-                        height: _height * 0.051,
-                        width: _height * 0.051,
-                        child: FittedBox(
-                          child: Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
+                      Expanded(
+                        flex: 6,
+                        child: Container(),
+                      ),
+                      Expanded(
+                        flex: 50,
+                        child: Container(
+                          color: Theme.of(context).primaryColor,
+                          child: Form(
+                            child: Column(
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 10,
+                                  child: Container(),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                                  child: TestFormField(labelText: 'Email', icon: Icons.attach_email_rounded, textController: _email,),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                                  child: TestFormField(labelText: 'Password', icon: Icons.password, textController: _password,),
+                                ),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                      0,
+                                      15,
+                                      30,
+                                      0,
+                                    ),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).pushReplacementNamed('/resetPassword');
+                                      },
+                                      child: Text(
+                                        'forgot password?',
+                                        textAlign: TextAlign.end,
+                                        style: TextStyle(
+                                          fontFamily: 'Plus',
+                                          fontWeight: FontWeight.bold,
+                                          color: Theme.of(context).secondaryHeaderColor,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 4,
+                                  child: Container(),
+                                ),
+                                Builder(
+                                  builder: (BuildContext context) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        if (_email.text == null || _email.text.isEmpty) {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter your email')));
+                                          return;
+                                        } else if (!_emailRegex.hasMatch(_email.text)) {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter a valid email address')));
+                                          return;
+                                        } else if (_password.text == null || _password.text.isEmpty) {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter your password')));
+                                          return ;
+                                        } else if (_password.text.length < 6 || _password.text.length > 24) {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Password has to be between 6 and 24 characters')));
+                                          return ;
+                                        }
+
+                                        setState(() {
+                                          _isLoading = true;
+                                          _isDone = false;
+                                        });
+                                        StoreProvider.of<AppState>(context)
+                                            .dispatch(Login(_email.text, _password.text, _onResult));
+                                      },
+                                      child: AnimatedContainer(
+                                        duration: const Duration(milliseconds: 150),
+                                        height: height * 0.06,
+                                        width: _isLoading ? height * 0.06 : width * 0.5,
+                                        onEnd: () => setState(() => _isDone = true),
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context).secondaryHeaderColor,
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(50),
+                                          ),
+                                        ),
+                                        child: _isDone == false ? Container() : _isLoading
+                                            ? Center(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: CircularProgressIndicator(
+                                                    color: Theme.of(context).primaryColor,
+                                                  ),
+                                                ),
+                                              )
+                                            : Align(
+                                                alignment: Alignment.center,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                    vertical: height * 0.008,
+                                                  ),
+                                                  child: Row(
+                                                    children: <Widget>[
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Container(),
+                                                      ),
+                                                      const Text(
+                                                        'Login',
+                                                        style:  TextStyle(
+                                                          color: Color(0xffffffff),
+                                                          fontSize: 25.0,
+                                                          fontFamily: 'Plus',
+                                                          fontWeight: FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Container(),
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 7.0),
+                                                        child: Container(
+                                                          height: height * 0.047,
+                                                          width: height * 0.047,
+                                                          decoration: BoxDecoration(
+                                                            color: Theme.of(context).primaryColor,
+                                                            borderRadius: const BorderRadius.all(
+                                                              Radius.circular(50),
+                                                            ),
+                                                          ),
+                                                          child: const Icon(Icons.arrow_forward_rounded),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Container(),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    const Text(
+                                      "Don't have an account? ",
+                                      style: TextStyle(
+                                        fontFamily: 'Plus',
+                                        color: Color(0xFF575757),
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).pushNamed('/register');
+                                      },
+                                      child: Text(
+                                        'Register',
+                                        style: TextStyle(
+                                          fontFamily: 'Plus',
+                                          fontWeight: FontWeight.bold,
+                                          color: Theme.of(context).highlightColor,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Expanded(
+                                  flex: 4,
+                                  child: Container(),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Connect into your account to \ncontinue',
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 6,
-                    child: Container(),
-                  ),
-                  Expanded(
-                    flex: 50,
-                    child: Container(
-                      color: Theme.of(context).canvasColor,
-                      child: Form(
-                        child: Column(
-                          children: <Widget>[
-                            Expanded(
-                              child: Container(),
-                              flex: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 30),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: Color(0x22262f4c),
-                                ),
-                                child: TextFormField(
-                                  style: const TextStyle(fontFamily: 'Plus', fontWeight: FontWeight.bold),
-                                  controller: _email,
-                                  cursorColor: Theme.of(context).secondaryHeaderColor,
-                                  decoration: InputDecoration(
-                                    hintText: 'Email',
-                                    hintStyle: TextStyle(color: Theme.of(context).primaryColor),
-                                    contentPadding: const EdgeInsets.only(left: 20),
-                                    border: InputBorder.none,
-                                  ),
-                                  keyboardType: TextInputType.emailAddress,
-                                  onChanged: (String value) {},
-                                  validator: (String? value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter your email';
-                                    } else if (!value.contains('@') || !value.contains('.')) {
-                                      return 'Please enter a valid email address';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(),
-                              flex: 2,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 30),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: Color(0x22262f4c),
-                                  borderRadius: BorderRadius.all(Radius.circular(0)),
-                                ),
-                                child: TextFormField(
-                                  style: const TextStyle(fontFamily: 'Plus', fontWeight: FontWeight.bold),
-                                  controller: _password,
-                                  cursorColor: Theme.of(context).secondaryHeaderColor,
-                                  decoration: InputDecoration(
-                                    hintText: 'Password',
-                                    hintStyle: TextStyle(color: Theme.of(context).primaryColor),
-                                    contentPadding: const EdgeInsets.only(left: 20),
-                                    border: InputBorder.none,
-                                  ),
-                                  keyboardType: TextInputType.visiblePassword,
-                                  obscureText: true,
-                                  onChanged: (String value) {},
-                                  validator: (String? value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter your password';
-                                    } else if (value.length < 6 || value.length > 24) {
-                                      return 'Password has to be between 6 and 24 characters';
-                                    }
-                                    return null;
-                                  },
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Padding(
-                                padding: const EdgeInsets.fromLTRB(
-                                  0,
-                                  15,
-                                  30,
-                                  0,
-                                ),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).pushReplacementNamed('/resetPassword');
-                                  },
-                                  child: Text(
-                                    'forgot password?',
-                                    textAlign: TextAlign.end,
-                                    style: TextStyle(
-                                      fontFamily: 'Plus',
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).secondaryHeaderColor,
-                                      fontSize: 18,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 4,
-                              child: Container(),
-                            ),
-                            Builder(
-                              builder: (BuildContext context) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    if (!Form.of(context).validate()) {
-                                      return;
-                                    }
-                                    setState(() {
-                                      _isLoading = true;
-                                      _isDone = false;
-                                    });
-                                    StoreProvider.of<AppState>(context)
-                                        .dispatch(Login(_email.text, _password.text, _onResult));
-                                  },
-                                  child: AnimatedContainer(
-                                    duration: const Duration(milliseconds: 150),
-                                    height: _height * 0.06,
-                                    width: _isLoading ? _height * 0.06 : _width * 0.5,
-                                    onEnd: () => setState(() => _isDone = true),
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).secondaryHeaderColor,
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(50),
-                                      ),
-                                    ),
-                                    child: _isDone == false ? Container() : _isLoading
-                                        ? Center(
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: CircularProgressIndicator(
-                                                color: Theme.of(context).primaryColor,
-                                              ),
-                                            ),
-                                          )
-                                        : Align(
-                                            alignment: Alignment.center,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                vertical: _height * 0.008,
-                                              ),
-                                              child: Row(
-                                                children: <Widget>[
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Container(),
-                                                  ),
-                                                  const Text(
-                                                    'Login',
-                                                    style:  TextStyle(
-                                                      color: Color(0xffffffff),
-                                                      fontSize: 25.0,
-                                                      fontFamily: 'Plus',
-                                                      fontWeight: FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Container(),
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(right: 7.0),
-                                                    child: Container(
-                                                      height: _height * 0.047,
-                                                      width: _height * 0.047,
-                                                      decoration: BoxDecoration(
-                                                        color: Theme.of(context).primaryColor,
-                                                        borderRadius: const BorderRadius.all(
-                                                          Radius.circular(50),
-                                                        ),
-                                                      ),
-                                                      child: const Icon(Icons.arrow_forward_rounded),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                  ),
-                                );
-                              },
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Container(),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                const Text(
-                                  "Don't have an account? ",
-                                  style: TextStyle(
-                                    fontFamily: 'Plus',
-                                    color: Color(0xFF575757),
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed('/register');
-                                  },
-                                  child: Text(
-                                    'Register',
-                                    style: TextStyle(
-                                      fontFamily: 'Plus',
-                                      fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).highlightColor,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Expanded(
-                              child: Container(),
-                              flex: 4,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
+            Container(
+              color:Colors.blue.shade100,
+              height: 200,
+              width: 200,
+              margin: const EdgeInsets.only(top:200.0,left:170),
+            ),
+          ],
         ),
       ),
     );
