@@ -24,8 +24,14 @@ class InitPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
         if (StoreProvider.of<AppState>(context).state.isInitDone == true) {
-          print('FirebaseAuth.instance.currentUser: '+ FirebaseAuth.instance.currentUser.toString());
-          print('StoreProvider.of<AppState>(context).state.isServerWorking!:' + StoreProvider.of<AppState>(context).state.isServerWorking.toString());
+          print('FirebaseAuth.instance.currentUser: ${FirebaseAuth.instance.currentUser}');
+          print('StoreProvider.of<AppState>(context).state.isServerWorking!:${StoreProvider.of<AppState>(context).state.isServerWorking}');
+          if(StoreProvider.of<AppState>(context).state.user != null) {
+            print('StoreProvider.of<AppState>(context).state.user!:${StoreProvider.of<AppState>(context).state.user}');
+          } else {
+            print('StoreProvider.of<AppState>(context).state.user!:${false}');
+          }
+
           if (FirebaseAuth.instance.currentUser == null && StoreProvider.of<AppState>(context).state.isServerWorking!) {
             print('----->LoginPage()');
             return const LoginPage();

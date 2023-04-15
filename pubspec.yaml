@@ -12,7 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.5
   built_value: ^8.4.4
   built_collection: ^5.1.1
   http: ^0.13.5
@@ -30,6 +29,9 @@ dependencies:
   flutter_local_notifications: ^13.0.0
   flutter_datetime_picker: ^1.5.1
   timezone: ^0.9.1
+
+  cupertino_icons: ^1.0.5
+  flutter_polygon: ^0.3.0+2
 
 
 dev_dependencies:

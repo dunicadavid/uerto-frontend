@@ -26,25 +26,28 @@ class _LoginPageState extends State<LoginPage> {
   bool _isDone = true;
 
   void _onResult(AppAction action) {
-    setState(() {
-      _isLoading = false;
-      _isDone = false;
-    });
-    if (action is ErrorAction) {
-      if (action.error.toString().split(' ')[0] == 'Deserializing') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Account not ready yet')));
-      } else if (action.error.toString().split(' ')[0] == '[firebase_auth/wrong-password]') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email and password doesn't match")));
-      } else if (action.error.toString().split(' ')[0] == '[firebase_auth/user-not-found]') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('There is no user with this email')));
+    Future<void>.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        _isLoading = false;
+        _isDone = false;
+      });
+      if (action is ErrorAction) {
+        if (action.error.toString().split(' ')[0] == 'Deserializing') {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Account not ready yet')));
+        } else if (action.error.toString().split(' ')[0] == '[firebase_auth/wrong-password]') {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email and password doesn't match")));
+        } else if (action.error.toString().split(' ')[0] == '[firebase_auth/user-not-found]') {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('There is no user with this email')));
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(action.error.toString().split(' ')[0])));
+        }
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(action.error.toString().split(' ')[0])));
+        print(StoreProvider.of<AppState>(context).state.user);
+        StoreProvider.of<AppState>(context)
+            .dispatch(GetReservationsRateRequest(StoreProvider.of<AppState>(context).state.user!.userId, (_) {}));
+        Navigator.of(context).pushReplacementNamed('/');
       }
-    } else {
-      StoreProvider.of<AppState>(context)
-          .dispatch(GetReservationsRateRequest(StoreProvider.of<AppState>(context).state.user!.userId, (_) {}));
-      Navigator.of(context).pushReplacementNamed('/');
-    }
+    });
   }
 
   @override
@@ -91,7 +94,8 @@ class _LoginPageState extends State<LoginPage> {
                             height: height * 0.051,
                             width: height * 0.051,
                             child: FittedBox(
-                              child: Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
+                              child:
+                                  Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
                             ),
                           ),
                         ],
@@ -124,7 +128,11 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 30),
-                                  child: TestFormField(labelText: 'Email', icon: Icons.attach_email_rounded, textController: _email,),
+                                  child: TestFormField(
+                                    labelText: 'Email',
+                                    icon: Icons.attach_email_rounded,
+                                    textController: _email,
+                                  ),
                                 ),
                                 Expanded(
                                   flex: 1,
@@ -132,7 +140,11 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 30),
-                                  child: TestFormField(labelText: 'Password', icon: Icons.password, textController: _password,),
+                                  child: TestFormField(
+                                    labelText: 'Password',
+                                    icon: Icons.password,
+                                    textController: _password,
+                                  ),
                                 ),
                                 Align(
                                   alignment: Alignment.centerRight,
@@ -169,17 +181,21 @@ class _LoginPageState extends State<LoginPage> {
                                     return GestureDetector(
                                       onTap: () {
                                         if (_email.text == null || _email.text.isEmpty) {
-                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter your email')));
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(const SnackBar(content: Text('Please enter your email')));
                                           return;
                                         } else if (!_emailRegex.hasMatch(_email.text)) {
-                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter a valid email address')));
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                              const SnackBar(content: Text('Please enter a valid email address')));
                                           return;
                                         } else if (_password.text == null || _password.text.isEmpty) {
-                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter your password')));
-                                          return ;
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                              const SnackBar(content: Text('Please enter your password')));
+                                          return;
                                         } else if (_password.text.length < 6 || _password.text.length > 24) {
-                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Password has to be between 6 and 24 characters')));
-                                          return ;
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                              content: Text('Password has to be between 6 and 24 characters')));
+                                          return;
                                         }
 
                                         setState(() {
@@ -200,58 +216,60 @@ class _LoginPageState extends State<LoginPage> {
                                             Radius.circular(50),
                                           ),
                                         ),
-                                        child: _isDone == false ? Container() : _isLoading
-                                            ? Center(
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(8.0),
-                                                  child: CircularProgressIndicator(
-                                                    color: Theme.of(context).primaryColor,
-                                                  ),
-                                                ),
-                                              )
-                                            : Align(
-                                                alignment: Alignment.center,
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                    vertical: height * 0.008,
-                                                  ),
-                                                  child: Row(
-                                                    children: <Widget>[
-                                                      Expanded(
-                                                        flex: 1,
-                                                        child: Container(),
+                                        child: _isDone == false
+                                            ? Container()
+                                            : _isLoading
+                                                ? Center(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: CircularProgressIndicator(
+                                                        color: Theme.of(context).primaryColor,
                                                       ),
-                                                      const Text(
-                                                        'Login',
-                                                        style:  TextStyle(
-                                                          color: Color(0xffffffff),
-                                                          fontSize: 25.0,
-                                                          fontFamily: 'Plus',
-                                                          fontWeight: FontWeight.bold,
-                                                        ),
+                                                    ),
+                                                  )
+                                                : Align(
+                                                    alignment: Alignment.center,
+                                                    child: Padding(
+                                                      padding: EdgeInsets.symmetric(
+                                                        vertical: height * 0.008,
                                                       ),
-                                                      Expanded(
-                                                        flex: 1,
-                                                        child: Container(),
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(right: 7.0),
-                                                        child: Container(
-                                                          height: height * 0.047,
-                                                          width: height * 0.047,
-                                                          decoration: BoxDecoration(
-                                                            color: Theme.of(context).primaryColor,
-                                                            borderRadius: const BorderRadius.all(
-                                                              Radius.circular(50),
+                                                      child: Row(
+                                                        children: <Widget>[
+                                                          Expanded(
+                                                            flex: 1,
+                                                            child: Container(),
+                                                          ),
+                                                          const Text(
+                                                            'Login',
+                                                            style: TextStyle(
+                                                              color: Color(0xffffffff),
+                                                              fontSize: 25.0,
+                                                              fontFamily: 'Plus',
+                                                              fontWeight: FontWeight.bold,
                                                             ),
                                                           ),
-                                                          child: const Icon(Icons.arrow_forward_rounded),
-                                                        ),
+                                                          Expanded(
+                                                            flex: 1,
+                                                            child: Container(),
+                                                          ),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(right: 7.0),
+                                                            child: Container(
+                                                              height: height * 0.047,
+                                                              width: height * 0.047,
+                                                              decoration: BoxDecoration(
+                                                                color: Theme.of(context).primaryColor,
+                                                                borderRadius: const BorderRadius.all(
+                                                                  Radius.circular(50),
+                                                                ),
+                                                              ),
+                                                              child: const Icon(Icons.arrow_forward_rounded),
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ),
                                       ),
                                     );
                                   },
@@ -302,10 +320,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Container(
-              color:Colors.blue.shade100,
+              color: Colors.blue.shade100,
               height: 200,
               width: 200,
-              margin: const EdgeInsets.only(top:200.0,left:170),
+              margin: const EdgeInsets.only(top: 200.0, left: 170),
             ),
           ],
         ),

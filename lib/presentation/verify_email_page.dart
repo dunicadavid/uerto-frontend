@@ -23,6 +23,7 @@ class VerifyEmailPage extends StatefulWidget {
 
 class _VerifyEmailPageState extends State<VerifyEmailPage> {
   Timer? timer;
+  Timer? timerResendEmail;
   bool _isDone = true;
   bool isEmailVerified = false;
   bool canResendEmail = false;
@@ -42,6 +43,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
 
   @override
   void dispose() {
+    timerResendEmail?.cancel();
     timer?.cancel();
     super.dispose();
   }
@@ -52,8 +54,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     setState(() {
       isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     });
-
+    print(isEmailVerified);
     if (isEmailVerified) {
+      timerResendEmail?.cancel();
       timer?.cancel();
       if (!mounted) {
         return; //warning navigator in async function
@@ -72,7 +75,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       final User user = FirebaseAuth.instance.currentUser!;
       await user.sendEmailVerification();
 
-      Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+      timerResendEmail = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
         setState(() {
           _remainingSeconds--;
         });

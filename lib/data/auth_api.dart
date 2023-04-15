@@ -89,6 +89,7 @@ class AuthApi {
   Future<void> registerPhase1(String email, String password) async {
     try {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      print(await _auth.currentUser?.getIdToken());
     } on FirebaseAuthException catch (e) {
       print('error message : ===========> ${e}');
       rethrow;

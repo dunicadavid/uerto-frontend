@@ -18,14 +18,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
-  @override
-  void initState() {
-    Future.delayed(Duration.zero, () {
-      print(StoreProvider.of<AppState>(context).state.listOfRateRequest);
-    });
-    super.initState();
-  }
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   void _onResultGetReservationsFuture(AppAction action) {
     if (action is ErrorAction) {
@@ -52,8 +45,13 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
+  void dispose() {
+    scaffoldKey.currentState?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return UserContainer(
@@ -97,7 +95,10 @@ class _MainPageState extends State<MainPage> {
                     onTap: () {
                       Navigator.of(context).pushReplacementNamed('/placeSearch');
                     },
-                    child: const Text('search  //bug back-button',style: TextStyle(color: Colors.red),),
+                    child: const Text(
+                      'search  //bug back-button',
+                      style: TextStyle(color: Colors.red),
+                    ),
                   ),
                   SizedBox(
                     height: height * 0.05,
@@ -106,14 +107,18 @@ class _MainPageState extends State<MainPage> {
                     onTap: () {
                       StoreProvider.of<AppState>(context).dispatch(GetPlacesFavourite(_onResultGetPlacesFavourite));
                     },
-                    child: const Text('Favourites   //bug back-button',style: TextStyle(color: Colors.red),),
+                    child: const Text(
+                      'Favourites   //bug back-button',
+                      style: TextStyle(color: Colors.red),
+                    ),
                   ),
                   SizedBox(
                     height: height * 0.05,
                   ),
                   GestureDetector(
                     onTap: () {
-                      StoreProvider.of<AppState>(context).dispatch(GetReservationsFuture(user.userId, 10,_onResultGetReservationsFuture));
+                      StoreProvider.of<AppState>(context)
+                          .dispatch(GetReservationsFuture(user.userId, 10, _onResultGetReservationsFuture));
                     },
                     child: const Text('Reservations'),
                   ),
@@ -122,7 +127,8 @@ class _MainPageState extends State<MainPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      StoreProvider.of<AppState>(context).dispatch(GetReservationsPrevious(user.userId, 10,_onResultGetReservationsPrevious));
+                      StoreProvider.of<AppState>(context)
+                          .dispatch(GetReservationsPrevious(user.userId, 10, _onResultGetReservationsPrevious));
                     },
                     child: const Text('Previous'),
                   ),
@@ -133,15 +139,20 @@ class _MainPageState extends State<MainPage> {
                     onTap: () {
                       Navigator.of(context).pushReplacementNamed('/recommend');
                     },
-                    child: const Text('recommander system',style: TextStyle(color: Colors.blue),),
+                    child: const Text(
+                      'recommander system',
+                      style: TextStyle(color: Colors.blue),
+                    ),
                   ),
                   SizedBox(
                     height: height * 0.05,
                   ),
                   GestureDetector(
                     onTap: () {
-                      StoreProvider.of<AppState>(context).dispatch(const Signout());
                       Navigator.of(context).pushReplacementNamed('/login');
+                      Future<void>.delayed(const Duration(milliseconds: 500), () {
+                        StoreProvider.of<AppState>(context).dispatch(const Signout());
+                      });
                     },
                     child: const Text('Signout'),
                   ),
