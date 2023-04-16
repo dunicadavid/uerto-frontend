@@ -23,7 +23,8 @@ class _Register2PageState extends State<Register2Page> {
   final TextEditingController _firstName = TextEditingController();
   final TextEditingController _lastName = TextEditingController();
   final RegExp _nameRegex = RegExp(r'[a-zA-Z]');
-  final RegExp _mobileRegexRo = RegExp(r'^(\+4|)?(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2}){1}?(\s|\.|\-)?([0-9]{3}(\s|\.|\-|)){2}$');
+  final RegExp _mobileRegexRo =
+      RegExp(r'^(\+4|)?(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2}){1}?(\s|\.|\-)?([0-9]{3}(\s|\.|\-|)){2}$');
   bool _isLoading = false;
   bool _isDone = true;
 
@@ -35,7 +36,7 @@ class _Register2PageState extends State<Register2Page> {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
-     Navigator.pushReplacementNamed(context, '/');
+      Navigator.pushReplacementNamed(context, '/permissions');
     }
   }
 
@@ -85,7 +86,7 @@ class _Register2PageState extends State<Register2Page> {
                             width: height * 0.051,
                             child: FittedBox(
                               child:
-                              Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
+                                  Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
                             ),
                           ),
                         ],
@@ -115,7 +116,10 @@ class _Register2PageState extends State<Register2Page> {
                                 const SizedBox(
                                   height: 5,
                                 ),
-                                HexagonalShape(size: 140, color: Theme.of(context).secondaryHeaderColor,),
+                                HexagonalShape(
+                                  size: 140,
+                                  color: Theme.of(context).secondaryHeaderColor,
+                                ),
                                 const SizedBox(
                                   height: 20,
                                 ),
@@ -150,23 +154,23 @@ class _Register2PageState extends State<Register2Page> {
                                   ),
                                 ),
                                 const SizedBox(
-                                  height: 70,
+                                  height: 55,
                                 ),
                                 Builder(
                                   builder: (BuildContext context) {
                                     return GestureDetector(
                                       onTap: () {
                                         if (!_nameRegex.hasMatch(_firstName.text)) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(content: Text('Please enter a valid name.')));
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                              const SnackBar(content: Text('Please enter a valid name.')));
                                           return;
                                         } else if (!_nameRegex.hasMatch(_firstName.text)) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(content: Text('Please enter a valid name.')));
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                              const SnackBar(content: Text('Please enter a valid name.')));
                                           return;
                                         } else if (!_mobileRegexRo.hasMatch(_phoneNumber.text)) {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(content: Text('Please enter a valid Ro mobile number.')));
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                              const SnackBar(content: Text('Please enter a valid Ro mobile number.')));
                                           return;
                                         }
 
@@ -174,8 +178,8 @@ class _Register2PageState extends State<Register2Page> {
                                           _isLoading = true;
                                           _isDone = false;
                                         });
-                                        StoreProvider.of<AppState>(context)
-                                            .dispatch(RegisterPhase2('${_firstName.text} ${_lastName.text}', _phoneNumber.text, '', _onResult));
+                                        StoreProvider.of<AppState>(context).dispatch(RegisterPhase2(
+                                            '${_firstName.text} ${_lastName.text}', _phoneNumber.text, '', _onResult));
                                       },
                                       child: AnimatedContainer(
                                         duration: const Duration(milliseconds: 150),
@@ -191,70 +195,68 @@ class _Register2PageState extends State<Register2Page> {
                                         child: _isDone == false
                                             ? Container()
                                             : _isLoading
-                                            ? Center(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: CircularProgressIndicator(
-                                              color: Theme.of(context).primaryColor,
-                                            ),
-                                          ),
-                                        )
-                                            : Align(
-                                          alignment: Alignment.center,
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                              vertical: height * 0.008,
-                                            ),
-                                            child: Row(
-                                              children: <Widget>[
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Container(),
-                                                ),
-                                                const Text(
-                                                  'Continue',
-                                                  style: TextStyle(
-                                                    color: Color(0xffffffff),
-                                                    fontSize: 25.0,
-                                                    fontFamily: 'Plus',
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  flex: 1,
-                                                  child: Container(),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(right: 7.0),
-                                                  child: Container(
-                                                    height: height * 0.047,
-                                                    width: height * 0.047,
-                                                    decoration: BoxDecoration(
-                                                      color: Theme.of(context).primaryColor,
-                                                      borderRadius: const BorderRadius.all(
-                                                        Radius.circular(50),
+                                                ? Center(
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: CircularProgressIndicator(
+                                                        color: Theme.of(context).primaryColor,
                                                       ),
                                                     ),
-                                                    child: const Icon(Icons.arrow_forward_rounded),
+                                                  )
+                                                : Align(
+                                                    alignment: Alignment.center,
+                                                    child: Padding(
+                                                      padding: EdgeInsets.symmetric(
+                                                        vertical: height * 0.008,
+                                                      ),
+                                                      child: Row(
+                                                        children: <Widget>[
+                                                          Expanded(
+                                                            flex: 1,
+                                                            child: Container(),
+                                                          ),
+                                                          const Text(
+                                                            'Continue',
+                                                            style: TextStyle(
+                                                              color: Color(0xffffffff),
+                                                              fontSize: 25.0,
+                                                              fontFamily: 'Plus',
+                                                              fontWeight: FontWeight.bold,
+                                                            ),
+                                                          ),
+                                                          Expanded(
+                                                            flex: 1,
+                                                            child: Container(),
+                                                          ),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(right: 7.0),
+                                                            child: Container(
+                                                              height: height * 0.047,
+                                                              width: height * 0.047,
+                                                              decoration: BoxDecoration(
+                                                                color: Theme.of(context).primaryColor,
+                                                                borderRadius: const BorderRadius.all(
+                                                                  Radius.circular(50),
+                                                                ),
+                                                              ),
+                                                              child: const Icon(Icons.arrow_forward_rounded),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
                                       ),
                                     );
                                   },
                                 ),
                                 const SizedBox(
-                                  height: 17,
+                                  height: 20,
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).pushReplacementNamed('/login');
-                                    Future<void>.delayed(const Duration(milliseconds: 500), () {
-                                      StoreProvider.of<AppState>(context).dispatch(const Signout());
-                                    });
+                                    StoreProvider.of<AppState>(context).dispatch(const Signout());
                                   },
                                   child: const Text(
                                     'Cancel',
@@ -280,6 +282,18 @@ class _Register2PageState extends State<Register2Page> {
               height: 200,
               width: 200,
               margin: const EdgeInsets.only(top: 200.0, left: 170),
+            ),
+            Container(
+              color: Colors.red,
+              height: 2,
+              width: width,
+              margin: const EdgeInsets.only(top: 775.0),
+            ),
+            Container(
+              color: Colors.red,
+              height: 2,
+              width: width,
+              margin: const EdgeInsets.only(top: 810.0),
             ),
           ],
         ),

@@ -105,7 +105,8 @@ class AuthApi {
         ..fullname = fullname
         ..email = _auth.currentUser?.email
         ..phoneNumber = phoneNumber
-        ..photoUrl = photoUrl; //nefolosit inca
+        ..photoUrl = photoUrl //nefolosit inca
+        ..nextStrategy = 0;
     });
 
     final String? token = await _auth.currentUser?.getIdToken();

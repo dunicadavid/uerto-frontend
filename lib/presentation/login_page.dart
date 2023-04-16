@@ -45,8 +45,8 @@ class _LoginPageState extends State<LoginPage> {
         print(StoreProvider.of<AppState>(context).state.user);
         StoreProvider.of<AppState>(context)
             .dispatch(GetReservationsRateRequest(StoreProvider.of<AppState>(context).state.user!.userId, (_) {}));
-        Navigator.of(context).pushReplacementNamed('/');
       }
+      Navigator.of(context).pushReplacementNamed('/'); ///muta-l dupa ce rezolvi login logic
     });
   }
 
@@ -324,6 +324,18 @@ class _LoginPageState extends State<LoginPage> {
               height: 200,
               width: 200,
               margin: const EdgeInsets.only(top: 200.0, left: 170),
+            ),
+            Container(
+              color: Colors.red,
+              height: 2,
+              width: width,
+              margin: const EdgeInsets.only(top: 775.0),
+            ),
+            Container(
+              color: Colors.red,
+              height: 2,
+              width: width,
+              margin: const EdgeInsets.only(top: 810.0),
             ),
           ],
         ),

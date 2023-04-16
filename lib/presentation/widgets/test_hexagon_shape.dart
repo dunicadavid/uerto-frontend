@@ -2,6 +2,8 @@
 // Dunica David-Gabriel <FLTY>
 // on 15/04/2023 12:09:57
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 
@@ -16,7 +18,7 @@ class HexagonalShape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
-      angle: 0.525,
+      angle: pi/2,
       child: CustomPaint(
         size: Size(size, size),
         painter: RPSCustomPainter(color: color),

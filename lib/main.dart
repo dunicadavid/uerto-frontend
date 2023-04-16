@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:uerto/presentation/current_location_page.dart';
 import 'package:uerto/presentation/edit_profile_page.dart';
 import 'package:uerto/presentation/login_page.dart';
 import 'package:uerto/presentation/main_page.dart';
@@ -71,6 +72,7 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                 '/main': (BuildContext context) => const MainPage(),
                 '/login': (BuildContext context) => const LoginPage(),
                 '/register': (BuildContext context) => const RegisterPage(),
+                '/permissions': (BuildContext context) => const CurrentLocationPage(),
                 '/resetPassword': (BuildContext context) => const ResetPasswordPage(),
                 '/editProfile': (BuildContext context) => const EditProfilePage(),
                 '/placeSearch': (BuildContext context) => const SearchPlacePage(),
@@ -120,7 +122,7 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                     color: Color(0xff424242),
                     fontSize: 16.0,
                     fontFamily: 'Plus',
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
