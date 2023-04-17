@@ -11,6 +11,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:uerto/actions/index.dart';
 import 'package:uerto/models/index.dart';
 import 'package:uerto/presentation/widgets/test_hexagon_shape.dart';
+import 'package:uerto/presentation/widgets/test_hexagon_shape_checkbox.dart';
 
 class CurrentLocationPage extends StatefulWidget {
   const CurrentLocationPage({Key? key}) : super(key: key);
@@ -20,6 +21,8 @@ class CurrentLocationPage extends StatefulWidget {
 }
 
 class _CurrentLocationPageState extends State<CurrentLocationPage> {
+  bool _locationCheck = false;
+  bool _termsCheck = false;
   bool _isLoading = false;
   bool _isDone = true;
   Timer? timer;
@@ -27,7 +30,7 @@ class _CurrentLocationPageState extends State<CurrentLocationPage> {
   @override
   void initState() {
     super.initState();
-    timer = Timer.periodic(const Duration(seconds: 3), (_) => checkLocationVerified());
+    timer = Timer.periodic(const Duration(seconds: 1), (_) => checkLocationVerified());
   }
 
   @override
@@ -41,6 +44,9 @@ class _CurrentLocationPageState extends State<CurrentLocationPage> {
       StoreProvider.of<AppState>(context).dispatch(const VerifyLocationService());
     });
     if (StoreProvider.of<AppState>(context).state.locationEnabled == true) {
+      setState(() {
+        _locationCheck = true;
+      });
       timer?.cancel();
     }
   }
@@ -148,20 +154,23 @@ class _CurrentLocationPageState extends State<CurrentLocationPage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 40),
                                 child: GestureDetector(
-                                  onTap: (){
-                                    /// do something
+                                  onTap: () {
+                                    setState(() {
+                                      _termsCheck = !_termsCheck;
+                                    });
                                   },
                                   child: Row(
                                     children: <Widget>[
-                                      HexagonalShape(
+                                      HexagonalShapeCheckBox(
                                         size: 30,
                                         color: Theme.of(context).secondaryHeaderColor,
+                                        onChange: _termsCheck,
                                       ),
                                       const SizedBox(
                                         width: 20,
                                       ),
                                       Text(
-                                        'I agree Uerto\'s Terms & Conditions',
+                                        "I agree Uerto' s Terms & Conditions",
                                         style: Theme.of(context).textTheme.bodySmall,
                                       ),
                                     ],
@@ -192,14 +201,15 @@ class _CurrentLocationPageState extends State<CurrentLocationPage> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 40),
                                 child: GestureDetector(
-                                  onTap: (){
-                                    /// do something
+                                  onTap: () {
+                                    getLocationPermission();
                                   },
                                   child: Row(
                                     children: <Widget>[
-                                      HexagonalShape(
+                                      HexagonalShapeCheckBox(
                                         size: 30,
                                         color: Theme.of(context).secondaryHeaderColor,
+                                        onChange: _locationCheck,
                                       ),
                                       const SizedBox(
                                         width: 20,
@@ -219,11 +229,13 @@ class _CurrentLocationPageState extends State<CurrentLocationPage> {
                                 builder: (BuildContext context) {
                                   return GestureDetector(
                                     onTap: () {
-                                      setState(() {
-                                        _isLoading = true;
-                                        _isDone = false;
-                                      });
-                                      getLocationPermission();
+                                      if(_termsCheck && _locationCheck) {
+                                        setState(() {
+                                          _isLoading = true;
+                                          _isDone = false;
+                                        });
+                                        Navigator.of(context).pushReplacementNamed('/');
+                                      }
                                     },
                                     child: AnimatedContainer(
                                       duration: const Duration(milliseconds: 150),
@@ -231,7 +243,7 @@ class _CurrentLocationPageState extends State<CurrentLocationPage> {
                                       width: _isLoading ? height * 0.06 : width * 0.5,
                                       onEnd: () => setState(() => _isDone = true),
                                       decoration: BoxDecoration(
-                                        color: Theme.of(context).secondaryHeaderColor,
+                                        color: _termsCheck && _locationCheck ? Theme.of(context).secondaryHeaderColor : Theme.of(context).primaryColorDark,
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(50),
                                         ),

@@ -2,9 +2,11 @@
 // Dunica David-Gabriel <FLTY>
 // on 30/11/2022 15:51:43
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:uerto/actions/index.dart';
+import 'package:uerto/presentation/widgets/test_avatar_circle.dart';
 import 'package:uerto/presentation/widgets/test_drawer.dart';
 
 import '../../containers/user_container.dart';
@@ -19,6 +21,26 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    switch (index) {
+      case 0:
+        //Navigator.of(context).pushReplacementNamed('/');
+        break;
+      case 1:
+        StoreProvider.of<AppState>(context).dispatch(GetReservationsFuture(
+            StoreProvider.of<AppState>(context).state.user!.userId, 10, _onResultGetReservationsFuture));
+        break;
+      case 2:
+        StoreProvider.of<AppState>(context).dispatch(GetReservationsPrevious(
+            StoreProvider.of<AppState>(context).state.user!.userId, 10, _onResultGetReservationsPrevious));
+        break;
+    }
+  }
 
   void _onResultGetReservationsFuture(AppAction action) {
     if (action is ErrorAction) {
@@ -58,107 +80,175 @@ class _MainPageState extends State<MainPage> {
       builder: (BuildContext context, AppUser? user) {
         return Scaffold(
           key: scaffoldKey,
-          floatingActionButton: Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02),
-            child: FloatingActionButton(
-              backgroundColor: Colors.white,
-              mini: true,
-              onPressed: () => scaffoldKey.currentState!.openDrawer(),
-              child: const Icon(
-                Icons.menu,
-                color: Color(0xFF475BF0),
-                size: 27,
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined),
+                label: 'Home',
               ),
-            ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.access_alarm_outlined),
+                label: 'Reservations',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.add_alarm_rounded),
+                label: 'Previous',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            selectedItemColor: Colors.black,
+            unselectedItemColor: Colors.grey,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            selectedIconTheme: const IconThemeData(size: 28),
+            unselectedIconTheme: const IconThemeData(size: 24),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
           drawer: const DrawerUerto(),
-          body: SafeArea(
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  const Text('MAIN PAGE'),
-                  Text('Hello, ${user!.fullname}'),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushReplacementNamed('/placeFilter');
-                    },
-                    child: const Text('places'),
-                  ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushReplacementNamed('/placeSearch');
-                    },
-                    child: const Text(
-                      'search  //bug back-button',
-                      style: TextStyle(color: Colors.red),
+          body: Stack(
+            children: <Widget>[
+              SafeArea(
+                child: Column(
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 20,
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      StoreProvider.of<AppState>(context).dispatch(GetPlacesFavourite(_onResultGetPlacesFavourite));
-                    },
-                    child: const Text(
-                      'Favourites   //bug back-button',
-                      style: TextStyle(color: Colors.red),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      height: 45,
+                      width: width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(
+                              Icons.menu_rounded,
+                              color: Theme.of(context).primaryColorDark,
+                              size: 30,
+                            ),
+                            onPressed: () => scaffoldKey.currentState!.openDrawer(),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.star_border_rounded,
+                              color: Theme.of(context).primaryColorDark,
+                              size: 30,
+                            ),
+                            onPressed: () => StoreProvider.of<AppState>(context)
+                                .dispatch(GetPlacesFavourite(_onResultGetPlacesFavourite)),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(GetReservationsFuture(user.userId, 10, _onResultGetReservationsFuture));
-                    },
-                    child: const Text('Reservations'),
-                  ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(GetReservationsPrevious(user.userId, 10, _onResultGetReservationsPrevious));
-                    },
-                    child: const Text('Previous'),
-                  ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushReplacementNamed('/recommend');
-                    },
-                    child: const Text(
-                      'recommander system',
-                      style: TextStyle(color: Colors.blue),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      height: 80,
+                      width: width,
+                      //color: Colors.red,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Text>[
+                              Text(
+                                'Welcome back,',
+                                style: Theme.of(context).textTheme.bodySmall,
+                              ),
+                              Text(
+                                user!.fullname,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                          AvatarCircle(
+                            sizeRadius: 30,
+                            avatarColorBg: Theme.of(context).highlightColor,
+                            avatarColorTx: Theme.of(context).secondaryHeaderColor,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushReplacementNamed('/login');
-                      Future<void>.delayed(const Duration(milliseconds: 500), () {
-                        StoreProvider.of<AppState>(context).dispatch(const Signout());
-                      });
-                    },
-                    child: const Text('Signout'),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushReplacementNamed('/placeSearch');
+                      },
+                      child: Material(
+                        elevation: 0.2,
+                        borderRadius: const BorderRadius.all(Radius.circular(50)),
+                        child: Container(
+                          height: 45,
+                          width: 350,
+                          padding: EdgeInsets.symmetric(horizontal: 25),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(50)),
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Icon(
+                                CupertinoIcons.search,
+                                size: 20,
+                                weight: 700,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                'Try to find...',
+                                style: TextStyle(
+                                  color: Color(0xffa09c98),
+                                  fontSize: 16.5,
+                                  fontFamily: 'Plus',
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushReplacementNamed('/placeFilter');
+                      },
+                      child: const Text('places'),
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushReplacementNamed('/recommend');
+                      },
+                      child: const Text(
+                        'recommander system',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                  ],
+                ),
               ),
-            ),
+              Container(
+                color: Colors.red,
+                height: 2,
+                width: width,
+                margin: const EdgeInsets.only(top: 105.0),
+              ),
+            ],
           ),
         );
       },

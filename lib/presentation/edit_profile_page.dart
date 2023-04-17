@@ -75,7 +75,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(width * 0.37, height * 0.28 - width * 0.13, width * 0.37, 0),
                   child: const AvatarCircle(
-                    sizeWidth: 0.13,
+                    sizeRadius: 40,
                     avatarColorTx: Colors.black,
                     avatarColorBg: Color(0xffEEEEEE),
                   ),

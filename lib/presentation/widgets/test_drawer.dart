@@ -45,7 +45,7 @@ class DrawerUerto extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       const AvatarCircle(
-                        sizeWidth: 0.068,
+                        sizeRadius: 40,
                         avatarColorTx: Colors.black,
                         avatarColorBg: Color(0xffEEEEEE),
                       ),

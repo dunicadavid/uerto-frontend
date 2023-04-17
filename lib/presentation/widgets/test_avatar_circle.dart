@@ -9,15 +9,15 @@ import 'package:uerto/models/index.dart';
 class AvatarCircle extends StatelessWidget {
   const AvatarCircle({
     Key? key,
-    required this.sizeWidth,
+    required this.sizeRadius,
     required this.avatarColorTx,
     required this.avatarColorBg,
-  })  : assert(sizeWidth != null),
+  })  : assert(sizeRadius != null),
         assert(avatarColorTx != null),
         assert(avatarColorBg != null),
         super(key: key);
 
-  final double sizeWidth;
+  final double sizeRadius;
   final Color avatarColorTx;
   final Color avatarColorBg;
 
@@ -25,16 +25,34 @@ class AvatarCircle extends StatelessWidget {
   Widget build(BuildContext context) {
     return UserContainer(
       builder: (BuildContext context, AppUser? user) {
-        return CircleAvatar(
-          backgroundColor: avatarColorBg,
-          foregroundImage: user!.photoUrl != null ? NetworkImage(user.photoUrl!) : null,
-          radius: MediaQuery.of(context).size.width * sizeWidth,
-          child: user.photoUrl != null
-              ? null
-              : Text(
-            user.fullname[0].toUpperCase(),
-            style: TextStyle(color: avatarColorTx),
-          ),
+        return Stack(
+          children: <Widget>[
+            CircleAvatar(
+              backgroundColor: avatarColorBg,
+              foregroundImage: user!.photoUrl != null ? NetworkImage(user.photoUrl!) : null,
+              radius: sizeRadius,
+              child: user.photoUrl != null
+                  ? null
+                  : Text(
+                user.fullname[0].toUpperCase() +user.fullname.split(' ')[1][0].toUpperCase(),
+                style: TextStyle(color: avatarColorTx,fontWeight: FontWeight.w600),
+              ),
+            ),
+            Positioned(
+              left: 0,
+              bottom: 0,
+              child: Container(
+                width: 24,
+                height: 24,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: avatarColorTx,
+                  border: Border.all(width: 2,color: Theme.of(context).canvasColor)
+                ),
+                child: Center(child: Text('1',style: TextStyle(color: Theme.of(context).canvasColor,fontSize: 12.0,),),),
+              ),
+            ),
+          ],
         );
       },
     );
