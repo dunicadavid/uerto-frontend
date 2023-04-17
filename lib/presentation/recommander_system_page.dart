@@ -15,13 +15,12 @@ class RecommanderSystemPage extends StatefulWidget {
 }
 
 class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
-
   void _onResultRecommend(AppAction action) {
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
     } else {
       Navigator.pushReplacementNamed(context, '/recommendResult');
-      if(StoreProvider.of<AppState>(context).state.user!.nextStrategy == 0) {
+      if (StoreProvider.of<AppState>(context).state.user!.nextStrategy == 0) {
         StoreProvider.of<AppState>(context).dispatch(const SetRecommenderStrategy(3));
       }
     }
@@ -32,69 +31,42 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Choose your case'),
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pushReplacementNamed('/main'),
-          icon: const Icon(Icons.arrow_back),
-        ),
-      ),
-      body: Column(
+      body: Stack(
         children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                StoreProvider.of<AppState>(context).dispatch(GetRecommendedPlaces(_onResultRecommend));
-              },
-              child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+          SafeArea(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  height: 45,
+                  width: width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      IconButton(
+                        icon: Icon(
+                          Icons.menu_rounded,
+                          color: Theme.of(context).primaryColorDark,
+                          size: 30,
+                        ),
+                        onPressed: () => Navigator.of(context).pushReplacementNamed('/main'),
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.star_border_rounded,
+                          color: Theme.of(context).primaryColorDark,
+                          size: 30,
+                        ),
+                        onPressed: () {
+                          StoreProvider.of<AppState>(context).dispatch(GetRecommendedPlaces(_onResultRecommend));
+                          ///muta l de aici
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                height: 140,
-                width: width,
-                child: const Text('Work'),
-              ),
+              ],
             ),
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.blueGrey,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            height: 140,
-            width: width,
-            child: const Text('Chill'),
-          ),
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.blueGrey,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            height: 140,
-            width: width,
-            child: const Text('Friday Night'),
-          ),
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.blueGrey,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            height: 140,
-            width: width,
-            child: const Text('Date'),
-          ),
-          Container(
-            decoration: const BoxDecoration(
-              color: Colors.blueGrey,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-            height: 140,
-            width: width,
-            child: const Text('Active Break'),
           ),
         ],
       ),
