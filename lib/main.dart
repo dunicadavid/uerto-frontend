@@ -92,28 +92,28 @@ class _UertoApp extends State<UertoApp> with InitMixin<UertoApp> {
                 canvasColor: const Color(0xfff7f6f1),
                 primaryColor: const Color(0xffFFFFFF),
                 primaryColorDark: const Color(0xff424242),
-                secondaryHeaderColor: const Color(0xff211D1D),
+                secondaryHeaderColor: const Color(0xff24272c),
                 textTheme: const TextTheme(
                   titleLarge: TextStyle(
-                    color: Color(0xff211D1D),
+                    color: Color(0xff24272c),
                     fontSize: 50.0,
                     fontFamily: 'Plus',
                     fontWeight: FontWeight.bold,
                   ),
                   titleSmall: TextStyle(
-                    color: Color(0xff211D1D),
+                    color: Color(0xff24272c),
                     fontSize: 25.0,
                     fontFamily: 'Plus',
                     fontWeight: FontWeight.bold,
                   ),
                   bodyLarge: TextStyle(
-                    color: Color(0xff211D1D),
+                    color: Color(0xff24272c),
                     fontSize: 29.0,
                     fontFamily: 'Plus',
                     fontWeight: FontWeight.bold,
                   ),
                   bodyMedium: TextStyle(
-                    color: Color(0xff211D1D),
+                    color: Color(0xff24272c),
                     fontSize: 24.0,
                     fontFamily: 'Plus',
                     fontWeight: FontWeight.bold,

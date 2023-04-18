@@ -2,6 +2,7 @@
 // Dunica David-Gabriel <FLTY>
 // on 07/03/2023 12:41:56
 
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../../actions/index.dart';
@@ -74,12 +75,19 @@ class DrawerUerto extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.025,
               ),
-              const Divider(
-                height: 0,
-                thickness: 2.5,
-                color: Color(0xFFB7B7B7),
-                endIndent: 15,
-                indent: 15,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: DottedLine(
+                  direction: Axis.horizontal,
+                  lineLength: double.infinity,
+                  lineThickness: 2.0,
+                  dashLength: 4.0,
+                  dashColor: Theme.of(context).primaryColorDark,
+                  dashRadius: 0.0,
+                  dashGapLength: 4.0,
+                  dashGapColor: Colors.transparent,
+                  dashGapRadius: 0.0,
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.025,
@@ -209,12 +217,16 @@ class DrawerUerto extends StatelessWidget {
               Container(
                 height: 250,
               ),
-              const Divider(
-                height: 0,
-                thickness: 2.5,
-                color: Color(0xFFB7B7B7),
-                endIndent: 15,
-                indent: 15,
+              DottedLine(
+                direction: Axis.horizontal,
+                lineLength: double.infinity,
+                lineThickness: 1.0,
+                dashLength: 4.0,
+                dashColor: Theme.of(context).primaryColorDark,
+                dashRadius: 0.0,
+                dashGapLength: 4.0,
+                dashGapColor: Colors.transparent,
+                dashGapRadius: 0.0,
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.025,
@@ -268,12 +280,16 @@ class DrawerUerto extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.025,
               ),
-              const Divider(
-                height: 0,
-                thickness: 2.5,
-                color: Color(0xFFB7B7B7),
-                endIndent: 15,
-                indent: 15,
+              DottedLine(
+                direction: Axis.horizontal,
+                lineLength: double.infinity,
+                lineThickness: 1.0,
+                dashLength: 4.0,
+                dashColor: Theme.of(context).primaryColorDark,
+                dashRadius: 0.0,
+                dashGapLength: 4.0,
+                dashGapColor: Colors.transparent,
+                dashGapRadius: 0.0,
               ),
               Align(
                 alignment: Alignment.centerRight,

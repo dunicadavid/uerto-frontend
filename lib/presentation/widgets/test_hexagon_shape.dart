@@ -9,19 +9,21 @@ import 'package:flutter/material.dart';
 
 class HexagonalShape extends StatelessWidget {
 
-  const HexagonalShape({Key? key, required this.size, required this.color})
+  const HexagonalShape({Key? key, required this.size, required this.colorFill, required this.colorStroke, required this.angle, required this.strokeWidth})
       : super(key: key);
   final double size;
-  final Color color;
-
+  final Color colorFill;
+  final Color colorStroke;
+  final double angle;
+  final double strokeWidth;
 
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
-      angle: pi/2,
+      angle: angle,
       child: CustomPaint(
         size: Size(size, size),
-        painter: RPSCustomPainter(color: color),
+        painter: RPSCustomPainter(colorFill: colorFill, colorStroke: colorStroke, strokeWidth: strokeWidth),
       ),
     );
   }
@@ -30,8 +32,10 @@ class HexagonalShape extends StatelessWidget {
 //Copy this CustomPainter code to the Bottom of the File
 class RPSCustomPainter extends CustomPainter {
 
-  RPSCustomPainter({required this.color});
-  final Color color;
+  RPSCustomPainter({required this.colorFill, required this.colorStroke, required this.strokeWidth});
+  final Color colorFill;
+  final Color colorStroke;
+  final double strokeWidth;
 
 
   @override
@@ -50,11 +54,16 @@ class RPSCustomPainter extends CustomPainter {
     path_0.arcToPoint(Offset(size.width*0.06698730,size.height*0.7048945),radius: Radius.elliptical(size.width*0.07812500, size.height*0.07812500),rotation: 0 ,largeArc: false,clockwise: true);
     path_0.lineTo(size.width*0.06698730,size.height*0.2951055);
     path_0.arcToPoint(Offset(size.width*0.1060498,size.height*0.2274473),radius: Radius.elliptical(size.width*0.07812500, size.height*0.07812500),rotation: 0 ,largeArc: false,clockwise: true);
+    path_0.lineTo(size.width*0.4609375,size.height*0.02255274);
 
     final Paint paint0Fill = Paint()..style=PaintingStyle.fill;
-    paint0Fill.color = color.withOpacity(1.0);
+    paint0Fill.color = colorFill;
+    final Paint paintBorder = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth
+      ..color = colorStroke;
     canvas.drawPath(path_0,paint0Fill);
-
+    canvas.drawPath(path_0, paintBorder);
   }
 
   @override

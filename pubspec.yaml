@@ -32,6 +32,7 @@ dependencies:
 
   cupertino_icons: ^1.0.5
   flutter_polygon: ^0.3.0+2
+  dotted_line: ^3.1.0
 
 
 dev_dependencies:

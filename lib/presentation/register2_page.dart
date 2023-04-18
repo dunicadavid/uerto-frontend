@@ -2,6 +2,8 @@
 // Dunica David-Gabriel <FLTY>
 // on 08/12/2022 13:52:29
 
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -118,7 +120,10 @@ class _Register2PageState extends State<Register2Page> {
                                 ),
                                 HexagonalShape(
                                   size: 140,
-                                  color: Theme.of(context).secondaryHeaderColor,
+                                  colorFill: Theme.of(context).secondaryHeaderColor,
+                                  colorStroke: Colors.transparent,
+                                  strokeWidth: 0,
+                                  angle: pi/2,
                                 ),
                                 const SizedBox(
                                   height: 20,
