@@ -22,7 +22,6 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, RegisterPhase2Successful>(_registerPhase2Successful),
   TypedReducer<AppState, EditProfileSuccessful>(_editProfile),
   TypedReducer<AppState, LoginSuccessful>(_loginSuccessful),
-  TypedReducer<AppState, LoginError>(_loginError),
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
   TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
   TypedReducer<AppState, GetRecommendedPlacesSuccessful>(_getRecommendedPlacesSuccessful),
@@ -91,7 +90,7 @@ AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action
 
 AppState _initializeAppError(AppState state, InitializeAppError action) {
   return state.rebuild((AppStateBuilder b) {
-    b.isServerWorking = true;
+    b.isServerWorking = false;
     b.isInitDone = true;
   });
 }
@@ -107,15 +106,6 @@ AppState _editProfile(AppState state, EditProfileSuccessful action) {
 AppState _loginSuccessful(AppState state, LoginSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     b.user = action.user?.toBuilder();
-    b.isServerWorking = true;
-    b.isInitDone = true;
-  });
-}
-
-AppState _loginError(AppState state, LoginError action) {
-  return state.rebuild((AppStateBuilder b) {
-    //b.isServerWorking = false;
-    b.isInitDone = true;
   });
 }
 

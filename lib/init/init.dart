@@ -44,6 +44,5 @@ Future<Store<AppState>> init() async {
     middleware: <Middleware<AppState>>[
       EpicMiddleware<AppState>(epics.epics),
     ],
-  )..dispatch(const InitializeApp())
-  ..dispatch(const VerifyLocationService());
+  )..dispatch(const InitializeApp());
 }

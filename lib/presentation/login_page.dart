@@ -42,9 +42,10 @@ class _LoginPageState extends State<LoginPage> {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(action.error.toString().split(' ')[0])));
         }
       } else {
-        print(StoreProvider.of<AppState>(context).state.user);
-        StoreProvider.of<AppState>(context)
-            .dispatch(GetReservationsRateRequest(StoreProvider.of<AppState>(context).state.user!.userId, (_) {}));
+        if(StoreProvider.of<AppState>(context).state.user != null) {
+          StoreProvider.of<AppState>(context)
+              .dispatch(GetReservationsRateRequest(StoreProvider.of<AppState>(context).state.user!.userId, (_) {}));
+        }
       }
       Navigator.of(context).pushReplacementNamed('/'); ///muta-l dupa ce rezolvi login logic
     });

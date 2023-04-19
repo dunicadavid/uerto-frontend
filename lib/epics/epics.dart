@@ -65,6 +65,7 @@ class AppEpics {
     return actions.asyncMap((InitializeAppStart action) => _authApi.getCurrentUser()).expand((AppUser? user) {
       return <Object>[
         if (user != null) GetReservationsRateRequest(user.userId, (_) {}) else Object,
+        const VerifyLocationService(),
         InitializeApp.successful(user),
       ];
     }).onErrorReturnWith((Object error, StackTrace stackTrace) => InitializeApp.error(error, stackTrace));

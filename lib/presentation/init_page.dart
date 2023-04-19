@@ -20,44 +20,36 @@ import 'main_page.dart';
 
 class InitPage extends StatelessWidget {
   const InitPage({Key? key}) : super(key: key);
-                                ///regamdeste putin treaba cu node nu merge ----> isSERVERworking (bug login (ori pica ca nu e user ori ca nu merge serverul))
+
+  ///regamdeste putin treaba cu node nu merge ----> isSERVERworking (bug login (ori pica ca nu e user ori ca nu merge serverul))
   @override
   Widget build(BuildContext context) {
-        if (StoreProvider.of<AppState>(context).state.isInitDone == true) {
-          print('FirebaseAuth.instance.currentUser: ${FirebaseAuth.instance.currentUser}');
-          print('StoreProvider.of<AppState>(context).state.isServerWorking!:${StoreProvider.of<AppState>(context).state.isServerWorking}');
-          if(StoreProvider.of<AppState>(context).state.user != null) {
-            print('StoreProvider.of<AppState>(context).state.user!:${StoreProvider.of<AppState>(context).state.user}');
-          } else {
-            print('StoreProvider.of<AppState>(context).state.user!:${false}');
-          }
 
-          if (FirebaseAuth.instance.currentUser == null && StoreProvider.of<AppState>(context).state.isServerWorking!) {
-            print('----->LoginPage()');
-            return const LoginPage();
-          } else if (!FirebaseAuth.instance.currentUser!.emailVerified &&
-              StoreProvider.of<AppState>(context).state.isServerWorking!) {
-            print('----->VerifyEmailPage()');
-            return const VerifyEmailPage();
-          } else if (StoreProvider.of<AppState>(context).state.user == null && StoreProvider.of<AppState>(context).state.isServerWorking!) {
-            print('----->Register2Page()');
-            return const Register2Page();
-          } else if (StoreProvider.of<AppState>(context).state.locationEnabled == false &&
-              StoreProvider.of<AppState>(context).state.isServerWorking!) {
-            print('----->CurrentLocationPage()');
-            return const CurrentLocationPage();
-          } else if (!StoreProvider.of<AppState>(context).state.isServerWorking!) {
-            print('----->ErrorPage()');
-            return const ErrorPage();
-          } else if (StoreProvider.of<AppState>(context).state.listOfRateRequest!.isNotEmpty) {
-            print('----->RatePlacePage()');
-            return const RatePlacePage();
-          } else {
-            print('----->MainPage()');
-            return const MainPage();
-          }
+    if (StoreProvider.of<AppState>(context).state.isInitDone == true) {
+      if (StoreProvider.of<AppState>(context).state.isServerWorking == true) {
+        if (FirebaseAuth.instance.currentUser == null) {
+          return const LoginPage();
         } else {
-          return const LoadingPage();
+          if (FirebaseAuth.instance.currentUser!.emailVerified == false) {
+            return const VerifyEmailPage();
+          } else if (StoreProvider.of<AppState>(context).state.user == null) {
+            return const Register2Page();
+          } else if (StoreProvider.of<AppState>(context).state.locationEnabled == false) {
+            return const CurrentLocationPage();
+          } else {
+            print(StoreProvider.of<AppState>(context).state.listOfRateRequest!.isNotEmpty);
+            if (StoreProvider.of<AppState>(context).state.listOfRateRequest!.isNotEmpty) {
+              return const RatePlacePage();   ///nu intra aici din cauza la delay
+            } else {
+              return const MainPage();
+            }
+          }
         }
+      } else {
+        return const ErrorPage();
+      }
+    } else {
+      return const LoadingPage();
+    }
   }
 }

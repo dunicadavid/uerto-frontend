@@ -54,7 +54,6 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     setState(() {
       isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     });
-    print(isEmailVerified);
     if (isEmailVerified) {
       timerResendEmail?.cancel();
       timer?.cancel();

@@ -230,6 +230,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               );
                             },
                           ),
+                          const SizedBox(height: 100,),
+                          GestureDetector(
+                              onTap: (){
+                                StoreProvider.of<AppState>(context).dispatch(const Signout());
+                                Navigator.of(context).pushReplacementNamed('/');
+                              },
+                              child: const Text('Sign Out')),
                         ],
                       ),
                     ),
