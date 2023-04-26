@@ -2,8 +2,11 @@
 // Dunica David-Gabriel <FLTY>
 // on 12/12/2022 18:08:25
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:uerto/presentation/widgets/test_appbar.dart';
+import 'package:uerto/presentation/widgets/test_hexagon_shape.dart';
 
 import '../../actions/index.dart';
 import '../../models/index.dart';
@@ -17,11 +20,13 @@ class PlaceCategoryPage extends StatefulWidget {
 
 class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
   bool _isLoading = false;
+  bool _isDone = true;
   String _filter = '';
 
   void _onResultGetCurrentLocation(AppAction action) {
     setState(() {
       _isLoading = false;
+      _isDone = false;
     });
     if (action is ErrorAction) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
@@ -38,7 +43,8 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
 
   @override
   void initState() {
-    if(StoreProvider.of<AppState>(context, listen: false).state.latitude == null && StoreProvider.of<AppState>(context, listen: false).state.longitude == null) {
+    if (StoreProvider.of<AppState>(context, listen: false).state.latitude == null &&
+        StoreProvider.of<AppState>(context, listen: false).state.longitude == null) {
       setState(() => _isLoading = true);
       StoreProvider.of<AppState>(context, listen: false).dispatch(GetCurrentLocation(_onResultGetCurrentLocation));
     }
@@ -50,351 +56,382 @@ class _PlaceCategoryPageState extends State<PlaceCategoryPage> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('PlaceCategoryPage'),
-        leading: IconButton(
-          icon: const Icon(Icons.backspace_outlined),
-          onPressed: () {
-            Navigator.of(context).pushReplacementNamed('/main');
-          },
-        ),
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: height * 0.07,
-              width: width,
+      body: Stack(
+        children: <Widget>[
+
+          Container(
+            height: height * 0.15,
+            width: width,
+            color: Colors.amber,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed('/placeDetailedFilter');
+              },
+              child: const Text('Filters...  //get from db'),
             ),
-            Container(
-              height: height * 0.07,
+          ),
+          Container(
+            height: height * 0.07,
+            width: width,
+            color: Colors.amber,
+            child: GestureDetector(
+              onTap: () {
+                if (_isLoading == false) {
+                  Navigator.of(context).pushReplacementNamed('/placeLocationFilter');
+                }
+              },
+              child: Text(
+                'Location + radius //install maps',
+                style: TextStyle(color: _isLoading == false ? Colors.black : Colors.black45),
+              ),
+            ),
+          ),
+          Container(
+            height: height * 0.07,
+            width: width,
+            color: Colors.amber,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      StoreProvider.of<AppState>(context).dispatch(const SetPlacesSortedBy('price-asc'));
+                    });
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 40,
+                    decoration: StoreProvider.of<AppState>(context).state.sortBy == 'price-asc'
+                        ? const BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          )
+                        : BoxDecoration(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            borderRadius: const BorderRadius.all(Radius.circular(50)),
+                          ),
+                    child: const Center(
+                      child: Text(
+                        'Price +',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      StoreProvider.of<AppState>(context).dispatch(const SetPlacesSortedBy('price-desc'));
+                    });
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 40,
+                    decoration: StoreProvider.of<AppState>(context).state.sortBy == 'price-desc'
+                        ? const BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          )
+                        : BoxDecoration(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            borderRadius: const BorderRadius.all(Radius.circular(50)),
+                          ),
+                    child: const Center(
+                        child: Text(
+                      'Price -',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      StoreProvider.of<AppState>(context).dispatch(const SetPlacesSortedBy('rating-asc'));
+                    });
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 40,
+                    decoration: StoreProvider.of<AppState>(context).state.sortBy == 'rating-asc'
+                        ? const BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          )
+                        : BoxDecoration(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            borderRadius: const BorderRadius.all(Radius.circular(50)),
+                          ),
+                    child: const Center(
+                        child: Text(
+                      'Rating +',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      StoreProvider.of<AppState>(context).dispatch(const SetPlacesSortedBy('rating-desc'));
+                    });
+                  },
+                  child: Container(
+                    width: 60,
+                    height: 40,
+                    decoration: StoreProvider.of<AppState>(context).state.sortBy == 'rating-desc'
+                        ? const BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          )
+                        : BoxDecoration(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            borderRadius: const BorderRadius.all(Radius.circular(50)),
+                          ),
+                    child: const Center(
+                        child: Text(
+                      'Rating -',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            child: AppBarUerto(
+              colorFill: Theme.of(context).highlightColor,
               width: width,
-              color: Colors.amber,
+              height: StoreProvider.of<AppState>(context).state.category == null ? 220 : 390,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, left: 280),
+            child: HexagonalShape(
+                size: 120,
+                colorFill: Theme.of(context).secondaryHeaderColor.withOpacity(0.03),
+                colorStroke: Colors.transparent,
+                angle: 0.20943951,
+                strokeWidth: 0),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 90, left: 280),
+            child: HexagonalShape(
+                size: 50,
+                colorFill: Theme.of(context).secondaryHeaderColor.withOpacity(0.07),
+                colorStroke: Colors.transparent,
+                angle: -0.523598776,
+                strokeWidth: 0),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 120),
+            child: SizedBox(
+              width: width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-                      setState(
-                          () => StoreProvider.of<AppState>(context).dispatch(const SetPlacesCategory('Restaurant')));
+                      setState(() => StoreProvider.of<AppState>(context).dispatch(const SetPlacesCategory('Eat')));
                     },
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(50)),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.06,
-                        width: MediaQuery.of(context).size.width * 0.25,
-                        decoration: StoreProvider.of<AppState>(context).state.category != 'Restaurant'
-                            ? BoxDecoration(
-                                color: Theme.of(context).secondaryHeaderColor,
-                              )
-                            : const BoxDecoration(color: Colors.blue),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: MediaQuery.of(context).size.height * 0.02,
-                            ),
-                            child: FittedBox(
-                              child: Text(
-                                'Restaurant',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Plus',
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 20,
-                                ),
-                              ),
-                            ),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      height: 50,
+                      width: 100,
+                      padding: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(50)),
+                        color: StoreProvider.of<AppState>(context).state.category == 'Eat' ? Theme.of(context).secondaryHeaderColor : Theme.of(context).secondaryHeaderColor.withOpacity(0.7),
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Icon(
+                            Icons.fastfood_rounded,
+                            color: Color(0xffE1DEDB),
                           ),
-                        ),
+                          Text(
+                            'Eat',
+                            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: Color(0xffE1DEDB)),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      setState(() => StoreProvider.of<AppState>(context).dispatch(const SetPlacesCategory('Bar')));
+                      setState(() => StoreProvider.of<AppState>(context).dispatch(const SetPlacesCategory('Drink')));
                     },
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(50)),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.06,
-                        width: MediaQuery.of(context).size.width * 0.25,
-                        decoration: StoreProvider.of<AppState>(context).state.category != 'Bar'
-                            ? BoxDecoration(
-                                color: Theme.of(context).secondaryHeaderColor,
-                              )
-                            : const BoxDecoration(color: Colors.blue),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: MediaQuery.of(context).size.height * 0.008,
-                            ),
-                            child: FittedBox(
-                              child: Text(
-                                'Bar',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Plus',
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 24,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      height: 50,
+                      width: 100,
+                      padding: const EdgeInsets.only(top: 5, left: 10, right: 10, bottom: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(50)),
+                        color: StoreProvider.of<AppState>(context).state.category == 'Drink' ? Theme.of(context).secondaryHeaderColor : Theme.of(context).secondaryHeaderColor.withOpacity(0.7),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() => StoreProvider.of<AppState>(context).dispatch(const SetPlacesCategory('Cafe')));
-                    },
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(50)),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.06,
-                        width: MediaQuery.of(context).size.width * 0.25,
-                        decoration: StoreProvider.of<AppState>(context).state.category != 'Cafe'
-                            ? BoxDecoration(
-                                color: Theme.of(context).secondaryHeaderColor,
-                              )
-                            : const BoxDecoration(color: Colors.blue),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: MediaQuery.of(context).size.height * 0.008,
-                            ),
-                            child: FittedBox(
-                              child: Text(
-                                'Cafe',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Plus',
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 24,
-                                ),
-                              ),
-                            ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Icon(
+                            Icons.wine_bar_rounded,
+                            color: Color(0xffE1DEDB),
                           ),
-                        ),
+                          Text(
+                            'Drink',
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: Color(0xffE1DEDB)),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: height * 0.02,
-              width: width,
-            ),
-            Container(
-              height: height * 0.15,
-              width: width,
-              color: Colors.amber,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushReplacementNamed('/placeDetailedFilter');
-                },
-                child: const Text('Filters...  //get from db'),
-              ),
-            ),
-            SizedBox(
-              height: height * 0.02,
-              width: width,
-            ),
-            Container(
-              height: height * 0.07,
-              width: width,
-              color: Colors.amber,
-              child: GestureDetector(
-                  onTap: () {
-                    if (_isLoading == false) {
-                      Navigator.of(context).pushReplacementNamed('/placeLocationFilter');
-                    }
-                  },
-                  child: Text('Location + radius //install maps',style: TextStyle(color: _isLoading == false ? Colors.black : Colors.black45),),),
-            ),
-            SizedBox(
-              height: height * 0.02,
-              width: width,
-            ),
-            Container(
-                height: height * 0.07,
+          ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              child: SizedBox(
+                height: 45,
                 width: width,
-                color: Colors.amber,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          StoreProvider.of<AppState>(context).dispatch(const SetPlacesSortedBy('price-asc'));
-                        });
+                    IconButton(
+                      icon: Icon(
+                        CupertinoIcons.back,
+                        color: Theme.of(context).primaryColorDark,
+                        size: 30,
+                      ),
+                      onPressed: () {
+                        StoreProvider.of<AppState>(context).dispatch(const DeleteReservationsPrevious());
+                        Navigator.of(context).pushReplacementNamed('/main');
                       },
-                      child: Container(
-                        width: 60,
-                        height: 40,
-                        decoration: StoreProvider.of<AppState>(context).state.sortBy == 'price-asc'
-                            ? const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(Radius.circular(50)),
-                              )
-                            : BoxDecoration(
-                                color: Theme.of(context).secondaryHeaderColor,
-                                borderRadius: const BorderRadius.all(Radius.circular(50)),
-                              ),
-                        child: const Center(
-                          child: Text(
-                            'Price +',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                    ),
+                    Text(
+                      'Restaurants',
+                      style: TextStyle(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        fontSize: 22,
+                        fontFamily: 'Plus',
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          StoreProvider.of<AppState>(context).dispatch(const SetPlacesSortedBy('price-desc'));
-                        });
-                      },
-                      child: Container(
-                        width: 60,
-                        height: 40,
-                        decoration: StoreProvider.of<AppState>(context).state.sortBy == 'price-desc'
-                            ? const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(Radius.circular(50)),
-                              )
-                            : BoxDecoration(
-                                color: Theme.of(context).secondaryHeaderColor,
-                                borderRadius: const BorderRadius.all(Radius.circular(50)),
-                              ),
-                        child: const Center(
-                            child: Text(
-                          'Price -',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          StoreProvider.of<AppState>(context).dispatch(const SetPlacesSortedBy('rating-asc'));
-                        });
-                      },
-                      child: Container(
-                        width: 60,
-                        height: 40,
-                        decoration: StoreProvider.of<AppState>(context).state.sortBy == 'rating-asc'
-                            ? const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(Radius.circular(50)),
-                              )
-                            : BoxDecoration(
-                                color: Theme.of(context).secondaryHeaderColor,
-                                borderRadius: const BorderRadius.all(Radius.circular(50)),
-                              ),
-                        child: const Center(
-                            child: Text(
-                          'Rating +',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          StoreProvider.of<AppState>(context).dispatch(const SetPlacesSortedBy('rating-desc'));
-                        });
-                      },
-                      child: Container(
-                        width: 60,
-                        height: 40,
-                        decoration: StoreProvider.of<AppState>(context).state.sortBy == 'rating-desc'
-                            ? const BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(Radius.circular(50)),
-                              )
-                            : BoxDecoration(
-                                color: Theme.of(context).secondaryHeaderColor,
-                                borderRadius: const BorderRadius.all(Radius.circular(50)),
-                              ),
-                        child: const Center(
-                            child: Text(
-                          'Rating -',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                      ),
+                    Container(
+                      width: 40,
                     ),
                   ],
-                )),
-            SizedBox(
-              height: height * 0.12,
-              width: width,
+                ),
+              ),
             ),
-            Builder(
-              builder: (BuildContext context) {
-                if (_isLoading) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      color: Theme.of(context).secondaryHeaderColor,
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 680),
+              child: Builder(
+                builder: (BuildContext context) {
+                  return GestureDetector(
+                    onTap: () {
+                      if (StoreProvider.of<AppState>(context).state.category != null) {
+                        for (final String element in StoreProvider.of<AppState>(context).state.filters!) {
+                          _filter += element;
+                        }
+                        setState(() {
+                          _isLoading = true;
+                          _isDone = false;
+                        });
+                        StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
+                        StoreProvider.of<AppState>(context).dispatch(
+                            GetPlaces(_filter, StoreProvider.of<AppState>(context).state.category!, _onResultGetPlaces));
+                      }
+                    },
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 150),
+                      height: height * 0.06,
+                      width: _isLoading ? height * 0.06 : width * 0.5,
+                      onEnd: () => setState(() => _isDone = true),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).secondaryHeaderColor,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
+                      child: _isDone == false
+                          ? Container()
+                          : _isLoading
+                              ? Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: CircularProgressIndicator(
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                  ),
+                                )
+                              : Align(
+                                  alignment: Alignment.center,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: height * 0.008,
+                                    ),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Expanded(
+                                          flex: 1,
+                                          child: Container(),
+                                        ),
+                                        const Text(
+                                          'search',
+                                          style: TextStyle(
+                                            color: Color(0xffffffff),
+                                            fontSize: 25.0,
+                                            fontFamily: 'Plus',
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child: Container(),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 7.0),
+                                          child: Container(
+                                            height: height * 0.047,
+                                            width: height * 0.047,
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context).primaryColor,
+                                              borderRadius: const BorderRadius.all(
+                                                Radius.circular(50),
+                                              ),
+                                            ),
+                                            child: const Icon(Icons.arrow_forward_rounded),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                     ),
                   );
-                }
-                return GestureDetector(
-                  onTap: () {
-                    if (StoreProvider.of<AppState>(context).state.category != null) {
-                      for (final String element in StoreProvider.of<AppState>(context).state.filters!) {
-                        _filter += element;
-                      }
-                      StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
-                      StoreProvider.of<AppState>(context)
-                          .dispatch(GetPlaces(_filter, StoreProvider.of<AppState>(context).state.category!, _onResultGetPlaces));
-                    }
-                  },
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.06,
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: <Color>[
-                            Theme.of(context).secondaryHeaderColor,
-                            Theme.of(context).secondaryHeaderColor,
-                          ],
-                        ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: MediaQuery.of(context).size.height * 0.008,
-                          ),
-                          child: FittedBox(
-                            child: Text(
-                              'Search!',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Plus',
-                                color: Theme.of(context).primaryColor,
-                                fontSize: 24,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
+                },
+              ),
             ),
-          ],
-        ),
+          ),
+          Container(
+            color: Colors.red,
+            height: 2,
+            width: width,
+            margin: const EdgeInsets.only(top: 775.0),
+          ),
+          Container(
+            color: Colors.red,
+            height: 2,
+            width: width,
+            margin: const EdgeInsets.only(top: 810.0),
+          ),
+        ],
       ),
     );
   }

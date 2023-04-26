@@ -58,7 +58,7 @@ class DrawerUerto extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Text>[
                             Text(
-                              user!.fullname,
+                              '${user!.fullname.split(' ')[0]} ${user.fullname.split(' ')[1]}',
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             Text(

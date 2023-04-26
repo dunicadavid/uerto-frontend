@@ -28,19 +28,20 @@ class AuthApi {
   final Client _client;
 
   /// [ {getCurrentUser} ]  --  verifica daca userul este logat la intrarea in aplicatie si ia datele sale din db
-  Future<AppUser?> getCurrentUser() async {
+  Future<Map<String,dynamic>?> getCurrentUser() async {
     final User? user = _auth.currentUser;
 
     if (user == null) {
+      print('null -- notuser');
       return null;
     }
 
-    Response? response;
+
     final String token = await user.getIdToken();
     print('Token: $token');
     print('Uid: ${_auth.currentUser?.uid}');
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/idauth');
-    response = await _client.get(
+    final Uri uri = Uri.https(_apiUrl.split('//')[1], '/users/idauth');
+    final Response response = await _client.get(
       uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -50,28 +51,36 @@ class AuthApi {
 
     switch (response.statusCode) {
       case 200:
-        return AppUser.fromJson(json.decode(response.body));
+        {
+          print('body -- user ok');
+          final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+          print(body);
+          return body;
+        }
       case 204:
+        print('null -- registerphase2');
         return null;
       case 500:
-        throw StateError(response.body);
+        {
+          print('error');
+          final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+          final String error = body['message'] as String;
+          throw StateError(error);
+        }
       default:
         return null;
     }
   }
 
   /// [ {login} ]  --  logheaza userul si verifica cazurile de nefunctionalitate a serverului
-  Future<AppUser?> login(String email, String password) async {
+  Future<Map<String,dynamic>?> login(String email, String password) async {
 
-    Response? response;
     final AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
-    UserCredential result = await _auth.signInWithCredential(credential);
-
-    print('result: ' + result.toString());
+    final UserCredential result = await _auth.signInWithCredential(credential);
 
     final String? token = await _auth.currentUser?.getIdToken();
     final Uri uri = Uri.parse('$_apiUrl/users/idauth');
-    response = await _client.get(
+    final Response response = await _client.get(
       uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -81,11 +90,18 @@ class AuthApi {
 
     switch (response.statusCode) {
       case 200:
-        return AppUser.fromJson(json.decode(response.body));
+        {
+          final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+          return body;
+        }
       case 204:
         return null;
       case 500:
-        throw StateError(response.body);
+        {
+          final  Map<String, dynamic> body = jsonDecode(response.body) as Map<String,dynamic>;
+          final String error = body['message'] as String;
+          throw StateError(error);
+        }
       default:
         return null;
     }
@@ -97,7 +113,7 @@ class AuthApi {
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
       print(await _auth.currentUser?.getIdToken());
     } on FirebaseAuthException catch (e) {
-      print('error message : ===========> ${e}');
+      print('error message : ===========> $e');
       rethrow;
     }
   }
@@ -207,7 +223,7 @@ class AuthApi {
   Future<void> setRecommenderStrategy(int iduser, int strategy) async {
     final String token = await _auth.currentUser!.getIdToken();
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/update/strategy');
+    final Uri uri = Uri.https(_apiUrl.split('//')[1], '/users/update/strategy');
 
     final Response response = await _client.put(
       uri,

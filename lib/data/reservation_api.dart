@@ -31,7 +31,7 @@ class ReservationApi {
 
     final String? token = await _auth.currentUser?.getIdToken();
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/reservations/create');
+    final Uri uri = Uri.https(_apiUrl.split('//')[1],'/reservations/create');
     final Response response = await _client.post(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -69,7 +69,7 @@ class ReservationApi {
       'idreservation' : idreservation.toString(),
     };
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/reservations/delete', requestParams);
+    final Uri uri = Uri.https(_apiUrl.split('//')[1], '/reservations/delete', requestParams);
 
     final Response response = await _client.delete(uri,
       headers: {
@@ -96,7 +96,7 @@ class ReservationApi {
       'limit': limit.toString(),
     };
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/reservations',requestParams);
+    final Uri uri = Uri.https(_apiUrl.split('//')[1],'/reservations',requestParams);
     final Response response = await _client.get(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -123,7 +123,7 @@ class ReservationApi {
       'limit': limit.toString(),
     };
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),'/reservations',requestParams);
+    final Uri uri = Uri.https(_apiUrl.split('//')[1],'/reservations',requestParams);
     final Response response = await _client.get(uri,
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
@@ -148,7 +148,7 @@ class ReservationApi {
     };
 
     final Uri uri =
-    Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/interaction/rate-requests', requestParams);
+    Uri.https(_apiUrl.split('//')[1], '/users/interaction/rate-requests', requestParams);
 
     final Response response = await _client.get(
       uri,
@@ -175,7 +175,7 @@ class ReservationApi {
 
     final String? token = await _auth.currentUser?.getIdToken();
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/interaction/rate-place');
+    final Uri uri = Uri.https(_apiUrl.split('//')[1], '/users/interaction/rate-place');
 
     final Response response = await _client.post(uri,
       headers: {
@@ -202,7 +202,7 @@ class ReservationApi {
 
     final String? token = await _auth.currentUser?.getIdToken();
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/users/interaction/rate-requests');
+    final Uri uri = Uri.https(_apiUrl.split('//')[1], '/users/interaction/rate-requests');
 
     final Response response = await _client.delete(uri,
       headers: {

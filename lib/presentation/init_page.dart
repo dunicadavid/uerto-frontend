@@ -21,10 +21,8 @@ import 'main_page.dart';
 class InitPage extends StatelessWidget {
   const InitPage({Key? key}) : super(key: key);
 
-  ///regamdeste putin treaba cu node nu merge ----> isSERVERworking (bug login (ori pica ca nu e user ori ca nu merge serverul))
   @override
   Widget build(BuildContext context) {
-
     if (StoreProvider.of<AppState>(context).state.isInitDone == true) {
       if (StoreProvider.of<AppState>(context).state.isServerWorking == true) {
         if (FirebaseAuth.instance.currentUser == null) {
@@ -37,9 +35,8 @@ class InitPage extends StatelessWidget {
           } else if (StoreProvider.of<AppState>(context).state.locationEnabled == false) {
             return const CurrentLocationPage();
           } else {
-            print(StoreProvider.of<AppState>(context).state.listOfRateRequest!.isNotEmpty);
             if (StoreProvider.of<AppState>(context).state.listOfRateRequest!.isNotEmpty) {
-              return const RatePlacePage();   ///nu intra aici din cauza la delay
+              return const RatePlacePage();
             } else {
               return const MainPage();
             }

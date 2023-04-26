@@ -90,7 +90,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Text(
                               user!.email,
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black38),
+                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black38),
                             ),
                           ),
                           SizedBox(
@@ -234,7 +234,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           GestureDetector(
                               onTap: (){
                                 StoreProvider.of<AppState>(context).dispatch(const Signout());
-                                Navigator.of(context).pushReplacementNamed('/');
+                                Future<void>.delayed(const Duration(milliseconds: 500), () {
+                                  Navigator.of(context).pushReplacementNamed('/');
+                                });
+
                               },
                               child: const Text('Sign Out')),
                         ],

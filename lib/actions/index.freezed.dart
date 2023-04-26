@@ -1120,21 +1120,21 @@ mixin _$InitializeApp {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(AppUser? user) successful,
+    required TResult Function(Map<String, dynamic>? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Map<String, dynamic>? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(AppUser? user)? successful,
+    TResult Function(Map<String, dynamic>? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -1220,7 +1220,7 @@ class _$InitializeAppStart implements InitializeAppStart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(AppUser? user) successful,
+    required TResult Function(Map<String, dynamic>? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default();
@@ -1230,7 +1230,7 @@ class _$InitializeAppStart implements InitializeAppStart {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Map<String, dynamic>? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call();
@@ -1240,7 +1240,7 @@ class _$InitializeAppStart implements InitializeAppStart {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(AppUser? user)? successful,
+    TResult Function(Map<String, dynamic>? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -1295,7 +1295,7 @@ abstract class _$$InitializeAppSuccessfulCopyWith<$Res> {
           $Res Function(_$InitializeAppSuccessful) then) =
       __$$InitializeAppSuccessfulCopyWithImpl<$Res>;
   @useResult
-  $Res call({AppUser? user});
+  $Res call({Map<String, dynamic>? user});
 }
 
 /// @nodoc
@@ -1313,9 +1313,9 @@ class __$$InitializeAppSuccessfulCopyWithImpl<$Res>
   }) {
     return _then(_$InitializeAppSuccessful(
       freezed == user
-          ? _value.user
+          ? _value._user
           : user // ignore: cast_nullable_to_non_nullable
-              as AppUser?,
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -1323,10 +1323,18 @@ class __$$InitializeAppSuccessfulCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitializeAppSuccessful implements InitializeAppSuccessful {
-  const _$InitializeAppSuccessful(this.user);
+  const _$InitializeAppSuccessful(final Map<String, dynamic>? user)
+      : _user = user;
 
+  final Map<String, dynamic>? _user;
   @override
-  final AppUser? user;
+  Map<String, dynamic>? get user {
+    final value = _user;
+    if (value == null) return null;
+    if (_user is EqualUnmodifiableMapView) return _user;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
@@ -1338,11 +1346,12 @@ class _$InitializeAppSuccessful implements InitializeAppSuccessful {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitializeAppSuccessful &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other._user, _user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_user));
 
   @JsonKey(ignore: true)
   @override
@@ -1355,7 +1364,7 @@ class _$InitializeAppSuccessful implements InitializeAppSuccessful {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(AppUser? user) successful,
+    required TResult Function(Map<String, dynamic>? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return successful(user);
@@ -1365,7 +1374,7 @@ class _$InitializeAppSuccessful implements InitializeAppSuccessful {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Map<String, dynamic>? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return successful?.call(user);
@@ -1375,7 +1384,7 @@ class _$InitializeAppSuccessful implements InitializeAppSuccessful {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(AppUser? user)? successful,
+    TResult Function(Map<String, dynamic>? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -1421,10 +1430,10 @@ class _$InitializeAppSuccessful implements InitializeAppSuccessful {
 }
 
 abstract class InitializeAppSuccessful implements InitializeApp {
-  const factory InitializeAppSuccessful(final AppUser? user) =
+  const factory InitializeAppSuccessful(final Map<String, dynamic>? user) =
       _$InitializeAppSuccessful;
 
-  AppUser? get user;
+  Map<String, dynamic>? get user;
   @JsonKey(ignore: true)
   _$$InitializeAppSuccessfulCopyWith<_$InitializeAppSuccessful> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1503,7 +1512,7 @@ class _$InitializeAppError implements InitializeAppError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function() $default, {
-    required TResult Function(AppUser? user) successful,
+    required TResult Function(Map<String, dynamic>? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -1513,7 +1522,7 @@ class _$InitializeAppError implements InitializeAppError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function()? $default, {
-    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Map<String, dynamic>? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -1523,7 +1532,7 @@ class _$InitializeAppError implements InitializeAppError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function()? $default, {
-    TResult Function(AppUser? user)? successful,
+    TResult Function(Map<String, dynamic>? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -4105,7 +4114,7 @@ mixin _$Login {
   TResult when<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser? user) successful,
+    required TResult Function(Map<String, dynamic>? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -4113,7 +4122,7 @@ mixin _$Login {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Map<String, dynamic>? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -4121,7 +4130,7 @@ mixin _$Login {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser? user)? successful,
+    TResult Function(Map<String, dynamic>? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) =>
@@ -4250,7 +4259,7 @@ class _$LoginStart implements LoginStart {
   TResult when<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser? user) successful,
+    required TResult Function(Map<String, dynamic>? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return $default(email, password, result);
@@ -4261,7 +4270,7 @@ class _$LoginStart implements LoginStart {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Map<String, dynamic>? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return $default?.call(email, password, result);
@@ -4272,7 +4281,7 @@ class _$LoginStart implements LoginStart {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser? user)? successful,
+    TResult Function(Map<String, dynamic>? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -4335,7 +4344,7 @@ abstract class _$$LoginSuccessfulCopyWith<$Res> {
           _$LoginSuccessful value, $Res Function(_$LoginSuccessful) then) =
       __$$LoginSuccessfulCopyWithImpl<$Res>;
   @useResult
-  $Res call({AppUser? user});
+  $Res call({Map<String, dynamic>? user});
 }
 
 /// @nodoc
@@ -4353,9 +4362,9 @@ class __$$LoginSuccessfulCopyWithImpl<$Res>
   }) {
     return _then(_$LoginSuccessful(
       freezed == user
-          ? _value.user
+          ? _value._user
           : user // ignore: cast_nullable_to_non_nullable
-              as AppUser?,
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -4363,10 +4372,17 @@ class __$$LoginSuccessfulCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoginSuccessful implements LoginSuccessful {
-  const _$LoginSuccessful(this.user);
+  const _$LoginSuccessful(final Map<String, dynamic>? user) : _user = user;
 
+  final Map<String, dynamic>? _user;
   @override
-  final AppUser? user;
+  Map<String, dynamic>? get user {
+    final value = _user;
+    if (value == null) return null;
+    if (_user is EqualUnmodifiableMapView) return _user;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
 
   @override
   String toString() {
@@ -4378,11 +4394,12 @@ class _$LoginSuccessful implements LoginSuccessful {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginSuccessful &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other._user, _user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_user));
 
   @JsonKey(ignore: true)
   @override
@@ -4395,7 +4412,7 @@ class _$LoginSuccessful implements LoginSuccessful {
   TResult when<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser? user) successful,
+    required TResult Function(Map<String, dynamic>? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return successful(user);
@@ -4406,7 +4423,7 @@ class _$LoginSuccessful implements LoginSuccessful {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Map<String, dynamic>? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return successful?.call(user);
@@ -4417,7 +4434,7 @@ class _$LoginSuccessful implements LoginSuccessful {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser? user)? successful,
+    TResult Function(Map<String, dynamic>? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
@@ -4463,9 +4480,10 @@ class _$LoginSuccessful implements LoginSuccessful {
 }
 
 abstract class LoginSuccessful implements Login {
-  const factory LoginSuccessful(final AppUser? user) = _$LoginSuccessful;
+  const factory LoginSuccessful(final Map<String, dynamic>? user) =
+      _$LoginSuccessful;
 
-  AppUser? get user;
+  Map<String, dynamic>? get user;
   @JsonKey(ignore: true)
   _$$LoginSuccessfulCopyWith<_$LoginSuccessful> get copyWith =>
       throw _privateConstructorUsedError;
@@ -4544,7 +4562,7 @@ class _$LoginError implements LoginError {
   TResult when<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)
         $default, {
-    required TResult Function(AppUser? user) successful,
+    required TResult Function(Map<String, dynamic>? user) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
     return error(this.error, stackTrace);
@@ -4555,7 +4573,7 @@ class _$LoginError implements LoginError {
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(String email, String password, ActionResult result)?
         $default, {
-    TResult? Function(AppUser? user)? successful,
+    TResult? Function(Map<String, dynamic>? user)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
     return error?.call(this.error, stackTrace);
@@ -4566,7 +4584,7 @@ class _$LoginError implements LoginError {
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(String email, String password, ActionResult result)?
         $default, {
-    TResult Function(AppUser? user)? successful,
+    TResult Function(Map<String, dynamic>? user)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {

@@ -62,9 +62,8 @@ class AppEpics {
   }
 
   Stream<Object> _initializeApp(Stream<InitializeAppStart> actions, EpicStore<AppState> store) {
-    return actions.asyncMap((InitializeAppStart action) => _authApi.getCurrentUser()).expand((AppUser? user) {
+    return actions.asyncMap((InitializeAppStart action) => _authApi.getCurrentUser()).expand((Map<String,dynamic>? user) {
       return <Object>[
-        if (user != null) GetReservationsRateRequest(user.userId, (_) {}) else Object,
         const VerifyLocationService(),
         InitializeApp.successful(user),
       ];
@@ -105,7 +104,7 @@ class AppEpics {
   Stream<AppAction> _login(Stream<LoginStart> actions, EpicStore<AppState> store) {
     return actions.flatMap((LoginStart action) => Stream<void>.value(null)
         .asyncMap((_) => _authApi.login(action.email, action.password))
-        .map((AppUser? user) => Login.successful(user))
+        .map((Map<String,dynamic>? user) => Login.successful(user))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => Login.error(error, stackTrace))
         .doOnData(action.result));
   }

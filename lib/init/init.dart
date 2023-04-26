@@ -22,7 +22,7 @@ Future<Store<AppState>> init() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final FirebaseAuth auth = FirebaseAuth.instance;
-  const String apiUrl = 'https://192.168.0.104:3000';
+  const String apiUrl = 'https://10.0.2.2:3000';
   final Client client = Client();
   ///verify auth token
 

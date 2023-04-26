@@ -2,6 +2,8 @@
 // Dunica David-Gabriel <FLTY>
 // on 27/11/2022 18:01:40
 
+import 'dart:convert';
+
 import 'package:redux/redux.dart';
 
 import '../actions/index.dart';
@@ -16,7 +18,6 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, VerifyLocationServiceError>(_verifyLocationServiceError),
   TypedReducer<AppState, GetCurrentLocationSuccessful>(_getCurrentLocationSuccessful),
   TypedReducer<AppState, UpdateLocation$>(_updateLocation),
-
   TypedReducer<AppState, InitializeAppSuccessful>(_initializeAppSuccessful),
   TypedReducer<AppState, InitializeAppError>(_initializeAppError),
   TypedReducer<AppState, RegisterPhase2Successful>(_registerPhase2Successful),
@@ -44,7 +45,8 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, DeletePlacesSortedBy$>(_deletePlacesSortedBy),
   TypedReducer<AppState, GetReservationsFutureSuccessful>(_getReservationsFuture),
   TypedReducer<AppState, GetReservationsPreviousSuccessful>(_getReservationsPrevious),
-  TypedReducer<AppState, GetReservationsRateRequestSuccessful>(_getReservationsRateRequest),
+  TypedReducer<AppState, GetReservationsRateRequestSuccessful>(_getReservationsRateRequestSuccessful),
+  TypedReducer<AppState, GetReservationsRateRequestError>(_getReservationsRateRequestError),
   TypedReducer<AppState, SetReservationRatingSuccessful>(_setReservationRating),
   TypedReducer<AppState, DeleteReservationRatingSuccessful>(_deleteReservationRating),
   TypedReducer<AppState, DeleteReservationsFuture$>(_deleteReservationsFuture),
@@ -82,9 +84,13 @@ AppState _updateLocation(AppState state, UpdateLocation$ action) {
 
 AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    b.user = action.user?.toBuilder();
-    b.isServerWorking = true;
-    b.isInitDone = true;
+    final Map<String, dynamic>? user = action.user != null ? action.user!['user'] as Map<String, dynamic> : null;
+    final List<dynamic> requests = action.user != null ? action.user!['rateRequests'] as List<dynamic> : <RateRequest>[];
+    b
+      ..user = action.user != null ? AppUser.fromJson(user).toBuilder() : null
+      ..listOfRateRequest.addAll(requests.map((dynamic json) => RateRequest.fromJson(json)).toList())
+      ..isServerWorking = true
+      ..isInitDone = true;
   });
 }
 
@@ -105,13 +111,19 @@ AppState _editProfile(AppState state, EditProfileSuccessful action) {
 
 AppState _loginSuccessful(AppState state, LoginSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    b.user = action.user?.toBuilder();
+    final Map<String, dynamic>? user = action.user != null ? action.user!['user'] as Map<String, dynamic> : null;
+    final List<dynamic> requests = action.user != null ? action.user!['rateRequests'] as List<dynamic> : <RateRequest>[];
+    b
+      ..user = action.user != null ? AppUser.fromJson(user).toBuilder() : null
+      ..listOfRateRequest.addAll(requests.map((dynamic json) => RateRequest.fromJson(json)).toList());
   });
 }
 
 AppState _signOutSuccessful(AppState state, SignoutSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    b.user = null;
+    b
+      ..user = null
+      ..listOfRateRequest.clear();
   });
 }
 
@@ -300,9 +312,17 @@ AppState _getReservationsPrevious(AppState state, GetReservationsPreviousSuccess
   });
 }
 
-AppState _getReservationsRateRequest(AppState state, GetReservationsRateRequestSuccessful action) {
+AppState _getReservationsRateRequestSuccessful(AppState state, GetReservationsRateRequestSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
-    b.listOfRateRequest.addAll(action.rates);
+    b
+      ..listOfRateRequest.addAll(action.rates)
+      ..isInitDone = true;
+  });
+}
+
+AppState _getReservationsRateRequestError(AppState state, GetReservationsRateRequestError action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.isInitDone = true;
   });
 }
 

@@ -42,7 +42,7 @@ class PlaceApi {
     print(requestParams);
 
     final Uri uri =
-    Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places', requestParams);
+    Uri.https(_apiUrl.split('//')[1], '/places', requestParams);
 
     final Response response = await _client.get(
       uri,
@@ -67,7 +67,7 @@ class PlaceApi {
       'limit': limit.toString(),
     };
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/search=$name', requestParams);
+    final Uri uri = Uri.https(_apiUrl.split('//')[1], '/places/search=$name', requestParams);
 
     final Response response = await _client.get(
       uri,
@@ -94,7 +94,7 @@ class PlaceApi {
     };
 
     final Uri uri =
-        Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/favourites-of-user=$iduser', requestParams);
+        Uri.https(_apiUrl.split('//')[1], '/places/favourites-of-user=$iduser', requestParams);
 
     final Response response = await _client.get(
       uri,
@@ -121,7 +121,7 @@ class PlaceApi {
     };
 
     final Uri uri =
-    Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/recommend', requestParams);
+    Uri.https(_apiUrl.split('//')[1], '/places/recommend', requestParams);
 
     final Response response = await _client.get(
       uri,
@@ -149,7 +149,7 @@ class PlaceApi {
 
     final Map<String, String> requestParams = <String, String>{'iduser': iduser.toString()};
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/id=$id', requestParams);
+    final Uri uri = Uri.https(_apiUrl.split('//')[1], '/places/id=$id', requestParams);
     final Response response = await _client.get(
       uri,
       headers: {
@@ -200,7 +200,7 @@ class PlaceApi {
       'partySize': partySize.toString(),
     };
 
-    final Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18), '/places/availability', requestParams);
+    final Uri uri = Uri.https(_apiUrl.split('//')[1], '/places/availability', requestParams);
     final Response response = await _client.get(
       uri,
       headers: {
@@ -224,7 +224,7 @@ class PlaceApi {
 
   Future<void> setPlaceFavourite(int iduser, int idplace, int addOrDelete) async {
     final String token = await _auth.currentUser!.getIdToken();
-    Uri uri = Uri.https(_apiUrl.substring(_apiUrl.length - 18),
+    Uri uri = Uri.https(_apiUrl.split('//')[1],
         addOrDelete == 1 ? '/users/interaction/favourite-place' : '/users/interaction/unfavourite-place');
 
     final Response response = addOrDelete == 1
