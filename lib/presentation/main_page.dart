@@ -222,7 +222,16 @@ class _MainPageState extends State<MainPage> {
                       onTap: () {
                         Navigator.of(context).pushReplacementNamed('/placeFilter');
                       },
-                      child: const Text('places'),
+                      child: const Text('restaurants'),
+                    ),
+                    SizedBox(
+                      height: height * 0.05,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushReplacementNamed('/placeFilter');
+                      },
+                      child: const Text('activities'),
                     ),
                     SizedBox(
                       height: height * 0.05,
@@ -242,12 +251,12 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
               ),
-              Container(
-                color: Colors.red,
-                height: 2,
-                width: width,
-                margin: const EdgeInsets.only(top: 105.0),
-              ),
+              // Container(
+              //   color: Colors.red,
+              //   height: 2,
+              //   width: width,
+              //   margin: const EdgeInsets.only(top: 105.0),
+              // ),
             ],
           ),
         );

@@ -5667,6 +5667,138 @@ abstract class RemovePlacesFilters$ implements RemovePlacesFilters {
 }
 
 /// @nodoc
+mixin _$RemovePlacesCategory {}
+
+/// @nodoc
+abstract class $RemovePlacesCategoryCopyWith<$Res> {
+  factory $RemovePlacesCategoryCopyWith(RemovePlacesCategory value,
+          $Res Function(RemovePlacesCategory) then) =
+      _$RemovePlacesCategoryCopyWithImpl<$Res, RemovePlacesCategory>;
+}
+
+/// @nodoc
+class _$RemovePlacesCategoryCopyWithImpl<$Res,
+        $Val extends RemovePlacesCategory>
+    implements $RemovePlacesCategoryCopyWith<$Res> {
+  _$RemovePlacesCategoryCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$RemovePlacesCategory$CopyWith<$Res> {
+  factory _$$RemovePlacesCategory$CopyWith(_$RemovePlacesCategory$ value,
+          $Res Function(_$RemovePlacesCategory$) then) =
+      __$$RemovePlacesCategory$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RemovePlacesCategory$CopyWithImpl<$Res>
+    extends _$RemovePlacesCategoryCopyWithImpl<$Res, _$RemovePlacesCategory$>
+    implements _$$RemovePlacesCategory$CopyWith<$Res> {
+  __$$RemovePlacesCategory$CopyWithImpl(_$RemovePlacesCategory$ _value,
+      $Res Function(_$RemovePlacesCategory$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RemovePlacesCategory$ implements RemovePlacesCategory$ {
+  const _$RemovePlacesCategory$();
+
+  @override
+  String toString() {
+    return 'RemovePlacesCategory()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$RemovePlacesCategory$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class RemovePlacesCategory$ implements RemovePlacesCategory {
+  const factory RemovePlacesCategory$() = _$RemovePlacesCategory$;
+}
+
+/// @nodoc
+mixin _$ChangePlacesOthersVisibility {}
+
+/// @nodoc
+abstract class $ChangePlacesOthersVisibilityCopyWith<$Res> {
+  factory $ChangePlacesOthersVisibilityCopyWith(
+          ChangePlacesOthersVisibility value,
+          $Res Function(ChangePlacesOthersVisibility) then) =
+      _$ChangePlacesOthersVisibilityCopyWithImpl<$Res,
+          ChangePlacesOthersVisibility>;
+}
+
+/// @nodoc
+class _$ChangePlacesOthersVisibilityCopyWithImpl<$Res,
+        $Val extends ChangePlacesOthersVisibility>
+    implements $ChangePlacesOthersVisibilityCopyWith<$Res> {
+  _$ChangePlacesOthersVisibilityCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$ChangePlacesOthersVisibility$CopyWith<$Res> {
+  factory _$$ChangePlacesOthersVisibility$CopyWith(
+          _$ChangePlacesOthersVisibility$ value,
+          $Res Function(_$ChangePlacesOthersVisibility$) then) =
+      __$$ChangePlacesOthersVisibility$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ChangePlacesOthersVisibility$CopyWithImpl<$Res>
+    extends _$ChangePlacesOthersVisibilityCopyWithImpl<$Res,
+        _$ChangePlacesOthersVisibility$>
+    implements _$$ChangePlacesOthersVisibility$CopyWith<$Res> {
+  __$$ChangePlacesOthersVisibility$CopyWithImpl(
+      _$ChangePlacesOthersVisibility$ _value,
+      $Res Function(_$ChangePlacesOthersVisibility$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ChangePlacesOthersVisibility$ implements ChangePlacesOthersVisibility$ {
+  const _$ChangePlacesOthersVisibility$();
+
+  @override
+  String toString() {
+    return 'ChangePlacesOthersVisibility()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangePlacesOthersVisibility$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class ChangePlacesOthersVisibility$
+    implements ChangePlacesOthersVisibility {
+  const factory ChangePlacesOthersVisibility$() =
+      _$ChangePlacesOthersVisibility$;
+}
+
+/// @nodoc
 mixin _$GetRecommendedPlaces {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(

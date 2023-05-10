@@ -82,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             width: height * 0.051,
                             child: FittedBox(
                               child:
-                                  Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
+                              Image.asset('assets/images/logo-short.png'),
                             ),
                           ),
                         ],
@@ -295,10 +295,13 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             Container(
-              color: Colors.blue.shade100,
               height: 200,
               width: 200,
               margin: const EdgeInsets.only(top: 200.0, left: 170),
+              child: FittedBox(
+                child:
+                Image.asset('assets/images/image-signs.png'),
+              ),
             ),
           ],
         ),

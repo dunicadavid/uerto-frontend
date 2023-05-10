@@ -57,11 +57,11 @@ class _TestMapsState extends State<TestMaps> {
       builder: (BuildContext context) {
         return PlacesShortContainer(
           builder: (BuildContext context, List<PlaceShort> places) {
-            final double _height = MediaQuery.of(context).size.height;
-            final double _width = MediaQuery.of(context).size.width;
+            final double height = MediaQuery.of(context).size.height;
+            final double width = MediaQuery.of(context).size.width;
             return Container(
               color: Colors.transparent,
-              height: _width * 0.8,
+              height: width * 0.8,
               child: Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -80,14 +80,14 @@ class _TestMapsState extends State<TestMaps> {
                           borderRadius: BorderRadius.all(Radius.circular(5000)),
                         ),
                         height: 4,
-                        width: _width * 0.15,
+                        width: width * 0.15,
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        left: _width * 0.05,
+                        left: width * 0.05,
                         top: 15,
-                        right: _width * 0.05,
+                        right: width * 0.05,
                         bottom: 0,
                       ),
                       child: GestureDetector(
@@ -105,8 +105,8 @@ class _TestMapsState extends State<TestMaps> {
                                   color: Color(0x11000000),
                                   borderRadius: BorderRadius.all(Radius.circular(17)),
                                 ),
-                                height: _width * 0.45,
-                                width: _width,
+                                height: width * 0.45,
+                                width: width,
                               )
                             else
                               ClipRRect(
@@ -114,16 +114,16 @@ class _TestMapsState extends State<TestMaps> {
                                 child: Image.network(
                                   'imageURL',
                                   fit: BoxFit.fill,
-                                  height: _width * 0.45,
-                                  width: _width,
+                                  height: width * 0.45,
+                                  width: width,
                                 ),
                               ),
                             Padding(
                               padding: EdgeInsets.only(
                                 left: 0,
-                                top: _width * 0.015,
+                                top: width * 0.015,
                                 right: 0,
-                                bottom: _width * 0.005,
+                                bottom: width * 0.005,
                               ),
                               child: Align(
                                 alignment: Alignment.topLeft,
@@ -132,8 +132,8 @@ class _TestMapsState extends State<TestMaps> {
                                     Container(
                                       alignment: Alignment.centerLeft,
                                       //color: Colors.amber,
-                                      width: _width * 0.55,
-                                      height: _height * 0.035,
+                                      width: width * 0.55,
+                                      height: height * 0.035,
                                       child: FittedBox(
                                         child: Text(
                                           places[index].name,
@@ -149,8 +149,8 @@ class _TestMapsState extends State<TestMaps> {
                                     // ignore: sized_box_for_whitespace
                                     Container(
                                       //color: Colors.amber,
-                                      height: _height * 0.035,
-                                      width: _height * 0.035,
+                                      height: height * 0.035,
+                                      width: height * 0.035,
                                       padding: const EdgeInsets.symmetric(vertical: 2),
                                       child: const FittedBox(
                                         child: Icon(
@@ -162,8 +162,8 @@ class _TestMapsState extends State<TestMaps> {
                                     // ignore: sized_box_for_whitespace
                                     Container(
                                       //color: Colors.amber,
-                                      height: _height * 0.035,
-                                      width: _height * 0.035,
+                                      height: height * 0.035,
+                                      width: height * 0.035,
                                       child: FittedBox(
                                         child: Text(
                                           'rating',
@@ -185,8 +185,8 @@ class _TestMapsState extends State<TestMaps> {
                                   Container(
                                     alignment: Alignment.centerLeft,
                                     //color: Colors.greenAccent,
-                                    width: _width * 0.6,
-                                    height: _height * 0.03,
+                                    width: width * 0.6,
+                                    height: height * 0.03,
                                     child: FittedBox(
                                       child: Text(
                                         places[index].location,
@@ -203,8 +203,8 @@ class _TestMapsState extends State<TestMaps> {
                                   Container(
                                     alignment: Alignment.topRight,
                                     //color: Colors.amber,
-                                    height: _height * 0.03,
-                                    width: _height * 0.12,
+                                    height: height * 0.03,
+                                    width: height * 0.12,
                                     child: FittedBox(
                                       child: Text(
                                         'price',

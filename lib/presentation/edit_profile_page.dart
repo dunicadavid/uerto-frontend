@@ -89,7 +89,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Text(
-                              user!.email,
+                              user != null ? user.email : 'altceva',
                               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black38),
                             ),
                           ),
@@ -108,7 +108,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 controller: _fullName,
                                 cursorColor: Theme.of(context).secondaryHeaderColor,
                                 decoration: InputDecoration(
-                                  hintText: user.fullname,
+                                  hintText: user != null ? user.fullname : 'altceva',
                                   hintStyle: TextStyle(color: Theme.of(context).primaryColor),
                                   contentPadding: const EdgeInsets.only(left: 20),
                                   border: InputBorder.none,
@@ -148,7 +148,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 controller: _phoneNumber,
                                 cursorColor: Theme.of(context).secondaryHeaderColor,
                                 decoration: InputDecoration(
-                                  hintText: user.phoneNumber,
+                                  hintText: user != null ? user.phoneNumber : 'altceva',
                                   hintStyle: TextStyle(color: Theme.of(context).primaryColor),
                                   contentPadding: const EdgeInsets.only(left: 20),
                                   border: InputBorder.none,
@@ -189,7 +189,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     return;
                                   }
                                   setState(() => _isLoading = true);
-                                  StoreProvider.of<AppState>(context).dispatch(EditProfile(user.userId, _fullName.text, _phoneNumber.text,'photoUrl', _onResult));
+                                  StoreProvider.of<AppState>(context).dispatch(EditProfile(user!.userId, _fullName.text, _phoneNumber.text,'photoUrl', _onResult));
                                 },
                                 child: ClipRRect(
                                   borderRadius: const BorderRadius.all(Radius.circular(50)),

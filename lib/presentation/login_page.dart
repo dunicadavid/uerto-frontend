@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: height * 0.051,
                             child: FittedBox(
                               child:
-                                  Icon(CupertinoIcons.ant_circle_fill, color: Theme.of(context).secondaryHeaderColor),
+                                  Image.asset('assets/images/logo-short.png'),
                             ),
                           ),
                         ],
@@ -318,23 +318,26 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Container(
-              color: Colors.blue.shade100,
               height: 200,
               width: 200,
               margin: const EdgeInsets.only(top: 200.0, left: 170),
+              child: FittedBox(
+                child:
+                Image.asset('assets/images/image-signs.png'),
+              ),
             ),
-            Container(
-              color: Colors.red,
-              height: 2,
-              width: width,
-              margin: const EdgeInsets.only(top: 775.0),
-            ),
-            Container(
-              color: Colors.red,
-              height: 2,
-              width: width,
-              margin: const EdgeInsets.only(top: 810.0),
-            ),
+            // Container(
+            //   color: Colors.red,
+            //   height: 2,
+            //   width: width,
+            //   margin: const EdgeInsets.only(top: 775.0),
+            // ),
+            // Container(
+            //   color: Colors.red,
+            //   height: 2,
+            //   width: width,
+            //   margin: const EdgeInsets.only(top: 810.0),
+            // ),
           ],
         ),
       ),

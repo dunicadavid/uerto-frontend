@@ -40,9 +40,11 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, SetPlacesCategory$>(_setPlacesCategory),
   TypedReducer<AppState, SetPlacesFilters$>(_setPlacesFilters),
   TypedReducer<AppState, SetPlacesSortedBy$>(_setPlacesSortedBy),
+  TypedReducer<AppState, RemovePlacesCategory$>(_removePlacesCategory),
   TypedReducer<AppState, RemovePlacesFilters$>(_removePlacesFilters),
   TypedReducer<AppState, DeletePlacesFilters$>(_deletePlacesFilters),
   TypedReducer<AppState, DeletePlacesSortedBy$>(_deletePlacesSortedBy),
+  TypedReducer<AppState, ChangePlacesOthersVisibility$>(_changePlacesOthersVisibility),
   TypedReducer<AppState, GetReservationsFutureSuccessful>(_getReservationsFuture),
   TypedReducer<AppState, GetReservationsPreviousSuccessful>(_getReservationsPrevious),
   TypedReducer<AppState, GetReservationsRateRequestSuccessful>(_getReservationsRateRequestSuccessful),
@@ -85,7 +87,8 @@ AppState _updateLocation(AppState state, UpdateLocation$ action) {
 AppState _initializeAppSuccessful(AppState state, InitializeAppSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     final Map<String, dynamic>? user = action.user != null ? action.user!['user'] as Map<String, dynamic> : null;
-    final List<dynamic> requests = action.user != null ? action.user!['rateRequests'] as List<dynamic> : <RateRequest>[];
+    final List<dynamic> requests =
+        action.user != null ? action.user!['rateRequests'] as List<dynamic> : <RateRequest>[];
     b
       ..user = action.user != null ? AppUser.fromJson(user).toBuilder() : null
       ..listOfRateRequest.addAll(requests.map((dynamic json) => RateRequest.fromJson(json)).toList())
@@ -112,7 +115,8 @@ AppState _editProfile(AppState state, EditProfileSuccessful action) {
 AppState _loginSuccessful(AppState state, LoginSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     final Map<String, dynamic>? user = action.user != null ? action.user!['user'] as Map<String, dynamic> : null;
-    final List<dynamic> requests = action.user != null ? action.user!['rateRequests'] as List<dynamic> : <RateRequest>[];
+    final List<dynamic> requests =
+        action.user != null ? action.user!['rateRequests'] as List<dynamic> : <RateRequest>[];
     b
       ..user = action.user != null ? AppUser.fromJson(user).toBuilder() : null
       ..listOfRateRequest.addAll(requests.map((dynamic json) => RateRequest.fromJson(json)).toList());
@@ -254,7 +258,9 @@ AppState _setPlaceSuccessful(AppState state, SetPlaceFavouriteSuccessful action)
 
 AppState _setPlacesCategory(AppState state, SetPlacesCategory$ action) {
   return state.rebuild((AppStateBuilder b) {
-    b.category = action.category;
+    b
+      ..category = action.category
+      ..visibleFilters = true;
   });
 }
 
@@ -267,6 +273,15 @@ AppState _setPlacesFilters(AppState state, SetPlacesFilters$ action) {
 AppState _setPlacesSortedBy(AppState state, SetPlacesSortedBy$ action) {
   return state.rebuild((AppStateBuilder b) {
     b.sortBy = action.sortBy;
+  });
+}
+
+AppState _removePlacesCategory(AppState state, RemovePlacesCategory$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b
+      ..category = ''
+      ..visibleFilters = false
+      ..visibleOthers = false;
   });
 }
 
@@ -285,6 +300,12 @@ AppState _deletePlacesFilters(AppState state, DeletePlacesFilters$ action) {
 AppState _deletePlacesSortedBy(AppState state, DeletePlacesSortedBy$ action) {
   return state.rebuild((AppStateBuilder b) {
     b.sortBy = null;
+  });
+}
+
+AppState _changePlacesOthersVisibility(AppState state, ChangePlacesOthersVisibility$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.visibleOthers = !b.visibleOthers!;
   });
 }
 

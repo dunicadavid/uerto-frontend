@@ -196,26 +196,31 @@ class _RecommanderSystemPageState extends State<RecommanderSystemPage> {
             Positioned(
               top: 150,
               left: 170,
-              child: Container(
-                height: 50,
-                width: 80,
-                padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 5),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(50)),
-                  color: Theme.of(context).secondaryHeaderColor,
-                ),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Icon(
-                      CupertinoIcons.music_note,
-                      color: Color(0xffE1DEDB),
-                    ),
-                    Text(
-                      'Chill',
-                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xffE1DEDB)),
-                    ),
-                  ],
+              child: GestureDetector(
+                onTap: () {
+                  StoreProvider.of<AppState>(context).dispatch(GetRecommendedPlaces(_onResultRecommend));
+                },
+                child: Container(
+                  height: 50,
+                  width: 80,
+                  padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 5),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    color: Theme.of(context).secondaryHeaderColor,
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Icon(
+                        CupertinoIcons.music_note,
+                        color: Color(0xffE1DEDB),
+                      ),
+                      Text(
+                        'Chill',
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: Color(0xffE1DEDB)),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -37,6 +37,12 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
       'listOfPlacesSearchedNextPage',
       serializers.serialize(object.listOfPlacesSearchedNextPage,
           specifiedType: const FullType(int)),
+      'visibleFilters',
+      serializers.serialize(object.visibleFilters,
+          specifiedType: const FullType(bool)),
+      'visibleOthers',
+      serializers.serialize(object.visibleOthers,
+          specifiedType: const FullType(bool)),
       'listOfFutureReservationsNextPage',
       serializers.serialize(object.listOfFutureReservationsNextPage,
           specifiedType: const FullType(int)),
@@ -234,6 +240,14 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
+          break;
+        case 'visibleFilters':
+          result.visibleFilters = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'visibleOthers':
+          result.visibleOthers = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
         case 'sortBy':
           result.sortBy = serializers.deserialize(value,
@@ -819,6 +833,10 @@ class _$AppState extends AppState {
   @override
   final BuiltList<String>? filters;
   @override
+  final bool visibleFilters;
+  @override
+  final bool visibleOthers;
+  @override
   final String? sortBy;
   @override
   final double? latitude;
@@ -860,6 +878,8 @@ class _$AppState extends AppState {
       this.listOfPlacesRecommended,
       this.category,
       this.filters,
+      required this.visibleFilters,
+      required this.visibleOthers,
       this.sortBy,
       this.latitude,
       this.longitude,
@@ -881,6 +901,10 @@ class _$AppState extends AppState {
         listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage');
     BuiltValueNullFieldError.checkNotNull(listOfPlacesSearchedNextPage,
         r'AppState', 'listOfPlacesSearchedNextPage');
+    BuiltValueNullFieldError.checkNotNull(
+        visibleFilters, r'AppState', 'visibleFilters');
+    BuiltValueNullFieldError.checkNotNull(
+        visibleOthers, r'AppState', 'visibleOthers');
     BuiltValueNullFieldError.checkNotNull(listOfFutureReservationsNextPage,
         r'AppState', 'listOfFutureReservationsNextPage');
     BuiltValueNullFieldError.checkNotNull(listOfPreviousReservationsNextPage,
@@ -909,6 +933,8 @@ class _$AppState extends AppState {
         listOfPlacesRecommended == other.listOfPlacesRecommended &&
         category == other.category &&
         filters == other.filters &&
+        visibleFilters == other.visibleFilters &&
+        visibleOthers == other.visibleOthers &&
         sortBy == other.sortBy &&
         latitude == other.latitude &&
         longitude == other.longitude &&
@@ -939,6 +965,8 @@ class _$AppState extends AppState {
     _$hash = $jc(_$hash, listOfPlacesRecommended.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, filters.hashCode);
+    _$hash = $jc(_$hash, visibleFilters.hashCode);
+    _$hash = $jc(_$hash, visibleOthers.hashCode);
     _$hash = $jc(_$hash, sortBy.hashCode);
     _$hash = $jc(_$hash, latitude.hashCode);
     _$hash = $jc(_$hash, longitude.hashCode);
@@ -969,6 +997,8 @@ class _$AppState extends AppState {
           ..add('listOfPlacesRecommended', listOfPlacesRecommended)
           ..add('category', category)
           ..add('filters', filters)
+          ..add('visibleFilters', visibleFilters)
+          ..add('visibleOthers', visibleOthers)
           ..add('sortBy', sortBy)
           ..add('latitude', latitude)
           ..add('longitude', longitude)
@@ -1039,6 +1069,16 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   ListBuilder<String> get filters =>
       _$this._filters ??= new ListBuilder<String>();
   set filters(ListBuilder<String>? filters) => _$this._filters = filters;
+
+  bool? _visibleFilters;
+  bool? get visibleFilters => _$this._visibleFilters;
+  set visibleFilters(bool? visibleFilters) =>
+      _$this._visibleFilters = visibleFilters;
+
+  bool? _visibleOthers;
+  bool? get visibleOthers => _$this._visibleOthers;
+  set visibleOthers(bool? visibleOthers) =>
+      _$this._visibleOthers = visibleOthers;
 
   String? _sortBy;
   String? get sortBy => _$this._sortBy;
@@ -1132,6 +1172,8 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
       _listOfPlacesRecommended = $v.listOfPlacesRecommended?.toBuilder();
       _category = $v.category;
       _filters = $v.filters?.toBuilder();
+      _visibleFilters = $v.visibleFilters;
+      _visibleOthers = $v.visibleOthers;
       _sortBy = $v.sortBy;
       _latitude = $v.latitude;
       _longitude = $v.longitude;
@@ -1178,12 +1220,14 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
                   listOfPlacesNextPage, r'AppState', 'listOfPlacesNextPage'),
               listOfPlacesSearched: _listOfPlacesSearched?.build(),
               listOfPlacesSearchedNextPage: BuiltValueNullFieldError.checkNotNull(
-                  listOfPlacesSearchedNextPage,
-                  r'AppState',
-                  'listOfPlacesSearchedNextPage'),
+                  listOfPlacesSearchedNextPage, r'AppState', 'listOfPlacesSearchedNextPage'),
               listOfPlacesRecommended: _listOfPlacesRecommended?.build(),
               category: category,
               filters: _filters?.build(),
+              visibleFilters: BuiltValueNullFieldError.checkNotNull(
+                  visibleFilters, r'AppState', 'visibleFilters'),
+              visibleOthers: BuiltValueNullFieldError.checkNotNull(
+                  visibleOthers, r'AppState', 'visibleOthers'),
               sortBy: sortBy,
               latitude: latitude,
               longitude: longitude,
@@ -1203,8 +1247,7 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
                       'listOfPreviousReservationsNextPage'),
               error: error,
               isServerWorking: isServerWorking,
-              isInitDone: BuiltValueNullFieldError.checkNotNull(
-                  isInitDone, r'AppState', 'isInitDone'),
+              isInitDone: BuiltValueNullFieldError.checkNotNull(isInitDone, r'AppState', 'isInitDone'),
               locationEnabled: locationEnabled);
     } catch (_) {
       late String _$failedField;

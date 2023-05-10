@@ -15,6 +15,9 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
         ..listOfPlacesSearched.clear() //null check cand intru pe pagina de search
         ..listOfRateRequest.clear()
         ..filters.clear()
+        ..visibleFilters = false
+        ..visibleOthers = false
+        ..category = ''
         ..isInitDone = false;
     });
   }
@@ -36,6 +39,8 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
 
   String? get category;
   BuiltList<String>? get filters;
+  bool get visibleFilters;
+  bool get visibleOthers;
   String? get sortBy;
   double? get latitude;
   double? get longitude;

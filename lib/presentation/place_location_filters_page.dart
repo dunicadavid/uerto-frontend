@@ -52,7 +52,7 @@ class _PlaceLocationFiltersPageState extends State<PlaceLocationFiltersPage> {
         _markers[markerId] = marker;
       });
 
-      Future.delayed(const Duration(seconds: 1), () async {
+      Future<void>.delayed(const Duration(seconds: 1), () async {
         final GoogleMapController controller = await _mapController.future;
         controller.animateCamera(
           CameraUpdate.newCameraPosition(

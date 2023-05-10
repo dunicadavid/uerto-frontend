@@ -130,7 +130,7 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                   if (placesSearched!.isNotEmpty)
                     Container(
                       height: 400,
-                      color:Colors.blue,
+                      //color:Colors.blue,
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         itemCount: placesSearched.length +

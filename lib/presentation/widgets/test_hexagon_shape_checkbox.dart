@@ -20,7 +20,7 @@ class HexagonalShapeCheckBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
-      angle: pi/2,
+      angle: 0,
       child: CustomPaint(
         size: Size(size, size),
         painter: RPSCustomPainter(color: color, onChange: onChange),
