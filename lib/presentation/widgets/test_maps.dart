@@ -40,6 +40,7 @@ class _TestMapsState extends State<TestMaps> {
             MarkerId(place.idplace.toString()): Marker(
               markerId: MarkerId(place.idplace.toString()),
               position: LatLng(placeHash.latitude(), placeHash.longitude()),
+              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
               onTap: () => _onMarkerPressed(index),
             ),
           },
@@ -61,12 +62,12 @@ class _TestMapsState extends State<TestMaps> {
             final double width = MediaQuery.of(context).size.width;
             return Container(
               color: Colors.transparent,
-              height: width * 0.8,
+              height: 330,
               child: Container(
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(19),
-                    topRight: Radius.circular(19),
+                    topLeft: Radius.circular(13),
+                    topRight: Radius.circular(13),
                   ),
                   color: Colors.white,
                 ),
@@ -77,7 +78,7 @@ class _TestMapsState extends State<TestMaps> {
                       child: Container(
                         decoration: const BoxDecoration(
                           color: Color(0xddD1D1D1),
-                          borderRadius: BorderRadius.all(Radius.circular(5000)),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
                         ),
                         height: 4,
                         width: width * 0.15,
@@ -103,14 +104,14 @@ class _TestMapsState extends State<TestMaps> {
                               Container(
                                 decoration: const BoxDecoration(
                                   color: Color(0x11000000),
-                                  borderRadius: BorderRadius.all(Radius.circular(17)),
+                                  borderRadius: BorderRadius.all(Radius.circular(13)),
                                 ),
                                 height: width * 0.45,
                                 width: width,
                               )
                             else
                               ClipRRect(
-                                borderRadius: BorderRadius.circular(17),
+                                borderRadius: BorderRadius.circular(13),
                                 child: Image.network(
                                   'imageURL',
                                   fit: BoxFit.fill,
@@ -121,7 +122,7 @@ class _TestMapsState extends State<TestMaps> {
                             Padding(
                               padding: EdgeInsets.only(
                                 left: 0,
-                                top: width * 0.015,
+                                top: 20,
                                 right: 0,
                                 bottom: width * 0.005,
                               ),
@@ -148,25 +149,25 @@ class _TestMapsState extends State<TestMaps> {
                                     Expanded(child: Container()),
                                     // ignore: sized_box_for_whitespace
                                     Container(
-                                      //color: Colors.amber,
-                                      height: height * 0.035,
-                                      width: height * 0.035,
+                                      alignment: Alignment.center,
+                                      height: height * 0.03,
+                                      width: height * 0.03,
                                       padding: const EdgeInsets.symmetric(vertical: 2),
-                                      child: const FittedBox(
+                                      child: FittedBox(
                                         child: Icon(
                                           Icons.star_rounded,
-                                          color: Colors.black,
+                                          color: Theme.of(context).highlightColor,
                                         ),
                                       ),
                                     ),
                                     // ignore: sized_box_for_whitespace
                                     Container(
-                                      //color: Colors.amber,
+                                      alignment: Alignment.center,
                                       height: height * 0.035,
                                       width: height * 0.035,
                                       child: FittedBox(
                                         child: Text(
-                                          'rating',
+                                          places[index].rating.toStringAsFixed(1),
                                           style: const TextStyle(
                                             fontSize: 22,
                                             fontFamily: 'FontB',
@@ -191,11 +192,7 @@ class _TestMapsState extends State<TestMaps> {
                                       child: Text(
                                         places[index].location,
                                         textAlign: TextAlign.start,
-                                        style: const TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'FontR',
-                                          color: Color(0xbb000000),
-                                        ),
+                                        style: Theme.of(context).textTheme.bodySmall,
                                       ),
                                     ),
                                   ),
@@ -207,13 +204,9 @@ class _TestMapsState extends State<TestMaps> {
                                     width: height * 0.12,
                                     child: FittedBox(
                                       child: Text(
-                                        'price',
+                                        (r'$' * places[index].price).toString(),
                                         textAlign: TextAlign.end,
-                                        style: const TextStyle(
-                                          fontSize: 24,
-                                          fontFamily: 'FontB',
-                                          color: Color(0xFF4C54EF),
-                                        ),
+                                        style: Theme.of(context).textTheme.bodySmall
                                       ),
                                     ),
                                   ),

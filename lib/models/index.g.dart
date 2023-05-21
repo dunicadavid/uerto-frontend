@@ -423,6 +423,11 @@ class _$PlaceShortSerializer implements StructuredSerializer<PlaceShort> {
       'location',
       serializers.serialize(object.location,
           specifiedType: const FullType(String)),
+      'rating',
+      serializers.serialize(object.rating,
+          specifiedType: const FullType(double)),
+      'price',
+      serializers.serialize(object.price, specifiedType: const FullType(int)),
       'category',
       serializers.serialize(object.category,
           specifiedType: const FullType(String)),
@@ -460,6 +465,14 @@ class _$PlaceShortSerializer implements StructuredSerializer<PlaceShort> {
         case 'location':
           result.location = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'rating':
+          result.rating = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'price':
+          result.price = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
           break;
         case 'category':
           result.category = serializers.deserialize(value,
@@ -1465,6 +1478,10 @@ class _$PlaceShort extends PlaceShort {
   @override
   final String location;
   @override
+  final double rating;
+  @override
+  final int price;
+  @override
   final String category;
   @override
   final String? geohash;
@@ -1476,12 +1493,16 @@ class _$PlaceShort extends PlaceShort {
       {required this.idplace,
       required this.name,
       required this.location,
+      required this.rating,
+      required this.price,
       required this.category,
       this.geohash})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(idplace, r'PlaceShort', 'idplace');
     BuiltValueNullFieldError.checkNotNull(name, r'PlaceShort', 'name');
     BuiltValueNullFieldError.checkNotNull(location, r'PlaceShort', 'location');
+    BuiltValueNullFieldError.checkNotNull(rating, r'PlaceShort', 'rating');
+    BuiltValueNullFieldError.checkNotNull(price, r'PlaceShort', 'price');
     BuiltValueNullFieldError.checkNotNull(category, r'PlaceShort', 'category');
   }
 
@@ -1499,6 +1520,8 @@ class _$PlaceShort extends PlaceShort {
         idplace == other.idplace &&
         name == other.name &&
         location == other.location &&
+        rating == other.rating &&
+        price == other.price &&
         category == other.category &&
         geohash == other.geohash;
   }
@@ -1509,6 +1532,8 @@ class _$PlaceShort extends PlaceShort {
     _$hash = $jc(_$hash, idplace.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, location.hashCode);
+    _$hash = $jc(_$hash, rating.hashCode);
+    _$hash = $jc(_$hash, price.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, geohash.hashCode);
     _$hash = $jf(_$hash);
@@ -1521,6 +1546,8 @@ class _$PlaceShort extends PlaceShort {
           ..add('idplace', idplace)
           ..add('name', name)
           ..add('location', location)
+          ..add('rating', rating)
+          ..add('price', price)
           ..add('category', category)
           ..add('geohash', geohash))
         .toString();
@@ -1542,6 +1569,14 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
   String? get location => _$this._location;
   set location(String? location) => _$this._location = location;
 
+  double? _rating;
+  double? get rating => _$this._rating;
+  set rating(double? rating) => _$this._rating = rating;
+
+  int? _price;
+  int? get price => _$this._price;
+  set price(int? price) => _$this._price = price;
+
   String? _category;
   String? get category => _$this._category;
   set category(String? category) => _$this._category = category;
@@ -1558,6 +1593,8 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
       _idplace = $v.idplace;
       _name = $v.name;
       _location = $v.location;
+      _rating = $v.rating;
+      _price = $v.price;
       _category = $v.category;
       _geohash = $v.geohash;
       _$v = null;
@@ -1588,6 +1625,10 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
                 name, r'PlaceShort', 'name'),
             location: BuiltValueNullFieldError.checkNotNull(
                 location, r'PlaceShort', 'location'),
+            rating: BuiltValueNullFieldError.checkNotNull(
+                rating, r'PlaceShort', 'rating'),
+            price: BuiltValueNullFieldError.checkNotNull(
+                price, r'PlaceShort', 'price'),
             category: BuiltValueNullFieldError.checkNotNull(
                 category, r'PlaceShort', 'category'),
             geohash: geohash);

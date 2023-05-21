@@ -18,6 +18,10 @@ abstract class PlaceShort implements Built<PlaceShort, PlaceShortBuilder> {
 
   String get location;
 
+  double get rating;
+
+  int get price;
+
   String get category;
 
   String? get geohash;

@@ -2,9 +2,12 @@
 // Dunica David-Gabriel <FLTY>
 // on 07/03/2023 13:46:37
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:uerto/presentation/widgets/test_appbar.dart';
 import 'package:uerto/presentation/widgets/test_avatar_circle.dart';
+import 'package:uerto/presentation/widgets/test_hexagon_shape.dart';
 
 import '../actions/index.dart';
 import '../containers/user_container.dart';
@@ -18,6 +21,9 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  final RegExp _nameRegex = RegExp(r'[a-zA-Z]');
+  final RegExp _mobileRegexRo =
+  RegExp(r'^(\+4|)?(07[0-8]{1}[0-9]{1}|02[0-9]{2}|03[0-9]{2}){1}?(\s|\.|\-)?([0-9]{3}(\s|\.|\-|)){2}$');
   final TextEditingController _fullName = TextEditingController();
   final TextEditingController _phoneNumber = TextEditingController();
   bool _isLoading = false;
@@ -40,139 +46,66 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return UserContainer(
       builder: (BuildContext context, AppUser? user) {
         return Scaffold(
-          floatingActionButton: Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.02),
-            child: FloatingActionButton(
-              backgroundColor: Colors.white,
-              mini: true,
-              onPressed: () => Navigator.of(context).pushReplacementNamed('/main'),
-              child: Icon(
-                Icons.arrow_back,
-                color: Theme.of(context).secondaryHeaderColor,
-                size: 27,
-              ),
-            ),
-          ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Stack(
               children: <Widget>[
-                Column(
-                  children: [
-                    Container(
-                      height: height * 0.28,
-                      width: width,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                    Container(
-                      height: height * 0.72,
-                      width: width,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(width * 0.37, height * 0.28 - width * 0.13, width * 0.37, 0),
-                  child: const AvatarCircle(
-                    sizeRadius: 40,
-                    avatarColorTx: Colors.black,
-                    avatarColorBg: Color(0xffEEEEEE),
-                  ),
-                ),
                 SafeArea(
                   child: Form(
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(10, height * 0.3, 10, 10),
                       child: Column(
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Text(
-                              user != null ? user.email : 'altceva',
-                              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black38),
-                            ),
-                          ),
-                          SizedBox(
-                            height: height * 0.05,
+                          const SizedBox(
+                            height: 60,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Container(
-                              decoration: const BoxDecoration(
-                                color: Color(0x22262f4c),
-                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                              decoration: BoxDecoration(
+                                color: const Color(0x22262f4c).withOpacity(0.05),
+                                borderRadius: const BorderRadius.all(Radius.circular(13)),
                               ),
                               child: TextFormField(
                                 style: const TextStyle(fontFamily: 'Plus'),
                                 controller: _fullName,
                                 cursorColor: Theme.of(context).secondaryHeaderColor,
                                 decoration: InputDecoration(
-                                  hintText: user != null ? user.fullname : 'altceva',
-                                  hintStyle: TextStyle(color: Theme.of(context).primaryColor),
+                                  hintText: user != null ? user.fullname : 'fullname',
+                                  hintStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor),
                                   contentPadding: const EdgeInsets.only(left: 20),
                                   border: InputBorder.none,
                                 ),
                                 keyboardType: TextInputType.name,
-                                onChanged: (String value) {},
-                                validator: (String? value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your name';
-                                  } else if (value.length < 4 || value.length > 24) {
-                                    return 'Name must be between 4 and 24 characters';
-                                  }
-
-                                  if (value.contains(RegExp(r'[!-&]')) ||
-                                      value.contains(RegExp(r'[(-@]')) ||
-                                      value.contains(RegExp(r'[[-`]'))) {
-                                    return 'Name must contain only letters';
-                                  }
-
-                                  return null;
-                                },
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: height * 0.05,
+                          const SizedBox(
+                            height: 50,
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 30),
                             child: Container(
-                              decoration: const BoxDecoration(
-                                color: Color(0x22262f4c),
-                                borderRadius: BorderRadius.all(Radius.circular(0)),
+                              decoration: BoxDecoration(
+                                color: const Color(0x22262f4c).withOpacity(0.05),
+                                borderRadius: const BorderRadius.all(Radius.circular(13)),
                               ),
                               child: TextFormField(
                                 style: const TextStyle(fontFamily: 'Plus'),
                                 controller: _phoneNumber,
                                 cursorColor: Theme.of(context).secondaryHeaderColor,
                                 decoration: InputDecoration(
-                                  hintText: user != null ? user.phoneNumber : 'altceva',
-                                  hintStyle: TextStyle(color: Theme.of(context).primaryColor),
+                                  hintText: user != null ? user.phoneNumber : 'mobile',
+                                  hintStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor),
                                   contentPadding: const EdgeInsets.only(left: 20),
                                   border: InputBorder.none,
                                 ),
                                 keyboardType: TextInputType.number,
-                                onChanged: (String value) {},
-                                validator: (String? value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your phone number';
-                                  } else if (value.length != 10 ||
-                                      value[0] != '0' ||
-                                      value[1] != '7' ||
-                                      value.contains(RegExp(r'[!-/]')) ||
-                                      value.contains(RegExp(r'[:-~]'))) {
-                                    return 'Invalid phone number';
-                                  }
-
-                                  return null;
-                                },
                               ),
                             ),
                           ),
-                          SizedBox(
-                            height: height * 0.05,
+                          const SizedBox(
+                            height: 100,
                           ),
                           Builder(
                             builder: (BuildContext context) {
@@ -185,11 +118,22 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               }
                               return GestureDetector(
                                 onTap: () {
-                                  if (!Form.of(context).validate()) {
+                                  if (!_nameRegex.hasMatch(_fullName.text)) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(content: Text('Please enter a valid name.')));
+                                    return;
+                                  } else if (!_nameRegex.hasMatch(_fullName.text)) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(content: Text('Please enter a valid name.')));
+                                    return;
+                                  } else if (!_mobileRegexRo.hasMatch(_phoneNumber.text)) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(content: Text('Please enter a valid Ro mobile number.')));
                                     return;
                                   }
                                   setState(() => _isLoading = true);
-                                  StoreProvider.of<AppState>(context).dispatch(EditProfile(user!.userId, _fullName.text, _phoneNumber.text,'photoUrl', _onResult));
+                                  StoreProvider.of<AppState>(context).dispatch(EditProfile(
+                                      user!.userId, _fullName.text, _phoneNumber.text, 'photoUrl', _onResult));
                                 },
                                 child: ClipRRect(
                                   borderRadius: const BorderRadius.all(Radius.circular(50)),
@@ -230,19 +174,154 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               );
                             },
                           ),
-                          const SizedBox(height: 100,),
+                          const SizedBox(
+                            height: 30,
+                          ),
                           GestureDetector(
-                              onTap: (){
-                                StoreProvider.of<AppState>(context).dispatch(const Signout());
-                                Future<void>.delayed(const Duration(milliseconds: 500), () {
-                                  Navigator.of(context).pushReplacementNamed('/');
-                                });
-
-                              },
-                              child: const Text('Sign Out')),
+                            onTap: () {
+                              StoreProvider.of<AppState>(context).dispatch(const Signout());
+                              Navigator.of(context).pushReplacementNamed('/');
+                            },
+                            child: const Text(
+                              'Sign Out',
+                              style: TextStyle(
+                                color: Color(0xffa20101),
+                                fontSize: 16.0,
+                                fontFamily: 'Plus',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
+                  ),
+                ),
+                AppBarUerto(
+                  colorFill: Theme.of(context).highlightColor,
+                  width: width,
+                  height: 320,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 280),
+                  child: HexagonalShape(
+                      size: 120,
+                      colorFill: Theme.of(context).secondaryHeaderColor.withOpacity(0.03),
+                      colorStroke: Colors.transparent,
+                      angle: 0.20943951,
+                      strokeWidth: 0),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 90, left: 280),
+                  child: HexagonalShape(
+                      size: 50,
+                      colorFill: Theme.of(context).secondaryHeaderColor.withOpacity(0.07),
+                      colorStroke: Colors.transparent,
+                      angle: -0.523598776,
+                      strokeWidth: 0),
+                ),
+                SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    child: SizedBox(
+                      height: 45,
+                      width: width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(
+                              CupertinoIcons.back,
+                              color: Theme.of(context).primaryColorDark,
+                              size: 30,
+                            ),
+                            onPressed: () {
+                              StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
+                              Navigator.of(context).pushReplacementNamed('/main');
+                            },
+                          ),
+                          Text(
+                            'Profile',
+                            style: TextStyle(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              fontSize: 22,
+                              fontFamily: 'Plus',
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.more_vert,
+                              color: Theme.of(context).primaryColorDark,
+                              size: 30,
+                            ),
+                            onPressed: () {
+                              ///muta l de aici
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                if (user != null)
+                  Padding(
+                    padding: EdgeInsets.only(top: 135, left: width / 2 - 40),
+                    child: const AvatarCircle(
+                      sizeRadius: 40,
+                      avatarColorTx: Colors.black,
+                      avatarColorBg: Colors.white,
+                    ),
+                  )
+                else
+                  Padding(
+                    padding: EdgeInsets.only(top: 135, left: width / 2 - 40),
+                    child: Container(
+                      height: 80,
+                      width: 80,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(50)),
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                Padding(
+                  padding: EdgeInsets.only(top: 235, left: (width - 330) / 2),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 28,
+                    width: 330,
+                    child: Text(
+                      user != null ? user.email : 'email',
+                      style: TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 360, left: 320),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(50)),
+                      color: Theme.of(context).secondaryHeaderColor,
+                    ),
+                    child: Icon(CupertinoIcons.person, color: Theme.of(context).primaryColor,),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 460, left: 320),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(50)),
+                      color: Theme.of(context).secondaryHeaderColor,
+                    ),
+                    child: Icon(CupertinoIcons.phone, color: Theme.of(context).primaryColor,),
                   ),
                 ),
               ],
