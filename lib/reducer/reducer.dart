@@ -33,6 +33,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, GetPlaceDetailsSuccessful>(_getPlaceDetailsSuccessful),
   TypedReducer<AppState, GetPlaceActivitiesSuccessful>(_getPlaceActivitiesSuccessful),
   TypedReducer<AppState, GetPlaceActivityAvailabilitySuccessful>(_getPlaceActivityAvailabilitySuccessful),
+  TypedReducer<AppState, DeletePlaceActivityAvailability$>(_deletePlaceActivityAvailability),
   TypedReducer<AppState, DeletePlaces$>(_deletePlaces),
   TypedReducer<AppState, DeletePlacesSearched$>(_deletePlacesSearched),
   TypedReducer<AppState, DeletePlaceActivities$>(_deletePlaceActivities),
@@ -225,6 +226,12 @@ AppState _getPlaceActivityAvailabilitySuccessful(AppState state, GetPlaceActivit
 
       b.placeActivityAvailability.add(formatDataAvailability);
     }
+  });
+}
+
+AppState _deletePlaceActivityAvailability(AppState state, DeletePlaceActivityAvailability$ action) {
+  return state.rebuild((AppStateBuilder b) {
+    b.placeActivityAvailability.clear();
   });
 }
 

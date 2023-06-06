@@ -25,6 +25,7 @@ abstract class Place implements Built<Place, PlaceBuilder> {
   String get hoursOfOpp;
 
   double get rating;
+  int get price;
   int get favourite;
 
   Map<String, dynamic> get json =>

@@ -634,6 +634,8 @@ class _$PlaceSerializer implements StructuredSerializer<Place> {
       'rating',
       serializers.serialize(object.rating,
           specifiedType: const FullType(double)),
+      'price',
+      serializers.serialize(object.price, specifiedType: const FullType(int)),
       'favourite',
       serializers.serialize(object.favourite,
           specifiedType: const FullType(int)),
@@ -684,6 +686,10 @@ class _$PlaceSerializer implements StructuredSerializer<Place> {
         case 'rating':
           result.rating = serializers.deserialize(value,
               specifiedType: const FullType(double))! as double;
+          break;
+        case 'price':
+          result.price = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
           break;
         case 'favourite':
           result.favourite = serializers.deserialize(value,
@@ -1895,6 +1901,8 @@ class _$Place extends Place {
   @override
   final double rating;
   @override
+  final int price;
+  @override
   final int favourite;
 
   factory _$Place([void Function(PlaceBuilder)? updates]) =>
@@ -1909,6 +1917,7 @@ class _$Place extends Place {
       required this.category,
       required this.hoursOfOpp,
       required this.rating,
+      required this.price,
       required this.favourite})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(idplace, r'Place', 'idplace');
@@ -1919,6 +1928,7 @@ class _$Place extends Place {
     BuiltValueNullFieldError.checkNotNull(category, r'Place', 'category');
     BuiltValueNullFieldError.checkNotNull(hoursOfOpp, r'Place', 'hoursOfOpp');
     BuiltValueNullFieldError.checkNotNull(rating, r'Place', 'rating');
+    BuiltValueNullFieldError.checkNotNull(price, r'Place', 'price');
     BuiltValueNullFieldError.checkNotNull(favourite, r'Place', 'favourite');
   }
 
@@ -1941,6 +1951,7 @@ class _$Place extends Place {
         category == other.category &&
         hoursOfOpp == other.hoursOfOpp &&
         rating == other.rating &&
+        price == other.price &&
         favourite == other.favourite;
   }
 
@@ -1955,6 +1966,7 @@ class _$Place extends Place {
     _$hash = $jc(_$hash, category.hashCode);
     _$hash = $jc(_$hash, hoursOfOpp.hashCode);
     _$hash = $jc(_$hash, rating.hashCode);
+    _$hash = $jc(_$hash, price.hashCode);
     _$hash = $jc(_$hash, favourite.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -1971,6 +1983,7 @@ class _$Place extends Place {
           ..add('category', category)
           ..add('hoursOfOpp', hoursOfOpp)
           ..add('rating', rating)
+          ..add('price', price)
           ..add('favourite', favourite))
         .toString();
   }
@@ -2011,6 +2024,10 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
   double? get rating => _$this._rating;
   set rating(double? rating) => _$this._rating = rating;
 
+  int? _price;
+  int? get price => _$this._price;
+  set price(int? price) => _$this._price = price;
+
   int? _favourite;
   int? get favourite => _$this._favourite;
   set favourite(int? favourite) => _$this._favourite = favourite;
@@ -2028,6 +2045,7 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
       _category = $v.category;
       _hoursOfOpp = $v.hoursOfOpp;
       _rating = $v.rating;
+      _price = $v.price;
       _favourite = $v.favourite;
       _$v = null;
     }
@@ -2066,6 +2084,8 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
                 hoursOfOpp, r'Place', 'hoursOfOpp'),
             rating: BuiltValueNullFieldError.checkNotNull(
                 rating, r'Place', 'rating'),
+            price:
+                BuiltValueNullFieldError.checkNotNull(price, r'Place', 'price'),
             favourite: BuiltValueNullFieldError.checkNotNull(
                 favourite, r'Place', 'favourite'));
     replace(_$result);

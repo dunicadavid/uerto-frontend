@@ -10558,6 +10558,77 @@ abstract class GetPlaceActivityAvailabilityError
 }
 
 /// @nodoc
+mixin _$DeletePlaceActivityAvailability {}
+
+/// @nodoc
+abstract class $DeletePlaceActivityAvailabilityCopyWith<$Res> {
+  factory $DeletePlaceActivityAvailabilityCopyWith(
+          DeletePlaceActivityAvailability value,
+          $Res Function(DeletePlaceActivityAvailability) then) =
+      _$DeletePlaceActivityAvailabilityCopyWithImpl<$Res,
+          DeletePlaceActivityAvailability>;
+}
+
+/// @nodoc
+class _$DeletePlaceActivityAvailabilityCopyWithImpl<$Res,
+        $Val extends DeletePlaceActivityAvailability>
+    implements $DeletePlaceActivityAvailabilityCopyWith<$Res> {
+  _$DeletePlaceActivityAvailabilityCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$DeletePlaceActivityAvailability$CopyWith<$Res> {
+  factory _$$DeletePlaceActivityAvailability$CopyWith(
+          _$DeletePlaceActivityAvailability$ value,
+          $Res Function(_$DeletePlaceActivityAvailability$) then) =
+      __$$DeletePlaceActivityAvailability$CopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$DeletePlaceActivityAvailability$CopyWithImpl<$Res>
+    extends _$DeletePlaceActivityAvailabilityCopyWithImpl<$Res,
+        _$DeletePlaceActivityAvailability$>
+    implements _$$DeletePlaceActivityAvailability$CopyWith<$Res> {
+  __$$DeletePlaceActivityAvailability$CopyWithImpl(
+      _$DeletePlaceActivityAvailability$ _value,
+      $Res Function(_$DeletePlaceActivityAvailability$) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$DeletePlaceActivityAvailability$
+    implements DeletePlaceActivityAvailability$ {
+  const _$DeletePlaceActivityAvailability$();
+
+  @override
+  String toString() {
+    return 'DeletePlaceActivityAvailability()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeletePlaceActivityAvailability$);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+}
+
+abstract class DeletePlaceActivityAvailability$
+    implements DeletePlaceActivityAvailability {
+  const factory DeletePlaceActivityAvailability$() =
+      _$DeletePlaceActivityAvailability$;
+}
+
+/// @nodoc
 mixin _$DeletePlaces {}
 
 /// @nodoc
