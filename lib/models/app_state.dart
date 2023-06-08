@@ -32,7 +32,7 @@ abstract class AppState implements Built<AppState, AppStateBuilder> {
   BuiltList<PlaceShort> get listOfPlaces;
   int get listOfPlacesNextPage;
 
-  BuiltList<PlaceShort>? get listOfPlacesSearched;
+  BuiltSet<PlaceShort>? get listOfPlacesSearched;
   int get listOfPlacesSearchedNextPage;
 
   BuiltList<PlaceShort>? get listOfPlacesRecommended;

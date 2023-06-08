@@ -16,13 +16,15 @@ abstract class Reservation implements Built<Reservation, ReservationBuilder> {
 
   int get place;
 
-  int get activity;
+  String get name;
 
   String get date;
 
   String get hour;
 
   int get partySize;
+
+  String get status;
 
   Map<String, dynamic> get json =>
       serializers.serializeWith(serializer, this) as Map<String, dynamic>;

@@ -27,7 +27,7 @@ class _TestPlacesListState extends State<TestPlacesList> {
     return PlacesShortContainer(
       builder: (BuildContext context, List<PlaceShort> places) {
         return GridView.builder(
-          padding: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
             childAspectRatio: 2,

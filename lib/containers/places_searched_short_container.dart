@@ -15,7 +15,7 @@ class PlacesSearchedShortContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, List<PlaceShort>?>(
-      converter: (Store<AppState> store) => store.state.listOfPlacesSearched?.asList(),
+      converter: (Store<AppState> store) => store.state.listOfPlacesSearched?.toList(),
       builder: builder,
     );
   }

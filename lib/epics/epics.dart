@@ -165,14 +165,12 @@ class AppEpics {
   }
 
   Stream<Object> _getPlacesSearched(Stream<GetPlacesSearchedStart> actions, EpicStore<AppState> store) {
-    return actions
-        .asyncMap((GetPlacesSearchedStart action) => _placeApi.getPlacesSearched(action.name, 1, action.limit))
-        .expand((Map<String, dynamic> body) {
-      return <Object>[
-        const DeletePlacesSearched(),
-        GetPlacesSearched.successful(body),
-      ];
-    }).onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlacesSearched.error(error, stackTrace));
+    return actions.flatMap((GetPlacesSearchedStart action) => Stream<void>.value(null)
+        .asyncMap(
+            (_) => _placeApi.getPlacesSearched(action.name, 1, action.limit))
+        .map((Map<String, dynamic> body) => GetPlacesSearched.successful(body))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => GetPlacesSearched.error(error, stackTrace))
+        .doOnData(action.result));
   }
 
   Stream<AppAction> _getPlacesSearchedAll(Stream<GetPlacesSearchedAllStart> actions, EpicStore<AppState> store) {

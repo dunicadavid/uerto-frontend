@@ -6,7 +6,7 @@ part of actions;
 
 @freezed
 class GetPlacesSearched with _$GetPlacesSearched implements AppAction {
-  const factory GetPlacesSearched(String name, int limit) = GetPlacesSearchedStart;
+  const factory GetPlacesSearched(String name, int limit, ActionResult result) = GetPlacesSearchedStart;
 
   const factory GetPlacesSearched.successful(Map<String,dynamic> body) = GetPlacesSearchedSuccessful;
 

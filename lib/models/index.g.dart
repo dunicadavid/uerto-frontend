@@ -75,7 +75,7 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         ..add('listOfPlacesSearched')
         ..add(serializers.serialize(value,
             specifiedType:
-                const FullType(BuiltList, const [const FullType(PlaceShort)])));
+                const FullType(BuiltSet, const [const FullType(PlaceShort)])));
     }
     value = object.listOfPlacesRecommended;
     if (value != null) {
@@ -218,8 +218,8 @@ class _$AppStateSerializer implements StructuredSerializer<AppState> {
         case 'listOfPlacesSearched':
           result.listOfPlacesSearched.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(PlaceShort)]))!
-              as BuiltList<Object?>);
+                      BuiltSet, const [const FullType(PlaceShort)]))!
+              as BuiltSet<Object?>);
           break;
         case 'listOfPlacesSearchedNextPage':
           result.listOfPlacesSearchedNextPage = serializers.deserialize(value,
@@ -775,9 +775,8 @@ class _$ReservationSerializer implements StructuredSerializer<Reservation> {
           specifiedType: const FullType(int)),
       'place',
       serializers.serialize(object.place, specifiedType: const FullType(int)),
-      'activity',
-      serializers.serialize(object.activity,
-          specifiedType: const FullType(int)),
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
       'date',
       serializers.serialize(object.date, specifiedType: const FullType(String)),
       'hour',
@@ -785,6 +784,9 @@ class _$ReservationSerializer implements StructuredSerializer<Reservation> {
       'partySize',
       serializers.serialize(object.partySize,
           specifiedType: const FullType(int)),
+      'status',
+      serializers.serialize(object.status,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -809,9 +811,9 @@ class _$ReservationSerializer implements StructuredSerializer<Reservation> {
           result.place = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
-        case 'activity':
-          result.activity = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+        case 'name':
+          result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
         case 'date':
           result.date = serializers.deserialize(value,
@@ -824,6 +826,10 @@ class _$ReservationSerializer implements StructuredSerializer<Reservation> {
         case 'partySize':
           result.partySize = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
+          break;
+        case 'status':
+          result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -842,7 +848,7 @@ class _$AppState extends AppState {
   @override
   final int listOfPlacesNextPage;
   @override
-  final BuiltList<PlaceShort>? listOfPlacesSearched;
+  final BuiltSet<PlaceShort>? listOfPlacesSearched;
   @override
   final int listOfPlacesSearchedNextPage;
   @override
@@ -1062,10 +1068,10 @@ class AppStateBuilder implements Builder<AppState, AppStateBuilder> {
   set listOfPlacesNextPage(int? listOfPlacesNextPage) =>
       _$this._listOfPlacesNextPage = listOfPlacesNextPage;
 
-  ListBuilder<PlaceShort>? _listOfPlacesSearched;
-  ListBuilder<PlaceShort> get listOfPlacesSearched =>
-      _$this._listOfPlacesSearched ??= new ListBuilder<PlaceShort>();
-  set listOfPlacesSearched(ListBuilder<PlaceShort>? listOfPlacesSearched) =>
+  SetBuilder<PlaceShort>? _listOfPlacesSearched;
+  SetBuilder<PlaceShort> get listOfPlacesSearched =>
+      _$this._listOfPlacesSearched ??= new SetBuilder<PlaceShort>();
+  set listOfPlacesSearched(SetBuilder<PlaceShort>? listOfPlacesSearched) =>
       _$this._listOfPlacesSearched = listOfPlacesSearched;
 
   int? _listOfPlacesSearchedNextPage;
@@ -2228,13 +2234,15 @@ class _$Reservation extends Reservation {
   @override
   final int place;
   @override
-  final int activity;
+  final String name;
   @override
   final String date;
   @override
   final String hour;
   @override
   final int partySize;
+  @override
+  final String status;
 
   factory _$Reservation([void Function(ReservationBuilder)? updates]) =>
       (new ReservationBuilder()..update(updates))._build();
@@ -2242,19 +2250,21 @@ class _$Reservation extends Reservation {
   _$Reservation._(
       {required this.idreservation,
       required this.place,
-      required this.activity,
+      required this.name,
       required this.date,
       required this.hour,
-      required this.partySize})
+      required this.partySize,
+      required this.status})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         idreservation, r'Reservation', 'idreservation');
     BuiltValueNullFieldError.checkNotNull(place, r'Reservation', 'place');
-    BuiltValueNullFieldError.checkNotNull(activity, r'Reservation', 'activity');
+    BuiltValueNullFieldError.checkNotNull(name, r'Reservation', 'name');
     BuiltValueNullFieldError.checkNotNull(date, r'Reservation', 'date');
     BuiltValueNullFieldError.checkNotNull(hour, r'Reservation', 'hour');
     BuiltValueNullFieldError.checkNotNull(
         partySize, r'Reservation', 'partySize');
+    BuiltValueNullFieldError.checkNotNull(status, r'Reservation', 'status');
   }
 
   @override
@@ -2270,10 +2280,11 @@ class _$Reservation extends Reservation {
     return other is Reservation &&
         idreservation == other.idreservation &&
         place == other.place &&
-        activity == other.activity &&
+        name == other.name &&
         date == other.date &&
         hour == other.hour &&
-        partySize == other.partySize;
+        partySize == other.partySize &&
+        status == other.status;
   }
 
   @override
@@ -2281,10 +2292,11 @@ class _$Reservation extends Reservation {
     var _$hash = 0;
     _$hash = $jc(_$hash, idreservation.hashCode);
     _$hash = $jc(_$hash, place.hashCode);
-    _$hash = $jc(_$hash, activity.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, date.hashCode);
     _$hash = $jc(_$hash, hour.hashCode);
     _$hash = $jc(_$hash, partySize.hashCode);
+    _$hash = $jc(_$hash, status.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -2294,10 +2306,11 @@ class _$Reservation extends Reservation {
     return (newBuiltValueToStringHelper(r'Reservation')
           ..add('idreservation', idreservation)
           ..add('place', place)
-          ..add('activity', activity)
+          ..add('name', name)
           ..add('date', date)
           ..add('hour', hour)
-          ..add('partySize', partySize))
+          ..add('partySize', partySize)
+          ..add('status', status))
         .toString();
   }
 }
@@ -2314,9 +2327,9 @@ class ReservationBuilder implements Builder<Reservation, ReservationBuilder> {
   int? get place => _$this._place;
   set place(int? place) => _$this._place = place;
 
-  int? _activity;
-  int? get activity => _$this._activity;
-  set activity(int? activity) => _$this._activity = activity;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
   String? _date;
   String? get date => _$this._date;
@@ -2330,6 +2343,10 @@ class ReservationBuilder implements Builder<Reservation, ReservationBuilder> {
   int? get partySize => _$this._partySize;
   set partySize(int? partySize) => _$this._partySize = partySize;
 
+  String? _status;
+  String? get status => _$this._status;
+  set status(String? status) => _$this._status = status;
+
   ReservationBuilder();
 
   ReservationBuilder get _$this {
@@ -2337,10 +2354,11 @@ class ReservationBuilder implements Builder<Reservation, ReservationBuilder> {
     if ($v != null) {
       _idreservation = $v.idreservation;
       _place = $v.place;
-      _activity = $v.activity;
+      _name = $v.name;
       _date = $v.date;
       _hour = $v.hour;
       _partySize = $v.partySize;
+      _status = $v.status;
       _$v = null;
     }
     return this;
@@ -2367,14 +2385,16 @@ class ReservationBuilder implements Builder<Reservation, ReservationBuilder> {
                 idreservation, r'Reservation', 'idreservation'),
             place: BuiltValueNullFieldError.checkNotNull(
                 place, r'Reservation', 'place'),
-            activity: BuiltValueNullFieldError.checkNotNull(
-                activity, r'Reservation', 'activity'),
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'Reservation', 'name'),
             date: BuiltValueNullFieldError.checkNotNull(
                 date, r'Reservation', 'date'),
             hour: BuiltValueNullFieldError.checkNotNull(
                 hour, r'Reservation', 'hour'),
             partySize: BuiltValueNullFieldError.checkNotNull(
-                partySize, r'Reservation', 'partySize'));
+                partySize, r'Reservation', 'partySize'),
+            status: BuiltValueNullFieldError.checkNotNull(
+                status, r'Reservation', 'status'));
     replace(_$result);
     return _$result;
   }

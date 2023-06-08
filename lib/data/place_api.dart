@@ -66,7 +66,7 @@ class PlaceApi {
       'page': page.toString(),
       'limit': limit.toString(),
     };
-
+    print('page ==================> $page');
     final Uri uri = Uri.https(_apiUrl.split('//')[1], '/places/search=$name', requestParams);
 
     final Response response = await _client.get(

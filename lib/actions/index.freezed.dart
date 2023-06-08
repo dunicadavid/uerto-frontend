@@ -7367,21 +7367,21 @@ abstract class GetPlacesError implements GetPlaces, ErrorAction {
 mixin _$GetPlacesSearched {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, int limit) $default, {
+    TResult Function(String name, int limit, ActionResult result) $default, {
     required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String name, int limit)? $default, {
+    TResult? Function(String name, int limit, ActionResult result)? $default, {
     TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, int limit)? $default, {
+    TResult Function(String name, int limit, ActionResult result)? $default, {
     TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -7435,7 +7435,7 @@ abstract class _$$GetPlacesSearchedStartCopyWith<$Res> {
           $Res Function(_$GetPlacesSearchedStart) then) =
       __$$GetPlacesSearchedStartCopyWithImpl<$Res>;
   @useResult
-  $Res call({String name, int limit});
+  $Res call({String name, int limit, ActionResult result});
 }
 
 /// @nodoc
@@ -7451,6 +7451,7 @@ class __$$GetPlacesSearchedStartCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? limit = null,
+    Object? result = null,
   }) {
     return _then(_$GetPlacesSearchedStart(
       null == name
@@ -7461,6 +7462,10 @@ class __$$GetPlacesSearchedStartCopyWithImpl<$Res>
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
               as int,
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
     ));
   }
 }
@@ -7468,16 +7473,18 @@ class __$$GetPlacesSearchedStartCopyWithImpl<$Res>
 /// @nodoc
 
 class _$GetPlacesSearchedStart implements GetPlacesSearchedStart {
-  const _$GetPlacesSearchedStart(this.name, this.limit);
+  const _$GetPlacesSearchedStart(this.name, this.limit, this.result);
 
   @override
   final String name;
   @override
   final int limit;
+  @override
+  final ActionResult result;
 
   @override
   String toString() {
-    return 'GetPlacesSearched(name: $name, limit: $limit)';
+    return 'GetPlacesSearched(name: $name, limit: $limit, result: $result)';
   }
 
   @override
@@ -7486,11 +7493,12 @@ class _$GetPlacesSearchedStart implements GetPlacesSearchedStart {
         (other.runtimeType == runtimeType &&
             other is _$GetPlacesSearchedStart &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.limit, limit) || other.limit == limit));
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, limit);
+  int get hashCode => Object.hash(runtimeType, name, limit, result);
 
   @JsonKey(ignore: true)
   @override
@@ -7502,33 +7510,33 @@ class _$GetPlacesSearchedStart implements GetPlacesSearchedStart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, int limit) $default, {
+    TResult Function(String name, int limit, ActionResult result) $default, {
     required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
-    return $default(name, limit);
+    return $default(name, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String name, int limit)? $default, {
+    TResult? Function(String name, int limit, ActionResult result)? $default, {
     TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
-    return $default?.call(name, limit);
+    return $default?.call(name, limit, result);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, int limit)? $default, {
+    TResult Function(String name, int limit, ActionResult result)? $default, {
     TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(name, limit);
+      return $default(name, limit, result);
     }
     return orElse();
   }
@@ -7569,11 +7577,13 @@ class _$GetPlacesSearchedStart implements GetPlacesSearchedStart {
 }
 
 abstract class GetPlacesSearchedStart implements GetPlacesSearched {
-  const factory GetPlacesSearchedStart(final String name, final int limit) =
+  const factory GetPlacesSearchedStart(
+          final String name, final int limit, final ActionResult result) =
       _$GetPlacesSearchedStart;
 
   String get name;
   int get limit;
+  ActionResult get result;
   @JsonKey(ignore: true)
   _$$GetPlacesSearchedStartCopyWith<_$GetPlacesSearchedStart> get copyWith =>
       throw _privateConstructorUsedError;
@@ -7653,7 +7663,7 @@ class _$GetPlacesSearchedSuccessful implements GetPlacesSearchedSuccessful {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, int limit) $default, {
+    TResult Function(String name, int limit, ActionResult result) $default, {
     required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -7663,7 +7673,7 @@ class _$GetPlacesSearchedSuccessful implements GetPlacesSearchedSuccessful {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String name, int limit)? $default, {
+    TResult? Function(String name, int limit, ActionResult result)? $default, {
     TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -7673,7 +7683,7 @@ class _$GetPlacesSearchedSuccessful implements GetPlacesSearchedSuccessful {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, int limit)? $default, {
+    TResult Function(String name, int limit, ActionResult result)? $default, {
     TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),
@@ -7801,7 +7811,7 @@ class _$GetPlacesSearchedError implements GetPlacesSearchedError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String name, int limit) $default, {
+    TResult Function(String name, int limit, ActionResult result) $default, {
     required TResult Function(Map<String, dynamic> body) successful,
     required TResult Function(Object error, StackTrace stackTrace) error,
   }) {
@@ -7811,7 +7821,7 @@ class _$GetPlacesSearchedError implements GetPlacesSearchedError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(String name, int limit)? $default, {
+    TResult? Function(String name, int limit, ActionResult result)? $default, {
     TResult? Function(Map<String, dynamic> body)? successful,
     TResult? Function(Object error, StackTrace stackTrace)? error,
   }) {
@@ -7821,7 +7831,7 @@ class _$GetPlacesSearchedError implements GetPlacesSearchedError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(String name, int limit)? $default, {
+    TResult Function(String name, int limit, ActionResult result)? $default, {
     TResult Function(Map<String, dynamic> body)? successful,
     TResult Function(Object error, StackTrace stackTrace)? error,
     required TResult orElse(),

@@ -2,12 +2,12 @@
 // Dunica David-Gabriel <FLTY>
 // on 07/03/2023 15:43:47
 
-import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'package:uerto/presentation/widgets/test_appbar.dart';
+import 'package:uerto/presentation/widgets/test_blinking_dot.dart';
 import 'package:uerto/presentation/widgets/test_hexagon_shape.dart';
 import '../actions/index.dart';
 import '../containers/reservations_future_container.dart';
@@ -91,7 +91,7 @@ class _ReservationsFuturePageState extends State<ReservationsFuturePage> {
                       padding: const EdgeInsets.only(top: 20),
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 1,
-                        childAspectRatio: 2.5,
+                        childAspectRatio: 2,
                       ),
                       controller: _controller,
                       itemCount: reservations.length,
@@ -100,25 +100,106 @@ class _ReservationsFuturePageState extends State<ReservationsFuturePage> {
                         final Reservation reservation = reservations[index];
                         return GestureDetector(
                           onTap: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                              height: 150,
-                              width: 330,
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(Radius.circular(13)),
-                                color: Theme.of(context).primaryColorDark,
-                              ),
-                              child: Column(
+                          child: Container(
+                            padding: const EdgeInsets.only(bottom: 15, left: 12, right: 12),
+                            child: ClipRRect(
+                              borderRadius: const BorderRadius.all(Radius.circular(13)),
+                              child: Stack(
                                 children: <Widget>[
-                                  Text(
-                                    '${reservation.date} ${reservation.hour}',
-                                    style: const TextStyle(color: Colors.black),
+                                  GridTile(
+                                    footer: GridTileBar(
+                                      backgroundColor: Colors.black38,
+                                      title: Text(reservation.name),
+                                      subtitle: Text('${reservation.date} ${reservation.hour}'),
+                                    ),
+                                    child: Image.network(
+                                      'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+',
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                  Text(
-                                    'for ${reservation.partySize.toString()} people',
-                                    style: const TextStyle(color: Colors.black),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 15.0, left: 280.0),
+                                    child: Container(
+                                      height: 35,
+                                      width: 90,
+                                      decoration: BoxDecoration(
+                                        borderRadius: const BorderRadius.all(Radius.circular(9)),
+                                        color: reservation.status == 'declined'
+                                            ? Colors.redAccent.withOpacity(0.3)
+                                            : reservation.status == 'accepted'
+                                            ? Colors.green.withOpacity(0.3)
+                                            : reservation.status == 'on going'
+                                            ? Colors.amberAccent.withOpacity(0.3)
+                                            : Theme.of(context).highlightColor.withOpacity(0.3),
+                                        border: Border.all(
+                                          color: reservation.status == 'declined'
+                                              ? Colors.redAccent
+                                              : reservation.status == 'accepted'
+                                              ? Colors.green
+                                              : reservation.status == 'on going'
+                                              ? Colors.amberAccent
+                                              : Theme.of(context).highlightColor,
+                                          width: 2,
+                                        ),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          if (reservation.status == 'declined')
+                                            const Icon(
+                                              Icons.circle,
+                                              color: Colors.redAccent,
+                                              size: 12,
+                                            )
+                                          else if (reservation.status == 'accepted')
+                                            const Icon(
+                                              Icons.circle,
+                                              color: Colors.green,
+                                              size: 12,
+                                            )
+                                          else if (reservation.status == 'on going')
+                                              const BlinkingDot()
+                                            else if (reservation.status == 'finish')
+                                                Icon(
+                                                  Icons.circle,
+                                                  color: Theme.of(context).highlightColor,
+                                                  size: 12,
+                                                ),
+                                          Text(
+                                            reservation.status,
+                                            style: TextStyle(
+                                              color: reservation.status == 'declined'
+                                                  ? Colors.redAccent
+                                                  : reservation.status == 'accepted'
+                                                  ? Colors.green
+                                                  : reservation.status == 'on going'
+                                                  ? Colors.amberAccent
+                                                  : Theme.of(context).highlightColor,
+                                              fontSize: 12.0,
+                                              fontFamily: 'Plus',
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 145.0, left: 260),
+                                    child: Container(
+                                      alignment: Alignment.centerRight,
+                                      width: 110,
+                                      height: 20,
+                                      child: Text(
+                                        'For ${reservation.partySize} people.',
+                                        style: const TextStyle(
+                                          color: Color(0xffffffff),
+                                          fontSize: 14.0,
+                                          fontFamily: 'Plus',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -174,7 +255,7 @@ class _ReservationsFuturePageState extends State<ReservationsFuturePage> {
                           },
                         ),
                         Text(
-                          'Previous Reservations',
+                          'Future Reservations',
                           style: TextStyle(
                             color: Theme.of(context).secondaryHeaderColor,
                             fontSize: 22,

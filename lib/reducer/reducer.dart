@@ -165,6 +165,7 @@ AppState _getPlacesSearchedSuccessful(AppState state, GetPlacesSearchedSuccessfu
   final List<dynamic> places = action.body['results'] as List<dynamic>;
   return state.rebuild((AppStateBuilder b) {
     b
+      ..listOfPlacesSearched.clear()
       ..listOfPlacesSearched.addAll(places.map((dynamic json) => PlaceShort.fromJson(json)).toList())
       ..listOfPlacesSearchedNextPage = action.body.containsKey('next') ? b.listOfPlacesSearchedNextPage! + 1 : 0;
   });

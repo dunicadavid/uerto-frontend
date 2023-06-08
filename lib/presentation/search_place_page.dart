@@ -24,6 +24,7 @@ class SearchPlacePage extends StatefulWidget {
 class _SearchPlacePageState extends State<SearchPlacePage> {
   final TextEditingController _nameSearched = TextEditingController();
   String lastNameSearched = '';
+  bool _isLoading = false;
   Timer? timer;
 
   Future<void> getSearchedPlaces() async {
@@ -31,12 +32,21 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
       if (_nameSearched.text != lastNameSearched) {
         lastNameSearched = _nameSearched.text;
         if (_nameSearched.text != '' && _nameSearched.text != ' ') {
-          StoreProvider.of<AppState>(context).dispatch(GetPlacesSearched(_nameSearched.text, 5));
+          _isLoading = true;
+          StoreProvider.of<AppState>(context)
+              .dispatch(GetPlacesSearched(_nameSearched.text, 5, _onResultGetSearchedPlaces));
         } else if (_nameSearched.text == '') {
           StoreProvider.of<AppState>(context).dispatch(const DeletePlacesSearched());
         }
       }
     });
+  }
+
+  void _onResultGetSearchedPlaces(AppAction action) {
+    _isLoading = false;
+    if (action is ErrorAction) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${action.error}')));
+    }
   }
 
   void _onResultDetails(AppAction action) {
@@ -72,7 +82,6 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -88,7 +97,17 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                     height: 120,
                     width: width,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
-                    color: Theme.of(context).highlightColor,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).highlightColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.25),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3), // Offset to give a bottom shadow effect
+                        ),
+                      ],
+                    ),
                     child: SafeArea(
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -100,13 +119,16 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                             },
                             child: Icon(
                               CupertinoIcons.back,
-                              color: Theme.of(context).secondaryHeaderColor,
+                              color: Theme.of(context).primaryColorDark,
+                              size: 30,
                             ),
                           ),
-                          const SizedBox(width: 20,),
+                          const SizedBox(
+                            width: 20,
+                          ),
                           Container(
                             height: 40,
-                            width: 320,
+                            width: 310,
                             decoration: BoxDecoration(
                               color: Colors.black26,
                               borderRadius: BorderRadius.circular(50),
@@ -114,12 +136,16 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                             child: TextField(
                               controller: _nameSearched,
                               cursorColor: Theme.of(context).secondaryHeaderColor,
-                              style: TextStyle(color: Theme.of(context).secondaryHeaderColor, fontWeight: FontWeight.bold),
+                              style:
+                                  TextStyle(color: Theme.of(context).secondaryHeaderColor, fontWeight: FontWeight.bold),
                               decoration: InputDecoration(
                                 border: InputBorder.none,
                                 contentPadding: EdgeInsets.symmetric(horizontal: 20),
                                 hintText: 'search',
-                                hintStyle: TextStyle(color: Theme.of(context).secondaryHeaderColor.withOpacity(0.6), fontWeight: FontWeight.bold, fontSize: 13),
+                                hintStyle: TextStyle(
+                                    color: Theme.of(context).secondaryHeaderColor.withOpacity(0.6),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13),
                               ),
                             ),
                           ),
@@ -129,9 +155,10 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                   ),
                   if (placesSearched!.isNotEmpty)
                     Container(
-                      height: 400,
-                      //color:Colors.blue,
+                      alignment: Alignment.topCenter,
+                      height: 450,
                       child: ListView.builder(
+                        padding: const EdgeInsets.only(top: 10.0),
                         physics: const BouncingScrollPhysics(),
                         itemCount: placesSearched.length +
                             (StoreProvider.of<AppState>(context).state.listOfPlacesSearchedNextPage != 0 ? 1 : 0),
@@ -140,9 +167,13 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                             final PlaceShort place = placesSearched[index];
                             return ListTile(
                               onTap: () {
+                                FocusScope.of(context).unfocus();
                                 timer?.cancel(); // dont need
+                                _nameSearched.clear();
+                                StoreProvider.of<AppState>(context).dispatch(const DeletePlacesSearched());
                                 if (StoreProvider.of<AppState>(context).state.placeDetails != null) {
-                                  if (place.idplace != StoreProvider.of<AppState>(context).state.placeDetails?.idplace) {
+                                  if (place.idplace !=
+                                      StoreProvider.of<AppState>(context).state.placeDetails?.idplace) {
                                     StoreProvider.of<AppState>(context).dispatch(const DeletePlaceActivities());
                                     StoreProvider.of<AppState>(context).dispatch(GetPlaceDetails(place.idplace,
                                         StoreProvider.of<AppState>(context).state.user!.userId, _onResultDetails));
@@ -155,31 +186,86 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                                       StoreProvider.of<AppState>(context).state.user!.userId, _onResultDetails));
                                 }
                               },
+                              leading: const Icon(
+                                Icons.home_work_outlined,
+                                size: 26,
+                                color: Color(0x5524272c),
+                              ),
                               title: Text(
                                 place.name,
-                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                  color: Color(0xff24272c),
+                                  fontSize: 16.0,
+                                  fontFamily: 'Plus',
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                              subtitle: Text(place.location),
+                              subtitle: Text(
+                                place.location,
+                                style: const TextStyle(
+                                  color: Color(0x5524272c),
+                                  fontSize: 12.0,
+                                  fontFamily: 'Plus',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             );
                           } else {
-                            return GestureDetector(
-                              onTap: () {
-                                StoreProvider.of<AppState>(context)
-                                    .dispatch(GetPlacesSearchedAll(_nameSearched.text, 5, _onResultGetSearchedPlacesAll));
-                              },
-                              child: const Text(
-                                'See all results..',
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                            return Padding(
+                              padding: const EdgeInsets.only(left: 15.0, top: 10.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  StoreProvider.of<AppState>(context).dispatch(
+                                      GetPlacesSearchedAll(_nameSearched.text, 5, _onResultGetSearchedPlacesAll));
+                                },
+                                child: const Text(
+                                  'See all results..',
+                                  style: TextStyle(
+                                    color: Color(0xff24272c),
+                                    fontSize: 16.0,
+                                    fontFamily: 'Plus',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
                             );
                           }
                         },
                       ),
                     )
-                  else
-                    const Center(
-                      child: Text('There are no places with this name.'),
-                    ),
+                  else if (placesSearched.isEmpty && _nameSearched.text == '')
+                    Container()
+                  else if (placesSearched.isEmpty && _nameSearched.text != '' && _isLoading == false)
+                    Column(
+                      children: <Widget>[
+                        const SizedBox(height: 50,),
+                        const Text('No results found for', style: TextStyle(
+                          color: Color(0xaa24272c),
+                          fontSize: 16.0,
+                          fontFamily: 'Plus',
+                          fontWeight: FontWeight.normal,
+                        ),),
+                        Text(_nameSearched.text, style: const TextStyle(
+                          color: Color(0xff24272c),
+                          fontSize: 20.0,
+                          fontFamily: 'Plus',
+                          fontWeight: FontWeight.bold,
+                        ),),
+                        const SizedBox(height: 50,),
+                        Container(
+                          height: 200,
+                          width: 200,
+                          color: Colors.blueGrey,
+                        ),
+                        const SizedBox(height: 30,),
+                        const Text('Try searching for something else', style: TextStyle(
+                          color: Color(0xaa24272c),
+                          fontSize: 16.0,
+                          fontFamily: 'Plus',
+                          fontWeight: FontWeight.normal,
+                        ),),
+                      ],
+                    )
                 ],
               ),
               Container(
