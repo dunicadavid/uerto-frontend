@@ -29,14 +29,16 @@ class AvatarCircle extends StatelessWidget {
           children: <Widget>[
             CircleAvatar(
               backgroundColor: avatarColorBg,
-              foregroundImage: user!.photoUrl != null ? NetworkImage(user.photoUrl!) : null,
               radius: sizeRadius,
-              child: user.photoUrl != null
-                  ? null
+              child: user!.photoUrl != null
+                  ? Image.network(
+                      'https://localhost:3000/users/profile-image/${user.photoUrl!}',
+                      fit: BoxFit.cover,
+                    )
                   : Text(
-                user.fullname[0].toUpperCase() +user.fullname.split(' ')[1][0].toUpperCase(),
-                style: TextStyle(color: avatarColorTx,fontWeight: FontWeight.w600),
-              ),
+                      user.fullname[0].toUpperCase() + user.fullname.split(' ')[1][0].toUpperCase(),
+                      style: TextStyle(color: avatarColorTx, fontWeight: FontWeight.w600),
+                    ),
             ),
             Positioned(
               left: 0,
@@ -45,11 +47,18 @@ class AvatarCircle extends StatelessWidget {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: avatarColorTx,
-                  border: Border.all(width: 2,color: Theme.of(context).canvasColor)
+                    shape: BoxShape.circle,
+                    color: avatarColorTx,
+                    border: Border.all(width: 2, color: Theme.of(context).canvasColor)),
+                child: Center(
+                  child: Text(
+                    '1',
+                    style: TextStyle(
+                      color: Theme.of(context).canvasColor,
+                      fontSize: 12.0,
+                    ),
+                  ),
                 ),
-                child: Center(child: Text('1',style: TextStyle(color: Theme.of(context).canvasColor,fontSize: 12.0,),),),
               ),
             ),
           ],

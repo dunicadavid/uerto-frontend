@@ -180,7 +180,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           GestureDetector(
                             onTap: () {
                               StoreProvider.of<AppState>(context).dispatch(const Signout());
-                              Navigator.of(context).pushReplacementNamed('/');
+                              Navigator.of(context).pushReplacementNamed('/login');
                             },
                             child: const Text(
                               'Sign Out',
