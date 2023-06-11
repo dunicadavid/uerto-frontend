@@ -29,12 +29,10 @@ class AvatarCircle extends StatelessWidget {
           children: <Widget>[
             CircleAvatar(
               backgroundColor: avatarColorBg,
+              foregroundImage: user!.photoUrl != null ? NetworkImage('https://10.0.2.2:3000/images/profile-image/${user.photoUrl}') : null,
               radius: sizeRadius,
-              child: user!.photoUrl != null
-                  ? Image.network(
-                      'https://localhost:3000/users/profile-image/${user.photoUrl!}',
-                      fit: BoxFit.cover,
-                    )
+              child: user.photoUrl != null
+                  ? null
                   : Text(
                       user.fullname[0].toUpperCase() + user.fullname.split(' ')[1][0].toUpperCase(),
                       style: TextStyle(color: avatarColorTx, fontWeight: FontWeight.w600),
