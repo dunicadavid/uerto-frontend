@@ -16,6 +16,8 @@ abstract class PlaceShort implements Built<PlaceShort, PlaceShortBuilder> {
 
   String get name;
 
+  String? get imageFirst;
+
   String get location;
 
   double get rating;

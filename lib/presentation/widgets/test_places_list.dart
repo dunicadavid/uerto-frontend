@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:uerto/presentation/widgets/test_loading_container.dart';
 
 import '../../actions/index.dart';
 import '../../containers/places_short_container.dart';
@@ -66,10 +67,10 @@ class _TestPlacesListState extends State<TestPlacesList> {
                           title: Text(place.name),
                           subtitle: Text(place.location),
                         ),
-                        child: Image.network(
-                          'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+',
+                        child: place.imageFirst != null ? Image.network(
+                          'https://10.0.2.2:3000/images/places/${place.imageFirst}',
                           fit: BoxFit.cover,
-                        ),
+                        ) : const Center(child: LeftToRightLoadingContainer()),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 115.0, left: 290.0),

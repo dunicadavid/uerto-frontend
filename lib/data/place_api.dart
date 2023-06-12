@@ -39,8 +39,6 @@ class PlaceApi {
       'radius': radius != null ? radius.toString() : '0',
     };
 
-    print(requestParams);
-
     final Uri uri =
     Uri.https(_apiUrl.split('//')[1], '/places', requestParams);
 

@@ -15,15 +15,22 @@ class BlinkingDot extends StatefulWidget {
 
 class _BlinkingDotState extends State<BlinkingDot> {
   bool _isVisible = true;
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(milliseconds: 1000), (Timer timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 1000), (Timer timer) {
       setState(() {
         _isVisible = !_isVisible;
       });
     });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer to avoid memory leaks
+    super.dispose();
   }
 
   @override

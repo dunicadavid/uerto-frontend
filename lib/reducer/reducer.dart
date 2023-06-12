@@ -22,6 +22,7 @@ Reducer<AppState> reducer = combineReducers(<Reducer<AppState>>[
   TypedReducer<AppState, InitializeAppError>(_initializeAppError),
   TypedReducer<AppState, RegisterPhase2Successful>(_registerPhase2Successful),
   TypedReducer<AppState, EditProfileSuccessful>(_editProfile),
+  TypedReducer<AppState, EditProfileImageSuccessful>(_editProfileImage),
   TypedReducer<AppState, LoginSuccessful>(_loginSuccessful),
   TypedReducer<AppState, SignoutSuccessful>(_signOutSuccessful),
   TypedReducer<AppState, GetPlacesSuccessful>(_getPlacesSuccessful),
@@ -113,6 +114,20 @@ AppState _editProfile(AppState state, EditProfileSuccessful action) {
   return state.rebuild((AppStateBuilder b) => b.user = action.user.toBuilder());
 }
 
+AppState _editProfileImage(AppState state, EditProfileImageSuccessful action) {
+  final AppUser user = AppUser((AppUserBuilder b) {
+    b
+      ..userId = state.user!.userId
+      ..uid = state.user!.uid
+      ..fullname = state.user!.fullname
+      ..email = state.user!.email
+      ..phoneNumber = state.user!.phoneNumber
+      ..photoUrl = action.photoUrl
+      ..nextStrategy = state.user!.nextStrategy;
+  });
+  return state.rebuild((AppStateBuilder b) => b.user = user.toBuilder());
+}
+
 AppState _loginSuccessful(AppState state, LoginSuccessful action) {
   return state.rebuild((AppStateBuilder b) {
     final Map<String, dynamic>? user = action.user != null ? action.user!['user'] as Map<String, dynamic> : null;
@@ -156,6 +171,7 @@ AppState _setRecommenderStrategySuccessful(AppState state, SetRecommenderStrateg
       ..fullname = state.user!.fullname
       ..email = state.user!.email
       ..phoneNumber = state.user!.phoneNumber
+      ..photoUrl = state.user!.photoUrl
       ..nextStrategy = action.strategy;
   });
   return state.rebuild((AppStateBuilder b) => b.user = user.toBuilder());

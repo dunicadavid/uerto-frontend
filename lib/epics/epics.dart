@@ -41,6 +41,7 @@ class AppEpics {
       TypedEpic<AppState, EmailVerifyStart>(_verifyEmail),
       TypedEpic<AppState, ResetPasswordStart>(_resetPassword),
       TypedEpic<AppState, EditProfileStart>(_editProfile),
+      TypedEpic<AppState, EditProfileImageStart>(_editProfileImage),
       TypedEpic<AppState, GetPlacesStart>(_getPlaces),
       TypedEpic<AppState, GetRecommendedPlacesStart>(_getRecommendedPlaces),
       TypedEpic<AppState, SetRecommenderStrategyStart>(_setRecommenderStrategy),
@@ -135,6 +136,14 @@ class AppEpics {
         .asyncMap((_) => _authApi.editProfile(action.iduser, action.fullname, action.phoneNumber, action.photoUrl, store.state.user!.nextStrategy))
         .map((AppUser user) => EditProfile.successful(user))
         .onErrorReturnWith((Object error, StackTrace stackTrace) => EditProfile.error(error, stackTrace))
+        .doOnData(action.result));
+  }
+
+  Stream<AppAction> _editProfileImage(Stream<EditProfileImageStart> actions, EpicStore<AppState> store) {
+    return actions.flatMap((EditProfileImageStart action) => Stream<void>.value(null)
+        .asyncMap((_) => _authApi.editProfileImage(action.imageFile,store.state.user!.userId))
+        .map((String photoUrl) => EditProfileImage.successful(photoUrl))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) => EditProfileImage.error(error, stackTrace))
         .doOnData(action.result));
   }
 

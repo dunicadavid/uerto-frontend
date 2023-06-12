@@ -2,9 +2,12 @@
 // Dunica David-Gabriel <FLTY>
 // on 07/03/2023 13:46:37
 
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:uerto/presentation/widgets/test_appbar.dart';
 import 'package:uerto/presentation/widgets/test_avatar_circle.dart';
 import 'package:uerto/presentation/widgets/test_hexagon_shape.dart';
@@ -178,6 +181,28 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             height: 30,
                           ),
                           GestureDetector(
+                            onTap: () async {
+                              final PickedFile? file = await ImagePicker().getImage(source: ImageSource.gallery);
+
+                              if (file != null) {
+                                print('intra');
+                                StoreProvider.of<AppState>(context).dispatch(EditProfileImage(File(file.path),(_){}));
+                              }
+                            },
+                            child: Text(
+                              'Edit Profile Image',
+                              style: TextStyle(
+                                color: Theme.of(context).secondaryHeaderColor,
+                                fontSize: 16.0,
+                                fontFamily: 'Plus',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          GestureDetector(
                             onTap: () {
                               StoreProvider.of<AppState>(context).dispatch(const Signout());
                               Navigator.of(context).pushReplacementNamed('/login');
@@ -188,7 +213,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 color: Color(0xffa20101),
                                 fontSize: 16.0,
                                 fontFamily: 'Plus',
-                                fontWeight: FontWeight.w600,
+                                fontWeight: FontWeight.w800,
                               ),
                             ),
                           ),
@@ -236,7 +261,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               size: 30,
                             ),
                             onPressed: () {
-                              StoreProvider.of<AppState>(context).dispatch(const DeletePlaces());
                               Navigator.of(context).pushReplacementNamed('/main');
                             },
                           ),
@@ -267,10 +291,41 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 if (user != null)
                   Padding(
                     padding: EdgeInsets.only(top: 135, left: width / 2 - 40),
-                    child: const AvatarCircle(
-                      sizeRadius: 40,
-                      avatarColorTx: Colors.black,
-                      avatarColorBg: Colors.white,
+                    child: Stack(
+                      children: <Widget>[
+                        CircleAvatar(
+                          backgroundColor: Theme.of(context).primaryColor,
+                          foregroundImage: user.photoUrl != null ? NetworkImage('https://10.0.2.2:3000/images/profile-image/${user.photoUrl}') : null,
+                          radius: 40,
+                          child: user.photoUrl != null
+                              ? null
+                              : Text(
+                            user.fullname[0].toUpperCase() + user.fullname.split(' ')[1][0].toUpperCase(),
+                            style: TextStyle(color: Theme.of(context).secondaryHeaderColor, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        Positioned(
+                          left: 0,
+                          bottom: 0,
+                          child: Container(
+                            width: 24,
+                            height: 24,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).secondaryHeaderColor,
+                                border: Border.all(width: 2, color: Theme.of(context).canvasColor)),
+                            child: Center(
+                              child: Text(
+                                '1',
+                                style: TextStyle(
+                                  color: Theme.of(context).canvasColor,
+                                  fontSize: 12.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   )
                 else
@@ -294,7 +349,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     child: Text(
                       user != null ? user.email : 'email',
                       style: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor),
+                          fontSize: 20, fontWeight: FontWeight.bold, color: Theme.of(context).secondaryHeaderColor.withOpacity(0.8)),
                     ),
                   ),
                 ),

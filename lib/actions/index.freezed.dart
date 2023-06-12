@@ -3215,6 +3215,518 @@ abstract class EditProfileError implements EditProfile, ErrorAction {
 }
 
 /// @nodoc
+mixin _$EditProfileImage {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(File imageFile, ActionResult result) $default, {
+    required TResult Function(String photoUrl) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(File imageFile, ActionResult result)? $default, {
+    TResult? Function(String photoUrl)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(File imageFile, ActionResult result)? $default, {
+    TResult Function(String photoUrl)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditProfileImageStart value) $default, {
+    required TResult Function(EditProfileImageSuccessful value) successful,
+    required TResult Function(EditProfileImageError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EditProfileImageStart value)? $default, {
+    TResult? Function(EditProfileImageSuccessful value)? successful,
+    TResult? Function(EditProfileImageError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditProfileImageStart value)? $default, {
+    TResult Function(EditProfileImageSuccessful value)? successful,
+    TResult Function(EditProfileImageError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EditProfileImageCopyWith<$Res> {
+  factory $EditProfileImageCopyWith(
+          EditProfileImage value, $Res Function(EditProfileImage) then) =
+      _$EditProfileImageCopyWithImpl<$Res, EditProfileImage>;
+}
+
+/// @nodoc
+class _$EditProfileImageCopyWithImpl<$Res, $Val extends EditProfileImage>
+    implements $EditProfileImageCopyWith<$Res> {
+  _$EditProfileImageCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$EditProfileImageStartCopyWith<$Res> {
+  factory _$$EditProfileImageStartCopyWith(_$EditProfileImageStart value,
+          $Res Function(_$EditProfileImageStart) then) =
+      __$$EditProfileImageStartCopyWithImpl<$Res>;
+  @useResult
+  $Res call({File imageFile, ActionResult result});
+}
+
+/// @nodoc
+class __$$EditProfileImageStartCopyWithImpl<$Res>
+    extends _$EditProfileImageCopyWithImpl<$Res, _$EditProfileImageStart>
+    implements _$$EditProfileImageStartCopyWith<$Res> {
+  __$$EditProfileImageStartCopyWithImpl(_$EditProfileImageStart _value,
+      $Res Function(_$EditProfileImageStart) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imageFile = null,
+    Object? result = null,
+  }) {
+    return _then(_$EditProfileImageStart(
+      null == imageFile
+          ? _value.imageFile
+          : imageFile // ignore: cast_nullable_to_non_nullable
+              as File,
+      null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as ActionResult,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditProfileImageStart implements EditProfileImageStart {
+  const _$EditProfileImageStart(this.imageFile, this.result);
+
+  @override
+  final File imageFile;
+  @override
+  final ActionResult result;
+
+  @override
+  String toString() {
+    return 'EditProfileImage(imageFile: $imageFile, result: $result)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditProfileImageStart &&
+            (identical(other.imageFile, imageFile) ||
+                other.imageFile == imageFile) &&
+            (identical(other.result, result) || other.result == result));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, imageFile, result);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditProfileImageStartCopyWith<_$EditProfileImageStart> get copyWith =>
+      __$$EditProfileImageStartCopyWithImpl<_$EditProfileImageStart>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(File imageFile, ActionResult result) $default, {
+    required TResult Function(String photoUrl) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return $default(imageFile, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(File imageFile, ActionResult result)? $default, {
+    TResult? Function(String photoUrl)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return $default?.call(imageFile, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(File imageFile, ActionResult result)? $default, {
+    TResult Function(String photoUrl)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(imageFile, result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditProfileImageStart value) $default, {
+    required TResult Function(EditProfileImageSuccessful value) successful,
+    required TResult Function(EditProfileImageError value) error,
+  }) {
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EditProfileImageStart value)? $default, {
+    TResult? Function(EditProfileImageSuccessful value)? successful,
+    TResult? Function(EditProfileImageError value)? error,
+  }) {
+    return $default?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditProfileImageStart value)? $default, {
+    TResult Function(EditProfileImageSuccessful value)? successful,
+    TResult Function(EditProfileImageError value)? error,
+    required TResult orElse(),
+  }) {
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditProfileImageStart implements EditProfileImage {
+  const factory EditProfileImageStart(
+          final File imageFile, final ActionResult result) =
+      _$EditProfileImageStart;
+
+  File get imageFile;
+  ActionResult get result;
+  @JsonKey(ignore: true)
+  _$$EditProfileImageStartCopyWith<_$EditProfileImageStart> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditProfileImageSuccessfulCopyWith<$Res> {
+  factory _$$EditProfileImageSuccessfulCopyWith(
+          _$EditProfileImageSuccessful value,
+          $Res Function(_$EditProfileImageSuccessful) then) =
+      __$$EditProfileImageSuccessfulCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String photoUrl});
+}
+
+/// @nodoc
+class __$$EditProfileImageSuccessfulCopyWithImpl<$Res>
+    extends _$EditProfileImageCopyWithImpl<$Res, _$EditProfileImageSuccessful>
+    implements _$$EditProfileImageSuccessfulCopyWith<$Res> {
+  __$$EditProfileImageSuccessfulCopyWithImpl(
+      _$EditProfileImageSuccessful _value,
+      $Res Function(_$EditProfileImageSuccessful) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? photoUrl = null,
+  }) {
+    return _then(_$EditProfileImageSuccessful(
+      null == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditProfileImageSuccessful implements EditProfileImageSuccessful {
+  const _$EditProfileImageSuccessful(this.photoUrl);
+
+  @override
+  final String photoUrl;
+
+  @override
+  String toString() {
+    return 'EditProfileImage.successful(photoUrl: $photoUrl)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditProfileImageSuccessful &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, photoUrl);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditProfileImageSuccessfulCopyWith<_$EditProfileImageSuccessful>
+      get copyWith => __$$EditProfileImageSuccessfulCopyWithImpl<
+          _$EditProfileImageSuccessful>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(File imageFile, ActionResult result) $default, {
+    required TResult Function(String photoUrl) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return successful(photoUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(File imageFile, ActionResult result)? $default, {
+    TResult? Function(String photoUrl)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return successful?.call(photoUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(File imageFile, ActionResult result)? $default, {
+    TResult Function(String photoUrl)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(photoUrl);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditProfileImageStart value) $default, {
+    required TResult Function(EditProfileImageSuccessful value) successful,
+    required TResult Function(EditProfileImageError value) error,
+  }) {
+    return successful(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EditProfileImageStart value)? $default, {
+    TResult? Function(EditProfileImageSuccessful value)? successful,
+    TResult? Function(EditProfileImageError value)? error,
+  }) {
+    return successful?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditProfileImageStart value)? $default, {
+    TResult Function(EditProfileImageSuccessful value)? successful,
+    TResult Function(EditProfileImageError value)? error,
+    required TResult orElse(),
+  }) {
+    if (successful != null) {
+      return successful(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditProfileImageSuccessful implements EditProfileImage {
+  const factory EditProfileImageSuccessful(final String photoUrl) =
+      _$EditProfileImageSuccessful;
+
+  String get photoUrl;
+  @JsonKey(ignore: true)
+  _$$EditProfileImageSuccessfulCopyWith<_$EditProfileImageSuccessful>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditProfileImageErrorCopyWith<$Res> {
+  factory _$$EditProfileImageErrorCopyWith(_$EditProfileImageError value,
+          $Res Function(_$EditProfileImageError) then) =
+      __$$EditProfileImageErrorCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Object error, StackTrace stackTrace});
+}
+
+/// @nodoc
+class __$$EditProfileImageErrorCopyWithImpl<$Res>
+    extends _$EditProfileImageCopyWithImpl<$Res, _$EditProfileImageError>
+    implements _$$EditProfileImageErrorCopyWith<$Res> {
+  __$$EditProfileImageErrorCopyWithImpl(_$EditProfileImageError _value,
+      $Res Function(_$EditProfileImageError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+    Object? stackTrace = null,
+  }) {
+    return _then(_$EditProfileImageError(
+      null == error ? _value.error : error,
+      null == stackTrace
+          ? _value.stackTrace
+          : stackTrace // ignore: cast_nullable_to_non_nullable
+              as StackTrace,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$EditProfileImageError implements EditProfileImageError {
+  const _$EditProfileImageError(this.error, this.stackTrace);
+
+  @override
+  final Object error;
+  @override
+  final StackTrace stackTrace;
+
+  @override
+  String toString() {
+    return 'EditProfileImage.error(error: $error, stackTrace: $stackTrace)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditProfileImageError &&
+            const DeepCollectionEquality().equals(other.error, error) &&
+            (identical(other.stackTrace, stackTrace) ||
+                other.stackTrace == stackTrace));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(error), stackTrace);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditProfileImageErrorCopyWith<_$EditProfileImageError> get copyWith =>
+      __$$EditProfileImageErrorCopyWithImpl<_$EditProfileImageError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(File imageFile, ActionResult result) $default, {
+    required TResult Function(String photoUrl) successful,
+    required TResult Function(Object error, StackTrace stackTrace) error,
+  }) {
+    return error(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(File imageFile, ActionResult result)? $default, {
+    TResult? Function(String photoUrl)? successful,
+    TResult? Function(Object error, StackTrace stackTrace)? error,
+  }) {
+    return error?.call(this.error, stackTrace);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(File imageFile, ActionResult result)? $default, {
+    TResult Function(String photoUrl)? successful,
+    TResult Function(Object error, StackTrace stackTrace)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error, stackTrace);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(EditProfileImageStart value) $default, {
+    required TResult Function(EditProfileImageSuccessful value) successful,
+    required TResult Function(EditProfileImageError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(EditProfileImageStart value)? $default, {
+    TResult? Function(EditProfileImageSuccessful value)? successful,
+    TResult? Function(EditProfileImageError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(EditProfileImageStart value)? $default, {
+    TResult Function(EditProfileImageSuccessful value)? successful,
+    TResult Function(EditProfileImageError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EditProfileImageError implements EditProfileImage, ErrorAction {
+  const factory EditProfileImageError(
+          final Object error, final StackTrace stackTrace) =
+      _$EditProfileImageError;
+
+  Object get error;
+  StackTrace get stackTrace;
+  @JsonKey(ignore: true)
+  _$$EditProfileImageErrorCopyWith<_$EditProfileImageError> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ResetPassword {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(

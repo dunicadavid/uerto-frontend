@@ -9,6 +9,8 @@ import 'package:built_collection/built_collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+
 
 import '../models/index.dart';
 
@@ -200,6 +202,39 @@ class AuthApi {
     }
 
     return user;
+  }
+
+  /// [ {editProfileImage} ]  --  modifica imaginea de profil a unui utilizator
+  Future<String> editProfileImage(File imagePath, int iduser) async {
+
+    final String? token = await _auth.currentUser?.getIdToken();
+
+    final Map<String, String> requestParams = <String, String>{
+      'iduser': iduser.toString()
+    };
+
+    final Uri uri =
+    Uri.https(_apiUrl.split('//')[1], '/users/update/profile-image', requestParams);
+
+    final MultipartRequest request = http.MultipartRequest('PUT', uri);
+
+    final MultipartFile image = await http.MultipartFile.fromPath('image', imagePath.path);
+    request.files.add(image);
+    request.headers['Authorization'] = 'Bearer $token';
+
+    final StreamedResponse response = await request.send();
+    final String responseBody = await response.stream.bytesToString();
+    final Map<String, dynamic> body = jsonDecode(responseBody) as Map<String, dynamic>;
+
+    if (response.statusCode != 201) {
+      if (response.statusCode == 405) {
+        throw StateError(body['message'].toString());
+      } else {
+        throw StateError('Something went wrong');
+      }
+    }
+
+    return body['photoUrl'].toString();
   }
 
   /// [ {signOut} ]  --  functia de signOut a userului legata la authentificarea din FIREBASE

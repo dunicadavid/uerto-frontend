@@ -16,6 +16,8 @@ abstract class Place implements Built<Place, PlaceBuilder> {
 
   String get name;
 
+  BuiltList<String>? get images;
+
   String get location;
   double get latitude;
   double get longitude;

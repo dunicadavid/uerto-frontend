@@ -32,12 +32,6 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
   int isFavourite = -1; //favourite check
   int _currentSlide = 0; //indexul imaginii curente
 
-  final List<String> _images = [
-    'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+',
-    'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+2',
-    'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+3',
-  ];
-
   final List<String> _placeFilters = [
     'Restaurant',
     'Outside',
@@ -556,14 +550,14 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                   Column(
                     children: [
                       CarouselSlider(
-                        items: _images.map((String image) {
+                        items: place?.images?.map((String image) {
                           return Builder(
                             builder: (BuildContext context) {
-                              return Container(
+                              return SizedBox(
                                 width: MediaQuery.of(context).size.width,
                                 child: Image.network(
-                                  image,
-                                  fit: BoxFit.cover,
+                                  'https://10.0.2.2:3000/images/places/$image',
+                                  fit: BoxFit.fill,
                                 ),
                               );
                             },
@@ -832,8 +826,8 @@ class _PlaceDetailsPageState extends State<PlaceDetailsPage> {
                     padding: const EdgeInsets.only(top: 200.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: _images.map((String image) {
-                        int index = _images.indexOf(image);
+                      children: place.images!.map((String image) {
+                        final int index = place.images!.indexOf(image);
                         return Container(
                           width: 8.0,
                           height: 8.0,

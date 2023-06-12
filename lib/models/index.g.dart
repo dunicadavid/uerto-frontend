@@ -433,6 +433,13 @@ class _$PlaceShortSerializer implements StructuredSerializer<PlaceShort> {
           specifiedType: const FullType(String)),
     ];
     Object? value;
+    value = object.imageFirst;
+    if (value != null) {
+      result
+        ..add('imageFirst')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.geohash;
     if (value != null) {
       result
@@ -461,6 +468,10 @@ class _$PlaceShortSerializer implements StructuredSerializer<PlaceShort> {
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'imageFirst':
+          result.imageFirst = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'location':
           result.location = serializers.deserialize(value,
@@ -640,7 +651,15 @@ class _$PlaceSerializer implements StructuredSerializer<Place> {
       serializers.serialize(object.favourite,
           specifiedType: const FullType(int)),
     ];
-
+    Object? value;
+    value = object.images;
+    if (value != null) {
+      result
+        ..add('images')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     return result;
   }
 
@@ -662,6 +681,12 @@ class _$PlaceSerializer implements StructuredSerializer<Place> {
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
+          break;
+        case 'images':
+          result.images.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'location':
           result.location = serializers.deserialize(value,
@@ -1488,6 +1513,8 @@ class _$PlaceShort extends PlaceShort {
   @override
   final String name;
   @override
+  final String? imageFirst;
+  @override
   final String location;
   @override
   final double rating;
@@ -1504,6 +1531,7 @@ class _$PlaceShort extends PlaceShort {
   _$PlaceShort._(
       {required this.idplace,
       required this.name,
+      this.imageFirst,
       required this.location,
       required this.rating,
       required this.price,
@@ -1531,6 +1559,7 @@ class _$PlaceShort extends PlaceShort {
     return other is PlaceShort &&
         idplace == other.idplace &&
         name == other.name &&
+        imageFirst == other.imageFirst &&
         location == other.location &&
         rating == other.rating &&
         price == other.price &&
@@ -1543,6 +1572,7 @@ class _$PlaceShort extends PlaceShort {
     var _$hash = 0;
     _$hash = $jc(_$hash, idplace.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, imageFirst.hashCode);
     _$hash = $jc(_$hash, location.hashCode);
     _$hash = $jc(_$hash, rating.hashCode);
     _$hash = $jc(_$hash, price.hashCode);
@@ -1557,6 +1587,7 @@ class _$PlaceShort extends PlaceShort {
     return (newBuiltValueToStringHelper(r'PlaceShort')
           ..add('idplace', idplace)
           ..add('name', name)
+          ..add('imageFirst', imageFirst)
           ..add('location', location)
           ..add('rating', rating)
           ..add('price', price)
@@ -1576,6 +1607,10 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
+
+  String? _imageFirst;
+  String? get imageFirst => _$this._imageFirst;
+  set imageFirst(String? imageFirst) => _$this._imageFirst = imageFirst;
 
   String? _location;
   String? get location => _$this._location;
@@ -1604,6 +1639,7 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
     if ($v != null) {
       _idplace = $v.idplace;
       _name = $v.name;
+      _imageFirst = $v.imageFirst;
       _location = $v.location;
       _rating = $v.rating;
       _price = $v.price;
@@ -1635,6 +1671,7 @@ class PlaceShortBuilder implements Builder<PlaceShort, PlaceShortBuilder> {
                 idplace, r'PlaceShort', 'idplace'),
             name: BuiltValueNullFieldError.checkNotNull(
                 name, r'PlaceShort', 'name'),
+            imageFirst: imageFirst,
             location: BuiltValueNullFieldError.checkNotNull(
                 location, r'PlaceShort', 'location'),
             rating: BuiltValueNullFieldError.checkNotNull(
@@ -1895,6 +1932,8 @@ class _$Place extends Place {
   @override
   final String name;
   @override
+  final BuiltList<String>? images;
+  @override
   final String location;
   @override
   final double latitude;
@@ -1917,6 +1956,7 @@ class _$Place extends Place {
   _$Place._(
       {required this.idplace,
       required this.name,
+      this.images,
       required this.location,
       required this.latitude,
       required this.longitude,
@@ -1951,6 +1991,7 @@ class _$Place extends Place {
     return other is Place &&
         idplace == other.idplace &&
         name == other.name &&
+        images == other.images &&
         location == other.location &&
         latitude == other.latitude &&
         longitude == other.longitude &&
@@ -1966,6 +2007,7 @@ class _$Place extends Place {
     var _$hash = 0;
     _$hash = $jc(_$hash, idplace.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, images.hashCode);
     _$hash = $jc(_$hash, location.hashCode);
     _$hash = $jc(_$hash, latitude.hashCode);
     _$hash = $jc(_$hash, longitude.hashCode);
@@ -1983,6 +2025,7 @@ class _$Place extends Place {
     return (newBuiltValueToStringHelper(r'Place')
           ..add('idplace', idplace)
           ..add('name', name)
+          ..add('images', images)
           ..add('location', location)
           ..add('latitude', latitude)
           ..add('longitude', longitude)
@@ -2005,6 +2048,11 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
   String? _name;
   String? get name => _$this._name;
   set name(String? name) => _$this._name = name;
+
+  ListBuilder<String>? _images;
+  ListBuilder<String> get images =>
+      _$this._images ??= new ListBuilder<String>();
+  set images(ListBuilder<String>? images) => _$this._images = images;
 
   String? _location;
   String? get location => _$this._location;
@@ -2045,6 +2093,7 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
     if ($v != null) {
       _idplace = $v.idplace;
       _name = $v.name;
+      _images = $v.images?.toBuilder();
       _location = $v.location;
       _latitude = $v.latitude;
       _longitude = $v.longitude;
@@ -2073,27 +2122,42 @@ class PlaceBuilder implements Builder<Place, PlaceBuilder> {
   Place build() => _build();
 
   _$Place _build() {
-    final _$result = _$v ??
-        new _$Place._(
-            idplace: BuiltValueNullFieldError.checkNotNull(
-                idplace, r'Place', 'idplace'),
-            name: BuiltValueNullFieldError.checkNotNull(name, r'Place', 'name'),
-            location: BuiltValueNullFieldError.checkNotNull(
-                location, r'Place', 'location'),
-            latitude: BuiltValueNullFieldError.checkNotNull(
-                latitude, r'Place', 'latitude'),
-            longitude: BuiltValueNullFieldError.checkNotNull(
-                longitude, r'Place', 'longitude'),
-            category: BuiltValueNullFieldError.checkNotNull(
-                category, r'Place', 'category'),
-            hoursOfOpp: BuiltValueNullFieldError.checkNotNull(
-                hoursOfOpp, r'Place', 'hoursOfOpp'),
-            rating: BuiltValueNullFieldError.checkNotNull(
-                rating, r'Place', 'rating'),
-            price:
-                BuiltValueNullFieldError.checkNotNull(price, r'Place', 'price'),
-            favourite: BuiltValueNullFieldError.checkNotNull(
-                favourite, r'Place', 'favourite'));
+    _$Place _$result;
+    try {
+      _$result = _$v ??
+          new _$Place._(
+              idplace: BuiltValueNullFieldError.checkNotNull(
+                  idplace, r'Place', 'idplace'),
+              name:
+                  BuiltValueNullFieldError.checkNotNull(name, r'Place', 'name'),
+              images: _images?.build(),
+              location: BuiltValueNullFieldError.checkNotNull(
+                  location, r'Place', 'location'),
+              latitude: BuiltValueNullFieldError.checkNotNull(
+                  latitude, r'Place', 'latitude'),
+              longitude: BuiltValueNullFieldError.checkNotNull(
+                  longitude, r'Place', 'longitude'),
+              category: BuiltValueNullFieldError.checkNotNull(
+                  category, r'Place', 'category'),
+              hoursOfOpp: BuiltValueNullFieldError.checkNotNull(
+                  hoursOfOpp, r'Place', 'hoursOfOpp'),
+              rating: BuiltValueNullFieldError.checkNotNull(
+                  rating, r'Place', 'rating'),
+              price: BuiltValueNullFieldError.checkNotNull(
+                  price, r'Place', 'price'),
+              favourite: BuiltValueNullFieldError.checkNotNull(
+                  favourite, r'Place', 'favourite'));
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'images';
+        _images?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'Place', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

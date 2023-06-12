@@ -42,7 +42,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<Reservation>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Reservation)]),
-          () => new ListBuilder<Reservation>()))
+          () => new ListBuilder<Reservation>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint
