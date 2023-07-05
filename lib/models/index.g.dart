@@ -812,6 +812,9 @@ class _$ReservationSerializer implements StructuredSerializer<Reservation> {
       'status',
       serializers.serialize(object.status,
           specifiedType: const FullType(String)),
+      'imageFirst',
+      serializers.serialize(object.imageFirst,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -854,6 +857,10 @@ class _$ReservationSerializer implements StructuredSerializer<Reservation> {
           break;
         case 'status':
           result.status = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'imageFirst':
+          result.imageFirst = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
       }
@@ -2307,6 +2314,8 @@ class _$Reservation extends Reservation {
   final int partySize;
   @override
   final String status;
+  @override
+  final String imageFirst;
 
   factory _$Reservation([void Function(ReservationBuilder)? updates]) =>
       (new ReservationBuilder()..update(updates))._build();
@@ -2318,7 +2327,8 @@ class _$Reservation extends Reservation {
       required this.date,
       required this.hour,
       required this.partySize,
-      required this.status})
+      required this.status,
+      required this.imageFirst})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         idreservation, r'Reservation', 'idreservation');
@@ -2329,6 +2339,8 @@ class _$Reservation extends Reservation {
     BuiltValueNullFieldError.checkNotNull(
         partySize, r'Reservation', 'partySize');
     BuiltValueNullFieldError.checkNotNull(status, r'Reservation', 'status');
+    BuiltValueNullFieldError.checkNotNull(
+        imageFirst, r'Reservation', 'imageFirst');
   }
 
   @override
@@ -2348,7 +2360,8 @@ class _$Reservation extends Reservation {
         date == other.date &&
         hour == other.hour &&
         partySize == other.partySize &&
-        status == other.status;
+        status == other.status &&
+        imageFirst == other.imageFirst;
   }
 
   @override
@@ -2361,6 +2374,7 @@ class _$Reservation extends Reservation {
     _$hash = $jc(_$hash, hour.hashCode);
     _$hash = $jc(_$hash, partySize.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
+    _$hash = $jc(_$hash, imageFirst.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -2374,7 +2388,8 @@ class _$Reservation extends Reservation {
           ..add('date', date)
           ..add('hour', hour)
           ..add('partySize', partySize)
-          ..add('status', status))
+          ..add('status', status)
+          ..add('imageFirst', imageFirst))
         .toString();
   }
 }
@@ -2411,6 +2426,10 @@ class ReservationBuilder implements Builder<Reservation, ReservationBuilder> {
   String? get status => _$this._status;
   set status(String? status) => _$this._status = status;
 
+  String? _imageFirst;
+  String? get imageFirst => _$this._imageFirst;
+  set imageFirst(String? imageFirst) => _$this._imageFirst = imageFirst;
+
   ReservationBuilder();
 
   ReservationBuilder get _$this {
@@ -2423,6 +2442,7 @@ class ReservationBuilder implements Builder<Reservation, ReservationBuilder> {
       _hour = $v.hour;
       _partySize = $v.partySize;
       _status = $v.status;
+      _imageFirst = $v.imageFirst;
       _$v = null;
     }
     return this;
@@ -2458,7 +2478,9 @@ class ReservationBuilder implements Builder<Reservation, ReservationBuilder> {
             partySize: BuiltValueNullFieldError.checkNotNull(
                 partySize, r'Reservation', 'partySize'),
             status: BuiltValueNullFieldError.checkNotNull(
-                status, r'Reservation', 'status'));
+                status, r'Reservation', 'status'),
+            imageFirst: BuiltValueNullFieldError.checkNotNull(
+                imageFirst, r'Reservation', 'imageFirst'));
     replace(_$result);
     return _$result;
   }

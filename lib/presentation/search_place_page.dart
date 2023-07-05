@@ -268,12 +268,12 @@ class _SearchPlacePageState extends State<SearchPlacePage> {
                     )
                 ],
               ),
-              Container(
-                color: Colors.red,
-                height: 2,
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.only(top: 105.0),
-              ),
+              // Container(
+              //   color: Colors.red,
+              //   height: 2,
+              //   width: MediaQuery.of(context).size.width,
+              //   margin: const EdgeInsets.only(top: 105.0),
+              // ),
             ],
           ),
         );

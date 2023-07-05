@@ -223,48 +223,49 @@ class _MainPageState extends State<MainPage> {
                         Navigator.of(context).pushReplacementNamed('/placeFilter');
                       },
                       child: Container(
-                          height: 100,
+                          height: 130,
                           width: width * 0.9,
                           decoration: const BoxDecoration(
-                            color: Colors.black26,
+                            color: Colors.black12,
                             borderRadius: BorderRadius.all(Radius.circular(7)),
                           ),
-                          child: const Text('restaurants')),
+                          child: const Center(child: Text('restaurants'))),
                     ),
                     SizedBox(
-                      height: height * 0.05,
+                      height: height * 0.03,
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).pushReplacementNamed('/placeFilter');
                       },
                       child: Container(
-                          height: 100,
+                          height: 130,
                           width: width * 0.9,
                           decoration: const BoxDecoration(
-                            color: Colors.black26,
+                            color: Colors.black12,
                             borderRadius: BorderRadius.all(Radius.circular(7)),
                           ),
-                          child: const Text('activities')),
+                          child: const Center(child: Text('activities'))),
                     ),
                     SizedBox(
-                      height: height * 0.05,
+                      height: height * 0.03,
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).pushReplacementNamed('/recommend');
                       },
                       child: Container(
-                        height: 100,
+                        height: 130,
                         width: width * 0.9,
                         decoration: const BoxDecoration(
-                          color: Colors.black26,
+                          color: Colors.black12,
                           borderRadius: BorderRadius.all(Radius.circular(7)),
                         ),
-                        child: const Text(
-                          'recommander system',
-                          style: TextStyle(color: Colors.blue),
-                        ),                    ),
+                        child: const Center(
+                          child: Text(
+                            'recommander system'),
+                        ),
+                      ),),
                     SizedBox(
                       height: height * 0.05,
                     ),

@@ -87,15 +87,15 @@ class _RatePlacePageState extends State<RatePlacePage> {
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(top: 120),
-                            child: Container(
+                            child: SizedBox(
                               height: 250,
                               width: 250,
-                              color: Colors.blueGrey,
+                              child: Image.asset('assets/images/rate.png'),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                            child: Container(
+                            child: SizedBox(
                               height: 390,
                               width: width,
                               child: PageView.builder(

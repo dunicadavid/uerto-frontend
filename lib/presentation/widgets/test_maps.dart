@@ -8,6 +8,7 @@ import 'package:dart_geohash/dart_geohash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:uerto/presentation/widgets/test_loading_container.dart';
 
 import '../../actions/index.dart';
 import '../../containers/current_location_container.dart';
@@ -100,23 +101,15 @@ class _TestMapsState extends State<TestMaps> {
                         },
                         child: Column(
                           children: <Widget>[
-                            if (true)
-                              Container(
-                                decoration: const BoxDecoration(
-                                  color: Color(0x11000000),
-                                  borderRadius: BorderRadius.all(Radius.circular(13)),
-                                ),
-                                height: width * 0.45,
-                                width: width,
-                              )
-                            else
-                              ClipRRect(
+                            ClipRRect(
                                 borderRadius: BorderRadius.circular(13),
-                                child: Image.network(
-                                  'imageURL',
-                                  fit: BoxFit.fill,
-                                  height: width * 0.45,
-                                  width: width,
+                                child: Container(
+                                  height: 200,
+                                  width: width*0.9,
+                                  child: places[index].imageFirst != null ? Image.network(
+                                    'https://10.0.2.2:3000/images/places/${places[index].imageFirst}',
+                                    fit: BoxFit.cover,
+                                  ) : const Center(child: LeftToRightLoadingContainer()),
                                 ),
                               ),
                             Padding(

@@ -11,6 +11,7 @@ import 'package:uerto/models/index.dart';
 import 'package:uerto/presentation/widgets/test_appbar.dart';
 import 'package:uerto/presentation/widgets/test_blinking_dot.dart';
 import 'package:uerto/presentation/widgets/test_hexagon_shape.dart';
+import 'package:uerto/presentation/widgets/test_loading_container.dart';
 
 import '../actions/index.dart';
 
@@ -101,10 +102,12 @@ class _ReservationsPreviousPageState extends State<ReservationsPreviousPage> {
                                       title: Text(reservation.name),
                                       subtitle: Text('${reservation.date} ${reservation.hour}'),
                                     ),
-                                    child: Image.network(
-                                      'https://img.toolstud.io/166x240/3b5998/fff&text=+A/R:0.69+',
+                                    child: reservation.imageFirst != null ? Image.network(
+                                      'https://10.0.2.2:3000/images/places/${reservation.imageFirst}',
                                       fit: BoxFit.cover,
-                                    ),
+                                      color: Colors.black.withOpacity(0.3), // Semi-transparent black color
+                                      colorBlendMode: BlendMode.darken,
+                                    ) : const Center(child: LeftToRightLoadingContainer()),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 15.0, left: 280.0),

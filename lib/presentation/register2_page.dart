@@ -116,15 +116,15 @@ class _Register2PageState extends State<Register2Page> {
                             child: Column(
                               children: <Widget>[
                                 const SizedBox(
-                                  height: 5,
+                                  height: 145,
                                 ),
-                                HexagonalShape(
-                                  size: 140,
-                                  colorFill: Theme.of(context).secondaryHeaderColor,
-                                  colorStroke: Colors.transparent,
-                                  strokeWidth: 0,
-                                  angle: pi/2,
-                                ),
+                                // HexagonalShape(
+                                //   size: 140,
+                                //   colorFill: Theme.of(context).secondaryHeaderColor,
+                                //   colorStroke: Colors.transparent,
+                                //   strokeWidth: 0,
+                                //   angle: pi/2,
+                                // ),
                                 const SizedBox(
                                   height: 20,
                                 ),

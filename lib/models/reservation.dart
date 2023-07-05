@@ -26,6 +26,8 @@ abstract class Reservation implements Built<Reservation, ReservationBuilder> {
 
   String get status;
 
+  String get imageFirst;
+
   Map<String, dynamic> get json =>
       serializers.serializeWith(serializer, this) as Map<String, dynamic>;
 

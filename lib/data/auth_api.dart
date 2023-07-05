@@ -144,7 +144,7 @@ class AuthApi {
         HttpHeaders.authorizationHeader: 'Bearer $token',
       },
       body: json.encode(
-          <String, String>{'name': user.fullname, 'email': user.email, 'phone': user.phoneNumber, 'authId': user.uid}),
+          <String, String>{'name': user.fullname, 'email': user.email, 'phone': user.phoneNumber, 'idauth': user.uid}),
     );
 
     final Map<String, dynamic> body = jsonDecode(response.body) as Map<String, dynamic>;

@@ -161,9 +161,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                                   height: 100,
                                 ),
                                 Container(
-                                  color: Colors.blueGrey,
                                   width: 230,
                                   height: 230,
+                                  child: Image.asset('assets/images/email.png'),
                                 ),
                                 SizedBox(
                                   width: width,
