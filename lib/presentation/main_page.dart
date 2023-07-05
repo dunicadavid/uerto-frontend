@@ -222,7 +222,14 @@ class _MainPageState extends State<MainPage> {
                       onTap: () {
                         Navigator.of(context).pushReplacementNamed('/placeFilter');
                       },
-                      child: const Text('restaurants'),
+                      child: Container(
+                          height: 100,
+                          width: width * 0.9,
+                          decoration: const BoxDecoration(
+                            color: Colors.black26,
+                            borderRadius: BorderRadius.all(Radius.circular(7)),
+                          ),
+                          child: const Text('restaurants')),
                     ),
                     SizedBox(
                       height: height * 0.05,
@@ -231,7 +238,14 @@ class _MainPageState extends State<MainPage> {
                       onTap: () {
                         Navigator.of(context).pushReplacementNamed('/placeFilter');
                       },
-                      child: const Text('activities'),
+                      child: Container(
+                          height: 100,
+                          width: width * 0.9,
+                          decoration: const BoxDecoration(
+                            color: Colors.black26,
+                            borderRadius: BorderRadius.all(Radius.circular(7)),
+                          ),
+                          child: const Text('activities')),
                     ),
                     SizedBox(
                       height: height * 0.05,
@@ -240,11 +254,17 @@ class _MainPageState extends State<MainPage> {
                       onTap: () {
                         Navigator.of(context).pushReplacementNamed('/recommend');
                       },
-                      child: const Text(
-                        'recommander system',
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ),
+                      child: Container(
+                        height: 100,
+                        width: width * 0.9,
+                        decoration: const BoxDecoration(
+                          color: Colors.black26,
+                          borderRadius: BorderRadius.all(Radius.circular(7)),
+                        ),
+                        child: const Text(
+                          'recommander system',
+                          style: TextStyle(color: Colors.blue),
+                        ),                    ),
                     SizedBox(
                       height: height * 0.05,
                     ),
